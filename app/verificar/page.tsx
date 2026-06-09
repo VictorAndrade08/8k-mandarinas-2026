@@ -102,10 +102,10 @@ export default function VerificarPage() {
                 record_id: "REC-12345",
                 nombre: "JUAN PÉREZ ALMEIDA",
                 cedula: cedulaClean,
-                ciudad: "AMBATO",
+                ciudad: "PATATE",
                 edad: 28,
                 genero: "MASCULINO",
-                categorias: "ÉLITE 10K",
+                categorias: "ÉLITE 8K",
                 etapa: "APROBADO",
                 valor: 25
             });
@@ -203,9 +203,9 @@ export default function VerificarPage() {
                     </div>
                     
                     <h1 className={`text-7xl sm:text-8xl lg:text-9xl leading-[0.9] text-white ${bebasClassName} mb-8 drop-shadow-2xl animate-in slide-in-from-bottom-4 duration-700 delay-100`}>
-                      Independencia <br/>
+                      8K Ruta de las <br/>
                       <span className="text-transparent bg-clip-text" style={{ backgroundImage: `linear-gradient(90deg, ${brandPurple}, ${brandPink}, #fff)` }}>
-                        de Ambato
+                        de Patate
                       </span>
                     </h1>
                     
@@ -216,16 +216,16 @@ export default function VerificarPage() {
                     {/* Stats */}
                     <div className="flex flex-wrap justify-center lg:justify-start gap-12 border-t border-white/20 pt-10 mt-2 w-full animate-in slide-in-from-bottom-4 duration-700 delay-300">
                         <div>
-                            <p className={`text-4xl ${bebasClassName} text-white`}>10K</p>
+                            <p className={`text-4xl ${bebasClassName} text-white`}>8K</p>
                             <p className="text-sm font-bold uppercase tracking-widest text-white/60">Distancia</p>
                         </div>
                         {/* FECHA ACTUALIZADA AQUÍ */}
                         <div>
-                            <p className={`text-4xl ${bebasClassName} text-white`}>Nov 15</p>
+                            <p className={`text-4xl ${bebasClassName} text-white`}>Ago 29</p>
                             <p className="text-sm font-bold uppercase tracking-widest text-white/60">Fecha</p>
                         </div>
                         <div>
-                            <p className={`text-4xl ${bebasClassName} text-white`}>Ambato</p>
+                            <p className={`text-4xl ${bebasClassName} text-white`}>Patate</p>
                             <p className="text-sm font-bold uppercase tracking-widest text-white/60">Lugar</p>
                         </div>
                     </div>

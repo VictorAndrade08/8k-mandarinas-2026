@@ -23,8 +23,8 @@ type TimeLeft = {
 const INITIAL_TIME: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
 function calculateTimeLeft(): TimeLeft {
-  // Fecha objetivo: Domingo 15 de noviembre de 2026 a las 07:00 (GMT-5)
-  const eventDate = new Date("2026-11-15T07:00:00-05:00").getTime();
+  // Fecha objetivo: Sábado 29 de agosto de 2026 a las 07:00 (GMT-5)
+  const eventDate = new Date("2026-08-29T08:00:00-05:00").getTime();
   const now = Date.now();
   const diff = eventDate - now;
 
@@ -87,20 +87,20 @@ export default function CountdownStrip() {
               <div className="flex items-center gap-3 mb-3">
                  <span className="h-px w-8 bg-[#DC2626]"></span>
                  <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-gray-500 font-bold">
-                    Presentado por APDT Ambato
+                    Presentado por APDT Patate
                  </p>
               </div>
 
               <h2 className="text-[36px] sm:text-[48px] lg:text-[60px] leading-[1] text-gray-900 font-[family-name:var(--font-bebas)] mb-4 tracking-tight">
                 Cuenta regresiva para la <br className="hidden sm:block"/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] to-[#EF4444]">
-                  10K Independencia de Ambato 2026
+                  8K Ruta de las Mandarinas 2026
                 </span>
               </h2>
 
               <p className="text-sm sm:text-lg text-gray-600 leading-relaxed max-w-xl">
-                <strong className="text-gray-900">Domingo 15 de noviembre de 2026 · 07h00</strong> <br/>
-                Ambato, Ecuador. Revisa el tiempo restante y organiza tu entrenamiento.
+                <strong className="text-gray-900">Sábado 29 de agosto de 2026 · 08h00</strong> <br/>
+                Patate, Ecuador. Revisa el tiempo restante y organiza tu entrenamiento.
               </p>
             </div>
 
@@ -117,7 +117,7 @@ export default function CountdownStrip() {
               ">
                 <Image
                   src="/imagen1.webp"
-                  alt="Identidad 10K Independencia de Ambato"
+                  alt="Identidad 8K Ruta de las Mandarinas"
                   // Definimos dimensiones exactas del contenedor para evitar saltos (CLS)
                   width={400} 
                   height={115}

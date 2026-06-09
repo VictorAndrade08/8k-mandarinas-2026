@@ -48,8 +48,8 @@ export default function ReglamentoSection() {
           </h2>
 
           <p className="mt-3 text-black/70 max-w-3xl mx-auto text-[15px] sm:text-[16px] leading-relaxed">
-            Carrera 10K Independencia de Ambato 2026 — “10K INDEPENDENCIA DE
-            AMBATO”
+            Carrera 8K Ruta de las Mandarinas 2026 — “8K RUTA DE LAS
+            PATATE”
           </p>
         </div>
 
@@ -57,18 +57,18 @@ export default function ReglamentoSection() {
         <div className="mt-12 space-y-6 text-[17px] sm:text-[18px] leading-[1.9] text-black/85">
           <ArticleCard id="art-1" title="Artículo 1. Denominación">
             <p>
-              La competencia atlética 10K Independencia de Ambato está organizada
+              La competencia atlética 8K Ruta de las Mandarinas está organizada
               por la Asociación de Periodistas Deportivos de Tungurahua, con la
-              colaboración del Gobierno Autónomo Descentralizado de Ambato. Para
+              colaboración del Gobierno Autónomo Descentralizado de Patate. Para
               la realización de esta edición el nombre de la competencia será:
-              10K INDEPENDENCIA DE AMBATO.
+              8K RUTA DE LAS MANDARINAS.
             </p>
           </ArticleCard>
 
           <ArticleCard id="art-2" title="Artículo 2. Horario">
             <p>
-              La edición de la 10K Independencia de Ambato se realizará el{" "}
-              <strong>domingo 15 de noviembre de 2026 a las 07h00</strong>. El
+              La edición de la 8K Ruta de las Mandarinas se realizará el{" "}
+              <strong>domingo 29 de agosto de 2026 a las 08h00</strong>. El
               tiempo máximo para completar esta prueba es de{" "}
               <strong>1 hora 30 minutos</strong>.
             </p>
@@ -153,7 +153,7 @@ export default function ReglamentoSection() {
 <ArticleCard id="art-6" title="Artículo 6. Inscripciones">
   <div className="space-y-3">
     <p>
-      <strong>Precio de inscripción:</strong> $30.00 USD (todas las categorías).
+      <strong>Precio de inscripción:</strong> $20.00 USD (todas las categorías).
     </p>
 
     <p>
@@ -172,19 +172,19 @@ export default function ReglamentoSection() {
     <p>
       También podrás inscribirte en la página web oficial:{" "}
       <a
-        href="https://10kindependenciadeambato.com/"
+        href="https://8krutadelasmandarinas.com/"
         target="_blank"
         rel="noreferrer"
         className="font-extrabold underline underline-offset-4 hover:opacity-80"
       >
-        https://10kindependenciadeambato.com/
+        https://8krutadelasmandarinas.com/
       </a>
     </p>
 
     <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
       <p className="font-semibold mb-1">Punto físico (OSCUS Matriz)</p>
       <p className="text-black/80">
-        Cooperativa OSCUS — Sucre entre Lalama y Bolívar, Ambato.
+        Cooperativa OSCUS — Sucre entre Lalama y Bolívar, Patate.
       </p>
     </div>
 
@@ -205,14 +205,14 @@ export default function ReglamentoSection() {
       <WhatsAppLink
         phoneE164="593995102378"
         label="+593 99 510 2378"
-        message="Hola, quiero inscribirme en la 10K Independencia de Ambato 2026. ¿Me ayudan con el proceso?"
+        message="Hola, quiero inscribirme en la 8K Ruta de las Mandarinas 2026. ¿Me ayudan con el proceso?"
       />
     </p>
 
     <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
       <p className="font-semibold mb-1">Punto físico</p>
       <p className="text-black/80">
-        Cooperativa OSCUS — Sucre entre Lalama y Bolívar, Ambato.
+        Cooperativa OSCUS — Sucre entre Lalama y Bolívar, Patate.
       </p>
     </div>
   </div>
@@ -234,7 +234,7 @@ export default function ReglamentoSection() {
   <p>
     Además de contar con la asistencia médica de <strong>paramédicos</strong>,
     los atletas contarán con un <strong>seguro de vida y accidentes</strong> en
-    horario de <strong>07:00 a 10:00</strong>, proporcionado por{" "}
+    horario de <strong>08:00 a 11:00</strong>, proporcionado por{" "}
     <strong>Sweaden Compañía de Seguros</strong>.
   </p>
 </ArticleCard>
@@ -243,7 +243,7 @@ export default function ReglamentoSection() {
             <p>
               La clasificación general de los participantes se publicará en la
               página oficial de la carrera{" "}
-              <strong>www.10kindependenciadeambato.com</strong>.
+              <strong>www.8krutadelasmandarinas.com</strong>.
             </p>
           </ArticleCard>
 
@@ -339,7 +339,7 @@ export default function ReglamentoSection() {
               <p>
                 Los cuadros preliminares de los ganadores se exhibirán en la
                 página web de la carrera{" "}
-                <strong>www.10kindependenciadeambato.com</strong> una vez
+                <strong>www.8krutadelasmandarinas.com</strong> una vez
                 terminada la competencia en el Estadio Universidad Indoamérica{" "}
                 <strong>BELLAVISTA</strong>.
               </p>
@@ -351,27 +351,27 @@ export default function ReglamentoSection() {
                 <WhatsAppLink
                   phoneE164="593997241804"
                   label="099 724 1804"
-                  message="Hola, quiero presentar un reclamo por mi ubicación en la 10K Independencia de Ambato 2026. Adjunto mi reclamo en PDF."
+                  message="Hola, quiero presentar un reclamo por mi ubicación en la 8K Ruta de las Mandarinas 2026. Adjunto mi reclamo en PDF."
                 />{" "}
                 hasta el{" "}
-                <strong>viernes 20 de noviembre de 2026</strong>.
+                <strong>viernes 4 de septiembre de 2026</strong>.
               </p>
 
               <p>
                 Luego de ello se realizarán, de ser el caso, los cambios
                 respectivos y se dará a conocer el cuadro oficial de ganadores
                 de la carrera. Se tendrá un plazo máximo de una semana para
-                presentar los documentos solicitados por el GAD Ambato para su
+                presentar los documentos solicitados por el GAD Patate para su
                 correspondiente pago. Una vez transcurrido este tiempo, la APDT
                 organizadora del evento deslinda su responsabilidad sobre el
                 pago, siendo responsabilidad del atleta el cumplimiento para el
                 cobro. Luego de este plazo se estima aproximadamente{" "}
                 <strong>90 días laborables</strong> para la cancelación directa a
-                los atletas por el GAD Ambato.
+                los atletas por el GAD Patate.
               </p>
 
               <p>
-                Una vez que el GAD Ambato lo autorice, se procederá al pago de
+                Una vez que el GAD Patate lo autorice, se procederá al pago de
                 los premios económicos para las diferentes categorías de damas y
                 varones. Se solicitará certificado bancario y cédula de
                 ciudadanía, o cualquier otro documento que soliciten los
@@ -402,7 +402,7 @@ export default function ReglamentoSection() {
                   <WhatsAppLink
                     phoneE164="593997241804"
                     label="099 724 1804"
-                    message="Hola, envío mi reclamo en PDF por mi ubicación en la 10K Independencia de Ambato 2026."
+                    message="Hola, envío mi reclamo en PDF por mi ubicación en la 8K Ruta de las Mandarinas 2026."
                   />
                 </p>
               </div>
@@ -456,7 +456,7 @@ export default function ReglamentoSection() {
                 y publicitaria, sin derecho a compensación económica.
               </p>
               <p>
-                El atleta que utilice la marca 10K Independencia de Ambato
+                El atleta que utilice la marca 8K Ruta de las Mandarinas
                 necesitará autorización de la organización para cualquier tipo
                 de publicación o difusión. En caso de infringir, se someterá a un
                 proceso legal.
@@ -478,8 +478,8 @@ export default function ReglamentoSection() {
               La entrega de los chips y kits se realizará en la{" "}
               <strong>Universidad Indoamérica (Av. Manuela Sáenz y Agramonte)</strong>.
               {" "}
-              <strong>Jueves 13 de noviembre</strong> de 10h00 a 17h00 y{" "}
-              <strong>viernes 14 de noviembre</strong> de 09h00 a 12h00.
+              <strong>Jueves 27 de agosto</strong> de 10h00 a 17h00 y{" "}
+              <strong>viernes 28 de agosto</strong> de 09h00 a 12h00.
             </p>
           </ArticleCard>
 
@@ -623,7 +623,7 @@ function PremiosTables() {
           <WhatsAppLink
             phoneE164="593997241804"
             label="099 724 1804"
-            message="Hola, tengo una consulta sobre premios y categorías de la 10K Independencia de Ambato 2026."
+            message="Hola, tengo una consulta sobre premios y categorías de la 8K Ruta de las Mandarinas 2026."
           />
         </p>
       </div>
@@ -722,15 +722,15 @@ function AnexoOrdenanza() {
     <div className="space-y-6">
       <p>
         Reglamento de aplicación al artículo 6 de la ORDENANZA MUNICIPAL que
-        establece los incentivos para la Carrera Atlética 10K Independencia de
-        Ambato.
+        establece los incentivos para la Carrera Atlética 8K Ruta de las Mandarinas de
+        Patate.
       </p>
 
       <div>
         <p className="font-extrabold">Artículo 1.- Objeto.–</p>
         <p className="mt-2">
-          La ordenanza que establece los incentivos para la Carrera Atlética 10K
-          Independencia de Ambato asigna recursos que se utilizarán para premiar
+          La ordenanza que establece los incentivos para la Carrera Atlética 8K
+          Ruta de las Mandarinas asigna recursos que se utilizarán para premiar
           a los ganadores, conforme lo determinado en el presente reglamento.
         </p>
       </div>
@@ -740,8 +740,8 @@ function AnexoOrdenanza() {
         <p className="mt-2">
           Se constituyen las siguientes categorías, en base a las cuales se
           realizará la distribución de los recursos fijados en la ordenanza que
-          establece los incentivos para la Carrera Atlética 10K Independencia de
-          Ambato:
+          establece los incentivos para la Carrera Atlética 8K Ruta de las Mandarinas de
+          Patate:
         </p>
         <div className="mt-3 grid sm:grid-cols-2 gap-2 text-black/85">
           <div>ELITE — DAMAS Y VARONES</div>
@@ -759,7 +759,7 @@ function AnexoOrdenanza() {
         </div>
         <p className="mt-3 text-black/70">
           Los límites de edad para cada categoría se toman en cuenta a la fecha
-          de realización de la competencia atlética 10K Independencia de Ambato.
+          de realización de la competencia atlética 8K Ruta de las Mandarinas.
         </p>
       </div>
 
@@ -767,7 +767,7 @@ function AnexoOrdenanza() {
         <p className="font-extrabold">Artículo 3.- Distribución.–</p>
         <p className="mt-2">
           La entrega de los recursos fijados en la ordenanza que establece los
-          incentivos para la Carrera Atlética 10K Independencia de Ambato se
+          incentivos para la Carrera Atlética 8K Ruta de las Mandarinas se
           realizará según el detalle descrito en las tablas de “Premios y
           categorías”.
         </p>
@@ -803,7 +803,7 @@ function AnexoOrdenanza() {
           Una vez efectuados los pagos, de existir valores no cobrados se
           procederá a liquidar la certificación presupuestaria con el propósito
           de liberar esos fondos para que sean utilizados por el GAD
-          Municipalidad de Ambato.
+          Municipalidad de Patate.
         </p>
       </div>
 

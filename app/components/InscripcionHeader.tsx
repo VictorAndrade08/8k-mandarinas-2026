@@ -78,10 +78,10 @@ export default function InscripcionHeader() {
         {/* Se oculta en móviles muy pequeños o se adapta */}
         <div className="relative z-10 flex flex-col items-center md:items-end text-center md:text-right font-barlow opacity-60 mt-2 md:mt-0">
            <p className="text-sm md:text-lg font-semibold uppercase tracking-[0.15em] text-white">
-             10K Independencia de Ambato
+             8K Ruta de las Mandarinas
            </p>
            <p className="text-xs md:text-sm text-white/60 tracking-wider">
-             Ambato, Ecuador
+             Patate, Ecuador
            </p>
         </div>
 

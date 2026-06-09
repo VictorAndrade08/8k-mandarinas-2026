@@ -23,7 +23,7 @@ type TimeLeft = {
 const INITIAL_TIME: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
 function calculateTimeLeft(): TimeLeft {
-  const eventDate = new Date("2026-11-15T07:00:00-05:00").getTime();
+  const eventDate = new Date("2026-08-29T08:00:00-05:00").getTime();
   const diff = eventDate - Date.now();
   if (diff <= 0) return INITIAL_TIME;
   return {
@@ -65,7 +65,7 @@ export default function HeroCountdown() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
         <iframe
           src={videoSrc}
-          title="10K Independencia de Ambato — Video"
+          title="8K Ruta de las Mandarinas — Video"
           allow="autoplay; encrypted-media; picture-in-picture"
           aria-hidden="true"
           tabIndex={-1}
@@ -116,18 +116,18 @@ export default function HeroCountdown() {
       <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4 sm:px-6 py-8 sm:py-10 text-center text-white">
         {/* Top label */}
         <p className="font-[family-name:var(--font-barlow-hero)] text-[11px] xs:text-[12px] sm:text-base md:text-lg lg:text-xl uppercase tracking-[0.32em] sm:tracking-[0.4em] text-white/80 font-semibold mb-3 sm:mb-5 whitespace-nowrap">
-          <span className="text-white">10K</span>
+          <span className="text-white">8K</span>
           <span className="mx-2 sm:mx-3 text-white/40">·</span>
-          <span>Ambato</span>
+          <span>Patate</span>
           <span className="mx-2 sm:mx-3 text-white/40">·</span>
           <span>Ecuador</span>
         </p>
 
-        {/* Logo oficial 10K Independencia de Ambato */}
+        {/* Logo oficial 8K Ruta de las Mandarinas */}
         <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[440px] lg:max-w-[540px] xl:max-w-[620px] mx-auto drop-shadow-[0_10px_40px_rgba(0,0,0,0.85)]">
           <Image
-            src="/logo-10k.webp"
-            alt="10K Independencia de Ambato"
+            src="/logo-8K.webp"
+            alt="8K Ruta de las Mandarinas"
             width={1622}
             height={515}
             priority
@@ -138,7 +138,7 @@ export default function HeroCountdown() {
 
         {/* Sub fecha */}
         <p className="mt-5 sm:mt-8 font-[family-name:var(--font-barlow-hero)] text-[12px] xs:text-[13px] sm:text-lg md:text-xl lg:text-2xl uppercase tracking-[0.25em] sm:tracking-[0.32em] text-white/85 font-semibold whitespace-nowrap">
-          Domingo · 15 noviembre · 2026
+          Sábado · 29 agosto · 2026
         </p>
 
         {/* Faltan */}

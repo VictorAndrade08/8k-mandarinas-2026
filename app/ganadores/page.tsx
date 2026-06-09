@@ -304,7 +304,7 @@ export default function GanadoresPage() {
               Se deberán enviar los siguientes requisitos:
             </h4>
             <p className="font-[family-name:var(--font-barlow)] text-[14px] leading-relaxed text-neutral-700 mb-3">
-              Cédula de identidad legible, información de categoría, ubicación, dirección, teléfono y correo electrónico (Primer PDF, documento transcrito en computadora). Certificado bancario de entidad avalada por el GAD AMBATO (Segundo PDF).
+              Cédula de identidad legible, información de categoría, ubicación, dirección, teléfono y correo electrónico (Primer PDF, documento transcrito en computadora). Certificado bancario de entidad avalada por el GAD PATATE (Segundo PDF).
             </p>
             <p className="font-[family-name:var(--font-barlow)] text-[14px] leading-relaxed text-neutral-700 mb-3">
               En el caso de ser menores de edad, adicionar los documentos del representante legal, padre o madre, y cuenta bancaria (Tercer PDF).

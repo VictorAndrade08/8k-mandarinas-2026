@@ -1,10 +1,13 @@
-# 10k Independencia de Ambato 2026
+# 8K Ruta de las Mandarinas 2026
 
-Sitio web oficial de la carrera **10k Independencia de Ambato 2026**.
+Sitio web oficial de la carrera **8K Ruta de las Mandarinas 2026**.
 
-- **Fecha:** Domingo 15 de noviembre de 2026
-- **Lugar:** Ambato, Ecuador
-- **Distancia:** 10 km
+- **Fecha:** Sábado 29 de agosto de 2026
+- **Salida:** Patate Garden, 08:00
+- **Lugar:** Valle de Patate, Tungurahua – Ecuador
+- **Distancia:** 8 km
+- **Precio preventa:** USD 20 (incluye kit)
+- **Inscripciones desde:** 15 de junio de 2026
 
 ## Stack
 

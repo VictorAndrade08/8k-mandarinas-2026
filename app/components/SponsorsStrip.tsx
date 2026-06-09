@@ -15,7 +15,7 @@ const bebas = Bebas_Neue({
 const SPONSOR_LOGOS = [
   {
     src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2025/01/Carrera-10K-Ruta-de-los-Tres-Juanes-2025-%C2%A1Corre-y-Celebra-la-Fiesta-de-la-Fruta-y-de-las-Flores-en-Ambato-.webp",
-    alt: "Corredores 10K Independencia de Ambato",
+    alt: "Corredores 8K Ruta de las Mandarinas",
   },
   {
     src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2025/01/Carrera-10K-Ruta-de-los-Tres-Juanes-2025-%C2%A1Corre-y-Celebra-la-Fiesta-de-la-Fruta-y-de-las-Flores-en-Ambato-34.webp",
@@ -23,15 +23,15 @@ const SPONSOR_LOGOS = [
   },
   {
     src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2025/01/Carrera-10K-Ruta-de-los-Tres-Juanes-2025-%C2%A1Corre-y-Celebra-la-Fiesta-de-la-Fruta-y-de-las-Flores-en-Ambato-1-2.webp",
-    alt: "Salida 10K Independencia de Ambato",
+    alt: "Salida 8K Ruta de las Mandarinas",
   },
   {
     src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2024/11/Carrera-10K-Independencia-de-Amb-9.webp",
-    alt: "Corredores 10K Independencia de Ambato",
+    alt: "Corredores 8K Ruta de las Mandarinas",
   },
   {
     src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2024/09/Carrera-10K-Independencia-de-Amb-logo-web-1-1.webp",
-    alt: "Logo 10K Independencia de Ambato",
+    alt: "Logo 8K Ruta de las Mandarinas",
   },
   {
     src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2024/09/Carrera-10K-Independencia-de-Amb-Aurum-1-1.webp",
@@ -39,7 +39,7 @@ const SPONSOR_LOGOS = [
   },
   {
     src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2024/12/Carrera-10K-Independencia-de-Amb-1-1.webp",
-    alt: "Corredores 10K Independencia de Ambato noche",
+    alt: "Corredores 8K Ruta de las Mandarinas noche",
   },
   {
     src: "https://antiquewhite-rook-228372.hostingersite.com/wp-content/uploads/2025/12/Carrera-10K-Independencia-de-Amb-9-1-copia.webp",

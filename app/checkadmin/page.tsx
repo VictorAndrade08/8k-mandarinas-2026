@@ -25,7 +25,7 @@ let app: FirebaseApp | undefined;
 let auth: Auth | undefined;
 let db: Firestore | undefined;
 // @ts-ignore
-let appId = typeof __app_id !== 'undefined' ? __app_id : 'bunker-anti-fraude-10k';
+let appId = typeof __app_id !== 'undefined' ? __app_id : 'bunker-anti-fraude-8K';
 
 try {
   let config = null;
@@ -60,7 +60,7 @@ try {
 const ENV_GEMINI_KEY = typeof process !== 'undefined' ? (process.env.NEXT_PUBLIC_GEMINI_API_KEY || "") : "";
 const ENV_AIRTABLE_KEY = typeof process !== 'undefined' ? (process.env.NEXT_PUBLIC_AIRTABLE_API_KEY || "") : "";
 const ENV_AIRTABLE_BASE = typeof process !== 'undefined' ? (process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID || "appA0xfrSZyNTgiLV") : "appA0xfrSZyNTgiLV";
-const ENV_AIRTABLE_TABLE = typeof process !== 'undefined' ? (process.env.NEXT_PUBLIC_AIRTABLE_TABLE_ID || "CRM 10k") : "CRM 10k";
+const ENV_AIRTABLE_TABLE = typeof process !== 'undefined' ? (process.env.NEXT_PUBLIC_AIRTABLE_TABLE_ID || "CRM 8K") : "CRM 8K";
 
 const AIRTABLE_CONFIG_KEY = 'verificador_ruta_3_juanes_config';
 const ACCESS_PIN = "1026"; 
@@ -731,9 +731,9 @@ export default function App() {
     
     let msg = '';
     if (type === 'missing_payment') {
-      msg = `Hola ${record.nombre}, te saludamos de la 10K Independencia de Ambato. Vemos tu registro pero no encontramos tu comprobante de pago o fue rechazado. Por favor, ayúdanos enviando la foto del pago por este medio para validar tu inscripción.`;
+      msg = `Hola ${record.nombre}, te saludamos de la 8K Ruta de las Mandarinas. Vemos tu registro pero no encontramos tu comprobante de pago o fue rechazado. Por favor, ayúdanos enviando la foto del pago por este medio para validar tu inscripción.`;
     } else {
-      msg = `Hola ${record.nombre}, hubo un error con los datos de tu inscripción en la 10K Independencia de Ambato. Por favor necesitamos verificar tu información para que no pierdas tu cupo.`;
+      msg = `Hola ${record.nombre}, hubo un error con los datos de tu inscripción en la 8K Ruta de las Mandarinas. Por favor necesitamos verificar tu información para que no pierdas tu cupo.`;
     }
     
     // Limpieza básica del número (Ecuador)
@@ -799,7 +799,7 @@ export default function App() {
           <div className="flex items-center gap-3">
              <button onClick={() => setMobileMenuOpen(true)} className="lg:hidden text-zinc-400 hover:text-white"><Menu size={20}/></button>
              <div className="bg-sky-500/10 p-2 rounded-lg border border-sky-500/20 hidden md:block"><ShieldCheck size={20} className="text-sky-400"/></div>
-             <div><h1 className="text-sm font-black uppercase tracking-widest text-white leading-none">Búnker 10k</h1><span className="text-[10px] font-medium text-zinc-500 tracking-wider hidden sm:inline-block">SISTEMA ANTI-FRAUDE STRICT</span></div>
+             <div><h1 className="text-sm font-black uppercase tracking-widest text-white leading-none">Búnker 8K</h1><span className="text-[10px] font-medium text-zinc-500 tracking-wider hidden sm:inline-block">SISTEMA ANTI-FRAUDE STRICT</span></div>
           </div>
           <div className="flex gap-2">
              <HeaderBtn onClick={fetchAirtableRecords} icon={RefreshCw} label={loading ? "CARGANDO..." : "RECARGAR"} spin={loading} />
@@ -1038,7 +1038,7 @@ const LockScreen = ({ pin, setPin, error, unlock }: any) => (
         <div className="bg-zinc-900/50 backdrop-blur-xl border border-zinc-800 p-12 rounded-[2rem] shadow-2xl w-full max-w-sm text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-sky-500/5 to-transparent pointer-events-none"></div>
           <div className="mb-10 flex justify-center"><div className="bg-zinc-900 p-6 rounded-3xl shadow-2xl border border-zinc-800"><Lock size={48} className="text-sky-500" strokeWidth={1.5}/></div></div>
-          <h1 className="text-3xl font-black text-white uppercase tracking-tighter mb-2">Búnker 10k</h1>
+          <h1 className="text-3xl font-black text-white uppercase tracking-tighter mb-2">Búnker 8K</h1>
           <p className="text-zinc-500 text-[10px] font-bold tracking-[0.4em] uppercase mb-10">Acceso Autorizado</p>
           <form onSubmit={unlock} className="space-y-6 relative z-10">
             <input type="password" maxLength={4} className={`w-full p-5 bg-zinc-950 border rounded-2xl text-center text-4xl text-white font-mono tracking-[0.5em] focus:outline-none transition-all placeholder:text-zinc-800 ${error ? 'border-rose-500/50 shadow-rose-900/20' : 'border-zinc-800 focus:border-sky-500/50 focus:shadow-sky-900/20'}`} placeholder="••••" value={pin} onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))} autoFocus />

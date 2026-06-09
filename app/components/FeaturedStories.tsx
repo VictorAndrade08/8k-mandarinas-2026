@@ -102,8 +102,8 @@ export default function FeaturedStories() {
               </h3>
 
               <p className="text-base sm:text-lg text-gray-400 leading-relaxed max-w-xl mb-8 font-medium">
-                Conoce la experiencia de corredores que ya vivieron la 10K
-                Independencia de Ambato: organización, ambiente y los desafíos únicos de correr en las calles que celebran la independencia de la ciudad.
+                Conoce la experiencia de corredores que ya vivieron la 8K
+                Ruta de las Mandarinas: organización, ambiente y los desafíos únicos de correr en las calles que celebran la independencia de la ciudad.
               </p>
 
               <div>

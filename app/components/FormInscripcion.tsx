@@ -249,16 +249,16 @@ export default function InscripcionPage() {
 
   // Categorías
   const categories: Category[] = [
-    { name: "Élite (Abierta)", price: 30, desc: "Categoría principal" },
-    { name: "Senior 1", price: 30, desc: "20–29 años" },
-    { name: "Senior 2", price: 30, desc: "30–39 años" },
-    { name: "Máster", price: 30, desc: "40–49 años" },
-    { name: "Súper Máster", price: 30, desc: "50–59 años" },
-    { name: "Vilcabambas", price: 30, desc: "60 años en adelante" },
-    { name: "Juvenil", price: 30, desc: "14–19 años" },
-    { name: "Colegial Tungurahua", price: 30, desc: "14–18 años" },
+    { name: "Élite (Abierta)", price: 20, desc: "Categoría principal" },
+    { name: "Senior 1", price: 20, desc: "20–29 años" },
+    { name: "Senior 2", price: 20, desc: "30–39 años" },
+    { name: "Máster", price: 20, desc: "40–49 años" },
+    { name: "Súper Máster", price: 20, desc: "50–59 años" },
+    { name: "Vilcabambas", price: 20, desc: "60 años en adelante" },
+    { name: "Juvenil", price: 20, desc: "14–19 años" },
+    { name: "Colegial Tungurahua", price: 20, desc: "14–18 años" },
     { name: "Capacidades Especiales", price: 20, desc: "Todas las edades" },
-    { name: "Interfuerzas", price: 30, desc: "Fuerzas del orden" },
+    { name: "Interfuerzas", price: 20, desc: "Fuerzas del orden" },
   ];
 
   // --- Efectos ---
@@ -397,7 +397,7 @@ export default function InscripcionPage() {
     setVerifying(true);
     try {
       const res = await fetch(
-        `https://mandarinas.10kindependenciadeambato.com/wp-json/mandarinas/v1/verificar-cedula?cedula=${formData.cedula}`,
+        `https://mandarinas.8krutadelasmandarinas.com/wp-json/mandarinas/v1/verificar-cedula?cedula=${formData.cedula}`,
         { cache: "no-store" }
       );
       const json = await res.json();
@@ -454,7 +454,7 @@ export default function InscripcionPage() {
 
     try {
       const res = await fetch(
-        "https://mandarinas.10kindependenciadeambato.com/wp-json/mandarinas/v1/inscribir",
+        "https://mandarinas.8krutadelasmandarinas.com/wp-json/mandarinas/v1/inscribir",
         { method: "POST", body, cache: "no-store" }
       );
       const rawText = await res.text();
@@ -548,7 +548,7 @@ export default function InscripcionPage() {
                  <img src="/white.svg" alt="Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
                </div>
                <span className="text-2xl md:text-[32px] uppercase tracking-tight text-white leading-none font-bebas">
-                 10K Independencia <br className="hidden md:block"/> de Ambato
+                 8K Ruta de las <br className="hidden md:block"/> Mandarinas
                </span>
             </div>
 
@@ -584,7 +584,7 @@ export default function InscripcionPage() {
           </div>
           
           <div className="hidden md:block mt-16 md:mt-0 text-base text-gray-400 relative z-10 font-medium font-barlow">
-            © 2026 10K Independencia de Ambato. <br/> Ambato, Ecuador.
+            © 2026 8K Ruta de las Mandarinas. <br/> Patate, Ecuador.
           </div>
         </div>
 
@@ -876,7 +876,7 @@ export default function InscripcionPage() {
                      <div className="bg-white p-2 rounded-lg shrink-0">
                         <img 
                           alt="QR" 
-                          src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(formData.cedula || "10K")}`} 
+                          src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(formData.cedula || "8K")}`} 
                           className="w-20 h-20"
                         />
                      </div>

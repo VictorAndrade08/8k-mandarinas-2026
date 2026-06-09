@@ -32,8 +32,8 @@ const montserrat = Montserrat({
 // Metadata
 // ==============================
 export const metadata: Metadata = {
-  title: "10K Independencia de Ambato 2026",
-  description: "10K Independencia de Ambato · Domingo 15 de noviembre de 2026 — Sitio oficial",
+  title: "8K Ruta de las Mandarinas 2026",
+  description: "8K Ruta de las Mandarinas · Sábado 29 de agosto de 2026 — Sitio oficial",
 };
 
 // ==============================

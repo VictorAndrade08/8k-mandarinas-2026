@@ -6,21 +6,21 @@ import Image from "next/image"; // IMPORTANTE: Usamos el componente nativo
 type GalleryItem = { src: string; alt: string };
 
 const IMAGES: GalleryItem[] = [
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes1.jpg", alt: "Corredor 1" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes2.jpg", alt: "Corredor 2" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes3.jpg", alt: "Corredor 3" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes4.jpg", alt: "Corredor 4" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes5.jpg", alt: "Corredor 5" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes6.jpg", alt: "Corredor 6" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes7.jpg", alt: "Corredor 7" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes8.jpg", alt: "Corredor 8" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes9.jpg", alt: "Corredor 9" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes10.jpg", alt: "Corredor 10" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes11.jpg", alt: "Corredor 11" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes12.jpg", alt: "Corredor 12" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes13.jpg", alt: "Corredor 13" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes14.jpg", alt: "Corredor 14" },
-  { src: "https://mandarinas.10kindependenciadeambato.com/wp-content/uploads/2025/12/juanes15.jpg", alt: "Corredor 15" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes1.jpg", alt: "Corredor 1" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes2.jpg", alt: "Corredor 2" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes3.jpg", alt: "Corredor 3" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes4.jpg", alt: "Corredor 4" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes5.jpg", alt: "Corredor 5" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes6.jpg", alt: "Corredor 6" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes7.jpg", alt: "Corredor 7" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes8.jpg", alt: "Corredor 8" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes9.jpg", alt: "Corredor 9" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes10.jpg", alt: "Corredor 10" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes11.jpg", alt: "Corredor 11" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes12.jpg", alt: "Corredor 12" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes13.jpg", alt: "Corredor 13" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes14.jpg", alt: "Corredor 14" },
+  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes15.jpg", alt: "Corredor 15" },
 ];
 
 export default function TopGallery() {

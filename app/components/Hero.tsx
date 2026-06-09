@@ -11,7 +11,7 @@ const bebas = Bebas_Neue({
   variable: "--font-bebas",
 });
 
-export default function Hero10k() {
+export default function Hero8K() {
   const VIDEO_ID = "h5QFFj_HwIk";
   const [isVideoActive, setIsVideoActive] = useState(false);
 
@@ -81,7 +81,7 @@ export default function Hero10k() {
                 {/* IMAGEN OPTIMIZADA (LCP - Sin CLS) */}
                 <img
                   src={`https://i.ytimg.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
-                  alt="Video Promocional 10K Independencia de Ambato"
+                  alt="Video Promocional 8K Ruta de las Mandarinas"
                   width={1280}
                   height={720}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -104,7 +104,7 @@ export default function Hero10k() {
               <iframe
                 className="absolute inset-0 w-full h-full animate-in fade-in duration-500"
                 src={src}
-                title="10K Independencia de Ambato – Video"
+                title="8K Ruta de las Mandarinas – Video"
                 allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
                 allowFullScreen
                 loading="eager"
@@ -116,18 +116,18 @@ export default function Hero10k() {
         {/* 🏃‍♂️ CONTENIDO / TEXTO */}
         <div className="relative z-10 flex flex-col justify-center text-center lg:text-left order-2 lg:order-none">
           <p className="uppercase tracking-[0.2em] text-xs sm:text-xs text-[#DC2626] font-bold mb-2 font-sans">
-            Ambato, Ecuador • 2026
+            Patate, Ecuador • 2026
           </p>
 
           <h1 className="font-[family-name:var(--font-bebas)] text-[40px] sm:text-[50px] lg:text-[64px] xl:text-[72px] leading-[0.9] text-black mb-4 sm:mb-5">
-            <span className="block tracking-wide">10K Independencia</span>
+            <span className="block tracking-wide">8K Ruta de las Mandarinas</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] to-[#EF4444]">
-              de Ambato
+              de Patate
             </span>
           </h1>
 
           <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-6 max-w-lg mx-auto lg:mx-0 font-medium font-sans">
-            Corre celebrando el <span className="text-black font-semibold">Aniversario de la Independencia de Ambato</span>. La carrera que une a la ciudad en sus calles más emblemáticas.
+            Corre celebrando el <span className="text-black font-semibold">Aniversario de la Ruta de las Mandarinas</span>. La carrera que une a la ciudad en sus calles más emblemáticas.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start font-sans">

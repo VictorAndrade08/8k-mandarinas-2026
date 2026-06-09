@@ -16,7 +16,7 @@ const CARDS = [
   {
     Icon: Map,
     title: "La Ruta de la Carrera",
-    text: "Conoce cada tramo del recorrido por las calles de Ambato.",
+    text: "Conoce cada tramo del recorrido por las calles de Patate.",
     cta: "Ver mapa 3D",
   },
   {
@@ -34,7 +34,7 @@ const CARDS = [
   {
     Icon: PartyPopper,
     title: "Fiesta, ciudad & ambiente",
-    text: "La carrera se integra al aniversario de la Independencia de Ambato: ciudad, ambiente y celebración.",
+    text: "La carrera se integra al aniversario de la Ruta de las Mandarinas: ciudad, ambiente y celebración.",
     cta: "Ver galería",
   },
 ];
@@ -81,7 +81,7 @@ export default function ExperienceSection() {
             >
             Explora la experiencia <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-                10K Independencia de Ambato
+                8K Ruta de las Mandarinas
             </span>
             </h2>
 

@@ -8,7 +8,7 @@ const bebas = Bebas_Neue({
   weight: "400",
 });
 
-export default function PoliticaPrivacidad10K() {
+export default function PoliticaPrivacidad8K() {
   return (
     <section
       id="politica-privacidad"
@@ -45,7 +45,7 @@ export default function PoliticaPrivacidad10K() {
           </h1>
 
           <p className="mt-3 text-black/70 max-w-3xl mx-auto text-[15px] sm:text-[16px] leading-relaxed">
-            10K Independencia de Ambato · Ambato – Ecuador
+            8K Ruta de las Mandarinas · Patate – Ecuador
           </p>
         </div>
 
@@ -53,9 +53,9 @@ export default function PoliticaPrivacidad10K() {
         <div className="mt-12 space-y-6 text-[17px] sm:text-[18px] leading-[1.9] text-black/85">
           <ArticleCard title="Responsable del tratamiento de datos">
             <p>
-              La carrera atlética <strong>10K Independencia de Ambato</strong>,
+              La carrera atlética <strong>8K Ruta de las Mandarinas</strong>,
               organizada por la <strong>Asociación de Periodistas Deportivos de
-              Tungurahua (APDT)</strong>, con domicilio en Ambato – Ecuador,
+              Tungurahua (APDT)</strong>, con domicilio en Patate – Ecuador,
               actúa como <strong>RESPONSABLE del tratamiento de los datos
               personales</strong> del titular, obtenidos mediante consentimiento
               verbal, escrito o digital, conforme a la{" "}
@@ -108,7 +108,7 @@ export default function PoliticaPrivacidad10K() {
             <ul className="list-disc pl-6 space-y-1">
               <li>Empresas de cronometraje deportivo.</li>
               <li>Aseguradoras y servicios médicos.</li>
-              <li>Entidades públicas (GAD Ambato u otras autoridades).</li>
+              <li>Entidades públicas (GAD Patate u otras autoridades).</li>
               <li>Proveedores tecnológicos y plataformas digitales.</li>
             </ul>
             <p className="mt-3">
@@ -161,9 +161,9 @@ export default function PoliticaPrivacidad10K() {
               a:
             </p>
             <p className="mt-3">
-              📧 <strong>Correo:</strong> inscripciones@10kindependenciadeambato.com<br />
+              📧 <strong>Correo:</strong> inscripciones@8krutadelasmandarinas.com<br />
               📱 <strong>WhatsApp oficial:</strong> +593 99 510 2378<br />
-              📍 <strong>Ciudad:</strong> Ambato – Ecuador
+              📍 <strong>Ciudad:</strong> Patate – Ecuador
             </p>
           </ArticleCard>
 

@@ -54,7 +54,7 @@ export default function ReglamentoSection() {
             <h2 className="text-[36px] sm:text-[52px] lg:text-[64px] leading-[0.95] mb-6 font-[family-name:var(--font-bebas)] text-white tracking-wide">
                Reglamento General <br className="hidden sm:block" />
                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-                 10K Independencia de Ambato 2026
+                 8K Ruta de las Mandarinas 2026
                </span>
             </h2>
 

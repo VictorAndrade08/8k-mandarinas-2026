@@ -2,8 +2,8 @@
 
 import React from "react";
 
-const DESKTOP_IMAGE = "https://antiquewhite-rook-228372.hostingersite.com/wp-content/uploads/2025/12/banner10K.webp";
-const MOBILE_IMAGE = "https://antiquewhite-rook-228372.hostingersite.com/wp-content/uploads/2025/12/Post10k-Editable.webp";
+const DESKTOP_IMAGE = "https://antiquewhite-rook-228372.hostingersite.com/wp-content/uploads/2025/12/banner8K.webp";
+const MOBILE_IMAGE = "https://antiquewhite-rook-228372.hostingersite.com/wp-content/uploads/2025/12/Post8K-Editable.webp";
 
 export default function Publicidad() {
   return (
@@ -37,7 +37,7 @@ export default function Publicidad() {
           */}
           <img
             src={MOBILE_IMAGE}
-            alt="Publicidad oficial 10K Independencia de Ambato"
+            alt="Publicidad oficial 8K Ruta de las Mandarinas"
             width={1080} 
             height={1080}
             className="w-full h-auto object-cover"

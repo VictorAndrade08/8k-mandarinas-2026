@@ -71,7 +71,7 @@ export default function Footer() {
             */}
             <Image
               src="/white.svg"
-              alt="Logo 10K Independencia de Ambato"
+              alt="Logo 8K Ruta de las Mandarinas"
               width={40}
               height={40}
               className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
@@ -81,11 +81,11 @@ export default function Footer() {
 
           <div className="flex flex-col justify-center">
             <h3 className="text-[28px] sm:text-[36px] leading-none font-[family-name:var(--font-bebas)] tracking-wide mb-2">
-              Independencia de Ambato 2026
+              Ruta de las Mandarinas 2026
             </h3>
 
             <p className="text-sm text-white/60 font-medium uppercase tracking-wider mb-6">
-                Ambato – Ecuador
+                Patate – Ecuador
             </p>
 
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-md">

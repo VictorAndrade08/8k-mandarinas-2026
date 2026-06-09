@@ -35,7 +35,7 @@ const Logo = ({ className }: { className?: string }) => {
   return (
     <img
       src="/white.svg"
-      alt="Logo 10K"
+      alt="Logo 8K"
       width={28}
       height={28}
       className={`${className} object-contain`}
@@ -98,11 +98,11 @@ export default function Header() {
                   whitespace-nowrap
                 "
               >
-                10K Independencia de Ambato
+                8K Ruta de las Mandarinas
               </span>
 
               <p className="hidden xl:block text-[13px] text-[#444]/80 font-medium mt-0.5 tracking-wide whitespace-nowrap">
-                Ambato · Ecuador · 15 de noviembre 2026
+                Patate · Ecuador · 29 de agosto 2026
               </p>
             </div>
           </Link>
@@ -120,7 +120,7 @@ export default function Header() {
                 whitespace-nowrap
               "
             >
-              15 Nov 2026
+              29 Ago 2026
             </span>
 
             <Link
