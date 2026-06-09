@@ -77,13 +77,13 @@ export default function FloatingCTA() {
           font-bold text-white leading-none
 
           /* Gradiente Rojo */
-          bg-gradient-to-r from-[#DC2626] to-[#EF4444]
+          bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]
           border border-white/20
           backdrop-blur-md
 
           /* Sombras y Efectos */
-          shadow-[0_10px_40px_rgba(220,38,38,0.55)]
-          hover:shadow-[0_15px_60px_rgba(220,38,38,0.75)]
+          shadow-[0_10px_40px_rgba(255,107,26,0.55)]
+          hover:shadow-[0_15px_60px_rgba(255,107,26,0.75)]
           hover:scale-105 hover:-translate-y-1
           active:scale-95
 

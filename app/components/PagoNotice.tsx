@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { HiXMark } from "react-icons/hi2";
 
-const brandPink = "#EF4444";
-const brandPurple = "#DC2626";
+const brandPink = "#FF2D7C";
+const brandPurple = "#FF6B1A";
 
 export default function PagoNotice() {
   const pathname = usePathname() || "";

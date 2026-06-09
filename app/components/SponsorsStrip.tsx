@@ -126,11 +126,11 @@ export default function SponsorsStrip() {
       >
         {/* Título */}
         <div className="flex items-center justify-center gap-4 mb-6 sm:mb-8">
-            <div className="h-px w-8 sm:w-16 bg-gradient-to-r from-transparent to-[#DC2626]/50"></div>
+            <div className="h-px w-8 sm:w-16 bg-gradient-to-r from-transparent to-[#FF6B1A]/50"></div>
             <p className="text-center text-[24px] sm:text-[32px] tracking-[0.1em] uppercase text-gray-800 font-[family-name:var(--font-bebas)]">
-              Nuestros <span className="text-[#DC2626]">Parners</span>
+              Nuestros <span className="text-[#FF6B1A]">Parners</span>
             </p>
-            <div className="h-px w-8 sm:w-16 bg-gradient-to-l from-transparent to-[#DC2626]/50"></div>
+            <div className="h-px w-8 sm:w-16 bg-gradient-to-l from-transparent to-[#FF6B1A]/50"></div>
         </div>
 
         {/* Contenedor Principal */}
@@ -145,8 +145,8 @@ export default function SponsorsStrip() {
               className={`
                 h-10 w-10 rounded-full border shadow-md flex items-center justify-center transition-all active:scale-95
                 ${direction === -1 
-                  ? 'bg-[#DC2626] text-white border-[#DC2626]' 
-                  : 'bg-white text-gray-500 border-gray-200 hover:text-[#DC2626] hover:border-[#DC2626]'
+                  ? 'bg-[#FF6B1A] text-white border-[#FF6B1A]' 
+                  : 'bg-white text-gray-500 border-gray-200 hover:text-[#FF6B1A] hover:border-[#FF6B1A]'
                 }
               `}
               aria-label="Mover a la derecha rápido"
@@ -179,7 +179,7 @@ export default function SponsorsStrip() {
                     flex items-center justify-center
                     group
                     transition-all duration-300
-                    hover:bg-white hover:shadow-lg hover:border-[#DC2626]/20 hover:-translate-y-1
+                    hover:bg-white hover:shadow-lg hover:border-[#FF6B1A]/20 hover:-translate-y-1
                     relative
                   "
                 >
@@ -213,8 +213,8 @@ export default function SponsorsStrip() {
                className={`
                  h-10 w-10 rounded-full border shadow-md flex items-center justify-center transition-all active:scale-95
                  ${direction === 1 
-                   ? 'bg-[#DC2626] text-white border-[#DC2626]' 
-                   : 'bg-white text-gray-500 border-gray-200 hover:text-[#DC2626] hover:border-[#DC2626]'
+                   ? 'bg-[#FF6B1A] text-white border-[#FF6B1A]' 
+                   : 'bg-white text-gray-500 border-gray-200 hover:text-[#FF6B1A] hover:border-[#FF6B1A]'
                  }
                `}
                aria-label="Mover a la izquierda rápido"

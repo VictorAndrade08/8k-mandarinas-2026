@@ -116,7 +116,7 @@ export default function TopGallery() {
                       border border-white/10 
                       bg-black 
                       transition-transform active:scale-95 hover:scale-[1.02]
-                      focus:outline-none focus:ring-2 focus:ring-[#DC2626]
+                      focus:outline-none focus:ring-2 focus:ring-[#FF6B1A]
                     "
                     aria-label={`Ver foto ${img.alt}`}
                   >
@@ -132,7 +132,7 @@ export default function TopGallery() {
                     />
                     
                     {/* Overlay y efecto hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#DC2626]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#FF6B1A]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="bg-black/30 backdrop-blur-sm p-2 rounded-full">
@@ -188,7 +188,7 @@ export default function TopGallery() {
                 onClick={() => setActiveIndex(null)}
                 className="
                     flex items-center justify-center w-12 h-12
-                    rounded-full bg-white/10 hover:bg-[#DC2626] 
+                    rounded-full bg-white/10 hover:bg-[#FF6B1A] 
                     backdrop-blur-md border border-white/20 
                     text-white transition-all active:scale-90
                 "
@@ -201,13 +201,13 @@ export default function TopGallery() {
             {/* Navegación Desktop */}
             <button
                 onClick={(e) => { e.stopPropagation(); setActiveIndex(v => (v === null ? 0 : (v - 1 + IMAGES.length) % IMAGES.length)); }}
-                className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 items-center justify-center rounded-full bg-white/10 hover:bg-[#DC2626] text-white border border-white/20 transition-all z-20"
+                className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 items-center justify-center rounded-full bg-white/10 hover:bg-[#FF6B1A] text-white border border-white/20 transition-all z-20"
             >
                 ‹
             </button>
             <button
                 onClick={(e) => { e.stopPropagation(); setActiveIndex(v => (v === null ? 0 : (v + 1) % IMAGES.length)); }}
-                className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 items-center justify-center rounded-full bg-white/10 hover:bg-[#DC2626] text-white border border-white/20 transition-all z-20"
+                className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 items-center justify-center rounded-full bg-white/10 hover:bg-[#FF6B1A] text-white border border-white/20 transition-all z-20"
             >
                 ›
             </button>

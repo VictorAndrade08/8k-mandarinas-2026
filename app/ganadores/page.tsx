@@ -251,7 +251,7 @@ export default function GanadoresPage() {
         <div className="container mx-auto px-4 md:px-8 print:px-0">
 
           <div className="flex flex-col items-center gap-2 mb-8 text-center justify-center">
-            <h1 className="font-[family-name:var(--font-bebas)] text-4xl md:text-5xl text-[#EF4444] uppercase leading-tight">
+            <h1 className="font-[family-name:var(--font-bebas)] text-4xl md:text-5xl text-[#FF2D7C] uppercase leading-tight">
               CUADRO FINAL <br /> <span className="text-neutral-950">DE GANADORES</span>
             </h1>
           </div>
@@ -285,14 +285,14 @@ export default function GanadoresPage() {
               ))}
 
               <div className="mt-4 mb-6 break-inside-avoid">
-                <div className="bg-[#EF4444] text-white font-[family-name:var(--font-barlow)] font-bold italic text-xl inline-block px-3 py-1 mb-2">
+                <div className="bg-[#FF2D7C] text-white font-[family-name:var(--font-barlow)] font-bold italic text-xl inline-block px-3 py-1 mb-2">
                   COMUNICADO
                 </div>
                 <p className="font-[family-name:var(--font-barlow)] text-[15px] leading-snug text-neutral-800">
                   <span className="font-bold">RECUERDA:</span> La documentación deberá enviarse en formato PDF legible para impresión al WhatsApp <span className="font-bold">0997241804</span> hasta el día 23 de febrero de 2026, hasta las 17 horas.
                 </p>
                 <div className="flex items-center gap-2 mt-2">
-                  <span className="text-[#EF4444] font-bold text-2xl font-[family-name:var(--font-bebas)] tracking-wider">0997241804</span>
+                  <span className="text-[#FF2D7C] font-bold text-2xl font-[family-name:var(--font-bebas)] tracking-wider">0997241804</span>
                 </div>
               </div>
             </div>
@@ -315,7 +315,7 @@ export default function GanadoresPage() {
           </div>
 
           {/* NUEVO BLOQUE: Nota y Plazo de acreditación idéntico a la foto */}
-          <div className="mt-6 p-4 md:p-6 bg-gradient-to-r from-[#DC2626] to-[#EF4444] break-inside-avoid">
+          <div className="mt-6 p-4 md:p-6 bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] break-inside-avoid">
             <p className="font-[family-name:var(--font-barlow)] text-white text-[13px] leading-relaxed mb-4">
               <span className="font-bold">Nota:</span> Para las categorías Discapacidad visual e intelectual, Silla de calle, Interfuerzas y Colegial, se deberá adjuntar la cédula actualizada, FF.AA. y el certificado del colegio de la provincia que avalen dichas categorías en el tercer PDF.
             </p>
@@ -331,7 +331,7 @@ export default function GanadoresPage() {
             onClick={handleDownloadPDF}
             className="
               flex items-center gap-3 px-8 py-4 
-              bg-[#EF4444] hover:bg-[#DC2626]
+              bg-[#FF2D7C] hover:bg-[#FF6B1A]
               text-white font-[family-name:var(--font-barlow)] font-bold text-xl
               rounded-xl shadow-lg transition-all duration-300
               uppercase tracking-widest

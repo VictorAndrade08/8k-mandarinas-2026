@@ -36,13 +36,13 @@ export default function ReglamentoSection() {
         "
       >
         {/* Fondo Decorativo Magenta */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#DC2626]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#FF6B1A]/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
             
             {/* Icono Principal */}
-            <div className="mb-6 p-4 rounded-2xl bg-white/5 border border-white/10 shadow-[0_0_30px_rgba(220,38,38,0.18)] backdrop-blur-sm">
-                <Scale className="w-8 h-8 sm:w-10 sm:h-10 text-[#DC2626]" />
+            <div className="mb-6 p-4 rounded-2xl bg-white/5 border border-white/10 shadow-[0_0_30px_rgba(255,107,26,0.18)] backdrop-blur-sm">
+                <Scale className="w-8 h-8 sm:w-10 sm:h-10 text-[#FF6B1A]" />
             </div>
 
             {/* Etiqueta */}
@@ -71,11 +71,11 @@ export default function ReglamentoSection() {
                     inline-flex items-center justify-center gap-2
                     px-8 py-4
                     rounded-full
-                    bg-gradient-to-r from-[#DC2626] to-[#EF4444]
+                    bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]
                     text-white text-sm tracking-[0.15em]
                     font-bold uppercase
-                    shadow-lg shadow-[#DC2626]/30
-                    hover:shadow-[#DC2626]/50 hover:-translate-y-1 hover:gap-3
+                    shadow-lg shadow-[#FF6B1A]/30
+                    hover:shadow-[#FF6B1A]/50 hover:-translate-y-1 hover:gap-3
                     transition-all duration-300
                     "
                 >
@@ -102,11 +102,11 @@ export default function ReglamentoSection() {
             {/* Pie de página con iconos de confianza */}
             <div className="mt-12 pt-8 border-t border-white/5 flex flex-wrap justify-center gap-6 sm:gap-12 opacity-60 w-full">
                 <div className="flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-wider text-gray-400 font-semibold">
-                    <ShieldCheck size={16} className="text-[#DC2626]" />
+                    <ShieldCheck size={16} className="text-[#FF6B1A]" />
                     <span>Avalado por la APDT</span>
                 </div>
                  <div className="flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-wider text-gray-400 font-semibold">
-                    <FileCheck size={16} className="text-[#DC2626]" />
+                    <FileCheck size={16} className="text-[#FF6B1A]" />
                     <span>Actualizado Enero 2026</span>
                 </div>
             </div>

@@ -38,15 +38,15 @@ export default function RegistrationOptions() {
             shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] 
             border border-gray-100 
             flex flex-col justify-between
-            group hover:shadow-[0_20px_60px_-15px_rgba(220,38,38,0.18)]
+            group hover:shadow-[0_20px_60px_-15px_rgba(255,107,26,0.18)]
             transition-all duration-300
         ">
           {/* Fondo decorativo */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#DC2626]/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#FF6B1A]/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
 
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-4">
-               <div className="p-2 bg-gray-100 rounded-full text-[#DC2626]">
+               <div className="p-2 bg-gray-100 rounded-full text-[#FF6B1A]">
                  <Globe size={20} />
                </div>
                <p className="text-xs tracking-[0.2em] uppercase text-gray-500 font-bold">
@@ -56,7 +56,7 @@ export default function RegistrationOptions() {
 
             <h2 className="text-[32px] sm:text-[42px] leading-[1] text-gray-900 font-[family-name:var(--font-bebas)] mb-4">
               ¡Inscríbete online <br/>
-              <span className="text-[#DC2626]">en menos de 3 minutos!</span>
+              <span className="text-[#FF6B1A]">en menos de 3 minutos!</span>
             </h2>
 
             <p className="text-base text-gray-600 leading-relaxed mb-8">
@@ -77,10 +77,10 @@ export default function RegistrationOptions() {
               className="
                 flex items-center justify-center gap-2 w-full
                 h-14 rounded-full 
-                bg-gradient-to-r from-[#DC2626] to-[#EF4444] 
+                bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] 
                 text-white text-sm tracking-[0.15em] uppercase font-bold 
-                shadow-lg shadow-[#DC2626]/30 
-                hover:shadow-[#DC2626]/50 hover:-translate-y-1 hover:gap-4
+                shadow-lg shadow-[#FF6B1A]/30 
+                hover:shadow-[#FF6B1A]/50 hover:-translate-y-1 hover:gap-4
                 transition-all duration-300
               "
             >
@@ -171,7 +171,7 @@ export default function RegistrationOptions() {
 // Componentes auxiliares para listas limpias
 const ListItem = ({ icon: Icon, text }: { icon: any, text: string }) => (
   <li className="flex items-start gap-3 text-gray-700">
-    <Icon size={20} className="text-[#DC2626] mt-0.5 shrink-0" />
+    <Icon size={20} className="text-[#FF6B1A] mt-0.5 shrink-0" />
     <span className="text-sm sm:text-base font-medium">{text}</span>
   </li>
 );

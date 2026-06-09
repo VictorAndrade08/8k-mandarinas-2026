@@ -57,7 +57,7 @@ export default function Hero8K() {
           grid grid-cols-1 lg:grid-cols-[1.4fr_1fr]
           gap-8 lg:gap-12
           shadow-[0_15px_40px_-10px_rgba(0,0,0,0.08)]
-          transition-all duration-500 hover:shadow-[0_25px_50px_-12px_rgba(220,38,38,0.18)]
+          transition-all duration-500 hover:shadow-[0_25px_50px_-12px_rgba(255,107,26,0.18)]
         "
       >
         {/* 🎬 VIDEO CONTAINER */}
@@ -94,7 +94,7 @@ export default function Hero8K() {
                 {/* Botón de Play */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="w-14 h-14 sm:w-20 sm:h-20 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm shadow-xl transition-transform duration-300 group-hover:scale-110 group-hover:bg-white">
-                    <svg className="w-6 h-6 sm:w-9 sm:h-9 text-[#DC2626] ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 sm:w-9 sm:h-9 text-[#FF6B1A] ml-1" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
@@ -115,13 +115,13 @@ export default function Hero8K() {
 
         {/* 🏃‍♂️ CONTENIDO / TEXTO */}
         <div className="relative z-10 flex flex-col justify-center text-center lg:text-left order-2 lg:order-none">
-          <p className="uppercase tracking-[0.2em] text-xs sm:text-xs text-[#DC2626] font-bold mb-2 font-sans">
+          <p className="uppercase tracking-[0.2em] text-xs sm:text-xs text-[#FF6B1A] font-bold mb-2 font-sans">
             Patate, Ecuador • 2026
           </p>
 
           <h1 className="font-[family-name:var(--font-bebas)] text-[40px] sm:text-[50px] lg:text-[64px] xl:text-[72px] leading-[0.9] text-black mb-4 sm:mb-5">
             <span className="block tracking-wide">8K Ruta de las Mandarinas</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] to-[#EF4444]">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]">
               de Patate
             </span>
           </h1>
@@ -135,10 +135,10 @@ export default function Hero8K() {
               href="/inscripcion"
               className="
                 inline-flex items-center justify-center px-6 py-3.5 
-                rounded-full bg-gradient-to-r from-[#DC2626] to-[#EF4444] 
+                rounded-full bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] 
                 text-white text-xs sm:text-sm tracking-[0.15em] font-bold uppercase 
-                shadow-md shadow-[#DC2626]/30 
-                hover:shadow-[#DC2626]/50 hover:-translate-y-0.5 
+                shadow-md shadow-[#FF6B1A]/30 
+                hover:shadow-[#FF6B1A]/50 hover:-translate-y-0.5 
                 transition-all duration-300
               "
             >
@@ -150,7 +150,7 @@ export default function Hero8K() {
                 inline-flex items-center justify-center px-6 py-3.5 
                 rounded-full border border-gray-300 
                 text-gray-700 text-xs sm:text-sm tracking-[0.15em] font-bold uppercase 
-                hover:border-[#DC2626] hover:text-[#DC2626] hover:bg-[#DC2626]/5
+                hover:border-[#FF6B1A] hover:text-[#FF6B1A] hover:bg-[#FF6B1A]/5
                 transition-all duration-300
               "
             >

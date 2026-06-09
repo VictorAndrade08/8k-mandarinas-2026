@@ -43,7 +43,7 @@ export default function Footer() {
             className="
                 absolute top-0 right-0 
                 w-[500px] h-[500px] 
-                bg-[#DC2626]/5 
+                bg-[#FF6B1A]/5 
                 rounded-full 
                 blur-[120px] 
                 pointer-events-none 
@@ -58,9 +58,9 @@ export default function Footer() {
             className="
               w-16 h-16 sm:w-20 sm:h-20
               rounded-2xl
-              bg-[#DC2626]
+              bg-[#FF6B1A]
               flex items-center justify-center
-              shadow-[0_12px_30px_rgba(220,38,38,0.38)]
+              shadow-[0_12px_30px_rgba(255,107,26,0.38)]
               flex-shrink-0
             "
             aria-hidden="true"
@@ -91,7 +91,7 @@ export default function Footer() {
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-md">
               © 2026. Evento oficial organizado por la <span className="text-white">Asociación de Periodistas Deportivos de Tungurahua</span>.
               <br className="mb-2"/>
-              Desarrollo web por <span className="text-[#DC2626]">Prez Agencia</span>.
+              Desarrollo web por <span className="text-[#FF6B1A]">Prez Agencia</span>.
             </p>
           </div>
         </div>
@@ -108,9 +108,9 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-gray-400">
               {/* Usamos Link o <a> según corresponda. Si es scroll interno, <a> está bien. */}
-              <li><Link href="/#inscripcion" className="hover:text-[#DC2626] transition-colors duration-200">Inscripción</Link></li>
-              <li><Link href="/reglamento" className="hover:text-[#DC2626] transition-colors duration-200">Reglamento</Link></li>
-              <li><Link href="/faq" className="hover:text-[#DC2626] transition-colors duration-200">Preguntas frecuentes</Link></li>
+              <li><Link href="/#inscripcion" className="hover:text-[#FF6B1A] transition-colors duration-200">Inscripción</Link></li>
+              <li><Link href="/reglamento" className="hover:text-[#FF6B1A] transition-colors duration-200">Reglamento</Link></li>
+              <li><Link href="/faq" className="hover:text-[#FF6B1A] transition-colors duration-200">Preguntas frecuentes</Link></li>
             </ul>
           </div>
 
@@ -121,10 +121,10 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-gray-400">
               <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626]"></span> Vehicentro
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]"></span> Vehicentro
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626]"></span> Sinotruk Ecuador
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]"></span> Sinotruk Ecuador
               </li>
             </ul>
           </div>

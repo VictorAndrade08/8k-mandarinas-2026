@@ -35,7 +35,7 @@ export default function InscripcionHeader() {
       >
         {/* --- EFECTO DE LUZ DE FONDO (Glow) --- */}
         {/* Un brillo sutil magenta en la parte inferior para dar elegancia */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-32 bg-[#DC2626] blur-[120px] opacity-15 pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-32 bg-[#FF6B1A] blur-[120px] opacity-15 pointer-events-none" />
 
         {/* --- LADO IZQUIERDO: TÍTULO --- */}
         <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
@@ -44,8 +44,8 @@ export default function InscripcionHeader() {
           <div className="flex items-center gap-3 mb-3">
             {/* Punto pulsante (Live indicator) */}
             <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EF4444] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#EF4444]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF2D7C] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#FF2D7C]"></span>
             </span>
 
             <p 
@@ -70,7 +70,7 @@ export default function InscripcionHeader() {
               drop-shadow-lg
             `}
           >
-            Formulario de <span className="text-[#EF4444]">Inscripción</span>
+            Formulario de <span className="text-[#FF2D7C]">Inscripción</span>
           </h1>
         </div>
 

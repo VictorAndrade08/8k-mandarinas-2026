@@ -76,7 +76,7 @@ export default function CountdownStrip() {
         py-8 md:py-12
       ">
         {/* Fondo decorativo (CSS puro, no afecta rendimiento) */}
-        <div className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(220,38,38,0.10),transparent_70%)] rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/4" />
+        <div className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(255,107,26,0.10),transparent_70%)] rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/4" />
 
         <div className="relative z-10">
           
@@ -85,7 +85,7 @@ export default function CountdownStrip() {
             {/* Texto */}
             <div>
               <div className="flex items-center gap-3 mb-3">
-                 <span className="h-px w-8 bg-[#DC2626]"></span>
+                 <span className="h-px w-8 bg-[#FF6B1A]"></span>
                  <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-gray-500 font-bold">
                     Presentado por APDT Patate
                  </p>
@@ -93,7 +93,7 @@ export default function CountdownStrip() {
 
               <h2 className="text-[36px] sm:text-[48px] lg:text-[60px] leading-[1] text-gray-900 font-[family-name:var(--font-bebas)] mb-4 tracking-tight">
                 Cuenta regresiva para la <br className="hidden sm:block"/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] to-[#EF4444]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]">
                   8K Ruta de las Mandarinas 2026
                 </span>
               </h2>
@@ -149,14 +149,14 @@ export default function CountdownStrip() {
                     rounded-[24px] 
                     py-6 md:py-8
                     shadow-[0_8px_20px_-5px_rgba(0,0,0,0.05)]
-                    hover:shadow-[0_15px_30px_-5px_rgba(220,38,38,0.15)]
+                    hover:shadow-[0_15px_30px_-5px_rgba(255,107,26,0.15)]
                     hover:-translate-y-1
                     transition-all duration-300
                     group
                 "
               >
                 <span 
-                    className="text-[48px] sm:text-[64px] leading-[0.9] text-[#DC2626] font-[family-name:var(--font-bebas)] group-hover:scale-110 transition-transform duration-300"
+                    className="text-[48px] sm:text-[64px] leading-[0.9] text-[#FF6B1A] font-[family-name:var(--font-bebas)] group-hover:scale-110 transition-transform duration-300"
                     suppressHydrationWarning
                 >
                   {item.value}

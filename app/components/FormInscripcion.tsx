@@ -102,7 +102,7 @@ const CustomModal = ({
             {actionLabel && onAction && (
               <button
                 onClick={onAction}
-                className="w-full py-4 bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold text-lg md:text-xl rounded-xl transition font-barlow flex items-center justify-center gap-2 shadow-lg shadow-[#DC2626]/20"
+                className="w-full py-4 bg-[#FF6B1A] hover:bg-[#E55104] text-white font-bold text-lg md:text-xl rounded-xl transition font-barlow flex items-center justify-center gap-2 shadow-lg shadow-[#FF6B1A]/20"
               >
                 {actionLabel} <ArrowRight size={20}/>
               </button>
@@ -134,7 +134,7 @@ const DiscountModal = ({
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md animate-in fade-in duration-300">
-      <div className="bg-[#1C2029] border border-[#DC2626]/30 w-full max-w-lg rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(220,38,38,0.18)] relative animate-in zoom-in-95">
+      <div className="bg-[#1C2029] border border-[#FF6B1A]/30 w-full max-w-lg rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(255,107,26,0.18)] relative animate-in zoom-in-95">
         <button
           onClick={onCancel}
           className="absolute top-4 right-4 text-gray-400 hover:text-white transition p-2"
@@ -143,7 +143,7 @@ const DiscountModal = ({
         </button>
         
         <div className="flex flex-col items-center text-center gap-6">
-          <div className="w-20 h-20 bg-[#DC2626]/10 text-[#DC2626] rounded-full flex items-center justify-center animate-bounce">
+          <div className="w-20 h-20 bg-[#FF6B1A]/10 text-[#FF6B1A] rounded-full flex items-center justify-center animate-bounce">
             <HelpCircle size={44} />
           </div>
           
@@ -500,7 +500,7 @@ export default function InscripcionPage() {
           outline-none transition-all font-barlow
           ${errors[name] 
             ? "border-red-500/50 focus:border-red-500" 
-            : "border-white/10 focus:border-[#DC2626] hover:border-white/20"}
+            : "border-white/10 focus:border-[#FF6B1A] hover:border-white/20"}
         `}
       />
       {errors[name] && (
@@ -544,7 +544,7 @@ export default function InscripcionPage() {
         <div className="bg-[#11141A] p-6 md:p-12 md:w-1/3 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/5 relative min-w-[300px]">
           <div>
             <div className="flex items-center gap-4 mb-6 md:mb-12">
-               <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-[#DC2626] shadow-lg flex items-center justify-center shrink-0">
+               <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-[#FF6B1A] shadow-lg flex items-center justify-center shrink-0">
                  <img src="/white.svg" alt="Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
                </div>
                <span className="text-2xl md:text-[32px] uppercase tracking-tight text-white leading-none font-bebas">
@@ -559,7 +559,7 @@ export default function InscripcionPage() {
                     <span className="text-white font-bold uppercase text-xs">{stepsLabels[step-1]}</span>
                 </div>
                 <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-[#DC2626] transition-all duration-500" style={{ width: `${(step / 4) * 100}%` }} />
+                    <div className="h-full bg-[#FF6B1A] transition-all duration-500" style={{ width: `${(step / 4) * 100}%` }} />
                 </div>
             </div>
 
@@ -571,7 +571,7 @@ export default function InscripcionPage() {
                 const completed = step > stepNum;
                 return (
                   <div key={index} className={`flex items-center gap-5 transition-all duration-300 ${active ? "opacity-100 translate-x-2" : "opacity-40"}`}>
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all border-2 ${active ? `bg-[#DC2626] border-[#DC2626] text-white` : completed ? "bg-green-500 border-green-500 text-black" : "bg-transparent border-white/20 text-white"}`}>
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all border-2 ${active ? `bg-[#FF6B1A] border-[#FF6B1A] text-white` : completed ? "bg-green-500 border-green-500 text-black" : "bg-transparent border-white/20 text-white"}`}>
                       {completed ? <CheckCircle2 size={24} /> : stepNum}
                     </div>
                     <div>
@@ -593,7 +593,7 @@ export default function InscripcionPage() {
           
           {(loading || verifying) && (
             <div className="absolute inset-0 z-50 bg-[#161A23]/95 backdrop-blur-sm flex flex-col items-center justify-center gap-6 animate-in fade-in">
-              <div className="w-16 h-16 border-4 border-[#DC2626] border-t-transparent rounded-full animate-spin" />
+              <div className="w-16 h-16 border-4 border-[#FF6B1A] border-t-transparent rounded-full animate-spin" />
               <p className="text-white font-bold animate-pulse tracking-widest uppercase text-lg md:text-xl font-barlow">
                 {verifying ? "Verificando cédula..." : "Procesando inscripción..."}
               </p>
@@ -615,14 +615,14 @@ export default function InscripcionPage() {
                     <button
                       key={cat.name}
                       onClick={() => handleCategoryClick(cat)}
-                      className="group relative bg-[#0F1218] border border-white/10 p-6 md:p-7 rounded-2xl text-left hover:border-[#DC2626] hover:bg-[#1A1E29] transition-all duration-200 active:scale-[0.98] h-full flex flex-col justify-between shadow-md"
+                      className="group relative bg-[#0F1218] border border-white/10 p-6 md:p-7 rounded-2xl text-left hover:border-[#FF6B1A] hover:bg-[#1A1E29] transition-all duration-200 active:scale-[0.98] h-full flex flex-col justify-between shadow-md"
                     >
                       <div className="flex justify-between items-start mb-3">
                         <div className="flex items-center gap-3">
-                           <div className="p-2 rounded-lg bg-white/5 group-hover:bg-[#DC2626]/20 text-gray-400 group-hover:text-[#DC2626] transition-colors">
+                           <div className="p-2 rounded-lg bg-white/5 group-hover:bg-[#FF6B1A]/20 text-gray-400 group-hover:text-[#FF6B1A] transition-colors">
                              <Trophy size={24} />
                            </div>
-                           <span className="font-bold text-xl md:text-2xl text-white group-hover:text-[#DC2626] transition-colors leading-tight">{cat.name}</span>
+                           <span className="font-bold text-xl md:text-2xl text-white group-hover:text-[#FF6B1A] transition-colors leading-tight">{cat.name}</span>
                         </div>
                         <div className="text-right">
                           <span className="bg-white/5 text-sm md:text-base px-3 py-1 rounded-lg text-gray-200 font-mono font-bold block border border-white/5">
@@ -661,12 +661,12 @@ export default function InscripcionPage() {
                   
                   <div>
                     <label className="text-sm md:text-base font-bold text-gray-300 uppercase tracking-wide mb-2 flex items-center gap-2 font-barlow"><User size={20} /> Edad</label>
-                    <input name="edad" type="number" value={formData.edad} onChange={handleInput} placeholder="Ej: 25" className="w-full bg-[#0F1218] border border-white/10 rounded-xl px-5 py-4 text-white text-lg md:text-xl outline-none focus:border-[#DC2626] font-barlow" />
+                    <input name="edad" type="number" value={formData.edad} onChange={handleInput} placeholder="Ej: 25" className="w-full bg-[#0F1218] border border-white/10 rounded-xl px-5 py-4 text-white text-lg md:text-xl outline-none focus:border-[#FF6B1A] font-barlow" />
                   </div>
 
                   <div>
                     <label className="text-sm md:text-base font-bold text-gray-300 uppercase tracking-wide mb-2 flex items-center gap-2 font-barlow"><User size={20} /> Género</label>
-                    <select name="genero" value={formData.genero} onChange={handleInput} className="w-full bg-[#0F1218] border border-white/10 rounded-xl px-5 py-4 text-white text-lg md:text-xl outline-none focus:border-[#DC2626] appearance-none font-barlow">
+                    <select name="genero" value={formData.genero} onChange={handleInput} className="w-full bg-[#0F1218] border border-white/10 rounded-xl px-5 py-4 text-white text-lg md:text-xl outline-none focus:border-[#FF6B1A] appearance-none font-barlow">
                       <option value="">Seleccione...</option>
                       <option value="Masculino">Masculino</option>
                       <option value="Femenino">Femenino</option>
@@ -677,9 +677,9 @@ export default function InscripcionPage() {
 
                 <div className="bg-[#0F1218] p-5 md:p-6 rounded-2xl border border-white/5 mb-8">
                    <label className="flex items-start gap-4 cursor-pointer">
-                    <input type="checkbox" checked={acceptTerms} onChange={(e) => setAcceptTerms(e.target.checked)} className="mt-1 w-6 h-6 accent-[#DC2626]" />
+                    <input type="checkbox" checked={acceptTerms} onChange={(e) => setAcceptTerms(e.target.checked)} className="mt-1 w-6 h-6 accent-[#FF6B1A]" />
                     <span className="text-base md:text-lg text-gray-300 leading-relaxed font-barlow">
-                      Acepto los <a href="/terminos" target="_blank" className="text-[#DC2626] underline font-bold hover:text-[#EF4444]">Términos y Condiciones</a> y declaro estar apto físicamente.
+                      Acepto los <a href="/terminos" target="_blank" className="text-[#FF6B1A] underline font-bold hover:text-[#FF2D7C]">Términos y Condiciones</a> y declaro estar apto físicamente.
                     </span>
                   </label>
                 </div>
@@ -713,7 +713,7 @@ export default function InscripcionPage() {
                 
                 <div className="bg-gradient-to-br from-[#1A1E29] to-black border border-white/10 rounded-2xl p-6 md:p-10 mb-8 shadow-lg font-barlow">
                   <div className="flex items-center gap-5 mb-8 pb-6 border-b border-white/10">
-                    <div className="bg-[#DC2626]/20 p-4 rounded-full text-[#DC2626]"><Landmark size={32} /></div>
+                    <div className="bg-[#FF6B1A]/20 p-4 rounded-full text-[#FF6B1A]"><Landmark size={32} /></div>
                     <div>
                       <p className="text-sm md:text-base text-gray-400 uppercase tracking-wider mb-1">Institución Financiera</p>
                       <p className="font-bold text-2xl md:text-3xl">Banco Pichincha</p>
@@ -739,7 +739,7 @@ export default function InscripcionPage() {
                     </div>
                      <div className="flex justify-between items-center pt-6 border-t border-white/10 mt-6">
                       <span className="text-gray-300 font-bold text-2xl md:text-3xl">Total a pagar:</span>
-                      <span className="text-[#EF4444] font-black text-4xl md:text-5xl">${selectedPrice}.00</span>
+                      <span className="text-[#FF2D7C] font-black text-4xl md:text-5xl">${selectedPrice}.00</span>
                     </div>
                   </div>
                 </div>
@@ -767,12 +767,12 @@ export default function InscripcionPage() {
                         <div className="md:col-span-2 bg-[#0F1218] p-5 rounded-xl border border-white/10">
                             <label className="text-base font-bold text-gray-300 uppercase tracking-wide mb-3 block font-barlow">¿La cuenta bancaria es tuya?</label>
                             <div className="flex gap-4 mb-4">
-                                <label className="flex items-center gap-2 cursor-pointer bg-white/5 px-4 py-2 rounded-lg border border-white/5 hover:border-[#DC2626] transition">
-                                    <input type="radio" name="es_titular" value="si" checked={formData.es_titular === "si"} onChange={handleInput} className="accent-[#DC2626] w-5 h-5"/>
+                                <label className="flex items-center gap-2 cursor-pointer bg-white/5 px-4 py-2 rounded-lg border border-white/5 hover:border-[#FF6B1A] transition">
+                                    <input type="radio" name="es_titular" value="si" checked={formData.es_titular === "si"} onChange={handleInput} className="accent-[#FF6B1A] w-5 h-5"/>
                                     <span className="font-barlow text-lg">Sí, es mía</span>
                                 </label>
-                                <label className="flex items-center gap-2 cursor-pointer bg-white/5 px-4 py-2 rounded-lg border border-white/5 hover:border-[#DC2626] transition">
-                                    <input type="radio" name="es_titular" value="no" checked={formData.es_titular === "no"} onChange={handleInput} className="accent-[#DC2626] w-5 h-5"/>
+                                <label className="flex items-center gap-2 cursor-pointer bg-white/5 px-4 py-2 rounded-lg border border-white/5 hover:border-[#FF6B1A] transition">
+                                    <input type="radio" name="es_titular" value="no" checked={formData.es_titular === "no"} onChange={handleInput} className="accent-[#FF6B1A] w-5 h-5"/>
                                     <span className="font-barlow text-lg">No, prestada/familiar</span>
                                 </label>
                             </div>
@@ -791,13 +791,13 @@ export default function InscripcionPage() {
                 <div className="mb-10 pt-6 border-t border-white/10">
                   <label className="text-base md:text-lg font-bold text-gray-300 mb-3 block uppercase tracking-wide font-barlow">Adjuntar Comprobante (Foto/PDF)</label>
                   {!previewName ? (
-                    <label className="flex flex-col items-center justify-center w-full h-32 md:h-48 border-2 border-dashed border-gray-600 rounded-2xl cursor-pointer hover:border-[#DC2626] hover:bg-[#DC2626]/5 transition-all bg-[#0F1218]">
+                    <label className="flex flex-col items-center justify-center w-full h-32 md:h-48 border-2 border-dashed border-gray-600 rounded-2xl cursor-pointer hover:border-[#FF6B1A] hover:bg-[#FF6B1A]/5 transition-all bg-[#0F1218]">
                       <UploadCloud className="w-12 h-12 md:w-16 md:h-16 mb-2 text-gray-400" />
                       <p className="text-sm md:text-lg text-gray-400 font-barlow">Toca aquí para subir tu archivo</p>
                       <input type="file" name="comprobante" accept="image/*,application/pdf" onChange={handleInput} className="hidden" />
                     </label>
                   ) : (
-                     <div className="flex items-center justify-between bg-[#DC2626]/10 p-5 rounded-2xl border border-[#DC2626]/30">
+                     <div className="flex items-center justify-between bg-[#FF6B1A]/10 p-5 rounded-2xl border border-[#FF6B1A]/30">
                       <div className="flex items-center gap-4 overflow-hidden">
                         <CheckCircle2 className="text-green-500 shrink-0" size={28} />
                         <span className="text-base md:text-xl text-gray-200 truncate font-bold">{previewName}</span>
@@ -811,7 +811,7 @@ export default function InscripcionPage() {
                   <button onClick={() => setStep(2)} className="px-6 md:px-10 py-5 rounded-xl border border-white/10 hover:bg-white/5 transition font-bold text-gray-300 flex items-center gap-2 text-lg md:text-xl">
                      Atrás
                   </button>
-                  <button onClick={submitForm} disabled={submitting} className="flex-1 bg-[#DC2626] hover:bg-[#B91C1C] text-white py-5 rounded-xl font-bold shadow-[0_0_20px_#DC262650] transition disabled:opacity-50 disabled:cursor-not-allowed text-lg md:text-xl">
+                  <button onClick={submitForm} disabled={submitting} className="flex-1 bg-[#FF6B1A] hover:bg-[#E55104] text-white py-5 rounded-xl font-bold shadow-[0_0_20px_#FF6B1A50] transition disabled:opacity-50 disabled:cursor-not-allowed text-lg md:text-xl">
                     {submitting ? "Finalizando..." : "Confirmar Inscripción"}
                   </button>
                 </div>
@@ -831,7 +831,7 @@ export default function InscripcionPage() {
 
                 {/* Resumen Completo */}
                 <div className="bg-[#0F1218] border border-white/10 rounded-2xl p-8 text-left max-w-2xl mx-auto mb-10 relative overflow-hidden shadow-2xl font-barlow">
-                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#EF4444] to-[#DC2626]" />
+                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#FF2D7C] to-[#FF6B1A]" />
                    
                    <div className="grid grid-cols-2 gap-6 text-base md:text-lg mb-8">
                       <div className="col-span-2 pb-6 mb-2 border-b border-white/5">
@@ -845,7 +845,7 @@ export default function InscripcionPage() {
                       </div>
                       <div>
                         <p className="text-xs text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1 font-bold"><User size={12} /> Categoría</p>
-                        <p className="font-bold text-[#DC2626] text-lg md:text-xl">{selectedCategory}</p>
+                        <p className="font-bold text-[#FF6B1A] text-lg md:text-xl">{selectedCategory}</p>
                       </div>
 
                       <div>
@@ -890,7 +890,7 @@ export default function InscripcionPage() {
                 <div className="flex flex-col items-center gap-4">
                     <a 
                       href="/verificar" 
-                      className="inline-flex items-center gap-3 bg-[#DC2626] text-white px-10 py-5 rounded-full font-bold hover:bg-[#B91C1C] transition shadow-[0_0_30px_#DC262650] hover:scale-105 text-lg md:text-xl font-barlow"
+                      className="inline-flex items-center gap-3 bg-[#FF6B1A] text-white px-10 py-5 rounded-full font-bold hover:bg-[#E55104] transition shadow-[0_0_30px_#FF6B1A50] hover:scale-105 text-lg md:text-xl font-barlow"
                     >
                        <Search size={24}/> Ir a Pestaña de Verificación
                     </a>

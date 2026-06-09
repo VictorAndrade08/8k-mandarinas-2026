@@ -50,7 +50,7 @@ export default function InscripcionPage() {
       <>
         <InscripcionHeader />
         <div className="min-h-[70vh] w-full flex items-center justify-center p-6 bg-[#0F1218]">
-          <div className="bg-[#161A23] border-2 border-red-600/50 p-10 md:p-14 rounded-3xl text-center max-w-2xl shadow-[0_0_100px_rgba(220,38,38,0.3)] animate-in zoom-in-95 duration-300 relative overflow-hidden">
+          <div className="bg-[#161A23] border-2 border-red-600/50 p-10 md:p-14 rounded-3xl text-center max-w-2xl shadow-[0_0_100px_rgba(255,107,26,0.3)] animate-in zoom-in-95 duration-300 relative overflow-hidden">
             {/* Fondo decorativo de error */}
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-600 to-orange-600" />
             
@@ -88,7 +88,7 @@ export default function InscripcionPage() {
       <InscripcionHeader />
 
       {/* BARRA DE URGENCIA MEJORADA: Rojo sólido y letras grandes */}
-      <div className="bg-[#DC2626] text-white py-4 md:py-5 shadow-2xl sticky top-0 z-50 border-b-4 border-[#991B1B]">
+      <div className="bg-[#FF6B1A] text-white py-4 md:py-5 shadow-2xl sticky top-0 z-50 border-b-4 border-[#B8390C]">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 text-center">
             
             <div className="flex items-center gap-3 animate-pulse">

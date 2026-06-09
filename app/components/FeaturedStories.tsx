@@ -34,7 +34,7 @@ export default function FeaturedStories() {
         "
       >
         {/* Fondo decorativo */}
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#DC2626]/5 rounded-full blur-[100px] pointer-events-none translate-y-1/3 translate-x-1/3" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#FF6B1A]/5 rounded-full blur-[100px] pointer-events-none translate-y-1/3 translate-x-1/3" />
 
         <div className="relative z-10">
           
@@ -59,7 +59,7 @@ export default function FeaturedStories() {
             {/* CORRECCIÓN A11Y: Cambiamos <button> por <div> porque están dentro de aria-hidden="true".
                 Esto evita que el teclado haga foco en elementos invisibles para el lector de pantalla. */}
             <div className="hidden sm:flex items-center gap-3 bg-white/5 px-4 py-2 rounded-full border border-white/10" aria-hidden="true">
-              <div className="h-2.5 w-2.5 rounded-full bg-[#DC2626] shadow-[0_0_10px_#DC2626]" />
+              <div className="h-2.5 w-2.5 rounded-full bg-[#FF6B1A] shadow-[0_0_10px_#FF6B1A]" />
               <div className="h-2.5 w-2.5 rounded-full bg-white/20 hover:bg-white/50 transition-colors" />
               <div className="h-2.5 w-2.5 rounded-full bg-white/20 hover:bg-white/50 transition-colors" />
             </div>
@@ -78,12 +78,12 @@ export default function FeaturedStories() {
               items-stretch
               gap-8 md:gap-12
               transition-all duration-300
-              hover:bg-[#DC2626]/5 hover:border-[#DC2626]/20 hover:shadow-[0_20px_50px_-20px_rgba(220,38,38,0.18)]
+              hover:bg-[#FF6B1A]/5 hover:border-[#FF6B1A]/20 hover:shadow-[0_20px_50px_-20px_rgba(255,107,26,0.18)]
             "
           >
             {/* TEXTO */}
             <div className="flex-1 flex flex-col justify-center order-2 md:order-1">
-              <div className="flex items-center gap-2 text-[#DC2626] mb-4 text-xs font-bold uppercase tracking-widest">
+              <div className="flex items-center gap-2 text-[#FF6B1A] mb-4 text-xs font-bold uppercase tracking-widest">
                 <Calendar size={14} />
                 <span>Diciembre 2025</span>
               </div>
@@ -111,7 +111,7 @@ export default function FeaturedStories() {
                     className="
                         inline-flex items-center gap-2 
                         text-white text-sm font-bold uppercase tracking-[0.2em] 
-                        group/btn hover:text-[#DC2626] transition-colors
+                        group/btn hover:text-[#FF6B1A] transition-colors
                     "
                     aria-label="Leer historia completa sobre la experiencia de los corredores"
                 >
@@ -133,15 +133,15 @@ export default function FeaturedStories() {
                 flex items-center justify-center
                 relative
                 overflow-hidden
-                group-hover:border-[#DC2626]/30 transition-colors
+                group-hover:border-[#FF6B1A]/30 transition-colors
               "
               aria-hidden="true"
             >
               {/* Brillo interior al hover */}
-              <div className="absolute inset-0 bg-[#DC2626]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+              <div className="absolute inset-0 bg-[#FF6B1A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
               
               <Trophy 
-                className="w-20 h-20 sm:w-24 sm:h-24 text-white/50 group-hover:text-[#DC2626] group-hover:scale-110 transition-all duration-300 relative z-10" 
+                className="w-20 h-20 sm:w-24 sm:h-24 text-white/50 group-hover:text-[#FF6B1A] group-hover:scale-110 transition-all duration-300 relative z-10" 
                 strokeWidth={1.5} 
               />
             </div>

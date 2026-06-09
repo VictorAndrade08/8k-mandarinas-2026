@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 /* ========================================= */
-/* ✅ LINEA GRAFICA — TOKENS (10K INDEPENDENCIA AMBATO) */
+/* ✅ LINEA GRAFICA — TOKENS (8K RUTA DE LAS MANDARINAS) */
 /* ========================================= */
 
 :root {
   /* Fondo base */
-  --background: #080B22;
+  --background: #1A0A0F;
   --foreground: #ededed;
 
-  /* Marca — rojo/blanco */
-  --brand-1: #EF4444; /* rojo brillante */
-  --brand-2: #DC2626; /* rojo principal */
-  --brand-3: #991B1B; /* rojo profundo */
+  /* Marca — naranja mandarina + magenta */
+  --brand-1: #FF6B1A; /* naranja mandarina (primario) */
+  --brand-2: #FF2D7C; /* magenta rosa (acento) */
+  --brand-3: #FFB800; /* amarillo dorado (label) */
 
   /* Superficies */
   --card: rgba(255, 255, 255, 0.06);
@@ -21,7 +21,7 @@
   --muted-2: rgba(255, 255, 255, 0.55);
 
   /* Glow */
-  --glow: 0 18px 60px rgba(220, 38, 38, 0.22);
+  --glow: 0 18px 60px rgba(255, 107, 26, 0.28);
 
   /* ✅ Dark UI */
   color-scheme: dark;

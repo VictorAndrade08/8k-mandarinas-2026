@@ -65,7 +65,7 @@ export default function ExperienceSection() {
         "
       >
         {/* Luces de fondo decorativas */}
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#DC2626]/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#FF6B1A]/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3" />
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none translate-y-1/3 -translate-x-1/3" />
 
         <div className="relative z-10">
@@ -103,7 +103,7 @@ export default function ExperienceSection() {
                     min-h-[380px]
                     text-left
                     transition-all duration-300
-                    hover:bg-[#DC2626]/10 hover:border-[#DC2626]/30 hover:-translate-y-2
+                    hover:bg-[#FF6B1A]/10 hover:border-[#FF6B1A]/30 hover:-translate-y-2
                 "
                 >
                 {/* Cabecera Icono */}
@@ -112,7 +112,7 @@ export default function ExperienceSection() {
                     h-[120px] 
                     bg-gradient-to-b from-white/5 to-transparent
                     border-b border-white/5
-                    group-hover:from-[#DC2626]/20 group-hover:to-transparent
+                    group-hover:from-[#FF6B1A]/20 group-hover:to-transparent
                     transition-colors duration-300
                 ">
                     <Icon className="w-12 h-12 text-white/70 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
@@ -121,7 +121,7 @@ export default function ExperienceSection() {
                 {/* Contenido */}
                 <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
                     <div>
-                    <h3 className="font-[family-name:var(--font-bebas)] text-[24px] sm:text-[28px] mb-3 tracking-wide text-white group-hover:text-[#DC2626] transition-colors">
+                    <h3 className="font-[family-name:var(--font-bebas)] text-[24px] sm:text-[28px] mb-3 tracking-wide text-white group-hover:text-[#FF6B1A] transition-colors">
                         {title}
                     </h3>
 

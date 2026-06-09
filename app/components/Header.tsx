@@ -58,7 +58,7 @@ export default function Header() {
             bg-white/95 backdrop-blur-sm
             rounded-full
             shadow-[0_8px_28px_rgba(0,0,0,0.10)]
-            hover:shadow-[0_15px_40px_-10px_rgba(220,38,38,0.18)]
+            hover:shadow-[0_15px_40px_-10px_rgba(255,107,26,0.18)]
             transition-all duration-300
             px-4 sm:px-6 lg:px-8 py-3
             flex items-center justify-between
@@ -75,8 +75,8 @@ export default function Header() {
               className="
                 w-10 h-10 sm:w-12 sm:h-12
                 rounded-2xl overflow-hidden
-                bg-[#DC2626]
-                shadow-[0_4px_12px_rgba(220,38,38,0.38)]
+                bg-[#FF6B1A]
+                shadow-[0_4px_12px_rgba(255,107,26,0.38)]
                 flex items-center justify-center
                 flex-shrink-0
                 group-hover:scale-105 transition-transform duration-300
@@ -94,7 +94,7 @@ export default function Header() {
                   uppercase tracking-[0.05em]
                   text-[#111]
                   font-[family-name:var(--font-bebas)]
-                  group-hover:text-[#DC2626] transition-colors
+                  group-hover:text-[#FF6B1A] transition-colors
                   whitespace-nowrap
                 "
               >
@@ -114,7 +114,7 @@ export default function Header() {
               className="
                 hidden xl:inline-flex
                 px-4 py-2 text-xs font-bold
-                bg-[#EF4444] text-white
+                bg-[#FF2D7C] text-white
                 rounded-full uppercase tracking-[0.15em]
                 shadow-sm
                 whitespace-nowrap
@@ -127,10 +127,10 @@ export default function Header() {
               href="/reglamento"
               className="
                 px-4 py-2 lg:text-[11px] xl:text-xs font-bold
-                rounded-full border border-[#DC2626]
-                text-[#DC2626]
+                rounded-full border border-[#FF6B1A]
+                text-[#FF6B1A]
                 uppercase tracking-[0.1em]
-                hover:bg-[#DC2626] hover:text-white transition-all duration-300
+                hover:bg-[#FF6B1A] hover:text-white transition-all duration-300
                 whitespace-nowrap
               "
             >
@@ -141,10 +141,10 @@ export default function Header() {
               href="/verificar"
               className="
                 px-4 py-2 lg:text-[11px] xl:text-xs font-bold
-                rounded-full border border-[#EF4444]
-                text-[#EF4444]
+                rounded-full border border-[#FF2D7C]
+                text-[#FF2D7C]
                 uppercase tracking-[0.1em]
-                hover:bg-[#EF4444] hover:text-white transition-all duration-300
+                hover:bg-[#FF2D7C] hover:text-white transition-all duration-300
                 whitespace-nowrap
               "
             >
@@ -155,9 +155,9 @@ export default function Header() {
               href="/inscripcion"
               className="
                 px-5 py-2.5 lg:text-[11px] xl:text-xs font-bold
-                bg-[#DC2626] text-white
+                bg-[#FF6B1A] text-white
                 rounded-full uppercase tracking-[0.1em]
-                hover:bg-[#B91C1C] hover:-translate-y-0.5
+                hover:bg-[#E55104] hover:-translate-y-0.5
                 shadow-md hover:shadow-lg transition-all duration-300
                 whitespace-nowrap
               "
@@ -193,7 +193,7 @@ export default function Header() {
           >
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-3">
-                 <div className="w-10 h-10 rounded-xl bg-[#DC2626] flex items-center justify-center">
+                 <div className="w-10 h-10 rounded-xl bg-[#FF6B1A] flex items-center justify-center">
                     {/* Reutilizamos el componente Logo seguro */}
                     <Logo className="w-6 h-6" />
                  </div>
@@ -221,7 +221,7 @@ export default function Header() {
 
               <Link
                 href="/verificar"
-                className="text-xl font-bold py-3 border-b border-white/10 text-[#EF4444]"
+                className="text-xl font-bold py-3 border-b border-white/10 text-[#FF2D7C]"
                 onClick={() => setOpen(false)}
               >
                 Verificar inscripción
@@ -233,7 +233,7 @@ export default function Header() {
                   mt-6
                   inline-flex justify-center w-full
                   px-6 py-5
-                  bg-[#DC2626]
+                  bg-[#FF6B1A]
                   rounded-2xl
                   uppercase tracking-[0.25em]
                   font-bold text-base

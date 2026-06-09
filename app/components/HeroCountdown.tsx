@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { Barlow_Condensed } from "next/font/google";
 
 const barlow = Barlow_Condensed({
@@ -87,20 +86,20 @@ export default function HeroCountdown() {
       {/* Capa anti-controles de YouTube */}
       <div className="absolute inset-0 z-[1]" aria-hidden="true" />
 
-      {/* OVERLAY OSCURO base */}
+      {/* OVERLAY MANDARINA — naranja a magenta como en el flyer */}
       <div
         className="absolute inset-0 z-[2] pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(8,8,8,0.85) 0%, rgba(4,4,4,0.92) 100%)",
+            "linear-gradient(135deg, rgba(255,140,26,0.78) 0%, rgba(255,107,26,0.85) 30%, rgba(255,78,90,0.85) 60%, rgba(255,45,124,0.85) 85%, rgba(184,24,106,0.88) 100%)",
         }}
       />
-      {/* Vignette central extra fuerte para tapar controles de YouTube */}
+      {/* Capa de profundidad oscura encima para mejor legibilidad */}
       <div
         className="absolute inset-0 z-[2] pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 55% at center, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.15) 100%)",
+            "radial-gradient(ellipse 80% 60% at center, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.7) 100%)",
         }}
       />
       {/* Grano */}
@@ -123,17 +122,33 @@ export default function HeroCountdown() {
           <span>Ecuador</span>
         </p>
 
-        {/* Logo oficial 8K Ruta de las Mandarinas */}
-        <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[440px] lg:max-w-[540px] xl:max-w-[620px] mx-auto drop-shadow-[0_10px_40px_rgba(0,0,0,0.85)]">
-          <Image
-            src="/logo-8K.webp"
-            alt="8K Ruta de las Mandarinas"
-            width={1622}
-            height={515}
-            priority
-            sizes="(max-width: 640px) 260px, (max-width: 768px) 340px, (max-width: 1024px) 440px, (max-width: 1280px) 540px, 620px"
-            className="w-full h-auto object-contain select-none pointer-events-none"
-          />
+        {/* Título tipográfico estilo flyer — pendiente logo oficial */}
+        <div className="relative inline-flex items-center gap-3 sm:gap-4 md:gap-5 drop-shadow-[0_10px_40px_rgba(0,0,0,0.7)] select-none">
+          <span
+            className="
+              font-[family-name:var(--font-barlow-hero)]
+              font-black italic
+              leading-none
+              text-[68px] sm:text-[100px] md:text-[132px] lg:text-[168px] xl:text-[192px]
+              text-transparent bg-clip-text
+            "
+            style={{
+              backgroundImage:
+                "linear-gradient(180deg, #FFD24A 0%, #FFB800 35%, #FF8C1A 70%, #FF6B1A 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+            }}
+          >
+            8K
+          </span>
+          <span className="flex flex-col items-start leading-[0.9]">
+            <span className="font-[family-name:var(--font-barlow-hero)] font-black italic uppercase text-white text-[18px] sm:text-[26px] md:text-[36px] lg:text-[44px] xl:text-[52px] tracking-tight">
+              Ruta de las
+            </span>
+            <span className="font-[family-name:var(--font-barlow-hero)] font-black italic uppercase text-white text-[26px] sm:text-[38px] md:text-[52px] lg:text-[66px] xl:text-[78px] tracking-tight">
+              Mandarinas
+            </span>
+          </span>
         </div>
 
         {/* Sub fecha */}

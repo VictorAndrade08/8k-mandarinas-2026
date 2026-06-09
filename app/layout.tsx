@@ -65,7 +65,8 @@ export default function RootLayout({
           }}
         />
 
-        <meta name="theme-color" content="#DC2626" />
+        <meta name="theme-color" content="#FF6B1A" />
+        {/* color-scheme dark stays */}
         <meta name="color-scheme" content="dark" />
         <link rel="icon" href="/favicon.ico" />
 
@@ -90,7 +91,7 @@ export default function RootLayout({
           antialiased
           min-h-screen
           text-white
-          bg-[#080B22]
+          bg-[#1A0A0F]
           relative
           overflow-x-hidden
         `}
@@ -98,23 +99,23 @@ export default function RootLayout({
         {/* CAPAS DE FONDO */}
         <div
           className="fixed inset-0 -z-40 pointer-events-none"
-          style={{ background: "#080B22" }}
+          style={{ background: "#1A0A0F" }}
         />
         <div
           className="fixed inset-0 -z-30 pointer-events-none"
           style={{
             backgroundImage: `
-              linear-gradient(115deg,
-                #EF4444 0%,
-                #DC2626 28%,
-                #B91C1C 55%,
-                #7F1D1D 78%,
-                #080B22 100%
+              linear-gradient(135deg,
+                #FF8C1A 0%,
+                #FF6B1A 30%,
+                #FF4E5A 60%,
+                #FF2D7C 85%,
+                #B8186A 100%
               )
             `,
             backgroundSize: "cover",
             backgroundPosition: "center top",
-            opacity: 0.92,
+            opacity: 0.95,
           }}
         />
         <div

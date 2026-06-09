@@ -4,8 +4,8 @@ import React, { useMemo, useState } from "react";
 import { IdCard, XCircle, Loader2, X, CheckCircle2, Ticket } from "lucide-react";
 
 // Configuración de estilos y fuentes
-const brandPink = "#EF4444";
-const brandPurple = "#DC2626";
+const brandPink = "#FF2D7C";
+const brandPurple = "#FF6B1A";
 
 // Simulamos la fuente Bebas Neue
 const bebasClassName = "font-bebas"; 
@@ -71,7 +71,7 @@ function NotFoundModal({
             </button>
             <a
               href={hrefInscripcion}
-              className="px-8 py-4 rounded-2xl text-base font-bold text-[#050505] shadow-[0_0_20px_rgba(239,68,68,0.32)] hover:shadow-[0_0_30px_rgba(239,68,68,0.52)] hover:brightness-110 transition uppercase tracking-wide flex items-center justify-center"
+              className="px-8 py-4 rounded-2xl text-base font-bold text-[#050505] shadow-[0_0_20px_rgba(255,45,124,0.32)] hover:shadow-[0_0_30px_rgba(255,45,124,0.52)] hover:brightness-110 transition uppercase tracking-wide flex items-center justify-center"
               style={{ background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})` }}
             >
               Ir a Inscribirme
@@ -303,7 +303,7 @@ export default function VerificarPage() {
                                 </button>
 
                                 {/* TICKET VISUAL - MÁS GRANDE */}
-                                <div className="relative w-full bg-[#11141A] rounded-[32px] overflow-hidden border border-white/20 shadow-[0_40px_100px_-20px_rgba(220,38,38,0.32)]">
+                                <div className="relative w-full bg-[#11141A] rounded-[32px] overflow-hidden border border-white/20 shadow-[0_40px_100px_-20px_rgba(255,107,26,0.32)]">
                                     
                                     {/* Header del Ticket */}
                                     <div className="bg-[#181B21] p-8 relative overflow-hidden border-b border-white/10 border-dashed">

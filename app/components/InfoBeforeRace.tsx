@@ -66,21 +66,21 @@ export default function InfoBeforeRace() {
           rounded-[32px] sm:rounded-[56px]
           bg-[#05071A]
           border border-white/10
-          shadow-[0_20px_70px_-10px_rgba(220,38,38,0.18)]
+          shadow-[0_20px_70px_-10px_rgba(255,107,26,0.18)]
           px-6 sm:px-10 lg:px-14
           py-10 sm:py-14
           overflow-hidden
         "
       >
         {/* Decoración de fondo optimizada (pointer-events-none para no interferir con clicks) */}
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#DC2626]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#FF6B1A]/10 rounded-full blur-[120px] pointer-events-none" />
         
         <div className="relative z-10">
             {/* Header */}
             <div className="mb-10 sm:mb-12 text-center md:text-left">
                 <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-                    <span className="h-px w-8 bg-[#DC2626]"></span>
-                    <p className="text-[#DC2626] uppercase tracking-[0.4em] text-xs sm:text-sm font-bold font-sans">
+                    <span className="h-px w-8 bg-[#FF6B1A]"></span>
+                    <p className="text-[#FF6B1A] uppercase tracking-[0.4em] text-xs sm:text-sm font-bold font-sans">
                         Información Clave
                     </p>
                 </div>
@@ -107,7 +107,7 @@ export default function InfoBeforeRace() {
                     border border-white/5
                     p-6 sm:p-8
                     transition-all duration-300
-                    hover:bg-[#DC2626]/10 hover:border-[#DC2626]/30 hover:-translate-y-2
+                    hover:bg-[#FF6B1A]/10 hover:border-[#FF6B1A]/30 hover:-translate-y-2
                     flex flex-col
                     min-h-[280px]
                 "
@@ -119,7 +119,7 @@ export default function InfoBeforeRace() {
                     bg-white/5 border border-white/10 
                     flex items-center justify-center 
                     text-white mb-6
-                    group-hover:bg-[#DC2626] group-hover:border-[#DC2626] group-hover:shadow-[0_0_20px_rgba(220,38,38,0.45)]
+                    group-hover:bg-[#FF6B1A] group-hover:border-[#FF6B1A] group-hover:shadow-[0_0_20px_rgba(255,107,26,0.45)]
                     transition-all duration-300
                 ">
                     <it.icon size={24} />
@@ -133,7 +133,7 @@ export default function InfoBeforeRace() {
                     {it.desc}
                 </p>
 
-                <div className="mt-auto flex items-center gap-2 text-white/60 group-hover:text-[#DC2626] transition-colors uppercase tracking-[0.15em] text-xs font-bold">
+                <div className="mt-auto flex items-center gap-2 text-white/60 group-hover:text-[#FF6B1A] transition-colors uppercase tracking-[0.15em] text-xs font-bold">
                     {it.cta}
                     <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </div>
