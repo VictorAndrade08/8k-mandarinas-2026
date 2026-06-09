@@ -9,6 +9,9 @@ module.exports = {
 
   theme: {
     extend: {
+      screens: {
+        xs: "400px",
+      },
       colors: {
         rtj: {
           bg: "#05071A",      // fondo oscuro base

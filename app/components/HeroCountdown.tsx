@@ -10,7 +10,7 @@ const barlow = Barlow_Condensed({
   variable: "--font-barlow-hero",
 });
 
-const VIDEO_ID = "2gLjb0nnq_4";
+const VIDEO_ID = "I8EtjbDIOR4";
 
 type TimeLeft = {
   days: number;
@@ -111,89 +111,100 @@ export default function HeroCountdown() {
         }}
       />
 
-      {/* CONTENIDO */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4 sm:px-6 py-8 sm:py-10 text-center text-white">
-        {/* Top label */}
-        <p className="font-[family-name:var(--font-barlow-hero)] text-[11px] xs:text-[12px] sm:text-base md:text-lg lg:text-xl uppercase tracking-[0.32em] sm:tracking-[0.4em] text-white/80 font-semibold mb-3 sm:mb-5 whitespace-nowrap">
-          <span className="text-white">8K</span>
-          <span className="mx-2 sm:mx-3 text-white/40">·</span>
-          <span>Patate</span>
-          <span className="mx-2 sm:mx-3 text-white/40">·</span>
-          <span>Ecuador</span>
-        </p>
+      {/* CONTENIDO — 3 grupos distribuidos verticalmente */}
+      <div className="relative z-10 flex flex-col items-center justify-center sm:justify-between gap-10 sm:gap-0 h-full w-full px-4 sm:px-6 pt-10 pb-8 sm:pt-14 sm:pb-12 text-center text-white">
 
-        {/* Título tipográfico estilo flyer — pendiente logo oficial */}
-        <div className="relative inline-flex items-center gap-3 sm:gap-4 md:gap-5 drop-shadow-[0_10px_40px_rgba(0,0,0,0.7)] select-none">
-          <span
-            className="
-              font-[family-name:var(--font-barlow-hero)]
-              font-black italic
-              leading-none
-              text-[68px] sm:text-[100px] md:text-[132px] lg:text-[168px] xl:text-[192px]
-              text-transparent bg-clip-text
-            "
-            style={{
-              backgroundImage:
-                "linear-gradient(180deg, #FFD24A 0%, #FFB800 35%, #FF8C1A 70%, #FF6B1A 100%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-            }}
-          >
-            8K
-          </span>
-          <span className="flex flex-col items-start leading-[0.9]">
-            <span className="font-[family-name:var(--font-barlow-hero)] font-black italic uppercase text-white text-[18px] sm:text-[26px] md:text-[36px] lg:text-[44px] xl:text-[52px] tracking-tight">
-              Ruta de las
-            </span>
-            <span className="font-[family-name:var(--font-barlow-hero)] font-black italic uppercase text-white text-[26px] sm:text-[38px] md:text-[52px] lg:text-[66px] xl:text-[78px] tracking-tight">
-              Mandarinas
-            </span>
-          </span>
+        {/* GRUPO SUPERIOR — header + logo principal */}
+        <div className="flex flex-col items-center w-full">
+          <p className="font-[family-name:var(--font-barlow-hero)] text-sm xs:text-base sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.32em] sm:tracking-[0.4em] text-white/85 font-semibold mb-5 sm:mb-7 whitespace-nowrap">
+            <span className="text-white">8K</span>
+            <span className="mx-2 sm:mx-3 text-white/40">·</span>
+            <span>Patate</span>
+            <span className="mx-2 sm:mx-3 text-white/40">·</span>
+            <span>Ecuador</span>
+          </p>
+
+          <img
+            src="/logo-mandarinas-blanco.svg"
+            alt="8K Ruta de las Mandarinas"
+            className="w-[240px] sm:w-[340px] md:w-[440px] lg:w-[520px] xl:w-[580px] h-auto select-none drop-shadow-[0_10px_40px_rgba(0,0,0,0.7)]"
+            draggable={false}
+          />
+
+          <p className="mt-8 sm:mt-10 md:mt-12 font-[family-name:var(--font-barlow-hero)] text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.25em] sm:tracking-[0.32em] text-white font-bold whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
+            Sábado · 29 agosto · 2026
+          </p>
         </div>
 
-        {/* Sub fecha */}
-        <p className="mt-5 sm:mt-8 font-[family-name:var(--font-barlow-hero)] text-[12px] xs:text-[13px] sm:text-lg md:text-xl lg:text-2xl uppercase tracking-[0.25em] sm:tracking-[0.32em] text-white/85 font-semibold whitespace-nowrap">
-          Sábado · 29 agosto · 2026
-        </p>
+        {/* GRUPO CENTRAL — contador */}
+        <div className="flex flex-col items-center w-full">
+          <p className="font-[family-name:var(--font-barlow-hero)] text-white/85 uppercase tracking-[0.3em] sm:tracking-[0.35em] text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-3 sm:mb-4 md:mb-5">
+            Faltan para el inicio
+          </p>
 
-        {/* Faltan */}
-        <p className="mt-3 sm:mt-5 font-[family-name:var(--font-barlow-hero)] text-white/65 uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-sm md:text-base">
-          Faltan para el inicio
-        </p>
-
-        {/* CONTADOR */}
-        <div className="mt-4 sm:mt-6 grid grid-cols-4 gap-1.5 sm:gap-3 md:gap-5 w-full max-w-4xl">
-          {blocks.map((b) => (
-            <div
-              key={b.label}
-              className="
-                flex flex-col items-center justify-center
-                bg-white/[0.06] backdrop-blur-md
-                border border-white/15
-                rounded-xl sm:rounded-2xl md:rounded-3xl
-                py-2.5 sm:py-4 md:py-6
-                px-1 sm:px-3
-                shadow-[0_18px_60px_rgba(0,0,0,0.4)]
-                min-h-[80px] sm:min-h-[110px] md:min-h-[140px]
-              "
-            >
-              <span
+          <div className="grid grid-cols-4 gap-2 xs:gap-3 sm:gap-5 md:gap-6 w-full max-w-[300px] xs:max-w-sm sm:max-w-xl md:max-w-2xl mx-auto">
+            {blocks.map((b) => (
+              <div
+                key={b.label}
                 className="
-                  font-[family-name:var(--font-barlow-hero)]
-                  font-black italic
-                  text-[34px] xs:text-[40px] sm:text-[56px] md:text-[80px] lg:text-[100px]
-                  leading-none text-white tabular-nums
-                  drop-shadow-[0_4px_18px_rgba(0,0,0,0.7)]
+                  min-w-0
+                  flex flex-col items-center justify-center
+                  bg-white/[0.06] backdrop-blur-md
+                  border border-white/15
+                  rounded-xl sm:rounded-2xl
+                  py-2 sm:py-2.5 md:py-3
+                  px-1 sm:px-2
+                  shadow-[0_18px_60px_rgba(0,0,0,0.4)]
+                  min-h-[68px] sm:min-h-[82px] md:min-h-[95px]
+                  overflow-hidden
                 "
-                suppressHydrationWarning
               >
-                {b.value}
-              </span>
-              <span className="mt-1 sm:mt-2 font-[family-name:var(--font-barlow-hero)] text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs tracking-[0.18em] sm:tracking-[0.28em] uppercase text-white/70 font-semibold">
-                {b.label}
-              </span>
-            </div>
-          ))}
+                <span
+                  className="
+                    font-[family-name:var(--font-barlow-hero)]
+                    font-black italic
+                    text-[24px] xs:text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px]
+                    leading-none text-white tabular-nums
+                    drop-shadow-[0_4px_18px_rgba(0,0,0,0.7)]
+                  "
+                  suppressHydrationWarning
+                >
+                  {b.value}
+                </span>
+                <span className="mt-1 sm:mt-1.5 md:mt-2 font-[family-name:var(--font-barlow-hero)] text-[9px] xs:text-[10px] sm:text-xs md:text-sm tracking-[0.08em] xs:tracking-[0.15em] sm:tracking-[0.22em] uppercase text-white font-bold">
+                  {b.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* GRUPO INFERIOR — patrocinadores de calidad */}
+        <div className="flex flex-col items-center w-full gap-4 sm:gap-5">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <span className="h-0.5 w-6 sm:w-10 bg-[#FFB800] rounded-full" aria-hidden="true" />
+            <p className="font-[family-name:var(--font-barlow-hero)] text-xs sm:text-sm md:text-base uppercase tracking-[0.28em] text-white font-bold drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+              Con la calidad de
+            </p>
+            <span className="h-0.5 w-6 sm:w-10 bg-[#FFB800] rounded-full" aria-hidden="true" />
+          </div>
+          <div className="flex items-center justify-center gap-6 sm:gap-10 md:gap-14">
+            <img
+              src="/10kjuanes.webp"
+              alt="10K Independencia de Ambato"
+              className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto select-none drop-shadow-[0_4px_14px_rgba(0,0,0,0.6)] transition-transform duration-300 hover:scale-105"
+              draggable={false}
+              loading="lazy"
+            />
+            <span className="h-10 sm:h-14 md:h-16 w-px bg-white/30" aria-hidden="true" />
+            <img
+              src="/10kjuanes2.webp"
+              alt="10K Ruta de los Tres Juanes"
+              className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto select-none drop-shadow-[0_4px_14px_rgba(0,0,0,0.6)] transition-transform duration-300 hover:scale-105"
+              draggable={false}
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </section>
