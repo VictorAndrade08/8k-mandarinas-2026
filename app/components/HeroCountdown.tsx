@@ -112,7 +112,7 @@ export default function HeroCountdown() {
       />
 
       {/* CONTENIDO — 3 grupos distribuidos verticalmente */}
-      <div className="relative z-10 flex flex-col items-center justify-center sm:justify-between gap-10 sm:gap-0 h-full w-full px-4 sm:px-6 pt-10 pb-8 sm:pt-14 sm:pb-12 text-center text-white">
+      <div className="relative z-10 flex flex-col items-center justify-center gap-12 sm:gap-16 h-full w-full px-4 sm:px-6 pt-10 pb-8 sm:pt-14 sm:pb-12 text-center text-white">
 
         {/* GRUPO SUPERIOR — header + logo principal */}
         <div className="flex flex-col items-center w-full">
@@ -177,34 +177,26 @@ export default function HeroCountdown() {
               </div>
             ))}
           </div>
-        </div>
 
-        {/* GRUPO INFERIOR — patrocinadores de calidad */}
-        <div className="flex flex-col items-center w-full gap-4 sm:gap-5">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <span className="h-0.5 w-6 sm:w-10 bg-[#FFB800] rounded-full" aria-hidden="true" />
-            <p className="font-[family-name:var(--font-barlow-hero)] text-xs sm:text-sm md:text-base uppercase tracking-[0.28em] text-white font-bold drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
-              Con la calidad de
-            </p>
-            <span className="h-0.5 w-6 sm:w-10 bg-[#FFB800] rounded-full" aria-hidden="true" />
-          </div>
-          <div className="flex items-center justify-center gap-6 sm:gap-10 md:gap-14">
-            <img
-              src="/10kjuanes.webp"
-              alt="10K Independencia de Ambato"
-              className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto select-none drop-shadow-[0_4px_14px_rgba(0,0,0,0.6)] transition-transform duration-300 hover:scale-105"
-              draggable={false}
-              loading="lazy"
-            />
-            <span className="h-10 sm:h-14 md:h-16 w-px bg-white/30" aria-hidden="true" />
-            <img
-              src="/10kjuanes2.webp"
-              alt="10K Ruta de los Tres Juanes"
-              className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto select-none drop-shadow-[0_4px_14px_rgba(0,0,0,0.6)] transition-transform duration-300 hover:scale-105"
-              draggable={false}
-              loading="lazy"
-            />
-          </div>
+          {/* BOTÓN DE INSCRIPCIÓN */}
+          <a
+            href="/inscripcion/"
+            className="
+              mt-8 sm:mt-10 md:mt-12
+              inline-flex items-center justify-center
+              rounded-full bg-white
+              px-10 py-4 sm:px-14 sm:py-5
+              font-[family-name:var(--font-barlow-hero)]
+              text-base sm:text-lg md:text-xl
+              font-bold uppercase tracking-[0.22em]
+              text-[#B8186A]
+              shadow-[0_12px_45px_rgba(0,0,0,0.5)]
+              transition-transform duration-300
+              hover:scale-105 active:scale-95
+            "
+          >
+            Inscríbete ahora
+          </a>
         </div>
       </div>
     </section>

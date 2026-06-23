@@ -17,14 +17,18 @@ import {
   Calendar,
   MapPin,
   Info,
-  Trophy,
-  HelpCircle,
+  Zap,
+  Medal,
+  Crown,
+  Accessibility,
   RefreshCcw,
   Search,
   ArrowRight,
   ShieldCheck, // Icono agregado para la seguridad
-  FileText     // Icono agregado para el comprobante
+  FileText,    // Icono agregado para el comprobante
+  Copy         // Para copiar datos de pago
 } from "lucide-react";
+import { toast } from "sonner";
 
 // --- Interfaces Actualizadas ---
 interface FormDataState {
@@ -48,7 +52,38 @@ interface Category {
   name: string;
   price: number;
   desc: string;
+  icon: React.ReactNode;
 }
+
+// Clave para guardar el progreso del formulario (no perder datos al refrescar)
+const STORAGE_KEY = "inscripcion_8k_progreso";
+
+// Corredor en SVG con extremidades (brazos/piernas) que se mueven como al correr
+const RunnerIcon = ({ size = 32 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="3.4"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="runner-svg"
+    aria-hidden="true"
+  >
+    {/* cabeza */}
+    <circle className="head" cx="15" cy="4.6" r="3" fill="currentColor" stroke="none" />
+    {/* torso (inclinado hacia adelante) */}
+    <line x1="14.2" y1="7" x2="10.5" y2="14.5" />
+    {/* brazos */}
+    <line className="arm arm-back" x1="13" y1="9" x2="9" y2="11.5" />
+    <line className="arm arm-front" x1="13" y1="9" x2="17" y2="11" />
+    {/* piernas */}
+    <line className="leg leg-back" x1="10.5" y1="14.5" x2="7" y2="21.5" />
+    <line className="leg leg-front" x1="10.5" y1="14.5" x2="15.5" y2="20.5" />
+  </svg>
+);
 
 // --- Componente: Modal de Alertas ---
 const CustomModal = ({
@@ -120,65 +155,6 @@ const CustomModal = ({
   );
 };
 
-// --- Componente: Modal de Descuento (3ra Edad) ---
-const DiscountModal = ({
-  isOpen,
-  onConfirm,
-  onCancel,
-}: {
-  isOpen: boolean;
-  onConfirm: (isSenior: boolean) => void;
-  onCancel: () => void;
-}) => {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md animate-in fade-in duration-300">
-      <div className="bg-[#1C2029] border border-[#FF6B1A]/30 w-full max-w-lg rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(255,107,26,0.18)] relative animate-in zoom-in-95">
-        <button
-          onClick={onCancel}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white transition p-2"
-        >
-          <X size={28} />
-        </button>
-        
-        <div className="flex flex-col items-center text-center gap-6">
-          <div className="w-20 h-20 bg-[#FF6B1A]/10 text-[#FF6B1A] rounded-full flex items-center justify-center animate-bounce">
-            <HelpCircle size={44} />
-          </div>
-          
-          <div>
-            <h3 className="text-3xl md:text-4xl font-bold text-white uppercase mb-3 font-barlow">
-              ¿Aplica descuento?
-            </h3>
-            <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-barlow">
-              ¿Eres una persona de la <strong className="text-white">Tercera Edad</strong> (65 años o más)?
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mt-2 font-barlow">
-            <button
-              onClick={() => onConfirm(true)}
-              className="py-5 px-6 bg-white text-black font-bold text-lg rounded-xl hover:bg-gray-200 transition flex flex-col items-center justify-center gap-1 shadow-lg"
-            >
-              <span>SÍ, tengo 65+</span>
-              <span className="text-sm md:text-base text-green-700 font-bold">Pagas $20</span>
-            </button>
-            
-            <button
-              onClick={() => onConfirm(false)}
-              className="py-5 px-6 bg-[#0F1218] border border-white/10 text-white font-bold text-lg rounded-xl hover:bg-[#1A1E29] hover:border-white/30 transition flex flex-col items-center justify-center gap-1"
-            >
-              <span>NO, soy menor</span>
-              <span className="text-sm md:text-base text-gray-400 font-medium">Pagas $30</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // --- COMPONENTE PRINCIPAL ---
 export default function InscripcionPage() {
   const [step, setStep] = useState(1);
@@ -196,10 +172,7 @@ export default function InscripcionPage() {
     actionLabel: undefined as string | undefined,
     onAction: undefined as (() => void) | undefined
   });
-  const [discountModalOpen, setDiscountModalOpen] = useState(false);
-  
   // Selección
-  const [pendingCategory, setPendingCategory] = useState<Category | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedPrice, setSelectedPrice] = useState<number>(0);
   
@@ -232,6 +205,43 @@ export default function InscripcionPage() {
 
   const [formData, setFormData] = useState<FormDataState>(initialFormData);
 
+  // --- PERSISTENCIA: que el usuario NO pierda su avance si refresca ---
+  const hydrated = useRef(false);
+
+  // 1) Cargar progreso guardado al entrar
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const data = JSON.parse(saved);
+        if (data.formData) setFormData((prev) => ({ ...prev, ...data.formData, comprobante: null }));
+        if (data.step) setStep(data.step);
+        if (data.selectedCategory) setSelectedCategory(data.selectedCategory);
+        if (typeof data.selectedPrice === "number") setSelectedPrice(data.selectedPrice);
+        if (typeof data.acceptTerms === "boolean") setAcceptTerms(data.acceptTerms);
+      }
+    } catch {}
+    hydrated.current = true;
+  }, []);
+
+  // 2) Guardar progreso ante cualquier cambio (el archivo no se serializa)
+  useEffect(() => {
+    if (!hydrated.current) return; // no sobrescribir antes de cargar
+    if (step >= 4) return; // ya finalizó
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          step,
+          selectedCategory,
+          selectedPrice,
+          acceptTerms,
+          formData: { ...formData, comprobante: undefined },
+        })
+      );
+    } catch {}
+  }, [step, selectedCategory, selectedPrice, acceptTerms, formData]);
+
   // Función para reiniciar el formulario
   const handleReset = () => {
     setStep(1);
@@ -242,6 +252,7 @@ export default function InscripcionPage() {
     setUploadedFileUrl("");
     setAcceptTerms(false);
     setErrors({});
+    try { localStorage.removeItem(STORAGE_KEY); } catch {}
     if (componentRef.current) {
         componentRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -249,16 +260,10 @@ export default function InscripcionPage() {
 
   // Categorías
   const categories: Category[] = [
-    { name: "Élite (Abierta)", price: 20, desc: "Categoría principal" },
-    { name: "Senior 1", price: 20, desc: "20–29 años" },
-    { name: "Senior 2", price: 20, desc: "30–39 años" },
-    { name: "Máster", price: 20, desc: "40–49 años" },
-    { name: "Súper Máster", price: 20, desc: "50–59 años" },
-    { name: "Vilcabambas", price: 20, desc: "60 años en adelante" },
-    { name: "Juvenil", price: 20, desc: "14–19 años" },
-    { name: "Colegial Tungurahua", price: 20, desc: "14–18 años" },
-    { name: "Capacidades Especiales", price: 20, desc: "Todas las edades" },
-    { name: "Interfuerzas", price: 20, desc: "Fuerzas del orden" },
+    { name: "Élite Pro 8K", price: 25, desc: "Menores de 40 años", icon: <Zap size={24} /> },
+    { name: "Máster", price: 25, desc: "40–59 años", icon: <Medal size={24} /> },
+    { name: "Leyenda", price: 25, desc: "60 años en adelante", icon: <Crown size={24} /> },
+    { name: "Discapacidad", price: 20, desc: "Todas las edades", icon: <Accessibility size={24} /> },
   ];
 
   // --- Efectos ---
@@ -284,24 +289,20 @@ export default function InscripcionPage() {
     setModalState({ isOpen: true, title, message, type, actionLabel, onAction });
   };
 
-  const handleCategoryClick = (cat: Category) => {
-    if (cat.name === "Vilcabambas") {
-      setPendingCategory(cat);
-      setDiscountModalOpen(true);
-    } else {
-      setSelectedCategory(cat.name);
-      setSelectedPrice(cat.price);
-      setStep(2);
+  // Copiar datos de pago al portapapeles (evita errores al transferir)
+  const copyToClipboard = async (text: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success(`${label} copiado`);
+    } catch {
+      toast.error("No se pudo copiar");
     }
   };
 
-  const handleDiscountConfirm = (isSenior: boolean) => {
-    if (pendingCategory) {
-      setSelectedCategory(pendingCategory.name);
-      setSelectedPrice(isSenior ? 20 : pendingCategory.price);
-      setStep(2);
-    }
-    setDiscountModalOpen(false);
+  const handleCategoryClick = (cat: Category) => {
+    setSelectedCategory(cat.name);
+    setSelectedPrice(cat.price);
+    setStep(2);
   };
 
   const handleInput = useCallback(
@@ -470,6 +471,7 @@ export default function InscripcionPage() {
       }
 
       if (json?.file_url) setUploadedFileUrl(String(json.file_url));
+      try { localStorage.removeItem(STORAGE_KEY); } catch {}
       setStep(4);
 
     } catch (err) {
@@ -519,6 +521,18 @@ export default function InscripcionPage() {
         @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Bebas+Neue&display=swap');
         .font-barlow { font-family: 'Barlow Condensed', sans-serif; }
         .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+        .runner-svg .leg, .runner-svg .arm, .runner-svg .head { transform-box: view-box; }
+        .runner-svg .head { transform-origin: 15px 4.6px; animation: headBob 0.32s ease-in-out infinite; }
+        @keyframes headBob {
+          0%, 100% { transform: translateY(-0.6px) rotate(-3deg); }
+          50%      { transform: translateY(1px) rotate(3deg); }
+        }
+        .runner-svg .leg-front { transform-origin: 10.5px 14.5px; animation: limbA 0.32s ease-in-out infinite; }
+        .runner-svg .leg-back  { transform-origin: 10.5px 14.5px; animation: limbB 0.32s ease-in-out infinite; }
+        .runner-svg .arm-front { transform-origin: 13px 9px; animation: limbB 0.32s ease-in-out infinite; }
+        .runner-svg .arm-back  { transform-origin: 13px 9px; animation: limbA 0.32s ease-in-out infinite; }
+        @keyframes limbA { 0%, 100% { transform: rotate(30deg); } 50% { transform: rotate(-30deg); } }
+        @keyframes limbB { 0%, 100% { transform: rotate(-30deg); } 50% { transform: rotate(30deg); } }
       `}</style>
       
       {/* Modales */}
@@ -531,12 +545,6 @@ export default function InscripcionPage() {
         onAction={modalState.onAction}
         onClose={() => setModalState({ ...modalState, isOpen: false })} 
       />
-      <DiscountModal 
-        isOpen={discountModalOpen}
-        onCancel={() => setDiscountModalOpen(false)}
-        onConfirm={handleDiscountConfirm}
-      />
-
       {/* Contenedor Principal */}
       <div ref={componentRef} className="w-full max-w-7xl mx-auto bg-[#1C2029]/80 backdrop-blur-xl rounded-[24px] md:rounded-[32px] border border-white/5 shadow-2xl overflow-hidden flex flex-col md:flex-row">
         
@@ -544,22 +552,29 @@ export default function InscripcionPage() {
         <div className="bg-[#11141A] p-6 md:p-12 md:w-1/3 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/5 relative min-w-[300px]">
           <div>
             <div className="flex items-center gap-4 mb-6 md:mb-12">
-               <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-[#FF6B1A] shadow-lg flex items-center justify-center shrink-0">
-                 <img src="/white.svg" alt="Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
-               </div>
-               <span className="text-2xl md:text-[32px] uppercase tracking-tight text-white leading-none font-bebas">
-                 8K Ruta de las <br className="hidden md:block"/> Mandarinas
-               </span>
+               <img
+                 src="/logo-mandarinas-blanco.svg"
+                 alt="8K Ruta de las Mandarinas"
+                 className="h-20 md:h-24 w-auto object-contain"
+               />
             </div>
 
             {/* BARRA DE PROGRESO (Móvil) */}
             <div className="md:hidden mb-2">
-                <div className="flex items-center justify-between mb-2 font-barlow">
-                    <span className="text-xs text-gray-300 font-bold uppercase tracking-wider">Paso {step} de 4</span>
-                    <span className="text-white font-bold uppercase text-xs">{stepsLabels[step-1]}</span>
+                <div className="flex items-center justify-between mb-3 font-barlow">
+                    <span className="text-base sm:text-lg text-gray-300 font-bold uppercase tracking-wider">Paso {step} de 4</span>
+                    <span className="text-white font-bold uppercase text-base sm:text-lg">{stepsLabels[step-1]}</span>
                 </div>
-                <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-[#FF6B1A] transition-all duration-500" style={{ width: `${(step / 4) * 100}%` }} />
+                <div className="relative w-full h-2.5 bg-white/10 rounded-full mt-1">
+                    <div className="h-full bg-[#FF6B1A] rounded-full transition-all duration-500" style={{ width: `${(step / 4) * 100}%` }} />
+                    <div
+                      className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500"
+                      style={{ left: `${(step / 4) * 100}%` }}
+                    >
+                      <span className="flex items-center justify-center w-16 h-16 rounded-full bg-white text-[#FF6B1A] shadow-[0_5px_18px_rgba(0,0,0,0.55)] ring-2 ring-[#FF6B1A]/50">
+                        <RunnerIcon size={38} />
+                      </span>
+                    </div>
                 </div>
             </div>
 
@@ -620,7 +635,7 @@ export default function InscripcionPage() {
                       <div className="flex justify-between items-start mb-3">
                         <div className="flex items-center gap-3">
                            <div className="p-2 rounded-lg bg-white/5 group-hover:bg-[#FF6B1A]/20 text-gray-400 group-hover:text-[#FF6B1A] transition-colors">
-                             <Trophy size={24} />
+                             {cat.icon}
                            </div>
                            <span className="font-bold text-xl md:text-2xl text-white group-hover:text-[#FF6B1A] transition-colors leading-tight">{cat.name}</span>
                         </div>
@@ -631,11 +646,6 @@ export default function InscripcionPage() {
                         </div>
                       </div>
                       <p className="text-base md:text-lg text-gray-400 group-hover:text-gray-300 pl-11">{cat.desc}</p>
-                      {cat.name === "Vilcabambas" && (
-                         <span className="text-sm md:text-base text-green-400 font-bold mt-2 block pl-11 uppercase tracking-wider">
-                           O $20 para Tercera Edad
-                         </span>
-                      )}
                     </button>
                   ))}
                 </div>
@@ -721,9 +731,17 @@ export default function InscripcionPage() {
                   </div>
                   
                   <div className="space-y-6 text-lg md:text-xl">
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center gap-3">
                         <span className="text-gray-500">Cuenta Corriente:</span>
-                        <span className="font-mono text-white bg-white/5 px-3 py-1 rounded border border-white/10">2100057760</span>
+                        <button
+                          type="button"
+                          onClick={() => copyToClipboard("3148516004", "Número de cuenta")}
+                          className="group inline-flex items-center gap-2 font-mono text-white bg-white/5 hover:bg-white/10 active:scale-95 px-3 py-2 rounded-lg border border-white/10 transition"
+                          title="Copiar número de cuenta"
+                        >
+                          3148516004
+                          <Copy size={16} className="text-gray-400 group-hover:text-[#FF6B1A]" />
+                        </button>
                     </div>
                     <div className="flex justify-between items-center">
                         <span className="text-gray-500">Tipo:</span>
@@ -731,15 +749,23 @@ export default function InscripcionPage() {
                     </div>
                     <div className="flex justify-between items-start">
                       <span className="text-gray-500">Titular:</span>
-                      <span className="text-right text-white max-w-[200px] leading-tight">Asoc. Periodistas Deportivos Tungurahua</span>
+                      <span className="text-right text-white max-w-[200px] leading-tight">Diego Mantilla</span>
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center gap-3">
                         <span className="text-gray-500">RUC:</span>
-                        <span className="font-mono text-white">1891715141001</span>
+                        <button
+                          type="button"
+                          onClick={() => copyToClipboard("1802796829-001", "RUC")}
+                          className="group inline-flex items-center gap-2 font-mono text-white bg-white/5 hover:bg-white/10 active:scale-95 px-3 py-2 rounded-lg border border-white/10 transition"
+                          title="Copiar RUC"
+                        >
+                          1802796829-001
+                          <Copy size={16} className="text-gray-400 group-hover:text-[#FF6B1A]" />
+                        </button>
                     </div>
                      <div className="flex justify-between items-center pt-6 border-t border-white/10 mt-6">
                       <span className="text-gray-300 font-bold text-2xl md:text-3xl">Total a pagar:</span>
-                      <span className="text-[#FF2D7C] font-black text-4xl md:text-5xl">${selectedPrice}.00</span>
+                      <span className="text-[#FF6B1A] font-black text-4xl md:text-5xl">${selectedPrice}.00</span>
                     </div>
                   </div>
                 </div>

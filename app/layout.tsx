@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
 
@@ -36,6 +36,15 @@ export const metadata: Metadata = {
   description: "8K Ruta de las Mandarinas · Sábado 29 de agosto de 2026 — Sitio oficial",
 };
 
+// Evita el auto-zoom de iOS al abrir el teclado en los inputs (mejor UX móvil)
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#FF6B1A",
+};
+
 // ==============================
 // Layout principal
 // ==============================
@@ -65,7 +74,6 @@ export default function RootLayout({
           }}
         />
 
-        <meta name="theme-color" content="#FF6B1A" />
         {/* color-scheme dark stays */}
         <meta name="color-scheme" content="dark" />
         <link rel="icon" href="/favicon.ico" />

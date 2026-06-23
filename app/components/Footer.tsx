@@ -56,25 +56,22 @@ export default function Footer() {
         <div className="flex-1 flex flex-col sm:flex-row gap-6 md:gap-8 items-start relative z-10">
           <div
             className="
-              w-16 h-16 sm:w-20 sm:h-20
               rounded-2xl
               bg-[#FF6B1A]
               flex items-center justify-center
               shadow-[0_12px_30px_rgba(255,107,26,0.38)]
               flex-shrink-0
+              px-4 py-3 sm:px-5 sm:py-4
             "
             aria-hidden="true"
           >
-            {/* LOGO OPTIMIZADO:
-                Usamos next/image con dimensiones explícitas.
-                Esto elimina el CLS y evita errores de hidratación.
-            */}
+            {/* Logo oficial de las Mandarinas */}
             <Image
-              src="/white.svg"
+              src="/logo-mandarinas-blanco.svg"
               alt="Logo 8K Ruta de las Mandarinas"
-              width={40}
-              height={40}
-              className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+              width={120}
+              height={42}
+              className="h-9 sm:h-11 w-auto object-contain"
               loading="lazy"
             />
           </div>

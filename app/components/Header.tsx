@@ -34,10 +34,8 @@ const Logo = ({ className }: { className?: string }) => {
 
   return (
     <img
-      src="/white.svg"
-      alt="Logo 8K"
-      width={28}
-      height={28}
+      src="/logo-mandarinas-blanco.svg"
+      alt="8K Ruta de las Mandarinas"
       className={`${className} object-contain`}
       onError={() => setHasError(true)}
       loading="eager"
@@ -73,38 +71,22 @@ export default function Header() {
           >
             <div
               className="
-                w-10 h-10 sm:w-12 sm:h-12
-                rounded-2xl overflow-hidden
+                rounded-2xl
                 bg-[#FF6B1A]
                 shadow-[0_4px_12px_rgba(255,107,26,0.38)]
                 flex items-center justify-center
                 flex-shrink-0
+                px-3 py-2.5 sm:px-4 sm:py-3
                 group-hover:scale-105 transition-transform duration-300
               "
             >
-              {/* Usamos el componente seguro Logo */}
-              <Logo className="w-6 h-6 sm:w-7 sm:h-7" />
+              {/* Logo oficial de las Mandarinas */}
+              <Logo className="h-7 sm:h-9 w-auto" />
             </div>
 
-            <div className="leading-tight select-none flex flex-col justify-center">
-              <span
-                className="
-                  block
-                  text-[18px] lg:text-[22px] xl:text-[26px]
-                  uppercase tracking-[0.05em]
-                  text-[#111]
-                  font-[family-name:var(--font-bebas)]
-                  group-hover:text-[#FF6B1A] transition-colors
-                  whitespace-nowrap
-                "
-              >
-                8K Ruta de las Mandarinas
-              </span>
-
-              <p className="hidden xl:block text-[13px] text-[#444]/80 font-medium mt-0.5 tracking-wide whitespace-nowrap">
-                Patate · Ecuador · 29 de agosto 2026
-              </p>
-            </div>
+            <p className="hidden xl:block text-[13px] text-[#444]/80 font-medium tracking-wide whitespace-nowrap">
+              Patate · Ecuador · 29 de agosto 2026
+            </p>
           </Link>
 
           {/* ================= DESKTOP (LG+) ================= */}
@@ -193,9 +175,9 @@ export default function Header() {
           >
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-3">
-                 <div className="w-10 h-10 rounded-xl bg-[#FF6B1A] flex items-center justify-center">
-                    {/* Reutilizamos el componente Logo seguro */}
-                    <Logo className="w-6 h-6" />
+                 <div className="rounded-xl bg-[#FF6B1A] flex items-center justify-center px-2.5 py-2">
+                    {/* Logo oficial de las Mandarinas */}
+                    <Logo className="h-6 w-auto" />
                  </div>
                  <span className="text-sm uppercase tracking-[0.2em] text-white/80 font-bold font-[family-name:var(--font-bebas)]">
                     Menú
