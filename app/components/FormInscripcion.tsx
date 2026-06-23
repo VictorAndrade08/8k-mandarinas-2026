@@ -59,29 +59,29 @@ interface Category {
 const STORAGE_KEY = "inscripcion_8k_progreso";
 
 // Corredor en SVG con extremidades (brazos/piernas) que se mueven como al correr
-const RunnerIcon = ({ size = 32 }: { size?: number }) => (
+const RunnerIcon = ({ size = 44 }: { size?: number }) => (
   <svg
     width={size}
     height={size}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="3.4"
+    strokeWidth="3"
     strokeLinecap="round"
     strokeLinejoin="round"
     className="runner-svg"
     aria-hidden="true"
   >
     {/* cabeza */}
-    <circle className="head" cx="15" cy="4.6" r="3" fill="currentColor" stroke="none" />
+    <circle className="head" cx="14.5" cy="4.5" r="2.9" fill="currentColor" stroke="none" />
     {/* torso (inclinado hacia adelante) */}
-    <line x1="14.2" y1="7" x2="10.5" y2="14.5" />
-    {/* brazos */}
-    <line className="arm arm-back" x1="13" y1="9" x2="9" y2="11.5" />
-    <line className="arm arm-front" x1="13" y1="9" x2="17" y2="11" />
-    {/* piernas */}
-    <line className="leg leg-back" x1="10.5" y1="14.5" x2="7" y2="21.5" />
-    <line className="leg leg-front" x1="10.5" y1="14.5" x2="15.5" y2="20.5" />
+    <line x1="13.6" y1="7.6" x2="11" y2="15" />
+    {/* brazos (pivote en el hombro) */}
+    <line className="arm arm-back" x1="13" y1="8.6" x2="8.5" y2="11" />
+    <line className="arm arm-front" x1="13" y1="8.6" x2="17.5" y2="10.5" />
+    {/* piernas (pivote en la cadera) */}
+    <line className="leg leg-back" x1="11" y1="15" x2="6.5" y2="22" />
+    <line className="leg leg-front" x1="11" y1="15" x2="16" y2="21.5" />
   </svg>
 );
 
@@ -522,17 +522,16 @@ export default function InscripcionPage() {
         .font-barlow { font-family: 'Barlow Condensed', sans-serif; }
         .font-bebas { font-family: 'Bebas Neue', sans-serif; }
         .runner-svg .leg, .runner-svg .arm, .runner-svg .head { transform-box: view-box; }
-        .runner-svg .head { transform-origin: 15px 4.6px; animation: headBob 0.32s ease-in-out infinite; }
-        @keyframes headBob {
-          0%, 100% { transform: translateY(-0.6px) rotate(-3deg); }
-          50%      { transform: translateY(1px) rotate(3deg); }
-        }
-        .runner-svg .leg-front { transform-origin: 10.5px 14.5px; animation: limbA 0.32s ease-in-out infinite; }
-        .runner-svg .leg-back  { transform-origin: 10.5px 14.5px; animation: limbB 0.32s ease-in-out infinite; }
-        .runner-svg .arm-front { transform-origin: 13px 9px; animation: limbB 0.32s ease-in-out infinite; }
-        .runner-svg .arm-back  { transform-origin: 13px 9px; animation: limbA 0.32s ease-in-out infinite; }
-        @keyframes limbA { 0%, 100% { transform: rotate(30deg); } 50% { transform: rotate(-30deg); } }
-        @keyframes limbB { 0%, 100% { transform: rotate(-30deg); } 50% { transform: rotate(30deg); } }
+        .runner-svg .head { transform-origin: 14.5px 4.5px; animation: headBob 0.34s ease-in-out infinite; }
+        .runner-svg .leg-front { transform-origin: 11px 15px; animation: legA 0.34s ease-in-out infinite; }
+        .runner-svg .leg-back  { transform-origin: 11px 15px; animation: legB 0.34s ease-in-out infinite; }
+        .runner-svg .arm-front { transform-origin: 13px 8.6px; animation: armA 0.34s ease-in-out infinite; animation-delay: -0.085s; }
+        .runner-svg .arm-back  { transform-origin: 13px 8.6px; animation: armB 0.34s ease-in-out infinite; animation-delay: -0.085s; }
+        @keyframes legA { 0%, 100% { transform: rotate(34deg); } 50% { transform: rotate(-28deg); } }
+        @keyframes legB { 0%, 100% { transform: rotate(-28deg); } 50% { transform: rotate(34deg); } }
+        @keyframes armA { 0%, 100% { transform: rotate(-42deg); } 50% { transform: rotate(38deg); } }
+        @keyframes armB { 0%, 100% { transform: rotate(38deg); } 50% { transform: rotate(-42deg); } }
+        @keyframes headBob { 0%, 100% { transform: translateY(-0.6px); } 50% { transform: translateY(0.9px); } }
       `}</style>
       
       {/* Modales */}
@@ -571,8 +570,8 @@ export default function InscripcionPage() {
                       className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500"
                       style={{ left: `${(step / 4) * 100}%` }}
                     >
-                      <span className="flex items-center justify-center w-16 h-16 rounded-full bg-white text-[#FF6B1A] shadow-[0_5px_18px_rgba(0,0,0,0.55)] ring-2 ring-[#FF6B1A]/50">
-                        <RunnerIcon size={38} />
+                      <span className="flex items-center justify-center w-14 h-14 rounded-full bg-white text-[#FF6B1A] shadow-[0_5px_16px_rgba(0,0,0,0.55)] ring-2 ring-[#FF6B1A]/50">
+                        <RunnerIcon size={34} />
                       </span>
                     </div>
                 </div>
