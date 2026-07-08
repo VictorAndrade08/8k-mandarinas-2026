@@ -17,6 +17,7 @@ import {
   Calendar,
   MapPin,
   Info,
+  HelpCircle,
   Zap,
   Medal,
   Crown,
@@ -155,6 +156,65 @@ const CustomModal = ({
   );
 };
 
+// --- Modal de Descuento (Tercera Edad 65+) ---
+const DiscountModal = ({
+  isOpen,
+  onConfirm,
+  onCancel,
+}: {
+  isOpen: boolean;
+  onConfirm: (isSenior: boolean) => void;
+  onCancel: () => void;
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md animate-in fade-in duration-300">
+      <div className="bg-[#1C2029] border border-[#FF6B1A]/30 w-full max-w-lg rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(255,107,26,0.18)] relative animate-in zoom-in-95">
+        <button
+          onClick={onCancel}
+          className="absolute top-4 right-4 text-gray-400 hover:text-white transition p-2"
+        >
+          <X size={28} />
+        </button>
+
+        <div className="flex flex-col items-center text-center gap-6">
+          <div className="w-20 h-20 bg-[#FF6B1A]/10 text-[#FF6B1A] rounded-full flex items-center justify-center animate-bounce">
+            <HelpCircle size={44} />
+          </div>
+
+          <div>
+            <h3 className="text-3xl md:text-4xl font-bold text-white uppercase mb-3 font-barlow">
+              ¿Aplica descuento?
+            </h3>
+            <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-barlow">
+              ¿Eres una persona de la <strong className="text-white">Tercera Edad</strong> (65 años o más)?
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mt-2 font-barlow">
+            <button
+              onClick={() => onConfirm(true)}
+              className="py-5 px-6 bg-white text-black font-bold text-lg rounded-xl hover:bg-gray-200 transition flex flex-col items-center justify-center gap-1 shadow-lg"
+            >
+              <span>SÍ, tengo 65+</span>
+              <span className="text-sm md:text-base text-green-700 font-bold">Pagas $18</span>
+            </button>
+
+            <button
+              onClick={() => onConfirm(false)}
+              className="py-5 px-6 bg-[#0F1218] border border-white/10 text-white font-bold text-lg rounded-xl hover:bg-[#1A1E29] hover:border-white/30 transition flex flex-col items-center justify-center gap-1"
+            >
+              <span>NO, tengo 60–64</span>
+              <span className="text-sm md:text-base text-gray-400 font-medium">Pagas $23</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // --- COMPONENTE PRINCIPAL ---
 export default function InscripcionPage() {
   const [step, setStep] = useState(1);
@@ -172,6 +232,10 @@ export default function InscripcionPage() {
     actionLabel: undefined as string | undefined,
     onAction: undefined as (() => void) | undefined
   });
+  // Modal de descuento tercera edad (categoría Leyenda 60+)
+  const [discountModalOpen, setDiscountModalOpen] = useState(false);
+  const [pendingCategory, setPendingCategory] = useState<Category | null>(null);
+
   // Selección
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedPrice, setSelectedPrice] = useState<number>(0);
@@ -260,10 +324,10 @@ export default function InscripcionPage() {
 
   // Categorías
   const categories: Category[] = [
-    { name: "Élite Pro 8K", price: 25, desc: "Menores de 40 años", icon: <Zap size={24} /> },
-    { name: "Máster", price: 25, desc: "40–59 años", icon: <Medal size={24} /> },
-    { name: "Leyenda", price: 25, desc: "60 años en adelante", icon: <Crown size={24} /> },
-    { name: "Discapacidad", price: 20, desc: "Todas las edades", icon: <Accessibility size={24} /> },
+    { name: "Élite Pro 8K", price: 23, desc: "Menores de 40 años", icon: <Zap size={24} /> },
+    { name: "Máster", price: 23, desc: "40–59 años", icon: <Medal size={24} /> },
+    { name: "Leyenda", price: 23, desc: "60 años en adelante", icon: <Crown size={24} /> },
+    { name: "Discapacidad", price: 18, desc: "Todas las edades", icon: <Accessibility size={24} /> },
   ];
 
   // --- Efectos ---
@@ -300,9 +364,26 @@ export default function InscripcionPage() {
   };
 
   const handleCategoryClick = (cat: Category) => {
+    // La categoría Leyenda (60+) puede tener descuento de tercera edad (65+)
+    if (cat.name === "Leyenda") {
+      setPendingCategory(cat);
+      setDiscountModalOpen(true);
+      return;
+    }
     setSelectedCategory(cat.name);
     setSelectedPrice(cat.price);
     setStep(2);
+  };
+
+  // Confirmación del descuento de tercera edad (65+) → $18
+  const handleDiscountConfirm = (isSenior: boolean) => {
+    if (pendingCategory) {
+      setSelectedCategory(pendingCategory.name);
+      setSelectedPrice(isSenior ? 18 : pendingCategory.price);
+      setStep(2);
+    }
+    setDiscountModalOpen(false);
+    setPendingCategory(null);
   };
 
   const handleInput = useCallback(
@@ -542,7 +623,12 @@ export default function InscripcionPage() {
         type={modalState.type} 
         actionLabel={modalState.actionLabel}
         onAction={modalState.onAction}
-        onClose={() => setModalState({ ...modalState, isOpen: false })} 
+        onClose={() => setModalState({ ...modalState, isOpen: false })}
+      />
+      <DiscountModal
+        isOpen={discountModalOpen}
+        onConfirm={handleDiscountConfirm}
+        onCancel={() => { setDiscountModalOpen(false); setPendingCategory(null); }}
       />
       {/* Contenedor Principal */}
       <div ref={componentRef} className="w-full max-w-7xl mx-auto bg-[#1C2029]/80 backdrop-blur-xl rounded-[24px] md:rounded-[32px] border border-white/5 shadow-2xl overflow-hidden flex flex-col md:flex-row">

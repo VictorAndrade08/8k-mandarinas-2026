@@ -142,36 +142,39 @@ export default function HeroCountdown() {
             Faltan para el inicio
           </p>
 
-          <div className="grid grid-cols-4 gap-2 xs:gap-3 sm:gap-5 md:gap-6 w-full max-w-[300px] xs:max-w-sm sm:max-w-xl md:max-w-2xl mx-auto">
+          <div className="grid grid-cols-4 gap-2 xs:gap-3 sm:gap-4 md:gap-5 w-full max-w-[300px] xs:max-w-sm sm:max-w-xl md:max-w-2xl mx-auto">
             {blocks.map((b) => (
               <div
                 key={b.label}
                 className="
-                  min-w-0
+                  relative min-w-0 overflow-hidden
                   flex flex-col items-center justify-center
-                  bg-white/[0.06] backdrop-blur-md
-                  border border-white/15
-                  rounded-xl sm:rounded-2xl
-                  py-2 sm:py-2.5 md:py-3
+                  bg-black/55
+                  border-x border-b border-white/10
+                  rounded-b-xl sm:rounded-b-2xl rounded-t-md
+                  pt-2 pb-2 sm:pt-2.5 sm:pb-2.5 md:pt-3 md:pb-3
                   px-1 sm:px-2
-                  shadow-[0_18px_60px_rgba(0,0,0,0.4)]
+                  shadow-[0_10px_30px_rgba(0,0,0,0.45)]
                   min-h-[68px] sm:min-h-[82px] md:min-h-[95px]
-                  overflow-hidden
                 "
               >
+                {/* franja superior estilo dorsal de carrera */}
+                <span
+                  className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#FF8C1A] via-[#FF4E5A] to-[#FF2D7C]"
+                  aria-hidden="true"
+                />
                 <span
                   className="
                     font-[family-name:var(--font-barlow-hero)]
                     font-black italic
                     text-[24px] xs:text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px]
                     leading-none text-white tabular-nums
-                    drop-shadow-[0_4px_18px_rgba(0,0,0,0.7)]
                   "
                   suppressHydrationWarning
                 >
                   {b.value}
                 </span>
-                <span className="mt-1 sm:mt-1.5 md:mt-2 font-[family-name:var(--font-barlow-hero)] text-[9px] xs:text-[10px] sm:text-xs md:text-sm tracking-[0.08em] xs:tracking-[0.15em] sm:tracking-[0.22em] uppercase text-white font-bold">
+                <span className="mt-1 sm:mt-1.5 md:mt-2 font-[family-name:var(--font-barlow-hero)] text-[9px] xs:text-[10px] sm:text-xs md:text-sm tracking-[0.08em] xs:tracking-[0.15em] sm:tracking-[0.22em] uppercase text-white/70 font-bold">
                   {b.label}
                 </span>
               </div>
