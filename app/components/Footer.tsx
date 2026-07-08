@@ -105,9 +105,9 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-gray-400">
               {/* Usamos Link o <a> según corresponda. Si es scroll interno, <a> está bien. */}
-              <li><Link href="/#inscripcion" className="hover:text-[#FF6B1A] transition-colors duration-200">Inscripción</Link></li>
+              <li><Link href="/inscripcion/" className="hover:text-[#FF6B1A] transition-colors duration-200">Inscripción</Link></li>
               <li><Link href="/reglamento" className="hover:text-[#FF6B1A] transition-colors duration-200">Reglamento</Link></li>
-              <li><Link href="/faq" className="hover:text-[#FF6B1A] transition-colors duration-200">Preguntas frecuentes</Link></li>
+              <li><a href="https://wa.me/593995102378" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6B1A] transition-colors duration-200">Preguntas frecuentes</a></li>
             </ul>
           </div>
 

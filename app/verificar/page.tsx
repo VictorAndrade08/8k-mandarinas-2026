@@ -288,7 +288,7 @@ export default function VerificarPage() {
                                 </div>
                                 
                                 <div className="mt-10 pt-8 border-t border-white/10 text-center relative z-10">
-                                    <p className="text-sm text-white/50">¿Tienes problemas? <a href="/contacto" className="text-white hover:text-white underline decoration-white/50 font-semibold">Contáctanos</a></p>
+                                    <p className="text-sm text-white/50">¿Tienes problemas? <a href="https://wa.me/593995102378" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white underline decoration-white/50 font-semibold">Contáctanos</a></p>
                                 </div>
                             </div>
                         )}

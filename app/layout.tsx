@@ -77,18 +77,6 @@ export default function RootLayout({
         {/* color-scheme dark stays */}
         <meta name="color-scheme" content="dark" />
         <link rel="icon" href="/favicon.ico" />
-
-        {/* CSS estáticos con versionado manual */}
-        <link
-          rel="stylesheet"
-          href="/assets/css/style.css?v=20251216"
-          as="style"
-        />
-        <link
-          rel="stylesheet"
-          href="/assets/css/main.css?v=20251216"
-          as="style"
-        />
       </head>
 
       <body

@@ -90,8 +90,8 @@ export default function Header() {
           </Link>
 
           {/* ================= DESKTOP (LG+) ================= */}
-          <div className="hidden lg:flex items-center gap-2 xl:gap-4 flex-shrink-0">
-            
+          <nav aria-label="Navegación principal" className="hidden lg:flex items-center gap-2 xl:gap-4 flex-shrink-0">
+
             <span
               className="
                 hidden xl:inline-flex
@@ -146,7 +146,7 @@ export default function Header() {
             >
               Inscribirse
             </Link>
-          </div>
+          </nav>
 
           {/* ================= BURGER (LG-) ================= */}
           <button

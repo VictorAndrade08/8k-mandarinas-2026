@@ -82,8 +82,10 @@ export default function ReglamentoSection() {
                     Leer Reglamento Completo <ArrowRight size={18} />
                 </Link>
                 
-                 <Link
-                    href="/faq"
+                 <a
+                    href="https://wa.me/593995102378"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="
                     inline-flex items-center justify-center gap-2
                     px-8 py-4
@@ -96,7 +98,7 @@ export default function ReglamentoSection() {
                     "
                 >
                     Preguntas Frecuentes
-                </Link>
+                </a>
             </div>
             
             {/* Pie de página con iconos de confianza */}
