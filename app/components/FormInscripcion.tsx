@@ -294,6 +294,7 @@ export default function InscripcionPage() {
   // Selección
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedPrice, setSelectedPrice] = useState<number>(0);
+  const [metodoPago, setMetodoPago] = useState<"transferencia" | "qr">("transferencia");
   
   // Archivo
   const [previewName, setPreviewName] = useState("");
@@ -360,6 +361,7 @@ export default function InscripcionPage() {
       if (data.selectedCategory) setSelectedCategory(data.selectedCategory);
       if (typeof data.selectedPrice === "number") setSelectedPrice(data.selectedPrice);
       if (typeof data.acceptTerms === "boolean") setAcceptTerms(data.acceptTerms);
+      if (data.metodoPago === "qr" || data.metodoPago === "transferencia") setMetodoPago(data.metodoPago);
     }
     setResumeModalOpen(false);
     hydrated.current = true;
@@ -385,11 +387,12 @@ export default function InscripcionPage() {
           selectedCategory,
           selectedPrice,
           acceptTerms,
+          metodoPago,
           formData: { ...formData, comprobante: undefined },
         })
       );
     } catch {}
-  }, [step, selectedCategory, selectedPrice, acceptTerms, formData]);
+  }, [step, selectedCategory, selectedPrice, acceptTerms, metodoPago, formData]);
 
   // Función para reiniciar el formulario
   const handleReset = () => {
@@ -607,6 +610,7 @@ export default function InscripcionPage() {
     const body = new FormData();
     body.append("categoria", selectedCategory);
     body.append("precio", selectedPrice.toString());
+    body.append("metodo_pago", metodoPago);
     
     (Object.keys(formData) as Array<keyof FormDataState>).forEach((key) => {
       if (key !== "comprobante") {
@@ -972,8 +976,36 @@ export default function InscripcionPage() {
             {/* --- PASO 3: PAGO (MEJORADO: VERIFICACIÓN FÁCIL) --- */}
             {step === 3 && (
               <div className="animate-in slide-in-from-right-8 duration-500 fade-in">
-                <h1 className="text-4xl md:text-6xl font-bold mb-8 font-bebas">Validación de Pago</h1>
-                
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 font-bebas">Validación de Pago</h1>
+
+                {/* SELECTOR DE MÉTODO DE PAGO */}
+                <p className="text-gray-400 text-base md:text-lg mb-3 font-barlow">Elige cómo vas a pagar:</p>
+                <div className="grid grid-cols-2 gap-3 mb-8 font-barlow">
+                  <button
+                    type="button"
+                    onClick={() => setMetodoPago("transferencia")}
+                    className={`flex items-center justify-center gap-2 py-4 px-4 rounded-xl border-2 font-bold text-base md:text-lg transition-all ${
+                      metodoPago === "transferencia"
+                        ? "bg-[#FF6B1A] border-[#FF6B1A] text-white shadow-lg shadow-[#FF6B1A]/20"
+                        : "bg-[#0F1218] border-white/10 text-gray-300 hover:border-white/30"
+                    }`}
+                  >
+                    <Landmark size={22} /> Transferencia
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setMetodoPago("qr")}
+                    className={`flex items-center justify-center gap-2 py-4 px-4 rounded-xl border-2 font-bold text-base md:text-lg transition-all ${
+                      metodoPago === "qr"
+                        ? "bg-[#FF6B1A] border-[#FF6B1A] text-white shadow-lg shadow-[#FF6B1A]/20"
+                        : "bg-[#0F1218] border-white/10 text-gray-300 hover:border-white/30"
+                    }`}
+                  >
+                    <QrCode size={22} /> QR (deúna!)
+                  </button>
+                </div>
+
+                {metodoPago === "transferencia" && (
                 <div className="bg-gradient-to-br from-[#1A1E29] to-black border border-white/10 rounded-2xl p-6 md:p-10 mb-8 shadow-lg font-barlow">
                   <div className="flex items-center gap-5 mb-8 pb-6 border-b border-white/10">
                     <div className="bg-[#FF6B1A]/20 p-4 rounded-full text-[#FF6B1A]"><Landmark size={32} /></div>
@@ -1022,8 +1054,10 @@ export default function InscripcionPage() {
                     </div>
                   </div>
                 </div>
+                )}
 
                 {/* --- MÉTODO 2: PAGO CON QR (deúna! / Banco Pichincha) --- */}
+                {metodoPago === "qr" && (
                 <div className="bg-gradient-to-br from-[#1A1E29] to-black border border-white/10 rounded-2xl p-6 md:p-8 mb-8 shadow-lg font-barlow">
                   <div className="flex items-center gap-4 mb-5">
                     <div className="bg-[#FF6B1A]/20 p-3 rounded-full text-[#FF6B1A]"><QrCode size={28} /></div>
@@ -1044,6 +1078,7 @@ export default function InscripcionPage() {
                     />
                   </div>
                 </div>
+                )}
 
                 {/* --- SECCIÓN ANTI-FRAUDE Y VERIFICACIÓN --- */}
                 <div className="space-y-6 mb-10">
@@ -1199,7 +1234,9 @@ export default function InscripcionPage() {
                         `Cédula: ${formData.cedula}\n` +
                         `Categoría: ${selectedCategory}\n` +
                         `Valor: $${selectedPrice}\n\n` +
-                        `Adjunto mi comprobante de pago.`
+                        (uploadedFileUrl
+                          ? `📎 Mi comprobante de pago:\n${uploadedFileUrl}`
+                          : `Adjunto mi comprobante de pago.`)
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
