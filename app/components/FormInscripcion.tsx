@@ -27,8 +27,10 @@ import {
   ArrowRight,
   ShieldCheck, // Icono agregado para la seguridad
   FileText,    // Icono agregado para el comprobante
-  Copy         // Para copiar datos de pago
+  Copy,        // Para copiar datos de pago
+  QrCode       // Pago con QR (deúna! / Pichincha)
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 import { toast } from "sonner";
 
 // --- Interfaces Actualizadas ---
@@ -647,6 +649,38 @@ export default function InscripcionPage() {
 
   const stepsLabels = ["Categoría", "Datos", "Pago", "Final"];
 
+  // Validación en vivo: reglas por campo
+  const fieldValidators: Partial<Record<keyof FormDataState, (v: string) => boolean>> = {
+    cedula: (v) => v.replace(/\D/g, "").length >= 6,
+    nombres: (v) => v.trim().length >= 2,
+    apellidos: (v) => v.trim().length >= 2,
+    ciudad: (v) => v.trim().length >= 2,
+    telefono: (v) => v.replace(/\D/g, "").length >= 7,
+    email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+  };
+  const isFieldValid = (name: keyof FormDataState) => {
+    const rule = fieldValidators[name];
+    const val = formData[name] ? String(formData[name]) : "";
+    return rule ? rule(val) : false;
+  };
+
+  // Corrector de typos de email (gmail.con -> gmail.com, etc.)
+  const emailTypos: Record<string, string> = {
+    "gmail.con": "gmail.com", "gmail.co": "gmail.com", "gmial.com": "gmail.com",
+    "gmail.cm": "gmail.com", "gmaill.com": "gmail.com", "hotmail.con": "hotmail.com",
+    "hotmial.com": "hotmail.com", "hotmail.co": "hotmail.com", "outlook.con": "outlook.com",
+    "outlook.co": "outlook.com", "yaho.com": "yahoo.com", "yahoo.con": "yahoo.com",
+    "icloud.con": "icloud.com", "live.con": "live.com",
+  };
+  const emailSuggestion = (() => {
+    const e = formData.email.trim().toLowerCase();
+    const at = e.indexOf("@");
+    if (at < 0) return null;
+    const domain = e.slice(at + 1);
+    if (emailTypos[domain]) return e.slice(0, at + 1) + emailTypos[domain];
+    return null;
+  })();
+
   const renderInputField = (
     name: keyof FormDataState,
     label: string,
@@ -661,25 +695,35 @@ export default function InscripcionPage() {
       <label className="text-sm md:text-base font-bold text-gray-300 uppercase tracking-wide mb-2 flex items-center gap-2 font-barlow">
         {icon} {label}
       </label>
-      <input
-        name={name}
-        type={type}
-        inputMode={inputMode}
-        autoComplete={autoComplete}
-        value={formData[name] ? String(formData[name]) : ""}
-        onChange={handleInput}
-        onBlur={onBlur}
-        placeholder={placeholder || `Ingresa tu ${label.toLowerCase()}...`}
-        className={`
-          w-full bg-[#0F1218] border rounded-xl 
-          px-5 py-4 
-          text-white text-lg md:text-xl placeholder-gray-600 
-          outline-none transition-all font-barlow
-          ${errors[name] 
-            ? "border-red-500/50 focus:border-red-500" 
-            : "border-white/10 focus:border-[#FF6B1A] hover:border-white/20"}
-        `}
-      />
+      <div className="relative">
+        <input
+          name={name}
+          type={type}
+          inputMode={inputMode}
+          autoComplete={autoComplete}
+          value={formData[name] ? String(formData[name]) : ""}
+          onChange={handleInput}
+          onBlur={onBlur}
+          placeholder={placeholder || `Ingresa tu ${label.toLowerCase()}...`}
+          className={`
+            w-full bg-[#0F1218] border rounded-xl
+            px-5 py-4 pr-12
+            text-white text-lg md:text-xl placeholder-gray-600
+            outline-none transition-all font-barlow
+            ${errors[name]
+              ? "border-red-500/50 focus:border-red-500"
+              : isFieldValid(name)
+              ? "border-green-500/40 focus:border-green-500"
+              : "border-white/10 focus:border-[#FF6B1A] hover:border-white/20"}
+          `}
+        />
+        {isFieldValid(name) && !errors[name] && (
+          <CheckCircle2
+            size={22}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-green-500 pointer-events-none animate-in fade-in zoom-in-75 duration-200"
+          />
+        )}
+      </div>
       {errors[name] && (
         <p className="text-red-400 text-sm mt-2 flex items-center gap-1 font-medium font-barlow">
           <AlertCircle size={16} /> {errors[name]}
@@ -801,7 +845,21 @@ export default function InscripcionPage() {
           )}
 
           <div className="max-w-3xl mx-auto">
-            
+
+            {/* RESUMEN FIJO DE CATEGORÍA + PRECIO (pasos 2 y 3) */}
+            {(step === 2 || step === 3) && selectedCategory && (
+              <div className="flex items-center justify-between gap-3 mb-6 rounded-2xl bg-[#0F1218] border border-[#FF6B1A]/30 px-5 py-3.5 font-barlow">
+                <div className="flex flex-col">
+                  <span className="text-[11px] md:text-xs text-gray-400 uppercase tracking-widest font-bold">Tu categoría</span>
+                  <span className="text-base md:text-lg font-bold text-white leading-tight">{selectedCategory}</span>
+                </div>
+                <div className="text-right">
+                  <span className="text-[11px] md:text-xs text-gray-400 uppercase tracking-widest font-bold block">Total</span>
+                  <span className="text-[#FF6B1A] font-black text-2xl md:text-3xl leading-none">${selectedPrice}</span>
+                </div>
+              </div>
+            )}
+
             {/* --- PASO 1: CATEGORÍA --- */}
             {step === 1 && (
               <div className="animate-in slide-in-from-bottom-4 duration-500 fade-in">
@@ -853,8 +911,17 @@ export default function InscripcionPage() {
                   {renderInputField("telefono", "Teléfono", <Phone size={20} />, "tel", "", undefined, "tel", "tel")}
                   <div className="md:col-span-2">
                     {renderInputField("email", "Correo Electrónico", <Mail size={20} />, "email", "", undefined, "email", "email")}
+                    {emailSuggestion && (
+                      <button
+                        type="button"
+                        onClick={() => setFormData((f) => ({ ...f, email: emailSuggestion }))}
+                        className="mt-2 text-sm md:text-base text-[#FF6B1A] hover:text-[#FF2D7C] font-bold font-barlow flex items-center gap-1"
+                      >
+                        <Info size={15} /> ¿Quisiste decir <span className="underline">{emailSuggestion}</span>? Tócalo para corregir.
+                      </button>
+                    )}
                   </div>
-                  
+
                   <div>
                     <label className="text-sm md:text-base font-bold text-gray-300 uppercase tracking-wide mb-2 flex items-center gap-2 font-barlow"><User size={20} /> Edad</label>
                     <input name="edad" type="text" inputMode="numeric" autoComplete="off" value={formData.edad} onChange={handleInput} placeholder="Ej: 25" className="w-full bg-[#0F1218] border border-white/10 rounded-xl px-5 py-4 text-white text-lg md:text-xl outline-none focus:border-[#FF6B1A] font-barlow" />
@@ -953,6 +1020,28 @@ export default function InscripcionPage() {
                       <span className="text-gray-300 font-bold text-2xl md:text-3xl">Total a pagar:</span>
                       <span className="text-[#FF6B1A] font-black text-4xl md:text-5xl">${selectedPrice}.00</span>
                     </div>
+                  </div>
+                </div>
+
+                {/* --- MÉTODO 2: PAGO CON QR (deúna! / Banco Pichincha) --- */}
+                <div className="bg-gradient-to-br from-[#1A1E29] to-black border border-white/10 rounded-2xl p-6 md:p-8 mb-8 shadow-lg font-barlow">
+                  <div className="flex items-center gap-4 mb-5">
+                    <div className="bg-[#FF6B1A]/20 p-3 rounded-full text-[#FF6B1A]"><QrCode size={28} /></div>
+                    <div>
+                      <p className="text-sm md:text-base text-gray-400 uppercase tracking-wider mb-1">Opción rápida</p>
+                      <p className="font-bold text-2xl md:text-3xl">Paga con QR (deúna!)</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-400 text-base md:text-lg mb-6">
+                    Desde la app de tu banco o <strong className="text-white">deúna!</strong>, escanea este código e ingresa el monto <strong className="text-white">${selectedPrice}.00</strong>.
+                  </p>
+                  <div className="flex justify-center">
+                    <img
+                      src="/qr-pichincha.png"
+                      alt="Código QR para pago con deúna! y Banco Pichincha a nombre de Diego David Mantilla Villavicencio"
+                      className="w-full max-w-[360px] h-auto rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
 
@@ -1100,14 +1189,33 @@ export default function InscripcionPage() {
                 </div>
 
                 <div className="flex flex-col items-center gap-4">
-                    <a 
-                      href="/verificar" 
-                      className="inline-flex items-center gap-3 bg-[#FF6B1A] text-white px-10 py-5 rounded-full font-bold hover:bg-[#E55104] transition shadow-[0_0_30px_#FF6B1A50] hover:scale-105 text-lg md:text-xl font-barlow"
+                    <p className="text-white/90 text-base md:text-lg font-barlow max-w-xl">
+                      <strong className="text-white">Último paso:</strong> envíanos tu comprobante por WhatsApp para confirmar tu cupo.
+                    </p>
+                    <a
+                      href={`https://wa.me/593997241804?text=${encodeURIComponent(
+                        `Hola, acabo de inscribirme en la 8K Ruta de las Mandarinas 2026. 🎽\n\n` +
+                        `Nombre: ${formData.nombres} ${formData.apellidos}\n` +
+                        `Cédula: ${formData.cedula}\n` +
+                        `Categoría: ${selectedCategory}\n` +
+                        `Valor: $${selectedPrice}\n\n` +
+                        `Adjunto mi comprobante de pago.`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 bg-[#25D366] text-white px-10 py-5 rounded-full font-bold hover:bg-[#1EBE57] transition shadow-[0_0_30px_rgba(37,211,102,0.4)] hover:scale-105 text-lg md:text-xl font-barlow"
                     >
-                       <Search size={24}/> Ir a Pestaña de Verificación
+                       <FaWhatsapp size={26}/> Enviar comprobante por WhatsApp
                     </a>
 
-                    <button 
+                    <a
+                      href="/verificar"
+                      className="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors font-barlow text-base md:text-lg mt-1"
+                    >
+                       <Search size={20}/> Ver estado de mi inscripción
+                    </a>
+
+                    <button
                         onClick={handleReset}
                         className="flex items-center gap-2 text-gray-500 hover:text-white transition-colors underline decoration-white/20 hover:decoration-white underline-offset-4 font-barlow text-base md:text-lg mt-2"
                     >
