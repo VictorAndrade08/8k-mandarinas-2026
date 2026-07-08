@@ -156,6 +156,59 @@ const CustomModal = ({
   );
 };
 
+// --- Modal: Retomar inscripción guardada ---
+const ResumeModal = ({
+  isOpen,
+  step,
+  onResume,
+  onNew,
+}: {
+  isOpen: boolean;
+  step: number;
+  onResume: () => void;
+  onNew: () => void;
+}) => {
+  if (!isOpen) return null;
+  const labels = ["Categoría", "Datos", "Pago", "Final"];
+
+  return (
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md animate-in fade-in duration-300">
+      <div className="bg-[#1C2029] border border-[#FF6B1A]/30 w-full max-w-lg rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(255,107,26,0.18)] relative animate-in zoom-in-95">
+        <div className="flex flex-col items-center text-center gap-6">
+          <div className="w-20 h-20 bg-[#FF6B1A]/10 text-[#FF6B1A] rounded-full flex items-center justify-center">
+            <RefreshCcw size={40} />
+          </div>
+
+          <div>
+            <h3 className="text-3xl md:text-4xl font-bold text-white uppercase mb-3 font-barlow">
+              Tienes una inscripción sin terminar
+            </h3>
+            <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-barlow">
+              Guardamos tu avance en el <strong className="text-white">Paso {step} ({labels[step - 1] || "Datos"})</strong>. ¿Quieres continuar donde te quedaste?
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 w-full mt-2 font-barlow">
+            <button
+              onClick={onResume}
+              className="py-5 px-6 bg-[#FF6B1A] hover:bg-[#E55104] text-white font-bold text-lg rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-[#FF6B1A]/20"
+            >
+              Continuar mi inscripción <ArrowRight size={20} />
+            </button>
+
+            <button
+              onClick={onNew}
+              className="py-4 px-6 bg-[#0F1218] border border-white/10 text-gray-300 hover:text-white hover:bg-[#252A36] font-bold text-base rounded-xl transition"
+            >
+              Empezar una nueva
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // --- Modal de Descuento (Tercera Edad 65+) ---
 const DiscountModal = ({
   isOpen,
@@ -271,22 +324,52 @@ export default function InscripcionPage() {
 
   // --- PERSISTENCIA: que el usuario NO pierda su avance si refresca ---
   const hydrated = useRef(false);
+  const savedSnapshot = useRef<any>(null);
+  const [resumeModalOpen, setResumeModalOpen] = useState(false);
+  const [resumeStep, setResumeStep] = useState(1);
 
-  // 1) Cargar progreso guardado al entrar
+  // 1) Al entrar: si hay avance real, preguntamos si continúa o empieza de nuevo
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const data = JSON.parse(saved);
-        if (data.formData) setFormData((prev) => ({ ...prev, ...data.formData, comprobante: null }));
-        if (data.step) setStep(data.step);
-        if (data.selectedCategory) setSelectedCategory(data.selectedCategory);
-        if (typeof data.selectedPrice === "number") setSelectedPrice(data.selectedPrice);
-        if (typeof data.acceptTerms === "boolean") setAcceptTerms(data.acceptTerms);
+        const fd = data.formData || {};
+        const hasProgress =
+          (data.step && data.step > 1) ||
+          Boolean(fd.cedula || fd.nombres || fd.email || data.selectedCategory);
+        if (hasProgress) {
+          savedSnapshot.current = data;
+          setResumeStep(data.step || 1);
+          setResumeModalOpen(true);
+          return; // esperamos la decisión del usuario antes de guardar
+        }
       }
     } catch {}
     hydrated.current = true;
   }, []);
+
+  // Continuar donde se quedó
+  const resumeSaved = () => {
+    const data = savedSnapshot.current;
+    if (data) {
+      if (data.formData) setFormData((prev) => ({ ...prev, ...data.formData, comprobante: null }));
+      if (data.step) setStep(data.step);
+      if (data.selectedCategory) setSelectedCategory(data.selectedCategory);
+      if (typeof data.selectedPrice === "number") setSelectedPrice(data.selectedPrice);
+      if (typeof data.acceptTerms === "boolean") setAcceptTerms(data.acceptTerms);
+    }
+    setResumeModalOpen(false);
+    hydrated.current = true;
+  };
+
+  // Empezar una inscripción nueva (descarta lo guardado)
+  const startFreshInscription = () => {
+    try { localStorage.removeItem(STORAGE_KEY); } catch {}
+    savedSnapshot.current = null;
+    setResumeModalOpen(false);
+    hydrated.current = true;
+  };
 
   // 2) Guardar progreso ante cualquier cambio (el archivo no se serializa)
   useEffect(() => {
@@ -640,6 +723,12 @@ export default function InscripcionPage() {
         isOpen={discountModalOpen}
         onConfirm={handleDiscountConfirm}
         onCancel={() => { setDiscountModalOpen(false); setPendingCategory(null); }}
+      />
+      <ResumeModal
+        isOpen={resumeModalOpen}
+        step={resumeStep}
+        onResume={resumeSaved}
+        onNew={startFreshInscription}
       />
       {/* Contenedor Principal */}
       <div ref={componentRef} className="w-full max-w-7xl mx-auto bg-[#1C2029]/80 backdrop-blur-xl rounded-[24px] md:rounded-[32px] border border-white/5 shadow-2xl overflow-hidden flex flex-col md:flex-row">
