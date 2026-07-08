@@ -564,7 +564,16 @@ export default function InscripcionPage() {
 
   const stepsLabels = ["Categoría", "Datos", "Pago", "Final"];
 
-  const renderInputField = (name: keyof FormDataState, label: string, icon: React.ReactNode, type: string = "text", placeholder: string = "", onBlur?: () => void) => (
+  const renderInputField = (
+    name: keyof FormDataState,
+    label: string,
+    icon: React.ReactNode,
+    type: string = "text",
+    placeholder: string = "",
+    onBlur?: () => void,
+    autoComplete?: string,
+    inputMode?: "text" | "numeric" | "email" | "tel" | "decimal"
+  ) => (
     <div className="relative group">
       <label className="text-sm md:text-base font-bold text-gray-300 uppercase tracking-wide mb-2 flex items-center gap-2 font-barlow">
         {icon} {label}
@@ -572,6 +581,8 @@ export default function InscripcionPage() {
       <input
         name={name}
         type={type}
+        inputMode={inputMode}
+        autoComplete={autoComplete}
         value={formData[name] ? String(formData[name]) : ""}
         onChange={handleInput}
         onBlur={onBlur}
@@ -740,23 +751,24 @@ export default function InscripcionPage() {
             {/* --- PASO 2: DATOS --- */}
             {step === 2 && (
               <div className="animate-in slide-in-from-bottom-4 duration-500 fade-in">
-                <h1 className="text-4xl md:text-6xl font-bold mb-8 font-bebas">Tus Datos Personales</h1>
+                <h1 className="text-4xl md:text-6xl font-bold mb-2 font-bebas">Tus Datos Personales</h1>
+                <p className="text-gray-400 text-base md:text-lg mb-8 font-barlow">Solo toma 2 minutos. Guardamos tu avance por si necesitas volver.</p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mb-8">
                   <div className="md:col-span-2">
-                    {renderInputField("cedula", "Cédula o Pasaporte", <CreditCard size={20} />, "number", "", handleCedulaBlur)}
+                    {renderInputField("cedula", "Cédula o Pasaporte", <CreditCard size={20} />, "text", "", handleCedulaBlur, "off", "numeric")}
                   </div>
-                  {renderInputField("nombres", "Nombres", <User size={20} />)}
-                  {renderInputField("apellidos", "Apellidos", <User size={20} />)}
-                  {renderInputField("ciudad", "Ciudad", <Landmark size={20} />)}
-                  {renderInputField("telefono", "Teléfono", <Phone size={20} />, "tel")}
+                  {renderInputField("nombres", "Nombres", <User size={20} />, "text", "", undefined, "given-name", "text")}
+                  {renderInputField("apellidos", "Apellidos", <User size={20} />, "text", "", undefined, "family-name", "text")}
+                  {renderInputField("ciudad", "Ciudad", <Landmark size={20} />, "text", "", undefined, "address-level2", "text")}
+                  {renderInputField("telefono", "Teléfono", <Phone size={20} />, "tel", "", undefined, "tel", "tel")}
                   <div className="md:col-span-2">
-                    {renderInputField("email", "Correo Electrónico", <Mail size={20} />, "email")}
+                    {renderInputField("email", "Correo Electrónico", <Mail size={20} />, "email", "", undefined, "email", "email")}
                   </div>
                   
                   <div>
                     <label className="text-sm md:text-base font-bold text-gray-300 uppercase tracking-wide mb-2 flex items-center gap-2 font-barlow"><User size={20} /> Edad</label>
-                    <input name="edad" type="number" value={formData.edad} onChange={handleInput} placeholder="Ej: 25" className="w-full bg-[#0F1218] border border-white/10 rounded-xl px-5 py-4 text-white text-lg md:text-xl outline-none focus:border-[#FF6B1A] font-barlow" />
+                    <input name="edad" type="text" inputMode="numeric" autoComplete="off" value={formData.edad} onChange={handleInput} placeholder="Ej: 25" className="w-full bg-[#0F1218] border border-white/10 rounded-xl px-5 py-4 text-white text-lg md:text-xl outline-none focus:border-[#FF6B1A] font-barlow" />
                   </div>
 
                   <div>
@@ -865,7 +877,7 @@ export default function InscripcionPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                          {/* 1. Número de Comprobante (Evita tener que mirar la foto) */}
                         <div className="md:col-span-1">
-                            {renderInputField("num_comprobante", "Núm. Comprobante (Últimos dígitos)", <FileText size={20}/>, "text", "Ej: 123456")}
+                            {renderInputField("num_comprobante", "Núm. Comprobante (Últimos dígitos)", <FileText size={20}/>, "text", "Ej: 123456", undefined, "off", "numeric")}
                             <p className="text-xs text-gray-500 mt-2 font-barlow ml-1">Escribe el número de documento de la transferencia. Esto nos permite buscarlo en el banco sin abrir la imagen.</p>
                         </div>
 
