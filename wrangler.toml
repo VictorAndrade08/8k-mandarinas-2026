@@ -1,0 +1,14 @@
+name = "8k-mandarinas-2026"
+pages_build_output_dir = "out"
+compatibility_date = "2024-11-06"
+
+# Base de datos D1 (inscripciones)  ->  se usa como env.DB
+[[d1_databases]]
+binding = "DB"
+database_name = "inscripciones"
+database_id = "9a020aec-366d-4274-a63f-8d465c6199b8"
+
+# Bucket R2 (comprobantes de pago)  ->  se usa como env.BUCKET
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "comprobantes-8k"

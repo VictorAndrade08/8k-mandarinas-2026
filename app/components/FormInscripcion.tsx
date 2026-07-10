@@ -413,8 +413,8 @@ export default function InscripcionPage() {
   // Categorías
   const categories: Category[] = [
     { name: "Élite Pro 8K", price: 23, desc: "Menores de 40 años", icon: <Zap size={24} /> },
-    { name: "Máster", price: 23, desc: "40–59 años", icon: <Medal size={24} /> },
-    { name: "Leyenda", price: 23, desc: "60 años en adelante", icon: <Crown size={24} /> },
+    { name: "Máster", price: 23, desc: "40–64 años", icon: <Medal size={24} /> },
+    { name: "Leyenda", price: 18, desc: "65 años en adelante", icon: <Crown size={24} /> },
     { name: "Discapacidad", price: 18, desc: "Todas las edades", icon: <Accessibility size={24} /> },
   ];
 
@@ -452,12 +452,6 @@ export default function InscripcionPage() {
   };
 
   const handleCategoryClick = (cat: Category) => {
-    // La categoría Leyenda (60+) puede tener descuento de tercera edad (65+)
-    if (cat.name === "Leyenda") {
-      setPendingCategory(cat);
-      setDiscountModalOpen(true);
-      return;
-    }
     setSelectedCategory(cat.name);
     setSelectedPrice(cat.price);
     setStep(2);
@@ -567,7 +561,7 @@ export default function InscripcionPage() {
     setVerifying(true);
     try {
       const res = await fetch(
-        `https://mandarinas.8krutadelasmandarinas.com/wp-json/mandarinas/v1/verificar-cedula?cedula=${formData.cedula}`,
+        `/api/verificar-cedula?cedula=${formData.cedula}`,
         { cache: "no-store" }
       );
       const json = await res.json();
@@ -625,7 +619,7 @@ export default function InscripcionPage() {
 
     try {
       const res = await fetch(
-        "https://mandarinas.8krutadelasmandarinas.com/wp-json/mandarinas/v1/inscribir",
+        "/api/inscribir",
         { method: "POST", body, cache: "no-store" }
       );
       const rawText = await res.text();
