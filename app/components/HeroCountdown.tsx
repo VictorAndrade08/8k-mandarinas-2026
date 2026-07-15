@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Barlow_Condensed } from "next/font/google";
-import { VIDEO_ID, FECHA_CARRERA } from "../lib/carrera";
+import { VIDEO_FONDO_SRC, VIDEO_FONDO_POSTER, FECHA_CARRERA } from "../lib/carrera";
 
 const barlow = Barlow_Condensed({
   subsets: ["latin"],
@@ -51,55 +51,46 @@ export default function HeroCountdown() {
     { label: "Segundos", value: pad(timeLeft.seconds) },
   ];
 
-  const videoSrc =
-    `https://www.youtube-nocookie.com/embed/${VIDEO_ID}` +
-    `?autoplay=1&mute=1&controls=0&loop=1&playlist=${VIDEO_ID}` +
-    `&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&showinfo=0&fs=0&cc_load_policy=0`;
-
   return (
     <section
       className={`relative w-full h-screen min-h-[640px] overflow-hidden bg-black ${barlow.variable}`}
     >
-      {/* VIDEO DE FONDO */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-        <iframe
-          src={videoSrc}
-          title="8K Ruta de las Mandarinas — Video"
-          allow="autoplay; encrypted-media; picture-in-picture"
-          aria-hidden="true"
-          tabIndex={-1}
-          frameBorder={0}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            width: "max(177.78vh, 300vw)",
-            height: "max(56.25vw, 168.75vh)",
-            transform: "translate(-50%, -50%) scale(1.6)",
-            transformOrigin: "center center",
-            pointerEvents: "none",
-            border: 0,
-          }}
-        />
-      </div>
+      {/* VIDEO DE FONDO
+          Antes era un iframe de YouTube con autoplay=1&mute=1 que no llegaba a
+          arrancar: se quedaba el botón de play fantasma de YouTube en medio del
+          hero. Un <video> propio sí autoarranca — muted + playsInline es lo que
+          exigen los navegadores — y encima carga desde nuestro dominio. */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+        src={VIDEO_FONDO_SRC}
+        poster={VIDEO_FONDO_POSTER}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        tabIndex={-1}
+      />
 
-      {/* Capa anti-controles de YouTube */}
-      <div className="absolute inset-0 z-[1]" aria-hidden="true" />
-
-      {/* OVERLAY MANDARINA — naranja a magenta como en el flyer */}
+      {/* OVERLAY MANDARINA — naranja a magenta como en el flyer.
+          Estaba a 0.78-0.88 y, con la capa negra encima, tapaba ~95% del vídeo:
+          el fondo quedaba en un lavado marrón donde no se distinguía nada. A la
+          mitad, el valle y el Tungurahua se ven y la marca sigue tiñendo. */}
       <div
         className="absolute inset-0 z-[2] pointer-events-none"
         style={{
           background:
-            "linear-gradient(135deg, rgba(255,140,26,0.78) 0%, rgba(255,107,26,0.85) 30%, rgba(255,78,90,0.85) 60%, rgba(255,45,124,0.85) 85%, rgba(184,24,106,0.88) 100%)",
+            "linear-gradient(135deg, rgba(255,140,26,0.42) 0%, rgba(255,107,26,0.48) 30%, rgba(255,78,90,0.50) 60%, rgba(255,45,124,0.52) 85%, rgba(184,24,106,0.58) 100%)",
         }}
       />
-      {/* Capa de profundidad oscura encima para mejor legibilidad */}
+      {/* Viñeta: oscurece los bordes y deja el centro limpio, que es donde va el
+          texto. Antes oscurecía también el centro y ahogaba la imagen. */}
       <div
         className="absolute inset-0 z-[2] pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at center, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.7) 100%)",
+            "radial-gradient(ellipse 90% 70% at center, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0.56) 60%, rgba(0,0,0,0.72) 100%)",
         }}
       />
       {/* Grano */}

@@ -5,9 +5,6 @@
 // del banco contra un valor que nadie cobraba. Si un dato de estos cambia, se cambia
 // aquí y no hay que ir a buscarlo por seis archivos.
 
-/** Vídeo oficial de la 8K en YouTube. Lo usa el contador de la portada. */
-export const VIDEO_ID = "I8EtjbDIOR4";
-
 /**
  * Promo "8K JULIO" servido desde /public: recorrido por el valle, el Tungurahua y
  * Patate. El original venía en 1080p a 53 MB; esto es 720p a 8 MB, y aun así solo
@@ -15,6 +12,15 @@ export const VIDEO_ID = "I8EtjbDIOR4";
  */
 export const VIDEO_SRC = "/video/8k-promo.mp4";
 export const VIDEO_POSTER = "/video/8k-promo-poster.jpg";
+
+/**
+ * Recorte del promo para el fondo del contador: 22s en bucle, sin audio y a menor
+ * bitrate porque va detrás de un degradado y ruido. 2,4 MB en vez de 8,4.
+ * Arranca en el segundo 8 a propósito: los primeros segundos del promo rotulan
+ * "27 de agosto" y la carrera es el 29.
+ */
+export const VIDEO_FONDO_SRC = "/video/8k-fondo.mp4";
+export const VIDEO_FONDO_POSTER = "/video/8k-fondo-poster.jpg";
 
 /** Sábado 29 de agosto de 2026, 08:00 en Ecuador (GMT-5). Salida en Patate Garden. */
 export const FECHA_CARRERA = "2026-08-29T08:00:00-05:00";

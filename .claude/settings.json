@@ -50,7 +50,13 @@
       "Bash(cp so_1383x778.ai /tmp/l2.pdf)",
       "Bash(sips -s format png --resampleWidth 900 /tmp/l2.pdf --out cand_1383x778.png)",
       "Bash(node head2.js)",
-      "Bash(grep -vE \"no-img-element|^$|^/Users|warning|problem\")"
+      "Bash(grep -vE \"no-img-element|^$|^/Users|warning|problem\")",
+      "Bash(ffmpeg -loglevel error -y -ss 8 -t 22 -i 'nuevaslineasgraficas/8K JULIO 1\\(1\\).mp4' -an -vf scale=1100:-2 -c:v libx264 -crf 31 -preset slow -profile:v high -pix_fmt yuv420p -movflags +faststart public/video/8k-fondo.mp4)",
+      "Bash(awk '{print \" 8k-fondo.mp4 -> \"$5\" \\(22s, sin audio\\)\"}')",
+      "Bash(ffprobe -v error -select_streams v -show_entries stream=width,height -of csv=p=0 public/video/8k-fondo.mp4)",
+      "Bash(ffmpeg -loglevel error -y -ss 0.5 -i public/video/8k-fondo.mp4 -frames:v 1 -q:v 5 public/video/8k-fondo-poster.jpg)",
+      "Bash(node contraste2.js)",
+      "Bash(node fondo.js)"
     ]
   }
 }
