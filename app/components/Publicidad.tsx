@@ -2,8 +2,11 @@
 
 import React from "react";
 
-const DESKTOP_IMAGE = "https://antiquewhite-rook-228372.hostingersite.com/wp-content/uploads/2025/12/banner8K.webp";
-const MOBILE_IMAGE = "https://antiquewhite-rook-228372.hostingersite.com/wp-content/uploads/2025/12/Post8K-Editable.webp";
+// Arte oficial de la página de Facebook, guardado en /public. Las dos imágenes que
+// había antes vivían en un dominio temporal de Hostinger y devolvían 404: la sección
+// llevaba tiempo mostrando un recuadro vacío.
+const DESKTOP_IMAGE = "/fotos/banner-8k.jpg";
+const MOBILE_IMAGE = "/fotos/post-8k.jpg";
 
 export default function Publicidad() {
   return (
@@ -18,30 +21,21 @@ export default function Publicidad() {
         "
         // bg-gray-200 ayuda a que se vea un cuadro gris sutil mientras carga, mejorando la percepción
       >
+        {/* Las medidas son las reales de cada archivo, no estimadas: si no cuadran,
+            el navegador reserva un hueco del tamaño equivocado y la página salta al cargar. */}
         <picture className="w-full h-auto block">
-          {/* OPTIMIZACIÓN DESKTOP:
-             Según tu reporte, esta imagen es de 1600x600.
-             Definimos width y height aquí para que Chrome reserve el espacio correcto en PC.
-          */}
-          <source 
-            media="(min-width: 768px)" 
+          <source
+            media="(min-width: 768px)"
             srcSet={DESKTOP_IMAGE}
-            width={1600}
-            height={600}
+            width={1672}
+            height={941}
           />
-          
-          {/* OPTIMIZACIÓN MÓVIL:
-             IMPORTANTE: He puesto 1080x1080 como ejemplo estándar de un "Post".
-             Si tu imagen móvil tiene otras dimensiones (ej. 1080x1350), 
-             cambia estos números para evitar saltos.
-          */}
           <img
             src={MOBILE_IMAGE}
-            alt="Publicidad oficial 8K Ruta de las Mandarinas"
-            width={1080} 
-            height={1080}
-            className="w-full h-auto object-cover"
-            style={{ width: '100%', height: 'auto' }} // Esto asegura que sea responsive y anula el tamaño fijo de los atributos width/height
+            alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Valle de Patate · 29 de agosto · Salida Patate Garden 8 am · Preventa $20"
+            width={1122}
+            height={1402}
+            className="w-full h-auto"
             loading="eager"
             fetchPriority="high"
             decoding="async"

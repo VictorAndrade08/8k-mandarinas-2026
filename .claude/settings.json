@@ -25,7 +25,19 @@
       "Bash(node peso.js)",
       "Bash(grep -oE 'fill=\"#[0-9a-fA-F]{3,6}\"' node_modules/@phosphor-icons/react/dist/csr/User.mjs)",
       "Bash(node color.js)",
-      "Bash(node responsive.js)"
+      "Bash(node responsive.js)",
+      "Bash(node iphone16.js)",
+      "Bash(sed -i '' 's|if \\(r.width === 0 \\\\|\\\\| r.height === 0\\) continue;|if \\(r.width === 0 \\\\|\\\\| r.height === 0\\) continue;\\\\n      if \\(el.getAttribute\\(\"aria-hidden\"\\) === \"true\"\\) continue;|' responsive.js)",
+      "Bash(node home.js)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 -c \"import psd_tools; print\\('psd-tools', psd_tools.__version__\\)\")",
+      "Bash(curl -sS https://api.apify.com/v2/users/me?token=__TRACKED_VAR__ --max-time 30)",
+      "Bash(node rotas.js)",
+      "Bash(node video.js)",
+      "Bash(xargs -0 du -h)",
+      "Bash(xargs -0 du -k)",
+      "Bash(awk '$1 > 100000 {printf \" ❌ %.0f MB %s\\\\n\", $1/1024, substr\\($0, index\\($0,$2\\)\\)}')",
+      "Bash(awk '{print \"  \"$9\"  \"$5}')"
     ]
   }
 }

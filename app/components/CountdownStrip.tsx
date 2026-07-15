@@ -23,7 +23,7 @@ type TimeLeft = {
 const INITIAL_TIME: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
 function calculateTimeLeft(): TimeLeft {
-  // Fecha objetivo: Sábado 29 de agosto de 2026 a las 07:00 (GMT-5)
+  // Fecha objetivo: Sábado 29 de agosto de 2026 a las 08:00 (GMT-5)
   const eventDate = new Date("2026-08-29T08:00:00-05:00").getTime();
   const now = Date.now();
   const diff = eventDate - now;

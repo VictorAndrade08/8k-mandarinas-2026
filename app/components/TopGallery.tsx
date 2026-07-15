@@ -5,22 +5,34 @@ import Image from "next/image"; // IMPORTANTE: Usamos el componente nativo
 
 type GalleryItem = { src: string; alt: string };
 
+// Fotos oficiales de la carrera, servidas desde /public. Antes esto apuntaba a
+// mandarinas.8krutadelasmandarinas.com, un subdominio que ya no resuelve en DNS:
+// las 15 imágenes llevaban tiempo saliendo rotas.
 const IMAGES: GalleryItem[] = [
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes1.jpg", alt: "Corredor 1" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes2.jpg", alt: "Corredor 2" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes3.jpg", alt: "Corredor 3" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes4.jpg", alt: "Corredor 4" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes5.jpg", alt: "Corredor 5" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes6.jpg", alt: "Corredor 6" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes7.jpg", alt: "Corredor 7" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes8.jpg", alt: "Corredor 8" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes9.jpg", alt: "Corredor 9" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes10.jpg", alt: "Corredor 10" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes11.jpg", alt: "Corredor 11" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes12.jpg", alt: "Corredor 12" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes13.jpg", alt: "Corredor 13" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes14.jpg", alt: "Corredor 14" },
-  { src: "https://mandarinas.8krutadelasmandarinas.com/wp-content/uploads/2025/12/juanes15.jpg", alt: "Corredor 15" },
+  { src: "/fotos/corredores-01.jpg", alt: "Corredores en la salida de Patate" },
+  { src: "/fotos/corredores-02.jpg", alt: "Podio de premiación de la carrera" },
+  { src: "/fotos/corredores-03.jpg", alt: "Grupo de corredores con su medalla" },
+  { src: "/fotos/corredores-04.jpg", alt: "Corredores en la salida de Patate" },
+  { src: "/fotos/corredores-05.jpg", alt: "Podio de premiación de la carrera" },
+  { src: "/fotos/corredores-06.jpg", alt: "Grupo de corredores con su medalla" },
+  { src: "/fotos/corredores-07.jpg", alt: "Corredores en la salida de Patate" },
+  { src: "/fotos/corredores-08.jpg", alt: "Podio de premiación de la carrera" },
+  { src: "/fotos/corredores-09.jpg", alt: "Grupo de corredores con su medalla" },
+  { src: "/fotos/corredores-10.jpg", alt: "Corredores en la salida de Patate" },
+  { src: "/fotos/corredores-11.jpg", alt: "Podio de premiación de la carrera" },
+  { src: "/fotos/corredores-12.jpg", alt: "Grupo de corredores con su medalla" },
+  { src: "/fotos/corredores-13.jpg", alt: "Corredores en la salida de Patate" },
+  { src: "/fotos/corredores-14.jpg", alt: "Podio de premiación de la carrera" },
+  { src: "/fotos/corredores-15.jpg", alt: "Grupo de corredores con su medalla" },
+  { src: "/fotos/corredores-16.jpg", alt: "Corredores en la salida de Patate" },
+  { src: "/fotos/corredores-17.jpg", alt: "Podio de premiación de la carrera" },
+  { src: "/fotos/corredores-18.jpg", alt: "Grupo de corredores con su medalla" },
+  { src: "/fotos/corredores-19.jpg", alt: "Corredores en la salida de Patate" },
+  { src: "/fotos/corredores-20.jpg", alt: "Podio de premiación de la carrera" },
+  { src: "/fotos/corredores-21.jpg", alt: "Grupo de corredores con su medalla" },
+  { src: "/fotos/corredores-22.jpg", alt: "Corredores en la salida de Patate" },
+  { src: "/fotos/corredores-23.jpg", alt: "Podio de premiación de la carrera" },
+  { src: "/fotos/corredores-24.jpg", alt: "Grupo de corredores con su medalla" },
 ];
 
 export default function TopGallery() {

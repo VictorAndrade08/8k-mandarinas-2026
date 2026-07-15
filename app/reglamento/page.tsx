@@ -68,7 +68,7 @@ export default function ReglamentoSection() {
           <ArticleCard id="art-2" title="Artículo 2. Horario">
             <p>
               La edición de la 8K Ruta de las Mandarinas se realizará el{" "}
-              <strong>domingo 29 de agosto de 2026 a las 08h00</strong>. El
+              <strong>sábado 29 de agosto de 2026 a las 08h00</strong>. El
               tiempo máximo para completar esta prueba es de{" "}
               <strong>1 hora 30 minutos</strong>.
             </p>

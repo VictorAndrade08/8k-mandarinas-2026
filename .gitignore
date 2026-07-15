@@ -24,6 +24,14 @@
 .DS_Store
 *.pem
 
+# Material de diseño (Photoshop/Illustrator). GitHub rechaza cualquier archivo de
+# más de 100 MB y estos pesan hasta 1.3 GB, así que bloquean el push entero.
+# Lo que el sitio necesita ya está exportado en public/sponsors y public/fotos.
+*.psd
+*.psb
+*.ai
+myairbridge-*/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

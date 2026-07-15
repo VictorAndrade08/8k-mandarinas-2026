@@ -12,47 +12,20 @@ const bebas = Bebas_Neue({
   variable: "--font-bebas",
 });
 
+// Sacados de las capas del arte oficial (myairbridge/FACEBOOK PORTADA.psd) y servidos
+// desde /public. Antes esto apuntaba a fotos de la 10K de Ambato alojadas en dominios
+// temporales de Hostinger: contenido de otra carrera y un enlace que puede morir solo.
+// Los seis primeros vienen del vector .ai incrustado; boho y patate-gardens solo
+// existían como píxeles en el PSD, así que van a su tamaño nativo.
 const SPONSOR_LOGOS = [
-  {
-    src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2025/01/Carrera-10K-Ruta-de-los-Tres-Juanes-2025-%C2%A1Corre-y-Celebra-la-Fiesta-de-la-Fruta-y-de-las-Flores-en-Ambato-.webp",
-    alt: "Corredores 8K Ruta de las Mandarinas",
-  },
-  {
-    src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2025/01/Carrera-10K-Ruta-de-los-Tres-Juanes-2025-%C2%A1Corre-y-Celebra-la-Fiesta-de-la-Fruta-y-de-las-Flores-en-Ambato-34.webp",
-    alt: "Ambato nocturno 10K",
-  },
-  {
-    src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2025/01/Carrera-10K-Ruta-de-los-Tres-Juanes-2025-%C2%A1Corre-y-Celebra-la-Fiesta-de-la-Fruta-y-de-las-Flores-en-Ambato-1-2.webp",
-    alt: "Salida 8K Ruta de las Mandarinas",
-  },
-  {
-    src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2024/11/Carrera-10K-Independencia-de-Amb-9.webp",
-    alt: "Corredores 8K Ruta de las Mandarinas",
-  },
-  {
-    src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2024/09/Carrera-10K-Independencia-de-Amb-logo-web-1-1.webp",
-    alt: "Logo 8K Ruta de las Mandarinas",
-  },
-  {
-    src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2024/09/Carrera-10K-Independencia-de-Amb-Aurum-1-1.webp",
-    alt: "Logo Aurum patrocinador",
-  },
-  {
-    src: "https://darkgreen-monkey-141925.hostingersite.com/wp-content/uploads/2024/12/Carrera-10K-Independencia-de-Amb-1-1.webp",
-    alt: "Corredores 8K Ruta de las Mandarinas noche",
-  },
-  {
-    src: "https://antiquewhite-rook-228372.hostingersite.com/wp-content/uploads/2025/12/Carrera-10K-Independencia-de-Amb-9-1-copia.webp",
-    alt: "Logo Patrocinador Adicional 1",
-  },
-  {
-    src: "https://antiquewhite-rook-228372.hostingersite.com/wp-content/uploads/2025/12/1Carrera-10K-Independencia-de-Amb-9-1-copia.webp",
-    alt: "Logo Patrocinador Adicional 2",
-  },
-  {
-    src: "https://antiquewhite-rook-228372.hostingersite.com/wp-content/uploads/2025/12/12323.webp",
-    alt: "Logo Patrocinador Adicional 3",
-  },
+  { src: "/sponsors/vehicentro-sinotruk.png", alt: "Vehicentro · Sinotruk" },
+  { src: "/sponsors/cani.png", alt: "cani" },
+  { src: "/sponsors/nutritec.png", alt: "Nutritec" },
+  { src: "/sponsors/oscus.png", alt: "OSCUS" },
+  { src: "/sponsors/vigop.png", alt: "VIGOP Eventos" },
+  { src: "/sponsors/boho.png", alt: "BOHO" },
+  { src: "/sponsors/prez.png", alt: "PREZ · Agencia de Growth Marketing" },
+  { src: "/sponsors/patate-gardens.png", alt: "Patate Gardens" },
 ];
 
 export default function SponsorsStrip() {

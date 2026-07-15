@@ -1024,7 +1024,10 @@ export default function InscripcionPage() {
                   transferencia o QR y subes el comprobante.
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 font-barlow">
+                {/* 2 columnas solo en lg: a partir de md aparece la barra lateral y esta
+                    columna baja a 2/3 del ancho, así que con sm:grid-cols-2 las tarjetas
+                    quedaban a ~190px y el precio se montaba sobre el título. */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5 font-barlow">
                   {categories.map((cat) => (
                     <button
                       key={cat.name}
@@ -1032,12 +1035,14 @@ export default function InscripcionPage() {
                       onClick={sinRebote(() => handleCategoryClick(cat))}
                       className="group relative bg-[#0F1218] border border-white/10 p-6 md:p-7 rounded-2xl text-left hover:border-[#FF6B1A] hover:bg-[#1A1E29] transition-all duration-200 active:scale-[0.98] h-full flex flex-col justify-between shadow-md outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#161A23]"
                     >
-                      <div className="flex justify-between items-start mb-3">
-                        <div className="flex items-center gap-3">
-                           <div className="p-2 rounded-lg bg-white/5 group-hover:bg-[#FF6B1A]/20 text-gray-400 group-hover:text-[#FF6B1A] transition-colors">
+                      <div className="flex justify-between items-start gap-3 mb-3">
+                        {/* min-w-0: sin esto el nombre no puede encogerse y empuja al
+                            precio fuera de la tarjeta en anchos estrechos. */}
+                        <div className="flex items-center gap-3 min-w-0 flex-1">
+                           <div className="p-2 rounded-lg bg-white/5 group-hover:bg-[#FF6B1A]/20 text-gray-400 group-hover:text-[#FF6B1A] transition-colors shrink-0">
                              {cat.icon}
                            </div>
-                           <span className="font-bold text-xl md:text-2xl text-white group-hover:text-[#FF6B1A] transition-colors leading-tight">{cat.name}</span>
+                           <span className="font-bold text-xl md:text-2xl text-white group-hover:text-[#FF6B1A] transition-colors leading-tight min-w-0">{cat.name}</span>
                         </div>
                         <div className="text-right shrink-0">
                           <span className="bg-white/5 text-base md:text-lg px-3 py-1 rounded-lg text-white font-mono font-bold block border border-white/10">
@@ -1048,7 +1053,7 @@ export default function InscripcionPage() {
                           </span>
                         </div>
                       </div>
-                      <p className="text-base md:text-lg text-gray-400 group-hover:text-gray-300 pl-11">{cat.desc}</p>
+                      <p className="text-base md:text-lg text-gray-400 group-hover:text-gray-300">{cat.desc}</p>
                     </button>
                   ))}
                 </div>
@@ -1063,7 +1068,7 @@ export default function InscripcionPage() {
                   e.preventDefault();
                   goToStep3();
                 }}
-                className="animate-in slide-in-from-bottom-4 duration-500 fade-in pb-28 md:pb-0"
+                className="animate-in slide-in-from-bottom-4 duration-500 fade-in"
               >
                 <h1 className="text-4xl md:text-6xl font-bold mb-2 font-bebas">Tus Datos Personales</h1>
                 <p className="text-gray-400 text-base md:text-lg mb-8 font-barlow">
@@ -1338,7 +1343,7 @@ export default function InscripcionPage() {
                   e.preventDefault();
                   submitForm();
                 }}
-                className="animate-in slide-in-from-right-8 duration-500 fade-in pb-28 md:pb-0"
+                className="animate-in slide-in-from-right-8 duration-500 fade-in"
               >
                 <h1 className="text-4xl md:text-6xl font-bold mb-6 font-bebas">Validación de Pago</h1>
 
@@ -1715,8 +1720,16 @@ export default function InscripcionPage() {
             )}
 
             {/* En móvil la barra lateral queda arriba, así que el soporte va aquí abajo.
-                mb-24 lo levanta por encima de la barra de acción fija. */}
-            <div className="md:hidden mt-10 mb-24 pt-6 border-t border-white/10">
+                Como es el último elemento del scroll, es quien reserva el hueco de la
+                barra de acción fija — y solo en los pasos que la tienen. La barra mide
+                ~110px más la franja de gestos del teléfono. */}
+            <div
+              className={`md:hidden mt-8 pt-6 border-t border-white/10 ${
+                step === 2 || step === 3
+                  ? "mb-[calc(7rem+env(safe-area-inset-bottom))]"
+                  : "mb-4"
+              }`}
+            >
               <SoporteReal />
             </div>
 
