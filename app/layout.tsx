@@ -36,12 +36,14 @@ export const metadata: Metadata = {
   description: "8K Ruta de las Mandarinas · Sábado 29 de agosto de 2026 — Sitio oficial",
 };
 
-// Evita el auto-zoom de iOS al abrir el teclado en los inputs (mejor UX móvil)
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  // El auto-zoom de iOS se evita con inputs de 16px o más, no bloqueando el zoom:
+  // maximumScale/userScalable impedían ampliar la página a quien lo necesita (WCAG 1.4.4).
+  // Encoge el layout cuando sube el teclado, para que la barra de acción fija
+  // quede encima del teclado y no flotando sobre el campo que se está llenando.
+  interactiveWidget: "resizes-content",
   themeColor: "#FF6B1A",
 };
 

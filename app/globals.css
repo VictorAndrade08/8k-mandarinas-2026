@@ -1,6 +1,39 @@
 @import "tailwindcss";
 
 /* ========================================= */
+/* ✅ TÁCTIL — móvil                          */
+/* ========================================= */
+
+/* Sin esto el navegador espera 300ms por si venía un doble toque para hacer zoom,
+   y los botones se sienten lentos. Solo en lo interactivo: el resto de la página
+   conserva el pinch-zoom. */
+button,
+a,
+input,
+select,
+textarea,
+label,
+[role="radio"] {
+  touch-action: manipulation;
+  /* Quitamos el recuadro gris que Safari/Android pintan al tocar; el foco lo
+     marcamos nosotros con el anillo naranja de la marca. */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Con temblor en la mano el dedo se apoya de más y el móvil abre el menú de
+   copiar/pegar o pinta la selección en azul, lo que desorienta. Lo bloqueamos
+   solo en lo que se toca — los párrafos siguen siendo seleccionables, porque si
+   no, nadie podría copiar a mano el número de cuenta del banco. */
+button,
+label,
+[role="radio"],
+[role="radiogroup"] {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* ========================================= */
 /* ✅ LINEA GRAFICA — TOKENS (8K RUTA DE LAS MANDARINAS) */
 /* ========================================= */
 

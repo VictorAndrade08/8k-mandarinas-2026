@@ -87,9 +87,9 @@ export default function RegistrationOptions() {
               Ir al formulario online <ArrowRight size={18} />
             </Link>
 
-            <p className="mt-5 text-sm text-center text-gray-500">
-              Precio general: <strong className="text-gray-900">$30</strong> ·
-              Tercera edad/Discapacidad: <strong className="text-gray-900">$20</strong>
+            <p className="mt-5 text-sm text-center text-gray-600">
+              Preventa: <strong className="text-gray-900">$20</strong> ·
+              Tercera edad/Discapacidad: <strong className="text-gray-900">$18</strong>
             </p>
           </div>
         </article>

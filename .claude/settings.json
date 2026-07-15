@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sort -t'\"' -k2)",
+      "Bash(awk -F'href=\"' '{print $2}')",
+      "Bash(date -j -f \"%Y-%m-%d\" \"2026-08-29\" \"+%A\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}\\\\n' \"http://localhost:3000/api/verificar-cedula?cedula=1801234567\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}\\\\n' -X POST http://localhost:3000/api/inscribir)",
+      "Bash(curl -s -o /dev/null -w 'verificar-cedula/ -> %{http_code}\\\\n' \"http://localhost:3000/api/verificar-cedula/?cedula=1801234567\")",
+      "Bash(curl -s -o /dev/null -w 'inscribir/     -> %{http_code}\\\\n' -X POST http://localhost:3000/api/inscribir/)",
+      "Bash(node -e \"require\\('playwright'\\)\")",
+      "Bash(npm ls *)",
+      "Bash(node -e \"require\\('playwright'\\); console.log\\('playwright OK'\\)\")",
+      "Bash(node drive.js)",
+      "Bash(node drive2.js)",
+      "Bash(node sticky.js)",
+      "Bash(node diag.js)",
+      "Bash(node -e ' *)",
+      "Bash(grep -n \"30\\\\|\\\\$20\\\\|18\" app/components/RegistrationOptions.tsx)",
+      "Bash(grep -v \"no-img-element\\\\|Unexpected any\\\\|set-state-in-effect\\\\|Effects are\\\\|^$\\\\|^\\\\*\\\\|effect should\\\\|Update external\\\\|Subscribe for\\\\|Calling setState\\\\|react.dev\\\\|^ *[0-9]* |\\\\|^ *|\\\\|Avoid calling\\\\|^/Users\")",
+      "Bash(sed -i '' 's/Cambiar a Leyenda \\(\\\\$18\\)/Cambiar a Leyenda/' drive.js)",
+      "Bash(node final.js)",
+      "Bash(grep -n \"^          </div>$\" app/components/FormInscripcion.tsx)",
+      "Bash(node iconos.js)",
+      "Bash(node peso.js)",
+      "Bash(grep -oE 'fill=\"#[0-9a-fA-F]{3,6}\"' node_modules/@phosphor-icons/react/dist/csr/User.mjs)",
+      "Bash(node color.js)"
+    ]
+  }
+}

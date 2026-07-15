@@ -64,8 +64,8 @@ const ENV_AIRTABLE_TABLE = typeof process !== 'undefined' ? (process.env.NEXT_PU
 
 const AIRTABLE_CONFIG_KEY = 'verificador_ruta_3_juanes_config';
 const ACCESS_PIN = "1026"; 
-const PRICE_FULL = 30.00;
-const PRICE_DISCOUNT = 20.00;
+const PRICE_FULL = 20.00;   // preventa general
+const PRICE_DISCOUNT = 18.00; // tercera edad (65+) y discapacidad
 
 // --- PALABRAS DE RUIDO BANCARIO ---
 const BANK_NOISE_WORDS = [
