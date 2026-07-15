@@ -24,7 +24,8 @@
       "Bash(node iconos.js)",
       "Bash(node peso.js)",
       "Bash(grep -oE 'fill=\"#[0-9a-fA-F]{3,6}\"' node_modules/@phosphor-icons/react/dist/csr/User.mjs)",
-      "Bash(node color.js)"
+      "Bash(node color.js)",
+      "Bash(node responsive.js)"
     ]
   }
 }

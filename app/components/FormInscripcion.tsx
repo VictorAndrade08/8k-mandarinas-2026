@@ -9,7 +9,6 @@ import {
   User,
   IdentificationCard,
   Envelope,
-  Phone,
   Trash,
   Bank,
   CheckCircle,
@@ -19,12 +18,15 @@ import {
   CaretRight,
   CaretLeft,
   CalendarBlank,
+  Cake,
   MapPin,
+  GenderIntersex,
   Info,
-  Lightning,
+  SneakerMove,
   Medal,
   Crown,
   Wheelchair,
+  ClockCountdown,
   ArrowsClockwise,
   MagnifyingGlass,
   ArrowRight,
@@ -370,7 +372,7 @@ export default function InscripcionPage() {
 
   // Categorías
   const categories: Category[] = [
-    { name: "Élite Pro 8K", price: 20, desc: "Menores de 40 años", icon: <Lightning size={24} /> },
+    { name: "Élite Pro 8K", price: 20, desc: "Menores de 40 años", icon: <SneakerMove size={24} /> },
     { name: "Máster", price: 20, desc: "40–64 años", icon: <Medal size={24} /> },
     { name: "Leyenda", price: 18, desc: "65 años en adelante", icon: <Crown size={24} /> },
     { name: "Discapacidad", price: 18, desc: "Todas las edades", icon: <Wheelchair size={24} /> },
@@ -1010,7 +1012,7 @@ export default function InscripcionPage() {
                 <h1 className="text-4xl md:text-6xl font-bold mb-4 font-bebas">Selecciona tu Categoría</h1>
 
                 <div className="flex items-start gap-3 rounded-xl border border-[#FFB800]/40 bg-[#FFB800]/10 px-4 py-3.5 mb-5 font-barlow">
-                  <Lightning size={20} className="text-[#FFB800] shrink-0 mt-0.5" />
+                  <ClockCountdown size={20} className="text-[#FFB800] shrink-0 mt-0.5" />
                   <p className="text-base md:text-lg text-yellow-50 leading-relaxed">
                     <strong className="text-white">Precios de preventa.</strong> Suben cuando se
                     cierre la preventa, así que inscribirte hoy te sale más barato.
@@ -1146,7 +1148,7 @@ export default function InscripcionPage() {
                   {renderInputField({
                     name: "ciudad",
                     label: "Ciudad",
-                    icon: <Bank size={20} />,
+                    icon: <MapPin size={20} />,
                     placeholder: "Ej: Ambato",
                     autoComplete: "address-level2",
                     inputMode: "text",
@@ -1161,7 +1163,7 @@ export default function InscripcionPage() {
                   {renderInputField({
                     name: "telefono",
                     label: "WhatsApp",
-                    icon: <Phone size={20} />,
+                    icon: <WhatsappLogo size={20} />,
                     type: "tel",
                     placeholder: "Ej: 099 123 4567",
                     autoComplete: "tel",
@@ -1195,7 +1197,7 @@ export default function InscripcionPage() {
                   {renderInputField({
                     name: "edad",
                     label: "Edad",
-                    icon: <CalendarBlank size={20} />,
+                    icon: <Cake size={20} />,
                     placeholder: "Ej: 25",
                     autoComplete: "off",
                     inputMode: "numeric",
@@ -1630,7 +1632,7 @@ export default function InscripcionPage() {
                         <p className="font-mono text-gray-200 text-lg md:text-xl">{formData.cedula}</p>
                       </div>
                       <div>
-                        <p className="text-xs text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1 font-bold"><User size={12} /> Categoría</p>
+                        <p className="text-xs text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1 font-bold"><Medal size={12} /> Categoría</p>
                         <p className="font-bold text-[#FF6B1A] text-lg md:text-xl">{selectedCategory}</p>
                       </div>
 
@@ -1639,7 +1641,7 @@ export default function InscripcionPage() {
                         <p className="text-gray-200 text-lg">{formData.ciudad}</p>
                       </div>
                       <div>
-                        <p className="text-xs text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1 font-bold"><Phone size={12} /> Teléfono</p>
+                        <p className="text-xs text-gray-400 uppercase tracking-wider mb-1 flex items-center gap-1 font-bold"><WhatsappLogo size={12} /> WhatsApp</p>
                         <p className="text-gray-200 text-lg">{formData.telefono}</p>
                       </div>
 
@@ -1649,11 +1651,11 @@ export default function InscripcionPage() {
                       </div>
                       
                       <div>
-                        <p className="text-xs text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1 font-bold"><CalendarBlank size={12} /> Edad</p>
+                        <p className="text-xs text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1 font-bold"><Cake size={12} /> Edad</p>
                         <p className="text-gray-200 text-lg">{formData.edad} años</p>
                       </div>
                       <div>
-                        <p className="text-xs text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1 font-bold"><User size={12} /> Género</p>
+                        <p className="text-xs text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1 font-bold"><GenderIntersex size={12} /> Género</p>
                         <p className="text-gray-200 text-lg">{formData.genero}</p>
                       </div>
                    </div>
