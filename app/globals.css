@@ -238,3 +238,10 @@ body {
   mix-blend-mode: screen;
   will-change: transform, filter, background-position;
 }
+
+/* El header sticky flota encima: al saltar a una sección con #ancla, sin este
+   margen el título aterriza detrás del header y parece que el enlace falló. */
+:target,
+section[id] {
+  scroll-margin-top: 120px;
+}

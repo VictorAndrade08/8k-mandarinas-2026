@@ -42,7 +42,15 @@
       "Bash(grep -vE \"no-img-element|^$|^/Users|warning\")",
       "Bash(node videolocal.js)",
       "Bash(node dbg.js)",
-      "Bash(curl -s -o /dev/null -w \"  /  -> HTTP %{http_code}\\\\n\" http://localhost:3000/)"
+      "Bash(curl -s -o /dev/null -w \"  /  -> HTTP %{http_code}\\\\n\" http://localhost:3000/)",
+      "Bash(sed -i '' 's|\\\\${String\\(e.ancho\\)+\"x\"+e.alto\\).padEnd\\(9\\)}|${\\(e.ancho+\"x\"+e.alto\\).padEnd\\(9\\)}|' header.js)",
+      "Bash(node header.js)",
+      "Bash(cp so_415x145.ai /tmp/l1.pdf)",
+      "Bash(sips -s format png --resampleWidth 1200 /tmp/l1.pdf --out cand_415x145.png)",
+      "Bash(cp so_1383x778.ai /tmp/l2.pdf)",
+      "Bash(sips -s format png --resampleWidth 900 /tmp/l2.pdf --out cand_1383x778.png)",
+      "Bash(node head2.js)",
+      "Bash(grep -vE \"no-img-element|^$|^/Users|warning|problem\")"
     ]
   }
 }

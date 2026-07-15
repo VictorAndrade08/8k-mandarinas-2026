@@ -30,7 +30,8 @@ export function MainWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const pegado = SIN_MARGEN_SUPERIOR.has(ruta(pathname));
   return (
-    <main className={`${pegado ? "" : "pt-8"} relative z-10`}>
+    // id="contenido": destino del enlace "Saltar al contenido" del header.
+    <main id="contenido" className={`${pegado ? "" : "pt-8"} relative z-10`}>
       {children}
     </main>
   );

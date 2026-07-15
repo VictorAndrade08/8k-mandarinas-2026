@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { Bebas_Neue } from "next/font/google";
@@ -13,43 +13,54 @@ const bebas = Bebas_Neue({
   variable: "--font-bebas",
 });
 
-// --- SUB-COMPONENTE LOGO (Para manejar el error de imagen sin romper TS) ---
-const Logo = ({ className }: { className?: string }) => {
-  const [hasError, setHasError] = useState(false);
-
-  if (hasError) {
-    // Fallback SVG si la imagen falla (Renderizado seguro)
-    return (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="white" 
-        className={className}
-        aria-hidden="true"
-      >
-        <path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.47V4.982c-.371-.16-.763-.298-1.168-.414a9.721 9.721 0 00-4.082 0 8.234 8.234 0 00-2.75 1.868v14.2z" />
-      </svg>
-    );
-  }
-
-  return (
-    <img
-      src="/logo-mandarinas-blanco.svg"
-      alt="8K Ruta de las Mandarinas"
-      className={`${className} object-contain`}
-      onError={() => setHasError(true)}
-      loading="eager"
-    />
-  );
-};
+// El logo a todo color, sacado del vector del arte oficial. El anterior era la
+// versión blanca, que sobre el header claro obligaba a meterla en una caja naranja
+// para que se viera: parecía una pegatina encima del logo, no el logo.
+const Logo = ({ className }: { className?: string }) => (
+  <img
+    src="/logo-mandarinas-color.png"
+    alt="8K Ruta de las Mandarinas — inicio"
+    width={744}
+    height={260}
+    className={`${className} object-contain`}
+    loading="eager"
+  />
+);
 
 // --- COMPONENTE PRINCIPAL ---
 export default function Header() {
   const [open, setOpen] = useState(false);
 
+  // Escape cierra el menú. Además bloqueamos el scroll del fondo: si no, al
+  // deslizar sobre el menú se mueve la página de detrás y desorienta.
+  useEffect(() => {
+    if (!open) return;
+    const alPulsar = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", alPulsar);
+    const scrollPrevio = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", alPulsar);
+      document.body.style.overflow = scrollPrevio;
+    };
+  }, [open]);
+
   return (
     <>
-      <header className={`relative mt-4 sm:mt-5 z-50 w-full flex justify-center px-4 font-sans ${bebas.variable}`}>
+      {/* sticky: antes desaparecía al bajar y había que subir del todo para llegar a
+          "Inscribirse". Se queda en 74-86px, muy por debajo del 20% de pantalla que
+          empieza a agobiar. top-0 con un poco de aire arriba para que la píldora
+          no quede pegada al borde. */}
+      {/* Primer parada del tabulador: saltar el menú e ir al contenido.
+          Solo se ve cuando se le da el foco con el teclado. */}
+      <a
+        href="#contenido"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-5 focus:py-3 focus:rounded-full focus:bg-white focus:text-[#FF6B1A] focus:font-bold focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B1A]"
+      >
+        Saltar al contenido
+      </a>
+
+      <header className={`sticky top-0 pt-4 sm:pt-5 pb-2 z-50 w-full flex justify-center px-4 font-sans ${bebas.variable}`}>
         <div
           className="
             w-full max-w-7xl mx-auto
@@ -63,56 +74,32 @@ export default function Header() {
             border border-[#EFEFF3]
           "
         >
-          {/* IZQUIERDA → HOME */}
+          {/* IZQUIERDA → HOME. El logo va desnudo: es a color y se sostiene solo. */}
           <Link
             href="/"
-            aria-label="Volver al inicio"
-            className="flex items-center gap-2 sm:gap-3 lg:gap-4 cursor-pointer group flex-shrink-0"
+            className="flex items-center cursor-pointer group flex-shrink-0 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2"
           >
-            <div
-              className="
-                rounded-2xl
-                bg-[#FF6B1A]
-                shadow-[0_4px_12px_rgba(255,107,26,0.38)]
-                flex items-center justify-center
-                flex-shrink-0
-                px-3 py-2.5 sm:px-4 sm:py-3
-                group-hover:scale-105 transition-transform duration-300
-              "
-            >
-              {/* Logo oficial de las Mandarinas */}
-              <Logo className="h-7 sm:h-9 w-auto" />
-            </div>
-
-            <p className="hidden xl:block text-[13px] text-[#444]/80 font-medium tracking-wide whitespace-nowrap">
-              Patate · Ecuador · 29 de agosto 2026
-            </p>
+            <Logo className="h-9 sm:h-11 w-auto group-hover:scale-[1.03] transition-transform duration-300" />
           </Link>
 
-          {/* ================= DESKTOP (LG+) ================= */}
-          <nav aria-label="Navegación principal" className="hidden lg:flex items-center gap-2 xl:gap-4 flex-shrink-0">
-
-            <span
-              className="
-                hidden xl:inline-flex
-                px-4 py-2 text-xs font-bold
-                bg-[#FF2D7C] text-white
-                rounded-full uppercase tracking-[0.15em]
-                shadow-sm
-                whitespace-nowrap
-              "
-            >
-              29 Ago 2026
-            </span>
-
+          {/* ================= DESKTOP (LG+) =================
+              Navegar y "Inscribirse" son cosas distintas: los enlaces van en texto
+              plano en el centro (antes eran tres píldoras iguales apelotonadas a la
+              derecha, y el ojo no sabía cuál era la importante) y solo el CTA lleva
+              fondo. El centro estaba vacío 429px mientras la derecha iba apretada. */}
+          <nav
+            aria-label="Navegación principal"
+            className="hidden lg:flex items-center gap-3 xl:gap-5 mr-auto ml-6 xl:ml-10"
+          >
             <Link
               href="/reglamento"
               className="
-                px-4 py-2 lg:text-[11px] xl:text-xs font-bold
-                rounded-full border border-[#FF6B1A]
-                text-[#FF6B1A]
-                uppercase tracking-[0.1em]
-                hover:bg-[#FF6B1A] hover:text-white transition-all duration-300
+                inline-flex items-center min-h-[44px] px-4
+                text-sm font-bold text-[#333]
+                uppercase tracking-[0.08em]
+                rounded-full hover:bg-black/[0.04] hover:text-[#FF6B1A]
+                transition-colors duration-200
+                outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A]
                 whitespace-nowrap
               "
             >
@@ -122,37 +109,44 @@ export default function Header() {
             <Link
               href="/verificar"
               className="
-                px-4 py-2 lg:text-[11px] xl:text-xs font-bold
-                rounded-full border border-[#FF2D7C]
-                text-[#FF2D7C]
-                uppercase tracking-[0.1em]
-                hover:bg-[#FF2D7C] hover:text-white transition-all duration-300
+                inline-flex items-center min-h-[44px] px-4
+                text-sm font-bold text-[#333]
+                uppercase tracking-[0.08em]
+                rounded-full hover:bg-black/[0.04] hover:text-[#FF2D7C]
+                transition-colors duration-200
+                outline-none focus-visible:ring-2 focus-visible:ring-[#FF2D7C]
                 whitespace-nowrap
               "
             >
-              Verificar
+              Verificar mi pago
             </Link>
+          </nav>
 
+          {/* Una sola acción con peso visual, a la derecha */}
+          <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
             <Link
               href="/inscripcion"
               className="
-                px-5 py-2.5 lg:text-[11px] xl:text-xs font-bold
+                inline-flex items-center min-h-[44px] px-6
+                text-sm font-bold
                 bg-[#FF6B1A] text-white
-                rounded-full uppercase tracking-[0.1em]
+                rounded-full uppercase tracking-[0.08em]
                 hover:bg-[#E55104] hover:-translate-y-0.5
                 shadow-md hover:shadow-lg transition-all duration-300
+                outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2
                 whitespace-nowrap
               "
             >
               Inscribirse
             </Link>
-          </nav>
+          </div>
 
           {/* ================= BURGER (LG-) ================= */}
           <button
             onClick={() => setOpen(true)}
-            className="lg:hidden p-2 rounded-full hover:bg-black/5 transition"
+            className="lg:hidden w-12 h-12 flex items-center justify-center rounded-full hover:bg-black/5 transition outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A]"
             aria-label="Abrir menú"
+            aria-expanded={open}
           >
             <Menu className="w-7 h-7 text-[#111]" />
           </button>
@@ -161,8 +155,16 @@ export default function Header() {
 
       {/* ================= MOBILE MENU OSCURO ================= */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
+        // Tocar el fondo cierra: es lo que todo el mundo intenta primero.
+        <div
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200"
+          onClick={() => setOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menú de navegación"
+        >
           <div
+            onClick={(e) => e.stopPropagation()}
             className="
               absolute top-4 left-4 right-4
               bg-[#0B0B0B]
@@ -174,18 +176,16 @@ export default function Header() {
             "
           >
             <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-3">
-                 <div className="rounded-xl bg-[#FF6B1A] flex items-center justify-center px-2.5 py-2">
-                    {/* Logo oficial de las Mandarinas */}
-                    <Logo className="h-6 w-auto" />
-                 </div>
-                 <span className="text-sm uppercase tracking-[0.2em] text-white/80 font-bold font-[family-name:var(--font-bebas)]">
-                    Menú
-                 </span>
-              </div>
+              {/* Aquí el fondo es negro, así que va la versión blanca del logo:
+                  la de color lleva el texto en morado y no se leería. */}
+              <img
+                src="/logo-mandarinas-blanco.svg"
+                alt="8K Ruta de las Mandarinas"
+                className="h-9 w-auto object-contain"
+              />
               <button
                 onClick={() => setOpen(false)}
-                className="p-3 rounded-full hover:bg-white/10 transition"
+                className="w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 transition outline-none focus-visible:ring-2 focus-visible:ring-white"
                 aria-label="Cerrar menú"
               >
                 <X className="w-7 h-7 text-white" />
