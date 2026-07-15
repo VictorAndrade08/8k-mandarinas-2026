@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react"; // Agregamos useEffect
+import { useState } from "react";
 import Link from "next/link";
 import { Bebas_Neue } from "next/font/google";
-import { VIDEO_ID } from "../lib/carrera";
+import { VIDEO_SRC, VIDEO_POSTER } from "../lib/carrera";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -15,32 +15,10 @@ const bebas = Bebas_Neue({
 export default function Hero8K() {
   const [isVideoActive, setIsVideoActive] = useState(false);
 
-  // --- LÓGICA DE AUTOPLAY SOLO PARA DESKTOP ---
-  useEffect(() => {
-    // 1. Si el video ya está activo, no hacemos nada.
-    if (isVideoActive) return;
-
-    // 2. Detectamos si es Desktop:
-    // (min-width: 1024px) -> Pantalla grande (Laptop/PC)
-    // (hover: hover) -> Tiene un mouse real (excluye iPads Pro y Tablets grandes)
-    const isDesktop = window.matchMedia("(min-width: 1024px) and (hover: hover)").matches;
-
-    if (!isDesktop) return; // Si es móvil o tablet, salimos y NO cargamos nada.
-
-    const handleDesktopInteraction = () => {
-      setIsVideoActive(true);
-    };
-
-    // 3. Escuchamos el movimiento del mouse UNA SOLA VEZ ({ once: true })
-    // 'passive: true' asegura que el scroll no se bloquee mientras se detecta el mouse.
-    window.addEventListener("mousemove", handleDesktopInteraction, { once: true, passive: true });
-
-    return () => {
-      window.removeEventListener("mousemove", handleDesktopInteraction);
-    };
-  }, [isVideoActive]);
-
-  const src = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&mute=0&controls=1&playsinline=1&rel=0&iv_load_policy=3&modestbranding=1`;
+  // Antes esto arrancaba el vídeo solo con mover el ratón en escritorio. Con el vídeo
+  // alojado aquí eso significaría bajar 8 MB sin que nadie lo pida, y encima no
+  // sonaría: los navegadores solo dejan autoplay si va silenciado. Se reproduce al
+  // pulsar play y punto.
 
   return (
     <section className={`w-full px-3 py-6 md:py-8 flex justify-center bg-gray-50 font-sans ${bebas.variable}`}>
@@ -78,16 +56,16 @@ export default function Hero8K() {
           >
             {!isVideoActive ? (
               <>
-                {/* IMAGEN OPTIMIZADA (LCP - Sin CLS) */}
+                {/* Póster: un fotograma del propio vídeo, así no hay salto al arrancar */}
                 <img
-                  src={`https://i.ytimg.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
-                  alt="Video Promocional 8K Ruta de las Mandarinas"
+                  src={VIDEO_POSTER}
+                  alt="8K Ruta de las Mandarinas — vídeo del recorrido por el valle de Patate"
                   width={1280}
                   height={720}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
-                
+
                 {/* Overlay Oscuro */}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300" />
 
@@ -101,13 +79,16 @@ export default function Hero8K() {
                 </div>
               </>
             ) : (
-              <iframe
-                className="absolute inset-0 w-full h-full animate-in fade-in duration-500"
-                src={src}
-                title="8K Ruta de las Mandarinas – Video"
-                allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                allowFullScreen
-                loading="eager"
+              // preload="none": los 8 MB solo bajan cuando el usuario pulsa play,
+              // no de entrada a todo el que abre la página con datos móviles.
+              <video
+                className="absolute inset-0 w-full h-full object-cover animate-in fade-in duration-500"
+                src={VIDEO_SRC}
+                poster={VIDEO_POSTER}
+                controls
+                autoPlay
+                playsInline
+                preload="none"
               />
             )}
           </div>
