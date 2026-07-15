@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"; // Agregamos useEffect
 import Link from "next/link";
 import { Bebas_Neue } from "next/font/google";
+import { VIDEO_ID } from "../lib/carrera";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -12,7 +13,6 @@ const bebas = Bebas_Neue({
 });
 
 export default function Hero8K() {
-  const VIDEO_ID = "h5QFFj_HwIk";
   const [isVideoActive, setIsVideoActive] = useState(false);
 
   // --- LÓGICA DE AUTOPLAY SOLO PARA DESKTOP ---

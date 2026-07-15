@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Barlow_Condensed } from "next/font/google";
+import { VIDEO_ID, FECHA_CARRERA } from "../lib/carrera";
 
 const barlow = Barlow_Condensed({
   subsets: ["latin"],
@@ -10,7 +11,6 @@ const barlow = Barlow_Condensed({
   variable: "--font-barlow-hero",
 });
 
-const VIDEO_ID = "I8EtjbDIOR4";
 
 type TimeLeft = {
   days: number;
@@ -22,7 +22,7 @@ type TimeLeft = {
 const INITIAL_TIME: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
 function calculateTimeLeft(): TimeLeft {
-  const eventDate = new Date("2026-08-29T08:00:00-05:00").getTime();
+  const eventDate = new Date(FECHA_CARRERA).getTime();
   const diff = eventDate - Date.now();
   if (diff <= 0) return INITIAL_TIME;
   return {

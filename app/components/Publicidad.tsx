@@ -2,9 +2,10 @@
 
 import React from "react";
 
-// Arte oficial de la página de Facebook, guardado en /public. Las dos imágenes que
-// había antes vivían en un dominio temporal de Hostinger y devolvían 404: la sección
-// llevaba tiempo mostrando un recuadro vacío.
+// Línea gráfica de julio (nuevaslineasgraficas/), reescalada y comprimida para web:
+// el original del banner venía en 3240x1440 sin comprimir y pesaba 59 MB.
+// Las dos imágenes que había antes vivían en un dominio temporal de Hostinger y
+// devolvían 404: la sección llevaba tiempo mostrando un recuadro vacío.
 const DESKTOP_IMAGE = "/fotos/banner-8k.jpg";
 const MOBILE_IMAGE = "/fotos/post-8k.jpg";
 
@@ -27,14 +28,14 @@ export default function Publicidad() {
           <source
             media="(min-width: 768px)"
             srcSet={DESKTOP_IMAGE}
-            width={1672}
-            height={941}
+            width={2000}
+            height={889}
           />
           <img
             src={MOBILE_IMAGE}
-            alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Valle de Patate · 29 de agosto · Salida Patate Garden 8 am · Preventa $20"
-            width={1122}
-            height={1402}
+            alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Valle de Patate · 29 de agosto · Salida Patate Garden · Preventa $20"
+            width={1100}
+            height={1281}
             className="w-full h-auto"
             loading="eager"
             fetchPriority="high"

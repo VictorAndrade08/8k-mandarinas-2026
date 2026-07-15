@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image"; 
 import { Bebas_Neue } from "next/font/google"; 
+import { FECHA_CARRERA } from "../lib/carrera";
 
 // Cargamos la fuente. 'display: swap' es vital para que el texto aparezca rápido
 const bebas = Bebas_Neue({
@@ -24,7 +25,7 @@ const INITIAL_TIME: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
 function calculateTimeLeft(): TimeLeft {
   // Fecha objetivo: Sábado 29 de agosto de 2026 a las 08:00 (GMT-5)
-  const eventDate = new Date("2026-08-29T08:00:00-05:00").getTime();
+  const eventDate = new Date(FECHA_CARRERA).getTime();
   const now = Date.now();
   const diff = eventDate - now;
 
