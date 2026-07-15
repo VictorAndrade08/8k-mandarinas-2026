@@ -2,17 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image"; 
-import { Bebas_Neue } from "next/font/google"; 
 import { FECHA_CARRERA } from "../lib/carrera";
 
 // Cargamos la fuente. 'display: swap' es vital para que el texto aparezca rápido
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap", 
-  variable: "--font-bebas",
-});
-
 type TimeLeft = {
   days: number;
   hours: number;
@@ -65,7 +57,7 @@ export default function CountdownStrip() {
   ];
 
   return (
-    <section className={`w-full px-3 py-4 flex justify-center bg-gray-50 font-sans ${bebas.variable}`}>
+    <section className={`w-full px-3 py-4 flex justify-center bg-gray-50 font-sans`}>
       <div className="
         relative w-full max-w-7xl 
         rounded-[24px] sm:rounded-[32px] 
@@ -92,7 +84,7 @@ export default function CountdownStrip() {
                  </p>
               </div>
 
-              <h2 className="text-[36px] sm:text-[48px] lg:text-[60px] leading-[1] text-gray-900 font-[family-name:var(--font-bebas)] mb-4 tracking-tight">
+              <h2 className="text-[36px] sm:text-[48px] lg:text-[60px] leading-[1] text-gray-900 font-[family-name:var(--font-poppins)] mb-4 tracking-tight">
                 Cuenta regresiva para la <br className="hidden sm:block"/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]">
                   8K Ruta de las Mandarinas 2026
@@ -157,7 +149,7 @@ export default function CountdownStrip() {
                 "
               >
                 <span 
-                    className="text-[48px] sm:text-[64px] leading-[0.9] text-[#FF6B1A] font-[family-name:var(--font-bebas)] group-hover:scale-110 transition-transform duration-300"
+                    className="text-[48px] sm:text-[64px] leading-[0.9] text-[#FF6B1A] font-[family-name:var(--font-poppins)] group-hover:scale-110 transition-transform duration-300"
                     suppressHydrationWarning
                 >
                   {item.value}

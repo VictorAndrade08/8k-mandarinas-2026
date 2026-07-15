@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Bebas_Neue } from "next/font/google"; // 1. Importamos la fuente optimizada
 import { 
   Users, 
   GraduationCap, 
@@ -11,13 +10,6 @@ import {
 } from "lucide-react";
 
 // 2. Configuración de fuente (Zero CLS, Zero Blocking)
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  variable: "--font-bebas",
-});
-
 // 3. Constantes fuera del componente para optimizar memoria
 const ITEMS = [
   {
@@ -55,7 +47,7 @@ export default function InfoBeforeRace() {
 
   return (
     // 4. Inyectamos la variable de fuente CSS
-    <section className={`w-full px-3 py-4 flex justify-center bg-[#0a0a0a] font-sans ${bebas.variable}`}>
+    <section className={`w-full px-3 py-4 flex justify-center bg-[#0a0a0a] font-sans`}>
       
       {/* Eliminado el tag <style> @import que bloqueaba el renderizado */}
 
@@ -85,7 +77,7 @@ export default function InfoBeforeRace() {
                     </p>
                 </div>
 
-                <h2 className="text-white text-[38px] sm:text-[52px] md:text-[64px] leading-[0.9] font-[family-name:var(--font-bebas)] uppercase tracking-wide">
+                <h2 className="text-white text-[38px] sm:text-[52px] md:text-[64px] leading-[0.9] font-[family-name:var(--font-poppins)] uppercase tracking-wide">
                     Todo lo que necesitas <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
                         saber antes de correr
@@ -125,7 +117,7 @@ export default function InfoBeforeRace() {
                     <it.icon size={24} />
                 </div>
 
-                <h3 className="text-white text-[28px] leading-[1] font-[family-name:var(--font-bebas)] tracking-wide mb-3">
+                <h3 className="text-white text-[28px] leading-[1] font-[family-name:var(--font-poppins)] tracking-wide mb-3">
                     {it.title}
                 </h3>
 

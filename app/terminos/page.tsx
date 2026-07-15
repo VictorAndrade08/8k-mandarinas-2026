@@ -1,12 +1,6 @@
 "use client";
 
 import React from "react";
-import { Bebas_Neue } from "next/font/google";
-
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 export default function PoliticaPrivacidad8K() {
   return (
@@ -33,13 +27,12 @@ export default function PoliticaPrivacidad8K() {
           </p>
 
           <h1
-            className={`
+            className="
               mt-4
               text-[40px] sm:text-[54px] lg:text-[66px]
               leading-[1.02]
               uppercase tracking-[0.08em]
-              ${bebas.className}
-            `}
+              ${bebas.className}"
           >
             Política de Privacidad
           </h1>

@@ -3,16 +3,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { Bebas_Neue } from "next/font/google";
 
 // --- CONFIGURACIÓN DE FUENTE (Optimización Core Web Vitals) ---
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  variable: "--font-bebas",
-});
-
 // El logo a todo color, sacado del vector del arte oficial. El anterior era la
 // versión blanca, que sobre el header claro obligaba a meterla en una caja naranja
 // para que se viera: parecía una pegatina encima del logo, no el logo.
@@ -60,7 +52,7 @@ export default function Header() {
         Saltar al contenido
       </a>
 
-      <header className={`sticky top-0 pt-4 sm:pt-5 pb-2 z-50 w-full flex justify-center px-4 font-sans ${bebas.variable}`}>
+      <header className={`sticky top-0 pt-4 sm:pt-5 pb-2 z-50 w-full flex justify-center px-4 font-sans`}>
         <div
           className="
             w-full max-w-7xl mx-auto

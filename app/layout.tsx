@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Montserrat } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
 import {
@@ -10,22 +10,23 @@ import {
 import { Toaster } from "sonner";
 
 // ==============================
-// Fuentes
+// Tipografía
 // ==============================
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Una sola familia para todo el sitio. Antes había cinco (Geist, Geist Mono,
+// Montserrat, Bebas Neue y Barlow Condensed) y tres de ellas se cargaban con
+// @import desde la CDN de Google dentro de un <style>, lo que bloquea el render.
+//
+// Poppins porque es lo más cercano en Google Fonts a lo que usa el arte oficial:
+// el PSD tira de Gilroy-Bold y Brakle (geométricas) y de Cocogoose Pro para los
+// titulares. Poppins es geométrica pura como las dos primeras, y a peso 800/900
+// da la masa de Cocogoose. Las tres del diseño son de pago — la de Cocogoose es
+// literalmente una "Trial".
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["700", "800", "900"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 // ==============================
@@ -58,7 +59,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className="dark"
+      className={`dark ${poppins.variable}`}
       style={{ colorScheme: "dark" }}
       suppressHydrationWarning
     >
@@ -78,14 +79,16 @@ export default function RootLayout({
 
         {/* color-scheme dark stays */}
         <meta name="color-scheme" content="dark" />
-        <link rel="icon" href="/favicon.ico" />
+        {/* La mandarina del logo. El .ico lleva de 16 a 256px dentro para que el
+            navegador elija; el apple-touch va con fondo blanco porque iOS no
+            respeta la transparencia al ponerlo en la pantalla de inicio. */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
 
       <body
         className={`
-          ${geistSans.variable}
-          ${geistMono.variable}
-          ${montserrat.variable}
           antialiased
           min-h-screen
           text-white

@@ -3,16 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link"; // 1. Navegación rápida
 import { usePathname } from "next/navigation"; // 2. Detección reactiva de ruta
-import { Barlow_Condensed } from "next/font/google"; // 3. Fuente optimizada
 import { MousePointerClick } from "lucide-react";
-
-// Configuración de la fuente Barlow Condensed
-const barlow = Barlow_Condensed({
-  subsets: ["latin"],
-  weight: "700",
-  display: "swap",
-  variable: "--font-barlow",
-});
 
 export default function FloatingCTA() {
   const pathname = usePathname(); // Hook para saber en qué página estamos
@@ -58,12 +49,12 @@ export default function FloatingCTA() {
 
   return (
     // Inyectamos la variable de fuente
-    <div className={barlow.variable}>
+    <div>
       <Link
         href="/inscripcion"
         aria-label="Ir a formulario de inscripción"
         className={`
-          font-[family-name:var(--font-barlow)]
+          font-[family-name:var(--font-poppins)]
           fixed z-[9999]
           left-1/2 -translate-x-1/2
           bottom-[calc(env(safe-area-inset-bottom)+24px)]

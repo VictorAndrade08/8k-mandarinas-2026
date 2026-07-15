@@ -892,9 +892,8 @@ export default function InscripcionPage() {
       
       {/* INYECCIÓN DE FUENTES */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Bebas+Neue&display=swap');
-        .font-barlow { font-family: 'Barlow Condensed', sans-serif; }
-        .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+        
+        
       `}</style>
       
       {/* Modales */}

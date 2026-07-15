@@ -2,21 +2,13 @@
 
 import React from "react";
 import Link from "next/link"; // 1. Navegación SPA instantánea
-import { Bebas_Neue } from "next/font/google"; // 2. Fuente optimizada
 import { Scale, FileCheck, ArrowRight, ShieldCheck } from "lucide-react";
 
 // Configuración de la fuente (Carga eficiente sin bloqueo)
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  variable: "--font-bebas",
-});
-
 export default function ReglamentoSection() {
   return (
     // 3. Inyectamos la variable de fuente en el contenedor principal
-    <section id="reglamento" className={`w-full px-3 py-4 flex justify-center bg-[#0a0a0a] font-sans ${bebas.variable}`}>
+    <section id="reglamento" className={`w-full px-3 py-4 flex justify-center bg-[#0a0a0a] font-sans`}>
       
       {/* Eliminamos el <style> @import que bloqueaba el renderizado */}
 
@@ -51,7 +43,7 @@ export default function ReglamentoSection() {
             </p>
 
             {/* Título usando la variable de fuente */}
-            <h2 className="text-[36px] sm:text-[52px] lg:text-[64px] leading-[0.95] mb-6 font-[family-name:var(--font-bebas)] text-white tracking-wide">
+            <h2 className="text-[36px] sm:text-[52px] lg:text-[64px] leading-[0.95] mb-6 font-[family-name:var(--font-poppins)] text-white tracking-wide">
                Reglamento General <br className="hidden sm:block" />
                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
                  8K Ruta de las Mandarinas 2026

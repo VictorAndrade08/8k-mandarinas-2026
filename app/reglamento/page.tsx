@@ -8,11 +8,11 @@ export default function ReglamentoSection() {
       id="reglamento"
       className="w-full px-4 py-10 md:py-14 flex justify-center"
     >
-      {/* Cargar fuente Bebas Neue via Google Fonts */}
+      {/* La familia la sirve next/font desde el layout */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
         .font-bebas {
-          font-family: 'Bebas Neue', sans-serif;
+          font-family: var(--font-poppins), sans-serif;
+          font-weight: 800;
         }
       `}</style>
 
@@ -36,13 +36,12 @@ export default function ReglamentoSection() {
           </p>
 
           <h2
-            className={`
+            className="
               mt-4
               text-[40px] sm:text-[54px] lg:text-[66px]
               leading-[1.02]
               uppercase tracking-[0.08em]
-              font-bebas
-            `}
+              font-bebas"
           >
             Reglamento General
           </h2>

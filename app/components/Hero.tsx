@@ -2,15 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Bebas_Neue } from "next/font/google";
 import { VIDEO_SRC, VIDEO_POSTER } from "../lib/carrera";
-
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  variable: "--font-bebas",
-});
 
 export default function Hero8K() {
   const [isVideoActive, setIsVideoActive] = useState(false);
@@ -21,7 +13,7 @@ export default function Hero8K() {
   // pulsar play y punto.
 
   return (
-    <section className={`w-full px-3 py-6 md:py-8 flex justify-center bg-gray-50 font-sans ${bebas.variable}`}>
+    <section className={`w-full px-3 py-6 md:py-8 flex justify-center bg-gray-50 font-sans`}>
       <div
         className="
           relative w-full max-w-7xl
@@ -100,7 +92,7 @@ export default function Hero8K() {
             Patate, Ecuador • 2026
           </p>
 
-          <h1 className="font-[family-name:var(--font-bebas)] text-[40px] sm:text-[50px] lg:text-[64px] xl:text-[72px] leading-[0.9] text-black mb-4 sm:mb-5">
+          <h1 className="font-[family-name:var(--font-poppins)] text-[40px] sm:text-[50px] lg:text-[64px] xl:text-[72px] leading-[0.9] text-black mb-4 sm:mb-5">
             <span className="block tracking-wide">8K Ruta de las Mandarinas</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]">
               de Patate

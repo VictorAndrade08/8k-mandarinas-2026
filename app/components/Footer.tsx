@@ -3,21 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image"; // 1. Optimización de imagen
-import { Bebas_Neue } from "next/font/google"; // 2. Carga de fuente sin bloqueo
 import { Facebook, Instagram, MessageCircle } from "lucide-react";
 
 // Configuración de la fuente
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  variable: "--font-bebas",
-});
-
 export default function Footer() {
   return (
     // 3. Inyectamos la fuente y MANTENEMOS el ID crítico para el botón flotante
-    <footer id="site-footer" className={`w-full px-3 py-4 flex justify-center bg-gray-50 font-sans ${bebas.variable}`}>
+    <footer id="site-footer" className={`w-full px-3 py-4 flex justify-center bg-gray-50 font-sans`}>
       
       {/* Eliminado <style> @import para evitar bloqueo */}
 
@@ -77,7 +69,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col justify-center">
-            <h3 className="text-[28px] sm:text-[36px] leading-none font-[family-name:var(--font-bebas)] tracking-wide mb-2">
+            <h3 className="text-[28px] sm:text-[36px] leading-none font-[family-name:var(--font-poppins)] tracking-wide mb-2">
               Ruta de las Mandarinas 2026
             </h3>
 
@@ -100,7 +92,7 @@ export default function Footer() {
         >
           {/* Enlaces Rápidos */}
           <div>
-            <h4 className="text-lg md:text-xl mb-6 font-[family-name:var(--font-bebas)] tracking-wide text-white">
+            <h4 className="text-lg md:text-xl mb-6 font-[family-name:var(--font-poppins)] tracking-wide text-white">
               Enlaces Rápidos
             </h4>
             <ul className="space-y-3 text-gray-400">
@@ -113,7 +105,7 @@ export default function Footer() {
 
           {/* Patrocinadores */}
           <div>
-            <h4 className="text-lg md:text-xl mb-6 font-[family-name:var(--font-bebas)] tracking-wide text-white">
+            <h4 className="text-lg md:text-xl mb-6 font-[family-name:var(--font-poppins)] tracking-wide text-white">
               Patrocinadores
             </h4>
             <ul className="space-y-3 text-gray-400">
@@ -128,7 +120,7 @@ export default function Footer() {
 
           {/* Conéctate */}
           <div>
-            <h4 className="text-lg md:text-xl mb-6 font-[family-name:var(--font-bebas)] tracking-wide text-white">
+            <h4 className="text-lg md:text-xl mb-6 font-[family-name:var(--font-poppins)] tracking-wide text-white">
               Conéctate
             </h4>
             <ul className="space-y-3">

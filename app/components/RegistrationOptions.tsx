@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link"; // MEJORA: Navegación SPA instantánea
-import { Bebas_Neue } from "next/font/google"; // MEJORA: Carga de fuentes
 import { 
   Globe, 
   MessageCircle, 
@@ -14,17 +13,10 @@ import {
 } from "lucide-react";
 
 // Configuración de la fuente optimizada
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  variable: "--font-bebas",
-});
-
 export default function RegistrationOptions() {
   return (
     // Inyectamos la variable de fuente en el contenedor principal
-    <section className={`w-full px-3 py-4 flex justify-center bg-gray-50 font-sans ${bebas.variable}`}>
+    <section className={`w-full px-3 py-4 flex justify-center bg-gray-50 font-sans`}>
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         
         {/* ================================
@@ -54,7 +46,7 @@ export default function RegistrationOptions() {
                </p>
             </div>
 
-            <h2 className="text-[32px] sm:text-[42px] leading-[1] text-gray-900 font-[family-name:var(--font-bebas)] mb-4">
+            <h2 className="text-[32px] sm:text-[42px] leading-[1] text-gray-900 font-[family-name:var(--font-poppins)] mb-4">
               ¡Inscríbete online <br/>
               <span className="text-[#FF6B1A]">en menos de 3 minutos!</span>
             </h2>
@@ -120,7 +112,7 @@ export default function RegistrationOptions() {
                </p>
             </div>
 
-            <h2 className="text-[32px] sm:text-[42px] leading-[1] text-white font-[family-name:var(--font-bebas)] mb-4">
+            <h2 className="text-[32px] sm:text-[42px] leading-[1] text-white font-[family-name:var(--font-poppins)] mb-4">
               ¿Prefieres ayuda? <br/>
               <span className="text-[#25D366]">Hazlo por WhatsApp</span>
             </h2>

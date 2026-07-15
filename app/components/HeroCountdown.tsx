@@ -1,15 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Barlow_Condensed } from "next/font/google";
 import { VIDEO_FONDO_SRC, VIDEO_FONDO_POSTER, FECHA_CARRERA } from "../lib/carrera";
-
-const barlow = Barlow_Condensed({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  display: "swap",
-  variable: "--font-barlow-hero",
-});
 
 
 type TimeLeft = {
@@ -53,7 +45,7 @@ export default function HeroCountdown() {
 
   return (
     <section
-      className={`relative w-full h-screen min-h-[640px] overflow-hidden bg-black ${barlow.variable}`}
+      className={`relative w-full h-screen min-h-[640px] overflow-hidden bg-black`}
     >
       {/* VIDEO DE FONDO
           Antes era un iframe de YouTube con autoplay=1&mute=1 que no llegaba a
@@ -107,7 +99,7 @@ export default function HeroCountdown() {
 
         {/* GRUPO SUPERIOR — header + logo principal */}
         <div className="flex flex-col items-center w-full">
-          <p className="font-[family-name:var(--font-barlow-hero)] text-sm xs:text-base sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.32em] sm:tracking-[0.4em] text-white/85 font-semibold mb-5 sm:mb-7 whitespace-nowrap">
+          <p className="font-[family-name:var(--font-poppins)] text-sm xs:text-base sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.32em] sm:tracking-[0.4em] text-white/85 font-semibold mb-5 sm:mb-7 whitespace-nowrap">
             <span className="text-white">8K</span>
             <span className="mx-2 sm:mx-3 text-white/40">·</span>
             <span>Patate</span>
@@ -122,14 +114,14 @@ export default function HeroCountdown() {
             draggable={false}
           />
 
-          <p className="mt-8 sm:mt-10 md:mt-12 font-[family-name:var(--font-barlow-hero)] text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.25em] sm:tracking-[0.32em] text-white font-bold whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
+          <p className="mt-8 sm:mt-10 md:mt-12 font-[family-name:var(--font-poppins)] text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.25em] sm:tracking-[0.32em] text-white font-bold whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
             Sábado · 29 agosto · 2026
           </p>
         </div>
 
         {/* GRUPO CENTRAL — contador */}
         <div className="flex flex-col items-center w-full">
-          <p className="font-[family-name:var(--font-barlow-hero)] text-white/85 uppercase tracking-[0.3em] sm:tracking-[0.35em] text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-3 sm:mb-4 md:mb-5">
+          <p className="font-[family-name:var(--font-poppins)] text-white/85 uppercase tracking-[0.3em] sm:tracking-[0.35em] text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-3 sm:mb-4 md:mb-5">
             Faltan para el inicio
           </p>
 
@@ -156,7 +148,7 @@ export default function HeroCountdown() {
                 />
                 <span
                   className="
-                    font-[family-name:var(--font-barlow-hero)]
+                    font-[family-name:var(--font-poppins)]
                     font-black italic
                     text-[24px] xs:text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px]
                     leading-none text-white tabular-nums
@@ -165,7 +157,7 @@ export default function HeroCountdown() {
                 >
                   {b.value}
                 </span>
-                <span className="mt-1 sm:mt-1.5 md:mt-2 font-[family-name:var(--font-barlow-hero)] text-[9px] xs:text-[10px] sm:text-xs md:text-sm tracking-[0.08em] xs:tracking-[0.15em] sm:tracking-[0.22em] uppercase text-white/70 font-bold">
+                <span className="mt-1 sm:mt-1.5 md:mt-2 font-[family-name:var(--font-poppins)] text-[9px] xs:text-[10px] sm:text-xs md:text-sm tracking-[0.08em] xs:tracking-[0.15em] sm:tracking-[0.22em] uppercase text-white/70 font-bold">
                   {b.label}
                 </span>
               </div>
@@ -180,7 +172,7 @@ export default function HeroCountdown() {
               inline-flex items-center justify-center
               rounded-full bg-white
               px-10 py-4 sm:px-14 sm:py-5
-              font-[family-name:var(--font-barlow-hero)]
+              font-[family-name:var(--font-poppins)]
               text-base sm:text-lg md:text-xl
               font-bold uppercase tracking-[0.22em]
               text-[#B8186A]

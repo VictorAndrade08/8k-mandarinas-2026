@@ -64,10 +64,30 @@ label,
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* ✅ Tipografías (desde next/font variables) */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-montserrat);
+  /* Una sola familia en todo el sitio: Poppins, cargada por next/font en el
+     layout. Es lo más parecido en Google Fonts a las tipografías del arte
+     oficial (Gilroy y Brakle, geométricas; Cocogoose para titulares), que son
+     todas de pago. */
+  /* La pila entera, no solo la variable: si aquí va únicamente var(--font-poppins),
+     la utilidad `font-sans` de Tailwind acaba resolviendo a su ui-sans-serif por
+     defecto y medio sitio se queda sin Poppins. */
+  --font-sans: var(--font-poppins), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-poppins), system-ui, sans-serif;
+  --font-mono: var(--font-poppins), ui-monospace, monospace;
+}
+
+/* Estas clases nacieron apuntando a Bebas Neue y Barlow Condensed, que se
+   cargaban con @import desde la CDN de Google en mitad de un <style>. Se quedan
+   con su nombre porque están puestas en 113 sitios, pero ahora las dos apuntan a
+   Poppins: cambian el peso, no la familia. */
+.font-bebas {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.font-barlow {
+  font-family: var(--font-poppins), system-ui, sans-serif;
 }
 
 /* ========================================= */
@@ -84,8 +104,11 @@ body {
   background: transparent;
   color: var(--foreground);
 
-  /* ✅ Default texto */
-  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto,
+  /* Apunta a --font-poppins y no a --font-sans: `@theme inline` mete el valor
+     dentro de las utilidades de Tailwind pero NO publica la variable en :root,
+     así que var(--font-sans) aquí no resolvía a nada y todo el sitio se caía al
+     ui-sans-serif por defecto. */
+  font-family: var(--font-poppins), system-ui, -apple-system, "Segoe UI", Roboto,
     Arial, sans-serif;
 
   /* ✅ mejora mix-blend-mode y stacking */
@@ -94,10 +117,10 @@ body {
 
 /* ✅ Helpers de tipografía para “afiche” */
 .font-display {
-  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-poppins), system-ui, sans-serif;
 }
 .h-afiche {
-  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-poppins), system-ui, sans-serif;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 0.95;

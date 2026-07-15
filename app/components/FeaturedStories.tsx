@@ -1,21 +1,13 @@
 "use client";
 
 import React from "react";
-import { Bebas_Neue } from "next/font/google"; // 1. Fuente optimizada
 import { Trophy, ArrowRight, Calendar } from "lucide-react";
 
 // 2. Configuración de fuente (Sin bloqueo)
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  variable: "--font-bebas",
-});
-
 export default function FeaturedStories() {
   return (
     // 3. Inyección de variable de fuente
-    <section className={`w-full px-3 py-4 flex justify-center bg-[#0a0a0a] font-sans ${bebas.variable}`}>
+    <section className={`w-full px-3 py-4 flex justify-center bg-[#0a0a0a] font-sans`}>
       
       {/* <style> Eliminado para evitar bloqueo de renderizado */}
 
@@ -45,7 +37,7 @@ export default function FeaturedStories() {
                 text-[32px] sm:text-[48px] lg:text-[58px]
                 leading-[0.95]
                 tracking-wide
-                font-[family-name:var(--font-bebas)]
+                font-[family-name:var(--font-poppins)]
                 text-white
               "
             >
@@ -94,7 +86,7 @@ export default function FeaturedStories() {
                   leading-[1]
                   tracking-wide
                   mb-5
-                  font-[family-name:var(--font-bebas)]
+                  font-[family-name:var(--font-poppins)]
                   text-white group-hover:text-white transition-colors
                 "
               >

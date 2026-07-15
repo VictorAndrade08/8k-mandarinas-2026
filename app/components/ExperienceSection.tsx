@@ -2,16 +2,8 @@
 
 import React from "react";
 import { Map, Users, Package, PartyPopper, ArrowRight } from "lucide-react";
-import { Bebas_Neue } from "next/font/google"; // 1. Importar fuente optimizada
 
 // 2. Configurar la fuente (Carga eficiente sin bloqueo)
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  variable: "--font-bebas",
-});
-
 const CARDS = [
   {
     Icon: Map,
@@ -46,7 +38,7 @@ export default function ExperienceSection() {
 
   return (
     // 3. Inyectar la variable de fuente en el contenedor principal
-    <section className={`w-full px-3 py-4 flex justify-center bg-[#0a0a0a] font-sans ${bebas.variable}`}>
+    <section className={`w-full px-3 py-4 flex justify-center bg-[#0a0a0a] font-sans`}>
       
       {/* Eliminado el tag <style> que bloqueaba el renderizado */}
 
@@ -75,7 +67,7 @@ export default function ExperienceSection() {
                 mb-10 sm:mb-14
                 text-[32px] sm:text-[48px] lg:text-[58px]
                 leading-[0.95]
-                font-[family-name:var(--font-bebas)]
+                font-[family-name:var(--font-poppins)]
                 text-center md:text-left
             "
             >
@@ -121,7 +113,7 @@ export default function ExperienceSection() {
                 {/* Contenido */}
                 <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
                     <div>
-                    <h3 className="font-[family-name:var(--font-bebas)] text-[24px] sm:text-[28px] mb-3 tracking-wide text-white group-hover:text-[#FF6B1A] transition-colors">
+                    <h3 className="font-[family-name:var(--font-poppins)] text-[24px] sm:text-[28px] mb-3 tracking-wide text-white group-hover:text-[#FF6B1A] transition-colors">
                         {title}
                     </h3>
 

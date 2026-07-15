@@ -3,14 +3,6 @@
 import React, { useMemo, useEffect, useRef, useState } from "react";
 import Image from "next/image"; // IMPORTANTE: Optimización de imágenes
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Bebas_Neue } from "next/font/google"; // Fuente optimizada
-
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  variable: "--font-bebas",
-});
 
 // Sacados de las capas del arte oficial (myairbridge/FACEBOOK PORTADA.psd) y servidos
 // desde /public. Antes esto apuntaba a fotos de la 10K de Ambato alojadas en dominios
@@ -83,7 +75,7 @@ export default function SponsorsStrip() {
   };
 
   return (
-    <section className={`w-full px-3 py-4 flex justify-center bg-gray-50 font-sans ${bebas.variable}`}>
+    <section className={`w-full px-3 py-4 flex justify-center bg-gray-50 font-sans`}>
       <div
         className="
           w-full max-w-7xl
@@ -100,7 +92,7 @@ export default function SponsorsStrip() {
         {/* Título */}
         <div className="flex items-center justify-center gap-4 mb-6 sm:mb-8">
             <div className="h-px w-8 sm:w-16 bg-gradient-to-r from-transparent to-[#FF6B1A]/50"></div>
-            <p className="text-center text-[24px] sm:text-[32px] tracking-[0.1em] uppercase text-gray-800 font-[family-name:var(--font-bebas)]">
+            <p className="text-center text-[24px] sm:text-[32px] tracking-[0.1em] uppercase text-gray-800 font-[family-name:var(--font-poppins)]">
               Nuestros <span className="text-[#FF6B1A]">Parners</span>
             </p>
             <div className="h-px w-8 sm:w-16 bg-gradient-to-l from-transparent to-[#FF6B1A]/50"></div>
@@ -115,13 +107,12 @@ export default function SponsorsStrip() {
               onMouseEnter={() => handleArrowEnter(-1)}
               onMouseLeave={handleArrowLeave}
               onClick={() => setDirection(-1)}
-              className={`
+              className="
                 h-10 w-10 rounded-full border shadow-md flex items-center justify-center transition-all active:scale-95
                 ${direction === -1 
                   ? 'bg-[#FF6B1A] text-white border-[#FF6B1A]' 
                   : 'bg-white text-gray-500 border-gray-200 hover:text-[#FF6B1A] hover:border-[#FF6B1A]'
-                }
-              `}
+                }"
               aria-label="Mover a la derecha rápido"
             >
               <ChevronLeft size={24} />
@@ -183,13 +174,12 @@ export default function SponsorsStrip() {
                onMouseEnter={() => handleArrowEnter(1)}
                onMouseLeave={handleArrowLeave}
                onClick={() => setDirection(1)}
-               className={`
+               className="
                  h-10 w-10 rounded-full border shadow-md flex items-center justify-center transition-all active:scale-95
                  ${direction === 1 
                    ? 'bg-[#FF6B1A] text-white border-[#FF6B1A]' 
                    : 'bg-white text-gray-500 border-gray-200 hover:text-[#FF6B1A] hover:border-[#FF6B1A]'
-                 }
-               `}
+                 }"
                aria-label="Mover a la izquierda rápido"
              >
               <ChevronRight size={24} />

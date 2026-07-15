@@ -7,7 +7,6 @@ import { IdCard, XCircle, Loader2, X, CheckCircle2, Ticket } from "lucide-react"
 const brandPink = "#FF2D7C";
 const brandPurple = "#FF6B1A";
 
-// Simulamos la fuente Bebas Neue
 const bebasClassName = "font-bebas"; 
 
 const AIRTABLE_API_KEY = process.env.NEXT_PUBLIC_AIRTABLE_API_KEY!;
@@ -174,8 +173,7 @@ export default function VerificarPage() {
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-        .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+        
       `}} />
       
       <NotFoundModal open={modalOpen} onClose={() => setModalOpen(false)} />
