@@ -43,7 +43,9 @@ export default function PoliticaPrivacidad8K() {
         </div>
 
         {/* BODY */}
-        <div className="mt-12 space-y-6 text-[17px] sm:text-[18px] leading-[1.9] text-black/85">
+        {/* Mismo criterio que el reglamento: con el peso nuevo, 18px de texto
+            legal seguido se lee como un muro. */}
+        <div className="mt-12 space-y-6 text-[15px] sm:text-[16px] leading-[1.8] text-black/85">
           <ArticleCard title="Responsable del tratamiento de datos">
             <p>
               La carrera atlética <strong>8K Ruta de las Mandarinas</strong>,

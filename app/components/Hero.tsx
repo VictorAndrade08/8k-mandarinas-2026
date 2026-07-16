@@ -1,16 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { VIDEO_SRC, VIDEO_POSTER } from "../lib/carrera";
 
 export default function Hero8K() {
   const [isVideoActive, setIsVideoActive] = useState(false);
+  // Arrancado solo, no por el usuario: eso obliga a ir en silencio. Se separa de
+  // isVideoActive porque al pulsar play sí queremos sonido.
+  const [arrancoSolo, setArrancoSolo] = useState(false);
+  const cajaRef = useRef<HTMLDivElement>(null);
 
-  // Antes esto arrancaba el vídeo solo con mover el ratón en escritorio. Con el vídeo
-  // alojado aquí eso significaría bajar 8 MB sin que nadie lo pida, y encima no
-  // sonaría: los navegadores solo dejan autoplay si va silenciado. Se reproduce al
-  // pulsar play y punto.
+  // Autoplay solo en escritorio y solo cuando el vídeo entra en pantalla: son
+  // 8 MB, y en móvil se los come el plan de datos de quien quizá ni baja hasta
+  // aquí. Va mudo por obligación — ningún navegador deja autoarrancar con sonido
+  // sin que el usuario toque antes algo — así que los controles quedan visibles
+  // para poder activarlo. Con "reducir movimiento" no arranca: quien lo pide
+  // suele hacerlo porque el movimiento le marea o le dispara síntomas.
+  useEffect(() => {
+    const esEscritorio = window.matchMedia("(min-width: 1024px)").matches;
+    const menosMovimiento = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (!esEscritorio || menosMovimiento) return;
+
+    const caja = cajaRef.current;
+    if (!caja) return;
+
+    const observer = new IntersectionObserver(
+      ([entrada]) => {
+        if (!entrada.isIntersecting) return;
+        setArrancoSolo(true);
+        setIsVideoActive(true);
+        observer.disconnect(); // Una vez arrancado, ya no hace falta vigilar.
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(caja);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className={`w-full px-3 py-6 md:py-8 flex justify-center bg-gray-50 font-sans`}>
@@ -33,6 +62,7 @@ export default function Hero8K() {
         {/* 🎬 VIDEO CONTAINER */}
         <div className="relative z-10 flex items-center justify-center order-1 lg:order-none">
           <div
+            ref={cajaRef}
             className="
               w-full aspect-video
               rounded-[20px] sm:rounded-[28px]
@@ -71,9 +101,15 @@ export default function Hero8K() {
                 </div>
               </>
             ) : (
-              // preload="none": los 8 MB solo bajan cuando el usuario pulsa play,
-              // no de entrada a todo el que abre la página con datos móviles.
+              // preload="none": los 8 MB solo bajan al arrancar el vídeo, no de
+              // entrada a todo el que abre la página con datos móviles.
+              // El muted va por ref y no como prop: React no siempre refleja
+              // `muted` en el DOM, y si el atributo no llega, el navegador ve un
+              // autoplay con sonido y lo bloquea — el vídeo se quedaría parado.
               <video
+                ref={(el) => {
+                  if (el) el.muted = arrancoSolo;
+                }}
                 className="absolute inset-0 w-full h-full object-cover animate-in fade-in duration-500"
                 src={VIDEO_SRC}
                 poster={VIDEO_POSTER}
@@ -88,18 +124,17 @@ export default function Hero8K() {
 
         {/* 🏃‍♂️ CONTENIDO / TEXTO */}
         <div className="relative z-10 flex flex-col justify-center text-center lg:text-left order-2 lg:order-none">
-          <p className="uppercase tracking-[0.2em] text-xs sm:text-xs text-[#FF6B1A] font-bold mb-2 font-sans">
-            Patate, Ecuador • 2026
-          </p>
-
-          <h1 className="font-[family-name:var(--font-poppins)] text-[40px] sm:text-[50px] lg:text-[64px] xl:text-[72px] leading-[0.9] text-black mb-4 sm:mb-5">
+          {/* A 72px el titular partía en cuatro líneas y "Mandarinas" se comía el
+              ancho de la columna. Con el peso nuevo del sitio, menos cuerpo se
+              lee mejor y cabe en dos. */}
+          <h1 className="font-[family-name:var(--font-poppins)] text-[30px] sm:text-[38px] lg:text-[46px] xl:text-[54px] leading-[1] text-black mb-4 sm:mb-5">
             <span className="block tracking-wide">8K Ruta de las Mandarinas</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]">
               de Patate
             </span>
           </h1>
 
-          <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-6 max-w-lg mx-auto lg:mx-0 font-medium font-sans">
+          <p className="text-[13px] sm:text-sm md:text-base text-gray-600 leading-relaxed mb-6 max-w-lg mx-auto lg:mx-0 font-medium font-sans">
             Corre celebrando el <span className="text-black font-semibold">Aniversario de la Ruta de las Mandarinas</span>. La carrera que une a la ciudad en sus calles más emblemáticas.
           </p>
 
@@ -119,13 +154,6 @@ export default function Hero8K() {
             >
               Inscribirse Ahora
             </Link>
-          </div>
-
-          <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-center lg:justify-start gap-3">
-             <div className="h-6 w-px bg-gray-300 hidden sm:block"></div>
-             <p className="text-[10px] sm:text-xs text-gray-400 font-medium uppercase tracking-wide font-sans">
-                Org: Vigop Eventos
-             </p>
           </div>
         </div>
       </div>

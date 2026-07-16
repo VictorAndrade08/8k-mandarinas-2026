@@ -74,6 +74,21 @@ label,
   --font-sans: var(--font-poppins), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-poppins), system-ui, sans-serif;
   --font-mono: var(--font-poppins), ui-monospace, monospace;
+
+  /* Todo el sitio va un escalón más grueso. El arte oficial (Cocogoose, Gilroy)
+     está en 800-900 y Poppins a peso normal se veía delgada al lado del flyer.
+     En vez de repasar los ~200 puntos que llevan font-medium/font-bold a mano,
+     subimos la escala entera: cada utilidad se sigue llamando igual — font-bold
+     sigue siendo font-bold — pero pesa más. Poppins se carga con 400 a 900 en
+     layout.tsx, así que todos estos pesos existen de verdad y el navegador no
+     tiene que falsificar ninguno engordando los trazos. */
+  --font-weight-light: 400;
+  --font-weight-normal: 500;
+  --font-weight-medium: 600;
+  --font-weight-semibold: 700;
+  --font-weight-bold: 800;
+  --font-weight-extrabold: 900;
+  --font-weight-black: 900;
 }
 
 /* Estas clases nacieron apuntando a Bebas Neue y Barlow Condensed, que se
@@ -82,12 +97,13 @@ label,
    Poppins: cambian el peso, no la familia. */
 .font-bebas {
   font-family: var(--font-poppins), system-ui, sans-serif;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -0.01em;
 }
 
 .font-barlow {
   font-family: var(--font-poppins), system-ui, sans-serif;
+  font-weight: 600;
 }
 
 /* ========================================= */
@@ -111,8 +127,28 @@ body {
   font-family: var(--font-poppins), system-ui, -apple-system, "Segoe UI", Roboto,
     Arial, sans-serif;
 
+  /* El texto que no lleva ninguna clase de peso arranca en 500, no en 400: es el
+     suelo del sitio para que nada se vea fino al lado del arte. */
+  font-weight: 500;
+
   /* ✅ mejora mix-blend-mode y stacking */
   isolation: isolate;
+}
+
+/* Titulares en el peso del flyer. Muchos <h*> del sitio no llevan clase de peso
+   y heredaban el 500 del body, que para un titular se queda corto. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
+}
+
+strong,
+b {
+  font-weight: 800;
 }
 
 /* ✅ Helpers de tipografía para “afiche” */
@@ -262,9 +298,11 @@ body {
   will-change: transform, filter, background-position;
 }
 
-/* El header sticky flota encima: al saltar a una sección con #ancla, sin este
-   margen el título aterriza detrás del header y parece que el enlace falló. */
+/* El header va fixed, encima de todo: al saltar a una sección con #ancla, sin
+   este margen el título aterriza detrás del header y parece que el enlace falló.
+   Tiene que ser mayor que la altura del header (~142px) — ver HUECO_HEADER en
+   SiteChrome.tsx. */
 :target,
 section[id] {
-  scroll-margin-top: 120px;
+  scroll-margin-top: 160px;
 }

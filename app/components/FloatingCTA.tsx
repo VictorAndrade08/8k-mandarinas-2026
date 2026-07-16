@@ -5,15 +5,30 @@ import Link from "next/link"; // 1. Navegación rápida
 import { usePathname } from "next/navigation"; // 2. Detección reactiva de ruta
 import { MousePointerClick } from "lucide-react";
 
+// Alto del header (pt + píldora + pb). Hasta que no se baja de aquí, el botón
+// flotante no aparece: arriba ya está el "Inscríbete ahora" del hero y dos veces
+// la misma acción en la misma pantalla se lee como un error, no como insistencia.
+const ALTO_HEADER = 142;
+
 export default function FloatingCTA() {
   const pathname = usePathname(); // Hook para saber en qué página estamos
   const [mounted, setMounted] = useState(false);
   const [isOverFooter, setIsOverFooter] = useState(false);
+  const [pasoElHeader, setPasoElHeader] = useState(false);
 
   // Lógica de montaje (Entrada suave)
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Aparece al dejar atrás el header. `passive` porque solo leemos el scroll, y
+  // sin él Safari asume que vamos a cancelar el gesto y frena el desplazamiento.
+  useEffect(() => {
+    const alScrollear = () => setPasoElHeader(window.scrollY > ALTO_HEADER);
+    alScrollear(); // Por si se entra con la página ya desplazada (recarga, #ancla)
+    window.addEventListener("scroll", alScrollear, { passive: true });
+    return () => window.removeEventListener("scroll", alScrollear);
+  }, [pathname]);
 
   // Lógica del Intersection Observer (Detector de Footer)
   useEffect(() => {
@@ -45,7 +60,7 @@ export default function FloatingCTA() {
   if (pathname?.startsWith("/inscripcion")) return null;
 
   // Visibilidad final
-  const isVisible = mounted && !isOverFooter;
+  const isVisible = mounted && pasoElHeader && !isOverFooter;
 
   return (
     // Inyectamos la variable de fuente

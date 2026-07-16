@@ -19,6 +19,17 @@ const Logo = ({ className }: { className?: string }) => (
   />
 );
 
+// Navegación del sitio. Cada entrada apunta a algo que existe de verdad: "Ruta"
+// va al artículo 4 del reglamento (Distancia y Recorrido) porque no hay página de
+// recorrido — las tarjetas "Ver mapa 3D" de la home son un alert("Próximamente").
+// Si algún día se hace esa página, se cambia el href aquí y nada más.
+const NAV = [
+  { href: "/reglamento#art-4", label: "Ruta", acento: "#FF6B1A" },
+  { href: "/#info", label: "Información", acento: "#FF6B1A" },
+  { href: "/reglamento", label: "Reglamento", acento: "#FF6B1A" },
+  { href: "/verificar", label: "Verificar mi pago", acento: "#FF2D7C" },
+];
+
 // --- COMPONENTE PRINCIPAL ---
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -39,10 +50,11 @@ export default function Header() {
 
   return (
     <>
-      {/* sticky: antes desaparecía al bajar y había que subir del todo para llegar a
-          "Inscribirse". Se queda en 74-86px, muy por debajo del 20% de pantalla que
-          empieza a agobiar. top-0 con un poco de aire arriba para que la píldora
-          no quede pegada al borde. */}
+      {/* fixed y no sticky: sticky ocupa sitio en el flujo, así que empujaba el
+          hero hacia abajo y dejaba una franja del fondo naranja por encima del
+          vídeo. Fuera del flujo, el vídeo arranca en el píxel 0 y la píldora
+          flota encima. Contrapartida: las páginas sin hero necesitan reservar
+          ese hueco a mano — lo hace MainWrapper en SiteChrome.tsx. */}
       {/* Primer parada del tabulador: saltar el menú e ir al contenido.
           Solo se ve cuando se le da el foco con el teclado. */}
       <a
@@ -52,7 +64,7 @@ export default function Header() {
         Saltar al contenido
       </a>
 
-      <header className={`sticky top-0 pt-4 sm:pt-5 pb-2 z-50 w-full flex justify-center px-4 font-sans`}>
+      <header className={`fixed top-0 inset-x-0 pt-8 sm:pt-10 pb-2 z-50 w-full flex justify-center px-4 font-sans`}>
         <div
           className="
             w-full max-w-7xl mx-auto
@@ -81,37 +93,26 @@ export default function Header() {
               fondo. El centro estaba vacío 429px mientras la derecha iba apretada. */}
           <nav
             aria-label="Navegación principal"
-            className="hidden lg:flex items-center gap-3 xl:gap-5 mr-auto ml-6 xl:ml-10"
+            className="hidden lg:flex items-center gap-1 xl:gap-3 mr-auto ml-6 xl:ml-10"
           >
-            <Link
-              href="/reglamento"
-              className="
-                inline-flex items-center min-h-[44px] px-4
-                text-sm font-bold text-[#333]
-                uppercase tracking-[0.08em]
-                rounded-full hover:bg-black/[0.04] hover:text-[#FF6B1A]
-                transition-colors duration-200
-                outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A]
-                whitespace-nowrap
-              "
-            >
-              Reglamento
-            </Link>
-
-            <Link
-              href="/verificar"
-              className="
-                inline-flex items-center min-h-[44px] px-4
-                text-sm font-bold text-[#333]
-                uppercase tracking-[0.08em]
-                rounded-full hover:bg-black/[0.04] hover:text-[#FF2D7C]
-                transition-colors duration-200
-                outline-none focus-visible:ring-2 focus-visible:ring-[#FF2D7C]
-                whitespace-nowrap
-              "
-            >
-              Verificar mi pago
-            </Link>
+            {NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                style={{ ["--acento" as string]: item.acento }}
+                className="
+                  inline-flex items-center min-h-[44px] px-3 xl:px-4
+                  text-sm font-bold text-[#333]
+                  uppercase tracking-[0.08em]
+                  rounded-full hover:bg-black/[0.04] hover:text-(--acento)
+                  transition-colors duration-200
+                  outline-none focus-visible:ring-2 focus-visible:ring-(--acento)
+                  whitespace-nowrap
+                "
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           {/* Una sola acción con peso visual, a la derecha */}
@@ -184,23 +185,25 @@ export default function Header() {
               </button>
             </div>
 
+            {/* Cae desde arriba, no entra desde un lado: el burger está arriba a
+                la derecha y el menú aparece donde el dedo acaba de tocar. */}
             <nav className="flex flex-col gap-4">
               <Link href="/" className="text-xl font-bold py-3 border-b border-white/10 text-white/90" onClick={() => setOpen(false)}>
                 Inicio
               </Link>
 
-              <Link href="/reglamento" className="text-xl font-bold py-3 border-b border-white/10 text-white/90" onClick={() => setOpen(false)}>
-                Reglamento
-              </Link>
+              {NAV.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  style={{ color: item.acento === "#FF2D7C" ? item.acento : undefined }}
+                  className="text-xl font-bold py-3 border-b border-white/10 text-white/90"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
 
-              <Link
-                href="/verificar"
-                className="text-xl font-bold py-3 border-b border-white/10 text-[#FF2D7C]"
-                onClick={() => setOpen(false)}
-              >
-                Verificar inscripción
-              </Link>
-              
               <Link
                 href="/inscripcion"
                 className="

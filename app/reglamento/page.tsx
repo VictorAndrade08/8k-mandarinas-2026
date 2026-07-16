@@ -61,7 +61,9 @@ export default function ReglamentoSection() {
         </div>
 
         {/* BODY */}
-        <div className="mt-12 space-y-6 text-[17px] sm:text-[18px] leading-[1.9] text-black/85">
+        {/* 15/16px y no 17/18: el texto va un escalón más grueso que antes en
+            todo el sitio, y a 18px un reglamento entero se lee como un muro. */}
+        <div className="mt-12 space-y-6 text-[15px] sm:text-[16px] leading-[1.8] text-black/85">
           <ArticleCard id="art-1" title="Artículo 1. Denominación">
             <p>
               La Carrera Atlética <strong>8K Ruta de las Mandarinas</strong> es

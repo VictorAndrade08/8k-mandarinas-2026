@@ -63,7 +63,8 @@
       "Bash(xargs -I{} du -k \"{}\")",
       "Bash(grep -rn \"AIza\\\\|pat[A-Za-z0-9]\\\\{10,\\\\}\\\\|apiKey.*['\\\\\"][A-Za-z0-9_-]\\\\{20,\\\\}\" app/)",
       "Bash(echo \"=== TSC exit: $? ===\")",
-      "Bash(grep -o \"29 de agosto de 2026\\\\|\\\\$20\\\\|\\\\$18\\\\|\\\\$120\\\\|8 kilómetros\\\\|2 horas\\\\|Patate Garden\" out/reglamento/index.html)"
+      "Bash(grep -o \"29 de agosto de 2026\\\\|\\\\$20\\\\|\\\\$18\\\\|\\\\$120\\\\|8 kilómetros\\\\|2 horas\\\\|Patate Garden\" out/reglamento/index.html)",
+      "Bash(node -e \"require\\('/opt/homebrew/lib/node_modules/playwright'\\)\")"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
