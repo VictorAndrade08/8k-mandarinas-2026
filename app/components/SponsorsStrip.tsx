@@ -87,8 +87,23 @@ export default function SponsorsStrip() {
       className={`flex w-full justify-center bg-gray-50 px-3 py-4 font-sans`}
     >
       <div className="relative w-full max-w-7xl overflow-hidden rounded-[24px] border border-gray-100 bg-white px-4 py-6 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.08)] sm:rounded-[32px] sm:px-6 sm:py-8 md:px-10">
-        {/* Título */}
-        <div className="mb-6 flex items-center justify-center gap-4 sm:mb-8">
+        {/* Las montañas del arte oficial, ancladas abajo y al 40%: es fondo, no
+            ilustración. A opacidad plena compiten con los logos, que es lo que
+            la gente viene a mirar aquí. Van en <div> con background y no en
+            <img> para que no cuenten como contenido ni las lea nadie. */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-bottom bg-no-repeat opacity-[0.18]"
+          style={{
+            backgroundImage: "url(/fotos/montanas.webp)",
+            // 100% auto y no `contain`: contain la encaja entera y la deja
+            // pequeña y centrada. Así se estira de borde a borde y la cordillera
+            // hace de línea de horizonte, que es para lo que está.
+            backgroundSize: "100% auto",
+          }}
+          aria-hidden="true"
+        />
+        {/* Título. z-10 para quedar por encima de las montañas del fondo. */}
+        <div className="relative z-10 mb-6 flex items-center justify-center gap-4 sm:mb-8">
           <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#FF6B1A]/50 sm:w-16"></div>
           {/* "Partners" y no "Parners": llevaba la errata desde el clon. */}
           <p className="text-center font-[family-name:var(--font-poppins)] text-[26px] font-black tracking-[0.1em] text-gray-900 uppercase sm:text-[36px]">
@@ -97,8 +112,8 @@ export default function SponsorsStrip() {
           <div className="h-px w-8 bg-gradient-to-l from-transparent to-[#FF6B1A]/50 sm:w-16"></div>
         </div>
 
-        {/* Contenedor Principal */}
-        <div className="relative flex w-full items-center">
+        {/* Contenedor Principal. z-10 por encima de las montañas del fondo. */}
+        <div className="relative z-10 flex w-full items-center">
           {/* Flecha Izquierda */}
           <div className="absolute left-0 z-20 flex h-full items-center bg-gradient-to-r from-white via-white/80 to-transparent pr-8 pl-2">
             <button

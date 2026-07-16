@@ -106,7 +106,13 @@
       "Bash(cwebp -quiet -q 75 -resize 640 0 public/video/8k-fondo-poster.jpg -o public/video/8k-fondo-poster.webp)",
       "Bash(cwebp -quiet -q 80 -resize 800 0 public/fotos/post-8k.jpg -o public/fotos/post-8k.webp)",
       "Bash(sips -g pixelWidth -g pixelHeight public/fotos/post-8k.webp)",
-      "Bash(awk '{printf \"  %.0f KB \\(antes 240 KB en png\\)\\\\n\", $1}')"
+      "Bash(awk '{printf \"  %.0f KB \\(antes 240 KB en png\\)\\\\n\", $1}')",
+      "Bash(awk '{print \" \"$5\" \"$9}')",
+      "Bash(awk '{print \" \"$5\" bytes \"$9}')",
+      "Bash(awk '{print \"  \"$5\"  \"$9}')",
+      "Bash(cwebp -quiet -q 80 -resize 1600 0 \"/Users/skychopan/Downloads/ChatGPT Image 16 jul 2026, 17_18_03.png\" -o public/fotos/montanas.webp)",
+      "Bash(awk '{printf \" montanas.webp: %.0f KB \\(desde 1.4 MB\\)\\\\n\", $5/1024}')",
+      "Bash(sips -g pixelWidth -g pixelHeight public/fotos/montanas.webp)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"

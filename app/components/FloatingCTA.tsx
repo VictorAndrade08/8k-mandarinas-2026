@@ -25,13 +25,30 @@ export default function FloatingCTA() {
     setMounted(true);
   }, []);
 
-  // Aparece al dejar atrás el header. `passive` porque solo leemos el scroll, y
-  // sin él Safari asume que vamos a cancelar el gesto y frena el desplazamiento.
+  // Aparece al dejar atrás el header.
+  //
+  // Con IntersectionObserver y no escuchando `scroll`: el scroll dispara cientos
+  // de eventos por segundo y cada uno ejecutaba JS en el hilo principal, que es
+  // justo lo que atasca un móvil barato. El observer lo resuelve el navegador
+  // fuera de ese hilo y solo nos avisa cuando el estado cambia de verdad.
+  //
+  // El centinela es un div de 1px a la altura del header: cuando sale de
+  // pantalla, es que ya bajamos.
   useEffect(() => {
-    const alScrollear = () => setPasoElHeader(window.scrollY > ALTO_HEADER);
-    alScrollear(); // Por si se entra con la página ya desplazada (recarga, #ancla)
-    window.addEventListener("scroll", alScrollear, { passive: true });
-    return () => window.removeEventListener("scroll", alScrollear);
+    const centinela = document.createElement("div");
+    centinela.style.cssText = `position:absolute;top:${ALTO_HEADER}px;left:0;width:1px;height:1px;pointer-events:none;`;
+    document.body.appendChild(centinela);
+
+    const obs = new IntersectionObserver(
+      ([e]) => setPasoElHeader(!e?.isIntersecting),
+      { threshold: 0 }
+    );
+    obs.observe(centinela);
+
+    return () => {
+      obs.disconnect();
+      centinela.remove();
+    };
   }, [pathname]);
 
   // Lógica del Intersection Observer (Detector de Footer)

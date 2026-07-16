@@ -31,8 +31,8 @@ export default function Publicidad() {
           <img
             src={MOBILE_IMAGE}
             alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Precio preventa $20 · Lugar: Valle de Patate · Fecha: 29 de agosto · Salida: Patate Gardens"
-            width={800}
-            height={932}
+            width={640}
+            height={746}
             className="h-auto w-full"
             loading="eager"
             fetchPriority="high"

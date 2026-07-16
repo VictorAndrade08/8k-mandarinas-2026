@@ -58,8 +58,35 @@ export default function HeroCountdown() {
     // de más a cambio de que el contador sea correcto.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setTimeLeft(calculateTimeLeft());
-    const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000);
-    return () => clearInterval(timer);
+
+    let timer: ReturnType<typeof setInterval> | undefined;
+    const arrancar = () => {
+      if (timer) return;
+      timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000);
+    };
+    const parar = () => {
+      if (timer) clearInterval(timer);
+      timer = undefined;
+    };
+
+    // Con la pestaña de fondo el contador no se ve, pero seguía despertando el
+    // hilo principal una vez por segundo y gastando batería del móvil para nada.
+    // Al volver se recalcula desde la fecha, así que no se desfasa.
+    const alCambiarVisibilidad = () => {
+      if (document.visibilityState === "visible") {
+        setTimeLeft(calculateTimeLeft());
+        arrancar();
+      } else {
+        parar();
+      }
+    };
+
+    arrancar();
+    document.addEventListener("visibilitychange", alCambiarVisibilidad);
+    return () => {
+      parar();
+      document.removeEventListener("visibilitychange", alCambiarVisibilidad);
+    };
   }, []);
 
   const blocks = [
@@ -146,9 +173,16 @@ export default function HeroCountdown() {
         <div className="flex w-full flex-col items-center">
           {/* max-h además del ancho: el logo es muy apaisado, así que fijándolo
               solo por ancho se comía el alto entero en pantallas bajas. */}
+          {/* Este logo ES el LCP de la página: es lo más grande del primer
+              pantallazo. fetchPriority="high" le dice al navegador que lo baje
+              antes que nada — sin esto esperaba su turno detrás del CSS y los
+              chunks, y ese retraso era casi 2 s del LCP. Nunca lazy aquí. */}
           <img
             src="/logo-mandarinas-blanco.svg"
             alt="8K Ruta de las Mandarinas"
+            fetchPriority="high"
+            loading="eager"
+            decoding="sync"
             className="h-auto max-h-[min(20vh,190px)] w-[min(78vw,580px)] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.7)] select-none"
             draggable={false}
           />

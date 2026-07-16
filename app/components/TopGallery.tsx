@@ -208,7 +208,11 @@ export default function TopGallery() {
                       src={img.src}
                       alt={img.alt}
                       fill
+                      // Las tarjetas miden 200/260/320px, pero en pantallas 2x y
+                      // 3x el navegador pide el doble o el triple. Sin este tope
+                      // bajaba el archivo de 640px para pintarlo a 198.
                       sizes="(max-width: 640px) 200px, (max-width: 768px) 260px, 320px"
+                      quality={70}
                       className="object-cover opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
                       loading="lazy"
                     />

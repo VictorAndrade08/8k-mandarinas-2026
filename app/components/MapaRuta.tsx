@@ -34,8 +34,8 @@ export default function MapaRuta() {
           <img
             src={MAPA_MOVIL}
             alt="Mapa de la carrera 8K Ruta de las Mandarinas. Salida en Patate Gardens a las 08h00 y llegada al Estadio Municipal de Patate, pasando por E. Dávila, H. Torres, G. Moreno, V. Rocafuerte, Naciones Unidas, vía a San Jorge, E. Alfaro, Juan León Mera y Av. Ambato."
-            width={800}
-            height={932}
+            width={640}
+            height={746}
             className="h-auto w-full"
             loading="lazy"
             decoding="async"
