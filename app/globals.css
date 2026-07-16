@@ -327,6 +327,15 @@ b {
   will-change: transform, filter, background-position;
 }
 
+/* Nota para el próximo que lo intente: `content-visibility: auto` en las
+   secciones de debajo del primer scroll se probó y se descartó. Sobre el papel
+   ahorra el cálculo de estilo y layout de ~860 nodos; medido aquí, hacía variar
+   el alto del documento 1.658px al bajar, porque `contain-intrinsic-size` tiene
+   que adivinar la altura de cada sección y las de este sitio son muy desiguales.
+   El CLS de esta página está en 0 y no compensa arriesgarlo por un ahorro de CPU
+   que no se puede confirmar sin medir en un móvil real. Si se retoma, hay que
+   fijar el contain-intrinsic-size sección por sección, no uno global. */
+
 /* Un respiro al saltar a una sección con #ancla, para que el título no quede
    pegado al borde de la pantalla. Antes eran 160px porque el header iba fijo y
    tapaba el destino; ahora es absolute y se va con el scroll, así que ya no hay
