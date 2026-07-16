@@ -291,7 +291,7 @@ export default function ReglamentoSection() {
           <ArticleCard id="art-9" title="Artículo 9. Puntos de Control">
             <p>
               La organización contará con puntos de control de ruta, hidratación
-              y asistencia médica. <strong>El no pasar por un punto de control
+            . <strong>El no pasar por un punto de control
               será motivo de descalificación.</strong>
             </p>
           </ArticleCard>
@@ -306,10 +306,10 @@ export default function ReglamentoSection() {
 
           <ArticleCard
             id="art-11"
-            title="Artículo 11. Seguridad y Atención Médica"
+            title="Artículo 11. Seguridad"
           >
             <p>
-              Habrá asistencia, seguridad y personal médico ubicados
+              Habrá asistencia, seguridad y personal ubicados
               estratégicamente a lo largo del recorrido y en la meta,
               garantizando el bienestar de todos los participantes durante la
               competencia, además de contar con un{" "}
@@ -324,7 +324,7 @@ export default function ReglamentoSection() {
               <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
                 <ul className="list-disc pl-6 space-y-1 text-black/85">
                   <li>No completen el recorrido oficial.</li>
-                  <li>Excedan el tiempo límite (2 horas).</li>
+                  <li>Excedan el tiempo límite (90 minutos).</li>
                   <li>No pasen por los puntos de control designados.</li>
                   <li>
                     Usen un número de otro corredor o no lo lleven visible.
