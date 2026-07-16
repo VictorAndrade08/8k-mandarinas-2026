@@ -81,7 +81,10 @@ export default function Header() {
             href="/"
             className="group flex flex-shrink-0 cursor-pointer items-center rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2"
           >
-            <Logo className="h-12 w-auto transition-transform duration-300 group-hover:scale-[1.03] sm:h-14 lg:h-16" />
+            {/* En móvil manda el ancho, no el alto: el logo es muy apaisado, así
+                que con h-16 a secas se comería el sitio del burger. Con min(vw)
+                crece todo lo que le deja la píldora y no más. */}
+            <Logo className="h-auto w-[min(52vw,200px)] transition-transform duration-300 group-hover:scale-[1.03] sm:w-[220px] lg:w-[260px]" />
           </Link>
 
           {/* ================= DESKTOP (LG+) =================

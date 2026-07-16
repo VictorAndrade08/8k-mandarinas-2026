@@ -238,18 +238,20 @@ export default function VerificarPage() {
           <div className="relative z-10 grid w-full items-center gap-16 lg:grid-cols-2 lg:gap-24">
             {/* --- COLUMNA IZQUIERDA (TEXTO/HERO) --- */}
             <div className="flex flex-col items-center text-center text-white lg:items-start lg:text-left">
+              {/* El logo en vez de un titular gigante: llegaba a text-9xl y se
+                  comía la pantalla entera, y encima leía "8K Ruta de las de
+                  Patate", que ni siquiera está bien escrito. El logo dice lo
+                  mismo, mejor, y en la tipografía real de la marca. */}
+              <img
+                src="/logo-mandarinas-blanco.svg"
+                alt="8K Ruta de las Mandarinas"
+                className="animate-in slide-in-from-bottom-4 mb-7 h-auto w-[min(82vw,420px)] object-contain drop-shadow-2xl delay-100 duration-700"
+              />
+
               <h1
-                className={`text-7xl leading-[0.9] text-white sm:text-8xl lg:text-9xl ${bebasClassName} animate-in slide-in-from-bottom-4 mb-8 drop-shadow-2xl delay-100 duration-700`}
+                className={`text-3xl text-white sm:text-4xl ${bebasClassName} animate-in slide-in-from-bottom-4 mb-6 uppercase delay-100 duration-700`}
               >
-                8K Ruta de las <br />
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, ${brandPurple}, ${brandPink}, #fff)`,
-                  }}
-                >
-                  de Patate
-                </span>
+                Verifica tu inscripción
               </h1>
 
               <p className="animate-in slide-in-from-bottom-4 mb-10 max-w-lg text-xl leading-relaxed font-normal text-white/80 delay-200 duration-700 lg:text-2xl">

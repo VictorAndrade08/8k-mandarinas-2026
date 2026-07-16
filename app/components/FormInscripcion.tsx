@@ -117,6 +117,37 @@ export default function InscripcionPage() {
 
   const [formData, setFormData] = useState<FormDataState>(initialFormData);
 
+  // --- EL BOTÓN ATRÁS DEL NAVEGADOR RETROCEDE UN PASO, NO SALE DE LA PÁGINA ---
+  //
+  // Son cuatro pasos dentro de una sola URL, así que para el navegador todo esto
+  // es una única página: al dar atrás en el paso 3 te echaba del formulario
+  // entero. Y en móvil "atrás" es un gesto, no un botón — se hace sin querer.
+  //
+  // Metemos una entrada de historial por paso para que el gesto haga lo que
+  // cualquiera espera. Los datos no se pierden en ningún caso (siguen en
+  // localStorage), pero volver a entrar y reencontrar el sitio es fricción que
+  // no hace falta.
+  const pasoRef = useRef(step);
+  useEffect(() => {
+    pasoRef.current = step;
+  }, [step]);
+
+  useEffect(() => {
+    // La entrada base: sin esto, el primer "atrás" desde el paso 2 saldría de la
+    // página en vez de volver al 1.
+    window.history.replaceState({ paso: 1 }, "");
+
+    const alVolver = (e: PopStateEvent) => {
+      const destino = (e.state as { paso?: number } | null)?.paso;
+      // Sin paso en el estado, es que salimos del formulario: no lo estorbamos.
+      if (typeof destino !== "number") return;
+      setStep(destino);
+    };
+
+    window.addEventListener("popstate", alVolver);
+    return () => window.removeEventListener("popstate", alVolver);
+  }, []);
+
   // --- PERSISTENCIA: que el usuario NO pierda su avance si refresca ---
   const hydrated = useRef(false);
   const savedSnapshot = useRef<ProgresoGuardado | null>(null);
@@ -261,6 +292,16 @@ export default function InscripcionPage() {
     if (!didMount.current) {
       didMount.current = true;
       return;
+    }
+
+    // Una entrada de historial por paso, para que el "atrás" del navegador
+    // retroceda dentro del formulario. Solo al avanzar: si el paso cambió porque
+    // el usuario YA dio atrás, apilar otra entrada lo dejaría atrapado — daría
+    // atrás y volvería al mismo sitio.
+    const enHistorial = (window.history.state as { paso?: number } | null)
+      ?.paso;
+    if (enHistorial !== step) {
+      window.history.pushState({ paso: step }, "");
     }
 
     if (componentRef.current) {
