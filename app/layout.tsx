@@ -21,10 +21,20 @@ import { Toaster } from "sonner";
 // titulares. Poppins es geométrica pura como las dos primeras, y a peso 800/900
 // da la masa de Cocogoose. Las tres del diseño son de pago — la de Cocogoose es
 // literalmente una "Trial".
+// Solo los pesos que el sitio usa de verdad.
+//
+// Iban 6 pesos × 2 estilos = 12 variantes, y next/font las PRECARGA todas en el
+// <head>: doce peticiones peleando con el logo del hero, que es el LCP. Miré el
+// CSS compilado y el 400 y el 500 no aparecían ni una vez — la escala de pesos
+// del sitio arranca en 600 (ver --font-weight-* en globals.css).
+//
+// La itálica solo la usan los dígitos del contador, así que basta con una.
+// Si algún día hace falta otro peso, se añade aquí; pero cada uno son dos
+// peticiones más antes de que se pinte nada.
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["600", "700", "800", "900"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -34,7 +44,8 @@ const poppins = Poppins({
 // ==============================
 export const metadata: Metadata = {
   title: "8K Ruta de las Mandarinas 2026",
-  description: "8K Ruta de las Mandarinas · Sábado 29 de agosto de 2026 — Sitio oficial",
+  description:
+    "8K Ruta de las Mandarinas · Sábado 29 de agosto de 2026 — Sitio oficial",
 };
 
 export const viewport: Viewport = {
@@ -83,27 +94,25 @@ export default function RootLayout({
             navegador elija; el apple-touch va con fondo blanco porque iOS no
             respeta la transparencia al ponerlo en la pantalla de inicio. */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+        <link
+          rel="icon"
+          href="/icon-192.png"
+          type="image/png"
+          sizes="192x192"
+        />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
 
       <body
-        className={`
-          antialiased
-          min-h-screen
-          text-white
-          bg-[#1A0A0F]
-          relative
-          overflow-x-hidden
-        `}
+        className={`relative min-h-screen overflow-x-hidden bg-[#1A0A0F] text-white antialiased`}
       >
         {/* CAPAS DE FONDO */}
         <div
-          className="fixed inset-0 -z-40 pointer-events-none"
+          className="pointer-events-none fixed inset-0 -z-40"
           style={{ background: "#1A0A0F" }}
         />
         <div
-          className="fixed inset-0 -z-30 pointer-events-none"
+          className="pointer-events-none fixed inset-0 -z-30"
           style={{
             backgroundImage: `
               linear-gradient(135deg,
@@ -120,7 +129,7 @@ export default function RootLayout({
           }}
         />
         <div
-          className="fixed inset-0 -z-20 pointer-events-none"
+          className="pointer-events-none fixed inset-0 -z-20"
           style={{
             backgroundImage: `
               linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.55)),
@@ -136,7 +145,7 @@ export default function RootLayout({
           }}
         />
         <div
-          className="fixed inset-0 -z-10 pointer-events-none"
+          className="pointer-events-none fixed inset-0 -z-10"
           style={{
             backgroundImage: `
               repeating-linear-gradient(
@@ -152,7 +161,7 @@ export default function RootLayout({
           }}
         />
         <div
-          className="fixed inset-x-0 bottom-0 -z-[5] pointer-events-none"
+          className="pointer-events-none fixed inset-x-0 bottom-0 -z-[5]"
           style={{
             height: "38vh",
             background: "#FFFFFF",
@@ -162,7 +171,7 @@ export default function RootLayout({
           }}
         />
         <div
-          className="fixed inset-x-0 bottom-0 -z-[4] pointer-events-none"
+          className="pointer-events-none fixed inset-x-0 bottom-0 -z-[4]"
           style={{
             height: "18vh",
             background:

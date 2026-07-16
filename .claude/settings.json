@@ -115,7 +115,13 @@
       "Bash(sips -g pixelWidth -g pixelHeight public/fotos/montanas.webp)",
       "Bash(grep -o \"main>section:not\\(:first-child\\),footer{[^}]*}\" out/_next/static/chunks/40oq_1x59r3kx.css)",
       "Bash(awk '{print \"  \"$1\" textos a 5.18:1 ✅\"}')",
-      "Bash(awk '{print \"  sin pushear: \"$1\" ✅\"}')"
+      "Bash(awk '{print \"  sin pushear: \"$1\" ✅\"}')",
+      "Bash(xargs ls -S)",
+      "Bash(rm -rf .next out)",
+      "Bash(awk '{print \" \"$1\" archivos \\(eran 36\\)\"}')",
+      "Bash(awk '{print \"  \"$1\" \\(eran 728K\\)\"}')",
+      "Bash(awk '{print \"  \"$1\" preloads \\(eran 12\\)\"}')",
+      "Bash(grep -n 'section$\\\\|className={`relative h-screen' app/components/HeroCountdown.tsx)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
