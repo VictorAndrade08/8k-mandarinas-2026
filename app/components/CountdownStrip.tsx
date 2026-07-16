@@ -80,7 +80,7 @@ export default function CountdownStrip() {
               <div className="flex items-center gap-3 mb-3">
                  <span className="h-px w-8 bg-[#FF6B1A]"></span>
                  <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-gray-500 font-bold">
-                    Presentado por APDT Patate
+                    Presentado por Vigop Eventos
                  </p>
               </div>
 

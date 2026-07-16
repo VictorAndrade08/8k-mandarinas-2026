@@ -78,7 +78,7 @@ export default function Footer() {
             </p>
 
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-md">
-              © 2026. Evento oficial organizado por la <span className="text-white">Asociación de Periodistas Deportivos de Tungurahua</span>.
+              © 2026. Evento oficial organizado por <span className="text-white">Vigop Eventos</span>.
               <br className="mb-2"/>
               Desarrollo web por <span className="text-[#FF6B1A]">Prez Agencia</span>.
             </p>

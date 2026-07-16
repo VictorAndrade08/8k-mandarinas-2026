@@ -103,38 +103,28 @@ export default function Hero8K() {
             Corre celebrando el <span className="text-black font-semibold">Aniversario de la Ruta de las Mandarinas</span>. La carrera que une a la ciudad en sus calles más emblemáticas.
           </p>
 
+          {/* Sin "Ver Reglamento": el reglamento aún no está aprobado por la
+              organización y el enlace se retira hasta que lo esté. */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start font-sans">
             <Link
               href="/inscripcion"
               className="
-                inline-flex items-center justify-center px-6 py-3.5 
-                rounded-full bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] 
-                text-white text-xs sm:text-sm tracking-[0.15em] font-bold uppercase 
-                shadow-md shadow-[#FF6B1A]/30 
-                hover:shadow-[#FF6B1A]/50 hover:-translate-y-0.5 
+                inline-flex items-center justify-center px-6 py-3.5
+                rounded-full bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]
+                text-white text-xs sm:text-sm tracking-[0.15em] font-bold uppercase
+                shadow-md shadow-[#FF6B1A]/30
+                hover:shadow-[#FF6B1A]/50 hover:-translate-y-0.5
                 transition-all duration-300
               "
             >
               Inscribirse Ahora
-            </Link>
-            <Link
-              href="/reglamento"
-              className="
-                inline-flex items-center justify-center px-6 py-3.5 
-                rounded-full border border-gray-300 
-                text-gray-700 text-xs sm:text-sm tracking-[0.15em] font-bold uppercase 
-                hover:border-[#FF6B1A] hover:text-[#FF6B1A] hover:bg-[#FF6B1A]/5
-                transition-all duration-300
-              "
-            >
-              Ver Reglamento
             </Link>
           </div>
 
           <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-center lg:justify-start gap-3">
              <div className="h-6 w-px bg-gray-300 hidden sm:block"></div>
              <p className="text-[10px] sm:text-xs text-gray-400 font-medium uppercase tracking-wide font-sans">
-                Org: Asoc. Periodistas Deportivos de Tungurahua
+                Org: Vigop Eventos
              </p>
           </div>
         </div>

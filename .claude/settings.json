@@ -58,7 +58,15 @@
       "Bash(node contraste2.js)",
       "Bash(node fondo.js)",
       "Bash(node fuentes.js)",
-      "Bash(xargs -I{} sh -c '[ {} -eq 0 ] && echo \"  ✅ limpio\" || echo \"  ❌ {} apariciones\"')"
+      "Bash(xargs -I{} sh -c '[ {} -eq 0 ] && echo \"  ✅ limpio\" || echo \"  ❌ {} apariciones\"')",
+      "Bash(cd \"/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026\" && cat package.json README.md next.config.ts wrangler.toml tailwind.config.js .npmrc .gitignore && echo \"=== ENV KEYS ===\" && sed 's/=.*/=<hidden>/' .env.local && echo \"=== FUNCTIONS ===\" && find functions -type f && echo \"=== LOC ===\" && wc -l app/**/*.tsx app/*.tsx app/*.css app/lib/*.ts 2>/dev/null)",
+      "Bash(xargs -I{} du -k \"{}\")",
+      "Bash(grep -rn \"AIza\\\\|pat[A-Za-z0-9]\\\\{10,\\\\}\\\\|apiKey.*['\\\\\"][A-Za-z0-9_-]\\\\{20,\\\\}\" app/)",
+      "Bash(echo \"=== TSC exit: $? ===\")",
+      "Bash(grep -o \"29 de agosto de 2026\\\\|\\\\$20\\\\|\\\\$18\\\\|\\\\$120\\\\|8 kilómetros\\\\|2 horas\\\\|Patate Garden\" out/reglamento/index.html)"
+    ],
+    "additionalDirectories": [
+      "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
     ]
   }
 }

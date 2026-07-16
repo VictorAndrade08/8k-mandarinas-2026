@@ -97,7 +97,7 @@ export default function ReglamentoSection() {
             <div className="mt-12 pt-8 border-t border-white/5 flex flex-wrap justify-center gap-6 sm:gap-12 opacity-60 w-full">
                 <div className="flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-wider text-gray-400 font-semibold">
                     <ShieldCheck size={16} className="text-[#FF6B1A]" />
-                    <span>Avalado por la APDT</span>
+                    <span>Avalado por Vigop Eventos</span>
                 </div>
                  <div className="flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-wider text-gray-400 font-semibold">
                     <FileCheck size={16} className="text-[#FF6B1A]" />

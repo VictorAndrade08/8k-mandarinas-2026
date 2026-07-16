@@ -47,8 +47,8 @@ export default function PoliticaPrivacidad8K() {
           <ArticleCard title="Responsable del tratamiento de datos">
             <p>
               La carrera atlética <strong>8K Ruta de las Mandarinas</strong>,
-              organizada por la <strong>Asociación de Periodistas Deportivos de
-              Tungurahua (APDT)</strong>, con domicilio en Patate – Ecuador,
+              organizada por <strong>Vigop Eventos</strong>, con domicilio en
+              Patate – Ecuador,
               actúa como <strong>RESPONSABLE del tratamiento de los datos
               personales</strong> del titular, obtenidos mediante consentimiento
               verbal, escrito o digital, conforme a la{" "}
