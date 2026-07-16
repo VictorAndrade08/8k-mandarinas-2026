@@ -1,0 +1,47 @@
+# Validación en cada push y PR.
+#
+# Husky bloquea el commit en tu máquina, pero se puede saltar con --no-verify y
+# no corre en el portátil de otra persona. Esto sí: es la última barrera antes de
+# que Cloudflare Pages publique main en 8krutadelasmandarinas.com.
+#
+# Si algo aquí falla, arréglalo antes de dar por bueno el despliegue: Cloudflare
+# construye por su cuenta y no mira este resultado.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # `npm ci` y no `npm install`: instala exactamente lo que dice el lockfile
+      # y falla si package.json y package-lock.json no coinciden, en vez de
+      # resolver versiones nuevas por su cuenta.
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Tipos
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npx eslint .
+
+      # El de verdad: `next dev` perdona cosas que el compilador de producción no.
+      - name: Build
+        run: npm run build
+
+      - name: Vulnerabilidades
+        # Informativo: no tumbamos el build por un aviso de una dependencia
+        # transitiva, pero queda en el log para que nadie diga que no se sabía.
+        run: npm audit --omit=dev || true

@@ -39,18 +39,18 @@ label,
 
 :root {
   /* Fondo base */
-  --background: #1A0A0F;
+  --background: #1a0a0f;
   --foreground: #ededed;
 
   /* Marca — naranja mandarina + magenta */
-  --brand-1: #FF6B1A; /* naranja mandarina (primario) */
-  --brand-2: #FF2D7C; /* magenta rosa (acento) */
-  --brand-3: #FFB800; /* amarillo dorado (label) */
+  --brand-1: #ff6b1a; /* naranja mandarina (primario) */
+  --brand-2: #ff2d7c; /* magenta rosa (acento) */
+  --brand-3: #ffb800; /* amarillo dorado (label) */
 
   /* Superficies */
   --card: rgba(255, 255, 255, 0.06);
-  --stroke: rgba(255, 255, 255, 0.10);
-  --muted: rgba(255, 255, 255, 0.70);
+  --stroke: rgba(255, 255, 255, 0.1);
+  --muted: rgba(255, 255, 255, 0.7);
   --muted-2: rgba(255, 255, 255, 0.55);
 
   /* Glow */
@@ -71,9 +71,17 @@ label,
   /* La pila entera, no solo la variable: si aquí va únicamente var(--font-poppins),
      la utilidad `font-sans` de Tailwind acaba resolviendo a su ui-sans-serif por
      defecto y medio sitio se queda sin Poppins. */
-  --font-sans: var(--font-poppins), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans:
+    var(--font-poppins), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-poppins), system-ui, sans-serif;
   --font-mono: var(--font-poppins), ui-monospace, monospace;
+
+  /* Móviles estrechos (iPhone SE y similares). Vivía en tailwind.config.js, que
+     Tailwind 4 ya no lee salvo que se le apunte con @config — así que las tres
+     clases xs: del contador llevaban tiempo sin hacer absolutamente nada, sin
+     que nadie lo notara porque una utilidad inexistente no da error: no aplica
+     y punto. Aquí sí existe. */
+  --breakpoint-xs: 400px;
 
   /* Todo el sitio va un escalón más grueso. El arte oficial (Cocogoose, Gilroy)
      está en 800-900 y Poppins a peso normal se veía delgada al lado del flyer.
@@ -124,8 +132,14 @@ body {
      dentro de las utilidades de Tailwind pero NO publica la variable en :root,
      así que var(--font-sans) aquí no resolvía a nada y todo el sitio se caía al
      ui-sans-serif por defecto. */
-  font-family: var(--font-poppins), system-ui, -apple-system, "Segoe UI", Roboto,
-    Arial, sans-serif;
+  font-family:
+    var(--font-poppins),
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
 
   /* El texto que no lleva ninguna clase de peso arranca en 600: es el suelo del
      sitio para que nada se vea fino al lado del arte. Va en el mismo escalón que
@@ -173,7 +187,10 @@ b {
   color: #0b0b0b;
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: var(--glow);
-  transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
+  transition:
+    transform 160ms ease,
+    filter 160ms ease,
+    box-shadow 160ms ease;
 }
 .btn-primary:hover {
   transform: translateY(-1px);
@@ -185,7 +202,9 @@ b {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--stroke);
   color: var(--foreground);
-  transition: border-color 160ms ease, background 160ms ease,
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
     transform 160ms ease;
 }
 .btn-outline:hover {
@@ -232,10 +251,10 @@ b {
   border-radius: 14px;
   background: linear-gradient(
     90deg,
-    rgba(239, 68, 68, 0.20),
-    rgba(220, 38, 38, 0.20)
+    rgba(239, 68, 68, 0.2),
+    rgba(220, 38, 38, 0.2)
   );
-  border: 1px solid rgba(220, 38, 38, 0.30);
+  border: 1px solid rgba(220, 38, 38, 0.3);
   color: rgba(255, 255, 255, 0.95);
 }
 
@@ -247,7 +266,7 @@ b {
   position: relative;
   overflow: hidden;
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.35);
 }
 
@@ -256,9 +275,17 @@ b {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(80% 80% at 18% 25%, rgba(239, 68, 68, 0.38), transparent 60%),
-    radial-gradient(80% 80% at 75% 35%, rgba(220, 38, 38, 0.28), transparent 62%),
-    linear-gradient(135deg, rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.55));
+    radial-gradient(
+      80% 80% at 18% 25%,
+      rgba(239, 68, 68, 0.38),
+      transparent 60%
+    ),
+    radial-gradient(
+      80% 80% at 75% 35%,
+      rgba(220, 38, 38, 0.28),
+      transparent 62%
+    ),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.55));
   pointer-events: none;
 }
 
@@ -295,7 +322,7 @@ b {
 
 .animate-liquidFlow {
   animation: liquidFlow 22s ease-in-out infinite;
-  opacity: 0.60;
+  opacity: 0.6;
   mix-blend-mode: screen;
   will-change: transform, filter, background-position;
 }

@@ -1,0 +1,14 @@
+# Candado antes de cada commit.
+#
+# Este repo despliega solo: Cloudflare Pages publica cada push a main en
+# 8krutadelasmandarinas.com sin que nadie lo revise. Sin esta barrera, un commit
+# a medias sale en vivo y lo descubre un corredor, no nosotros.
+#
+# Si necesitas saltártelo un día concreto: git commit --no-verify
+
+# Formatea y pasa el linter solo a lo que va en el commit (rápido).
+npx lint-staged
+
+# Los tipos hay que mirarlos en el proyecto entero: tocar un archivo puede
+# romper otro que ni siquiera está en este commit.
+npx tsc --noEmit

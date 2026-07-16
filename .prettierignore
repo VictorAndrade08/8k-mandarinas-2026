@@ -1,0 +1,9 @@
+# Generado por el build
+.next/
+out/
+node_modules/
+*.tsbuildinfo
+next-env.d.ts
+
+# Lockfile: lo escribe npm, no nosotros
+package-lock.json

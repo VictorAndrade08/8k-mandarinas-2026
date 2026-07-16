@@ -29,7 +29,9 @@ export default function Hero8K() {
 
     const observer = new IntersectionObserver(
       ([entrada]) => {
-        if (!entrada.isIntersecting) return;
+        // Puede llegar vacío; sin esta guarda es un crash silencioso dentro del
+        // callback del observer.
+        if (!entrada?.isIntersecting) return;
         setArrancoSolo(true);
         setIsVideoActive(true);
         observer.disconnect(); // Una vez arrancado, ya no hace falta vigilar.
@@ -42,37 +44,15 @@ export default function Hero8K() {
   }, []);
 
   return (
-    <section className={`w-full px-3 py-6 md:py-8 flex justify-center bg-gray-50 font-sans`}>
-      <div
-        className="
-          relative w-full max-w-7xl
-          rounded-[24px] sm:rounded-[40px]
-          overflow-hidden
-          bg-white
-          border border-black/5
-          px-5 py-8
-          sm:px-8 sm:py-10
-          md:px-12 md:py-12
-          grid grid-cols-1 lg:grid-cols-[1.4fr_1fr]
-          gap-8 lg:gap-12
-          shadow-[0_15px_40px_-10px_rgba(0,0,0,0.08)]
-          transition-all duration-500 hover:shadow-[0_25px_50px_-12px_rgba(255,107,26,0.18)]
-        "
-      >
+    <section
+      className={`flex w-full justify-center bg-gray-50 px-3 py-6 font-sans md:py-8`}
+    >
+      <div className="relative grid w-full max-w-7xl grid-cols-1 gap-8 overflow-hidden rounded-[24px] border border-black/5 bg-white px-5 py-8 shadow-[0_15px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 hover:shadow-[0_25px_50px_-12px_rgba(255,107,26,0.18)] sm:rounded-[40px] sm:px-8 sm:py-10 md:px-12 md:py-12 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
         {/* 🎬 VIDEO CONTAINER */}
-        <div className="relative z-10 flex items-center justify-center order-1 lg:order-none">
+        <div className="relative z-10 order-1 flex items-center justify-center lg:order-none">
           <div
             ref={cajaRef}
-            className="
-              w-full aspect-video
-              rounded-[20px] sm:rounded-[28px]
-              overflow-hidden
-              bg-black
-              shadow-lg
-              relative
-              group
-              cursor-pointer
-            "
+            className="group relative aspect-video w-full cursor-pointer overflow-hidden rounded-[20px] bg-black shadow-lg sm:rounded-[28px]"
             onClick={() => setIsVideoActive(true)}
             aria-label="Reproducir video promocional"
           >
@@ -84,17 +64,21 @@ export default function Hero8K() {
                   alt="8K Ruta de las Mandarinas — vídeo del recorrido por el valle de Patate"
                   width={1280}
                   height={720}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
 
                 {/* Overlay Oscuro */}
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300" />
+                <div className="absolute inset-0 bg-black/20 transition-all duration-300 group-hover:bg-black/10" />
 
                 {/* Botón de Play */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-14 h-14 sm:w-20 sm:h-20 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm shadow-xl transition-transform duration-300 group-hover:scale-110 group-hover:bg-white">
-                    <svg className="w-6 h-6 sm:w-9 sm:h-9 text-[#FF6B1A] ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 group-hover:bg-white sm:h-20 sm:w-20">
+                    <svg
+                      className="ml-1 h-6 w-6 text-[#FF6B1A] sm:h-9 sm:w-9"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
@@ -110,7 +94,7 @@ export default function Hero8K() {
                 ref={(el) => {
                   if (el) el.muted = arrancoSolo;
                 }}
-                className="absolute inset-0 w-full h-full object-cover animate-in fade-in duration-500"
+                className="animate-in fade-in absolute inset-0 h-full w-full object-cover duration-500"
                 src={VIDEO_SRC}
                 poster={VIDEO_POSTER}
                 controls
@@ -124,34 +108,33 @@ export default function Hero8K() {
         </div>
 
         {/* 🏃‍♂️ CONTENIDO / TEXTO */}
-        <div className="relative z-10 flex flex-col justify-center text-center lg:text-left order-2 lg:order-none">
+        <div className="relative z-10 order-2 flex flex-col justify-center text-center lg:order-none lg:text-left">
           {/* A 72px el titular partía en cuatro líneas y "Mandarinas" se comía el
               ancho de la columna. Con el peso nuevo del sitio, menos cuerpo se
               lee mejor y cabe en dos. */}
-          <h1 className="font-[family-name:var(--font-poppins)] text-[30px] sm:text-[38px] lg:text-[46px] xl:text-[54px] leading-[1] text-black mb-4 sm:mb-5">
-            <span className="block tracking-wide">8K Ruta de las Mandarinas</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]">
+          <h1 className="mb-4 font-[family-name:var(--font-poppins)] text-[30px] leading-[1] text-black sm:mb-5 sm:text-[38px] lg:text-[46px] xl:text-[54px]">
+            <span className="block tracking-wide">
+              8K Ruta de las Mandarinas
+            </span>
+            <span className="block bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] bg-clip-text text-transparent">
               de Patate
             </span>
           </h1>
 
-          <p className="text-[13px] sm:text-sm md:text-base text-gray-600 leading-relaxed mb-6 max-w-lg mx-auto lg:mx-0 font-medium font-sans">
-            Corre celebrando el <span className="text-black font-semibold">Aniversario de la Ruta de las Mandarinas</span>. La carrera que une a la ciudad en sus calles más emblemáticas.
+          <p className="mx-auto mb-6 max-w-lg font-sans text-[13px] leading-relaxed font-medium text-gray-600 sm:text-sm md:text-base lg:mx-0">
+            Corre celebrando el{" "}
+            <span className="font-semibold text-black">
+              Aniversario de la Ruta de las Mandarinas
+            </span>
+            . La carrera que une a la ciudad en sus calles más emblemáticas.
           </p>
 
           {/* Sin "Ver Reglamento": el reglamento aún no está aprobado por la
               organización y el enlace se retira hasta que lo esté. */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start font-sans">
+          <div className="flex flex-col justify-center gap-3 font-sans sm:flex-row lg:justify-start">
             <Link
               href="/inscripcion"
-              className="
-                inline-flex items-center justify-center px-6 py-3.5
-                rounded-full bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]
-                text-white text-xs sm:text-sm tracking-[0.15em] font-bold uppercase
-                shadow-md shadow-[#FF6B1A]/30
-                hover:shadow-[#FF6B1A]/50 hover:-translate-y-0.5
-                transition-all duration-300
-              "
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] px-6 py-3.5 text-xs font-bold tracking-[0.15em] text-white uppercase shadow-md shadow-[#FF6B1A]/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[#FF6B1A]/50 sm:text-sm"
             >
               Inscribirse Ahora
             </Link>

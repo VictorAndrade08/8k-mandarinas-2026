@@ -70,7 +70,13 @@
       "Bash(npm audit *)",
       "Skill(artifact-design)",
       "Skill(artifact-design:*)",
-      "Bash(awk '{print \" \"$NF\" \"$5\" bytes\"}')"
+      "Bash(awk '{print \" \"$NF\" \"$5\" bytes\"}')",
+      "Bash(npm add *)",
+      "Bash(npx husky *)",
+      "Bash(npx eslint *)",
+      "Bash(awk '{print \"  \"$1\" líneas eliminadas\"}')",
+      "Bash(awk '{print \" pre-commit existe\"}')",
+      "Bash(awk '{print \"  node_modules: \"$1}')"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"

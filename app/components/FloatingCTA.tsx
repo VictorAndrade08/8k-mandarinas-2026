@@ -16,8 +16,12 @@ export default function FloatingCTA() {
   const [isOverFooter, setIsOverFooter] = useState(false);
   const [pasoElHeader, setPasoElHeader] = useState(false);
 
-  // Lógica de montaje (Entrada suave)
+  // Detección de montaje: el botón solo puede aparecer una vez estamos en el
+  // navegador. La regla set-state-in-effect avisa de renders en cascada, pero
+  // este es el patrón estándar para valores que solo existen en el cliente — el
+  // HTML lo genera el build, donde no hay scroll que medir.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -36,7 +40,10 @@ export default function FloatingCTA() {
     if (typeof window === "undefined") return;
 
     const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+      // El array puede llegar vacío: leerlo a ciegas es un crash en el callback
+      // del observer, que además nadie ve porque no revienta el render.
       const entry = entries[0];
+      if (!entry) return;
       setIsOverFooter(entry.isIntersecting);
     };
 
@@ -68,36 +75,7 @@ export default function FloatingCTA() {
       <Link
         href="/inscripcion"
         aria-label="Ir a formulario de inscripción"
-        className={`
-          font-[family-name:var(--font-poppins)]
-          fixed z-[9999]
-          left-1/2 -translate-x-1/2
-          bottom-[calc(env(safe-area-inset-bottom)+24px)]
-          md:left-auto md:right-8 md:translate-x-0 md:bottom-8
-
-          flex items-center gap-2
-          rounded-full
-          px-10 py-4 md:px-12 md:py-5
-          text-[20px] md:text-[22px]
-          uppercase tracking-[0.1em]
-          font-bold text-white leading-none
-
-          /* Gradiente Rojo */
-          bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]
-          border border-white/20
-          backdrop-blur-md
-
-          /* Sombras y Efectos */
-          shadow-[0_10px_40px_rgba(255,107,26,0.55)]
-          hover:shadow-[0_15px_60px_rgba(255,107,26,0.75)]
-          hover:scale-105 hover:-translate-y-1
-          active:scale-95
-
-          transition-all duration-500 ease-out cubic-bezier(0.34, 1.56, 0.64, 1)
-          
-          /* Estado de visibilidad */
-          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20 pointer-events-none"}
-        `}
+        className={`/* Gradiente Rojo */ /* Sombras y Efectos */ cubic-bezier(0.34, 1.56, 0.64, 1) /* Estado de visibilidad */ fixed bottom-[calc(env(safe-area-inset-bottom)+24px)] left-1/2 z-[9999] flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] px-10 py-4 font-[family-name:var(--font-poppins)] text-[20px] leading-none font-bold tracking-[0.1em] text-white uppercase shadow-[0_10px_40px_rgba(255,107,26,0.55)] backdrop-blur-md transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_60px_rgba(255,107,26,0.75)] active:scale-95 md:right-8 md:bottom-8 md:left-auto md:translate-x-0 md:px-12 md:py-5 md:text-[22px] ${isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-20 opacity-0"} `}
       >
         <span>Inscribirme</span>
         <MousePointerClick size={24} className="animate-pulse" />

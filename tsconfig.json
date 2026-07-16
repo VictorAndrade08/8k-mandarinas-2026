@@ -5,6 +5,10 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    // Obliga a comprobar que un elemento de array u objeto existe antes de
+    // usarlo. Es lo que separa `lista[0].nombre` de la pantalla en blanco por
+    // "undefined is not a function" cuando la lista viene vacía.
+    "noUncheckedIndexedAccess": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
