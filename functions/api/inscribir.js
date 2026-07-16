@@ -31,25 +31,14 @@ const TIPOS_COMPROBANTE = [
 ];
 const MAX_COMPROBANTE = 10 * 1024 * 1024; // 10 MB, el mismo límite que promete el formulario
 
-// La cédula ecuatoriana lleva dígito verificador (módulo 10). Validarlo evita
-// que entren números inventados en el campo que justamente usamos como clave
-// anti-duplicados.
-function cedulaEcuatorianaValida(c) {
-  if (!/^\d{10}$/.test(c)) return false;
-  const provincia = parseInt(c.slice(0, 2), 10);
-  if (provincia < 1 || provincia > 24) return false;
-  if (parseInt(c[2], 10) > 5) return false;
-
-  const coef = [2, 1, 2, 1, 2, 1, 2, 1, 2];
-  let suma = 0;
-  for (let i = 0; i < 9; i++) {
-    let v = parseInt(c[i], 10) * coef[i];
-    if (v > 9) v -= 9;
-    suma += v;
-  }
-  const verificador = (10 - (suma % 10)) % 10;
-  return verificador === parseInt(c[9], 10);
-}
+// El documento no se valida por formato: se acepta cualquier número, igual que
+// en el formulario. Es una decisión de negocio — comprobar el dígito verificador
+// de la cédula ecuatoriana frenaba inscripciones de gente con documentos válidos
+// que no encajan en ese molde.
+//
+// Tiene que seguir coincidiendo con app/components/inscripcion/validacion.ts: si
+// el servidor es más estricto que el navegador, el corredor rellena todo y se
+// come un error que no puede entender ni arreglar.
 
 const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), {
@@ -80,17 +69,9 @@ export async function onRequestPost({ request, env }) {
     // El formulario ya valida todo esto, pero el formulario es opcional: este
     // endpoint acepta CORS "*", así que cualquiera puede postear directamente
     // sin pasar por él.
-    const tipoDocumento = get("tipo_documento") || "cedula";
-    if (tipoDocumento === "cedula" && !cedulaEcuatorianaValida(cedula)) {
-      return json({ status: "error", message: "La cédula no es válida." }, 400);
-    }
-    if (tipoDocumento === "pasaporte" && cedula.length < 5) {
-      return json(
-        { status: "error", message: "El pasaporte no es válido." },
-        400
-      );
-    }
-
+    // El documento no se comprueba por formato (ver el comentario de arriba):
+    // basta con que venga. Lo que NO se relaja es el precio ni la categoría, que
+    // es por donde se pierde dinero.
     const nombres = get("nombres");
     const apellidos = get("apellidos");
     if (nombres.length < 2 || apellidos.length < 2) {

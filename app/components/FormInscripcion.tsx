@@ -3,6 +3,7 @@
 import React, {
   useState,
   useCallback,
+  useMemo,
   ChangeEvent,
   useRef,
   useEffect,
@@ -20,7 +21,6 @@ import {
   CheckCircle,
   WarningCircle,
   UploadSimple,
-  X,
   CaretRight,
   CaretLeft,
   CalendarBlank,
@@ -35,7 +35,6 @@ import {
   ClockCountdown,
   ArrowsClockwise,
   MagnifyingGlass,
-  ArrowRight,
   ShieldCheck,
   FileText,
   Copy,
@@ -47,241 +46,19 @@ import { toast } from "sonner";
 
 // --- Interfaces Actualizadas ---
 /** Lo que promete devolver functions/api/inscribir.js */
-interface RespuestaInscribir {
-  status?: "success" | "error";
-  message?: string;
-  file_url?: string;
-}
-
-/**
- * El progreso guardado en localStorage.
- *
- * Todo opcional a propósito: lo escribió una versión anterior del formulario, o
- * el propio usuario a mano. Nada de lo que salga de aquí puede darse por bueno
- * sin comprobarlo — de hecho `selectedPrice` no se usa para cobrar justamente
- * por esto; el precio lo decide el servidor.
- */
-interface ProgresoGuardado {
-  step?: number;
-  selectedCategory?: string;
-  selectedPrice?: number;
-  acceptTerms?: boolean;
-  metodoPago?: string;
-  formData?: Partial<FormDataState>;
-}
-
-interface FormDataState {
-  // Los extranjeros no tienen cédula ecuatoriana: el tipo cambia teclado y validación.
-  tipo_documento: "cedula" | "pasaporte";
-  cedula: string;
-  nombres: string;
-  apellidos: string;
-  ciudad: string;
-  email: string;
-  telefono: string;
-  edad: string;
-  genero: string;
-  // --- NUEVOS CAMPOS PARA VERIFICACIÓN FÁCIL (Anti-Fraude) ---
-  es_titular: string; // "si" o "no"
-  nombre_titular_cuenta: string; // Nombre de quien pagó realmente
-  num_comprobante: string; // El ID de la transacción
-  fecha_pago: string;
-  comprobante: File | null;
-}
-
-interface Category {
-  name: string;
-  price: number;
-  desc: string;
-  icon: React.ReactNode;
-}
+import type {
+  FormDataState,
+  ProgresoGuardado,
+  RespuestaInscribir,
+  Category,
+} from "./inscripcion/tipos";
+import { reglas, formatTelefono, hoyISO } from "./inscripcion/validacion";
+import { CustomModal } from "./inscripcion/CustomModal";
+import { ResumeModal } from "./inscripcion/ResumeModal";
+import { SoporteReal } from "./inscripcion/SoporteReal";
 
 // Clave para guardar el progreso del formulario (no perder datos al refrescar)
 const STORAGE_KEY = "inscripcion_8k_progreso";
-
-// Celular Ecuador: 0991234567 -> 099 123 4567. El usuario no tiene que adivinar los espacios.
-const formatTelefono = (v: string) => {
-  const d = v.replace(/\D/g, "").slice(0, 10);
-  if (d.length <= 3) return d;
-  if (d.length <= 6) return `${d.slice(0, 3)} ${d.slice(3)}`;
-  return `${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6)}`;
-};
-
-// Solo sugerencias para el datalist: el campo sigue aceptando cualquier ciudad.
-const CIUDADES = [
-  "Ambato",
-  "Patate",
-  "Píllaro",
-  "Baños",
-  "Pelileo",
-  "Quito",
-  "Riobamba",
-  "Latacunga",
-  "Guayaquil",
-  "Cuenca",
-  "Salcedo",
-  "Puyo",
-];
-
-const hoyISO = () => new Date().toISOString().slice(0, 10);
-
-// --- Componente: Modal de Alertas ---
-const CustomModal = ({
-  isOpen,
-  title,
-  message,
-  type = "error",
-  actionLabel,
-  onAction,
-  onClose,
-}: {
-  isOpen: boolean;
-  title: string;
-  message: string;
-  type?: "success" | "error" | "warning";
-  actionLabel?: string;
-  onAction?: () => void;
-  onClose: () => void;
-}) => {
-  if (!isOpen) return null;
-
-  return (
-    // En móvil sube desde abajo (bottom sheet); en desktop se centra.
-    <div className="animate-in fade-in fixed inset-0 z-[100] flex items-end justify-center bg-black/80 backdrop-blur-md duration-200 sm:items-center sm:p-4">
-      <div className="animate-in slide-in-from-bottom-6 sm:zoom-in-95 sm:slide-in-from-bottom-0 relative w-full max-w-md rounded-t-3xl border border-white/10 bg-[#141820] p-6 pb-8 shadow-2xl sm:rounded-2xl md:p-8">
-        <div
-          className="mx-auto -mt-2 mb-4 h-1.5 w-12 rounded-full bg-white/25 sm:hidden"
-          aria-hidden="true"
-        />
-        <button
-          onClick={onClose}
-          aria-label="Cerrar"
-          className="absolute top-3 right-3 flex h-12 w-12 items-center justify-center rounded-xl text-gray-300 transition outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white/60"
-        >
-          <X size={28} />
-        </button>
-        <div className="flex flex-col items-center gap-6 text-center">
-          <div
-            className={`flex h-16 w-16 items-center justify-center rounded-full md:h-20 md:w-20 ${
-              type === "error"
-                ? "bg-red-500/20 text-red-500"
-                : type === "warning"
-                  ? "bg-yellow-500/20 text-yellow-500"
-                  : "bg-green-500/20 text-green-500"
-            }`}
-          >
-            {type === "error" && <WarningCircle size={36} />}
-            {type === "warning" && <WarningCircle size={36} />}
-            {type === "success" && <CheckCircle size={36} />}
-          </div>
-          <h3 className="font-bebas text-3xl font-bold text-white uppercase md:text-4xl">
-            {title}
-          </h3>
-          <p className="font-barlow text-lg leading-relaxed text-gray-300">
-            {message}
-          </p>
-
-          <div className="mt-2 flex w-full flex-col gap-3">
-            {actionLabel && onAction && (
-              <button
-                onClick={onAction}
-                className="font-barlow flex w-full items-center justify-center gap-2 rounded-xl bg-[#FF6B1A] py-4 text-lg font-bold text-white shadow-lg shadow-[#FF6B1A]/20 transition hover:bg-[#E55104] md:text-xl"
-              >
-                {actionLabel} <ArrowRight size={20} />
-              </button>
-            )}
-            <button
-              onClick={onClose}
-              className={`font-barlow w-full rounded-xl py-4 text-lg font-bold transition md:text-xl ${actionLabel ? "bg-[#1A1E29] text-gray-400 hover:bg-[#252A36] hover:text-white" : "bg-white text-black hover:bg-gray-200"}`}
-            >
-              {actionLabel ? "Cerrar" : "Entendido"}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// --- Modal: Retomar inscripción guardada ---
-const ResumeModal = ({
-  isOpen,
-  step,
-  onResume,
-  onNew,
-}: {
-  isOpen: boolean;
-  step: number;
-  onResume: () => void;
-  onNew: () => void;
-}) => {
-  if (!isOpen) return null;
-  const labels = ["Categoría", "Datos", "Pago", "Final"];
-
-  return (
-    <div className="animate-in fade-in fixed inset-0 z-[110] flex items-end justify-center bg-black/95 backdrop-blur-md duration-300 sm:items-center sm:p-4">
-      <div className="animate-in slide-in-from-bottom-6 sm:zoom-in-95 sm:slide-in-from-bottom-0 relative w-full max-w-lg rounded-t-3xl border border-[#FF6B1A]/30 bg-[#1C2029] p-6 pb-8 shadow-[0_0_50px_rgba(255,107,26,0.18)] sm:rounded-3xl md:p-8">
-        <div
-          className="mx-auto -mt-2 mb-4 h-1.5 w-12 rounded-full bg-white/25 sm:hidden"
-          aria-hidden="true"
-        />
-        <div className="flex flex-col items-center gap-6 text-center">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#FF6B1A]/10 text-[#FF6B1A]">
-            <ArrowsClockwise size={40} />
-          </div>
-
-          <div>
-            <h3 className="font-barlow mb-3 text-3xl font-bold text-white uppercase md:text-4xl">
-              Tienes una inscripción sin terminar
-            </h3>
-            <p className="font-barlow text-lg leading-relaxed text-gray-300 md:text-xl">
-              Guardamos tu avance en el{" "}
-              <strong className="text-white">
-                Paso {step} ({labels[step - 1] || "Datos"})
-              </strong>
-              . ¿Quieres continuar donde te quedaste?
-            </p>
-          </div>
-
-          <div className="font-barlow mt-2 grid w-full grid-cols-1 gap-3">
-            <button
-              onClick={onResume}
-              className="flex items-center justify-center gap-2 rounded-xl bg-[#FF6B1A] px-6 py-5 text-lg font-bold text-white shadow-lg shadow-[#FF6B1A]/20 transition hover:bg-[#E55104]"
-            >
-              Continuar mi inscripción <ArrowRight size={20} />
-            </button>
-
-            <button
-              onClick={onNew}
-              className="rounded-xl border border-white/10 bg-[#0F1218] px-6 py-4 text-base font-bold text-gray-300 transition hover:bg-[#252A36] hover:text-white"
-            >
-              Empezar una nueva
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Un sitio de estafa nunca tiene a quién reclamarle. Este bloque va en la barra
-// lateral en desktop y al final del contenido en móvil (donde la lateral se apila arriba).
-const SoporteReal = () => (
-  <div className="font-barlow">
-    <a
-      href="https://wa.me/593995102378"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex min-h-[48px] items-center gap-2 rounded-lg text-base font-bold text-gray-200 transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-[#FF6B1A]"
-    >
-      <WhatsappLogo size={20} className="text-[#25D366]" />
-      ¿Algún problema? Escríbenos
-    </a>
-    <p className="mt-1 text-sm font-medium text-gray-400">
-      © 2026 8K Ruta de las Mandarinas · Patate, Ecuador.
-    </p>
-  </div>
-);
 
 // --- COMPONENTE PRINCIPAL ---
 export default function InscripcionPage() {
@@ -846,58 +623,13 @@ export default function InscripcionPage() {
 
   const stepsLabels = ["Categoría", "Datos", "Pago", "Final"];
 
-  // Cada regla devuelve null si el dato sirve, o el texto exacto que verá el corredor.
-  const fieldRules: Partial<
-    Record<keyof FormDataState, (v: string) => string | null>
-  > = {
-    cedula: (v) => {
-      const raw = v.trim();
-      // Un pasaporte extranjero puede ser alfanumérico o solo dígitos (el de EE.UU. son 9),
-      // así que ahí no aplicamos la regla de los 10 dígitos de la cédula ecuatoriana.
-      if (formData.tipo_documento === "pasaporte") {
-        if (!raw) return "Escribe tu número de pasaporte.";
-        if (raw.length < 5) return "Ese pasaporte parece muy corto.";
-        return null;
-      }
-      if (!raw) return "Escribe tu cédula.";
-      const d = raw.replace(/\D/g, "");
-      if (d.length !== 10)
-        return `La cédula tiene 10 dígitos, escribiste ${d.length}.`;
-      return null;
-    },
-    nombres: (v) =>
-      v.trim().length >= 2
-        ? null
-        : `Escribe tu nombre como está en tu ${formData.tipo_documento === "pasaporte" ? "pasaporte" : "cédula"}.`,
-    apellidos: (v) => (v.trim().length >= 2 ? null : "Escribe tus apellidos."),
-    ciudad: (v) => (v.trim().length >= 2 ? null : "¿Desde qué ciudad vienes?"),
-    telefono: (v) => {
-      const d = v.replace(/\D/g, "");
-      if (!d) return "Sin WhatsApp no podemos confirmarte el cupo.";
-      if (d.length !== 10) return "El celular tiene 10 dígitos: 099 123 4567.";
-      return null;
-    },
-    email: (v) =>
-      /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())
-        ? null
-        : "Revisa el correo, le falta algo.",
-    edad: (v) => {
-      if (!v.trim()) return "Escribe tu edad.";
-      const n = parseInt(v, 10);
-      if (isNaN(n) || n < 8 || n > 99) return "Escribe una edad entre 8 y 99.";
-      return null;
-    },
-    genero: (v) => (v ? null : "Elige una opción."),
-    num_comprobante: (v) =>
-      v.replace(/\D/g, "").length >= 4
-        ? null
-        : "Escribe al menos los últimos 4 dígitos.",
-    fecha_pago: (v) => {
-      if (!v) return "¿Qué día hiciste el pago?";
-      if (v > hoyISO()) return "Esa fecha todavía no llega.";
-      return null;
-    },
-  };
+  // Las reglas viven en ./inscripcion/validacion.ts: son funciones puras y allí
+  // se pueden probar sin montar React. Dependen del tipo de documento, así que
+  // se recalculan cuando cambia.
+  const fieldRules = useMemo(
+    () => reglas(formData.tipo_documento),
+    [formData.tipo_documento]
+  );
 
   const validateField = (name: keyof FormDataState, value?: string) =>
     fieldRules[name]?.(

@@ -77,7 +77,9 @@
       "Bash(awk '{print \"  \"$1\" líneas eliminadas\"}')",
       "Bash(awk '{print \" pre-commit existe\"}')",
       "Bash(awk '{print \"  node_modules: \"$1}')",
-      "Bash(awk '{print \"  \"$1\" líneas\"}')"
+      "Bash(awk '{print \"  \"$1\" líneas\"}')",
+      "Bash(awk '{print \"  ahora: \"$1\" líneas\"}')",
+      "Bash(git worktree *)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
