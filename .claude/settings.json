@@ -65,7 +65,8 @@
       "Bash(echo \"=== TSC exit: $? ===\")",
       "Bash(grep -o \"29 de agosto de 2026\\\\|\\\\$20\\\\|\\\\$18\\\\|\\\\$120\\\\|8 kilómetros\\\\|2 horas\\\\|Patate Garden\" out/reglamento/index.html)",
       "Bash(node -e \"require\\('/opt/homebrew/lib/node_modules/playwright'\\)\")",
-      "Bash(grep -n 'className=\"$\\\\|\\\\${direction\\\\|ChevronRight\\\\|ChevronLeft\\\\|Flecha' app/components/SponsorsStrip.tsx)"
+      "Bash(grep -n 'className=\"$\\\\|\\\\${direction\\\\|ChevronRight\\\\|ChevronLeft\\\\|Flecha' app/components/SponsorsStrip.tsx)",
+      "Bash(awk 'NR>=498 && /^}$/ {print NR\": \"$0; exit}' app/reglamento/page.tsx)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"

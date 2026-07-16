@@ -375,12 +375,6 @@ export default function ReglamentoSection() {
             </p>
           </ArticleCard>
 
-          <ArticleCard
-            id="anexo"
-            title="Anexo. Reglamento de aplicación a la ordenanza municipal"
-          >
-            <AnexoOrdenanza />
-          </ArticleCard>
         </div>
       </div>
     </section>
@@ -420,8 +414,8 @@ function ArticleCard({
 
 /**
  * Premios económicos por categoría. Es la única tabla de premios del reglamento:
- * el anexo de la ordenanza remite aquí en vez de repetir los valores, que es
- * como se coló el desfase de precios que hubo entre landing, formulario y panel.
+ * los valores se escriben una vez y aquí. Duplicarlos ya salió caro — el precio
+ * de inscripción llegó a decir tres cosas distintas en tres páginas.
  */
 function PremiosTables() {
   const tabla = [
@@ -470,12 +464,6 @@ function PremiosTables() {
       </div>
 
       <p>
-        Los ganadores deberán contar con una cuenta activa en la{" "}
-        <strong>Cooperativa de Ahorro y Crédito OSCUS</strong> para recibir los
-        premios económicos.
-      </p>
-
-      <p>
         En sorteos, los atletas deberán estar presentes en el momento de la
         entrega y haber cumplido con los requisitos de la carrera.
       </p>
@@ -501,100 +489,6 @@ function PremiosTables() {
             label="099 724 1804"
             message="Hola, tengo una consulta sobre premios y categorías de la 8K Ruta de las Mandarinas 2026."
           />
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function AnexoOrdenanza() {
-  return (
-    <div className="space-y-6">
-      <p>
-        Reglamento de aplicación al artículo 6 de la ORDENANZA MUNICIPAL que
-        establece los incentivos para la Carrera Atlética 8K Ruta de las
-        Mandarinas de Patate.
-      </p>
-
-      <div>
-        <p className="font-extrabold">Artículo 1.- Objeto.–</p>
-        <p className="mt-2">
-          La ordenanza que establece los incentivos para la Carrera Atlética 8K
-          Ruta de las Mandarinas asigna recursos que se utilizarán para premiar
-          a los ganadores, conforme lo determinado en el presente reglamento.
-        </p>
-      </div>
-
-      <div>
-        <p className="font-extrabold">Artículo 2.- Categorías.–</p>
-        <p className="mt-2">
-          Se constituyen las siguientes categorías, en base a las cuales se
-          realizará la distribución de los recursos fijados en la ordenanza que
-          establece los incentivos para la Carrera Atlética 8K Ruta de las
-          Mandarinas de Patate:
-        </p>
-        <div className="mt-3 grid sm:grid-cols-2 gap-2 text-black/85">
-          <div>ÉLITE PRO 8K — Damas y Varones (Menores de 40 años)</div>
-          <div>MÁSTER — Damas y Varones (40 – 64 años)</div>
-          <div>LEYENDA – TERCERA EDAD — Damas y Varones (65 años en adelante)</div>
-          <div>ESPECIALES / CAPACIDADES DIFERENTES — Abierto</div>
-        </div>
-        <p className="mt-3 text-black/70">
-          Los límites de edad para cada categoría se toman en cuenta a la fecha
-          de realización de la competencia atlética 8K Ruta de las Mandarinas.
-        </p>
-      </div>
-
-      <div>
-        <p className="font-extrabold">Artículo 3.- Distribución.–</p>
-        <p className="mt-2">
-          La entrega de los recursos fijados en la ordenanza que establece los
-          incentivos para la Carrera Atlética 8K Ruta de las Mandarinas se
-          realizará según el detalle descrito en el{" "}
-          <strong>Artículo 13. Premios y Sorteos</strong> del presente
-          reglamento.
-        </p>
-      </div>
-
-      <div>
-        <p className="font-extrabold">Artículo 4.- Requisitos para el pago.–</p>
-        <p className="mt-2">
-          Los requisitos para proceder con los pagos serán los siguientes:
-        </p>
-        <ol className="mt-3 list-decimal pl-6 space-y-1 text-black/85">
-          <li>
-            Resolución de Concejo Municipal donde se da por conocido el informe
-            técnico y económico.
-          </li>
-          <li>
-            Oficio de solicitud de pago formulado por el Director de Cultura,
-            Turismo, Deportes y Recreación, en el que se incluye el listado de
-            beneficiarios.
-          </li>
-          <li>Copia de cédula de ciudadanía.</li>
-          <li>Copia del certificado bancario o de la cuenta bancaria.</li>
-          <li>
-            En caso de que el ganador sea menor de edad, se deberá adjuntar copia
-            de cédula del representante legal.
-          </li>
-        </ol>
-      </div>
-
-      <div>
-        <p className="font-extrabold">Artículo 5.-</p>
-        <p className="mt-2">
-          Una vez efectuados los pagos, de existir valores no cobrados se
-          procederá a liquidar la certificación presupuestaria con el propósito
-          de liberar esos fondos para que sean utilizados por el GAD
-          Municipalidad de Patate.
-        </p>
-      </div>
-
-      <div>
-        <p className="font-extrabold">Artículo 6.-</p>
-        <p className="mt-2">
-          Encárguese de la administración de estos recursos a la Dirección de
-          Cultura, Turismo, Deportes y Recreación.
         </p>
       </div>
     </div>

@@ -372,7 +372,7 @@ export default function InscripcionPage() {
 
   // Categorías
   const categories: Category[] = [
-    { name: "Élite Pro 8K", price: 20, desc: "Menores de 40 años", icon: <SneakerMove size={24} /> },
+    { name: "Élite Pro 8K", price: 20, desc: "Hasta 39 años", icon: <SneakerMove size={24} /> },
     { name: "Máster", price: 20, desc: "40–64 años", icon: <Medal size={24} /> },
     { name: "Leyenda", price: 18, desc: "65 años en adelante", icon: <Crown size={24} /> },
     { name: "Discapacidad", price: 18, desc: "Todas las edades", icon: <Wheelchair size={24} /> },
