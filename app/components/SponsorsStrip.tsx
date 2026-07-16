@@ -107,7 +107,7 @@ export default function SponsorsStrip() {
           <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#FF6B1A]/50 sm:w-16"></div>
           {/* "Partners" y no "Parners": llevaba la errata desde el clon. */}
           <p className="text-center font-[family-name:var(--font-poppins)] text-[26px] font-black tracking-[0.1em] text-gray-900 uppercase sm:text-[36px]">
-            Nuestros <span className="text-[#FF6B1A]">Partners</span>
+            Nuestros <span className="text-[#C2410C]">Partners</span>
           </p>
           <div className="h-px w-8 bg-gradient-to-l from-transparent to-[#FF6B1A]/50 sm:w-16"></div>
         </div>

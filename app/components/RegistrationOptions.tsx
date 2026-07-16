@@ -43,7 +43,7 @@ export default function RegistrationOptions() {
 
             <h2 className="mb-4 font-[family-name:var(--font-poppins)] text-[32px] leading-[1] text-gray-900 sm:text-[42px]">
               ¡Inscríbete online <br />
-              <span className="text-[#FF6B1A]">en menos de 3 minutos!</span>
+              <span className="text-[#C2410C]">en menos de 3 minutos!</span>
             </h2>
 
             <p className="mb-8 text-base leading-relaxed text-gray-600">
