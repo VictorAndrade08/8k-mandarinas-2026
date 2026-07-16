@@ -76,7 +76,8 @@
       "Bash(npx eslint *)",
       "Bash(awk '{print \"  \"$1\" líneas eliminadas\"}')",
       "Bash(awk '{print \" pre-commit existe\"}')",
-      "Bash(awk '{print \"  node_modules: \"$1}')"
+      "Bash(awk '{print \"  node_modules: \"$1}')",
+      "Bash(awk '{print \"  \"$1\" líneas\"}')"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"

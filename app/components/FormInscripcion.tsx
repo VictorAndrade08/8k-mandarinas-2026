@@ -1386,6 +1386,11 @@ export default function InscripcionPage() {
                       inputMode: "text",
                     })}
 
+                    {/* Sin datalist: era solo una sugerencia, pero el desplegable
+                        se abre encima del campo en cuanto tecleas y en móvil
+                        estorba más que ayuda. Aquí vienen corredores de todo el
+                        país y de fuera, así que la lista nunca iba a estar
+                        completa. Se escribe libre y ya. */}
                     {renderInputField({
                       name: "ciudad",
                       label: "Ciudad",
@@ -1393,13 +1398,7 @@ export default function InscripcionPage() {
                       placeholder: "Ej: Ambato",
                       autoComplete: "address-level2",
                       inputMode: "text",
-                      list: "ciudades",
                     })}
-                    <datalist id="ciudades">
-                      {CIUDADES.map((c) => (
-                        <option key={c} value={c} />
-                      ))}
-                    </datalist>
 
                     {renderInputField({
                       name: "telefono",
