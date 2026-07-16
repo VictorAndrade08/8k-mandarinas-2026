@@ -95,7 +95,11 @@
       "Bash(awk '{print \" out/ total: \"$1}')",
       "Bash(awk '{print \"    \"$2\" → \"$1}')",
       "Bash(timeout 180 npx --yes knip)",
-      "Bash(npx --yes knip)"
+      "Bash(npx --yes knip)",
+      "Bash(sips -g pixelWidth -g pixelHeight op1.png)",
+      "Bash(cwebp -version)",
+      "Bash(cwebp -q 82 -resize 1600 0 op1.png -o public/fotos/banner-inscripciones.webp)",
+      "Bash(sips -g pixelWidth -g pixelHeight public/fotos/banner-inscripciones.webp)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"

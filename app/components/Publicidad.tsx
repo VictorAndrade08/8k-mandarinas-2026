@@ -2,41 +2,36 @@
 
 import React from "react";
 
-// Línea gráfica de julio (nuevaslineasgraficas/), reescalada y comprimida para web:
-// el original del banner venía en 3240x1440 sin comprimir y pesaba 59 MB.
-// Las dos imágenes que había antes vivían en un dominio temporal de Hostinger y
-// devolvían 404: la sección llevaba tiempo mostrando un recuadro vacío.
-const DESKTOP_IMAGE = "/fotos/banner-8k.jpg";
+// El banner de "Inscripciones abiertas", debajo del contador.
+//
+// Viene de op1.png (1916x821, 2 MB) reescalado a 1600 y pasado por cwebp a
+// calidad 82: 90 KB, un 96% menos, con PSNR 43,6 dB — o sea, sin diferencia
+// visible. Es lo primero que ve quien baja del hero, así que carga en eager.
+const DESKTOP_IMAGE = "/fotos/banner-inscripciones.webp";
 const MOBILE_IMAGE = "/fotos/post-8k.jpg";
 
 export default function Publicidad() {
   return (
-    <section className="w-full flex justify-center px-4 mt-3 md:mt-5 mb-2 md:mb-3">
+    <section className="mt-3 mb-2 flex w-full justify-center px-4 md:mt-5 md:mb-3">
       <div
-        className="
-          relative w-full max-w-7xl
-          rounded-[20px] md:rounded-[32px]
-          overflow-hidden
-          shadow-[0_10px_30px_rgba(0,0,0,0.28)]
-          bg-gray-200 
-        "
+        className="relative w-full max-w-7xl overflow-hidden rounded-[20px] bg-gray-200 shadow-[0_10px_30px_rgba(0,0,0,0.28)] md:rounded-[32px]"
         // bg-gray-200 ayuda a que se vea un cuadro gris sutil mientras carga, mejorando la percepción
       >
         {/* Las medidas son las reales de cada archivo, no estimadas: si no cuadran,
             el navegador reserva un hueco del tamaño equivocado y la página salta al cargar. */}
-        <picture className="w-full h-auto block">
+        <picture className="block h-auto w-full">
           <source
             media="(min-width: 768px)"
             srcSet={DESKTOP_IMAGE}
-            width={2000}
-            height={889}
+            width={1600}
+            height={686}
           />
           <img
             src={MOBILE_IMAGE}
-            alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Valle de Patate · 29 de agosto · Salida Patate Gardens · Preventa $20"
+            alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Precio preventa $20 · Lugar: Valle de Patate · Fecha: 29 de agosto · Salida: Patate Gardens"
             width={1100}
             height={1281}
-            className="w-full h-auto"
+            className="h-auto w-full"
             loading="eager"
             fetchPriority="high"
             decoding="async"
