@@ -10,21 +10,22 @@ import Link from "next/link";
 // para que se viera: parecía una pegatina encima del logo, no el logo.
 const Logo = ({ className }: { className?: string }) => (
   <img
-    src="/logo-mandarinas-color.png"
+    // webp y a 520px: el PNG pesaba 80 KB para mostrarse a 200. Carga en eager
+    // porque está en el primer pantallazo, así que cada KB cuenta el doble.
+    src="/logo-mandarinas-color.webp"
     alt="8K Ruta de las Mandarinas — inicio"
-    width={744}
-    height={260}
+    width={520}
+    height={182}
     className={`${className} object-contain`}
     loading="eager"
   />
 );
 
-// Navegación del sitio. Cada entrada apunta a algo que existe de verdad: "Ruta"
-// va al artículo 4 del reglamento (Distancia y Recorrido) porque no hay página de
-// recorrido — las tarjetas "Ver mapa 3D" de la home son un alert("Próximamente").
-// Si algún día se hace esa página, se cambia el href aquí y nada más.
+// Navegación del sitio. Cada entrada apunta a algo que existe de verdad.
+// "Ruta" lleva al mapa de la home; el detalle calle por calle está en el
+// artículo 4 del reglamento, al que apunta el propio mapa.
 const NAV = [
-  { href: "/reglamento#art-4", label: "Ruta", acento: "#FF6B1A" },
+  { href: "/#ruta", label: "Ruta", acento: "#FF6B1A" },
   { href: "/#info", label: "Información", acento: "#FF6B1A" },
   { href: "/reglamento", label: "Reglamento", acento: "#FF6B1A" },
   { href: "/verificar", label: "Verificar mi pago", acento: "#FF2D7C" },

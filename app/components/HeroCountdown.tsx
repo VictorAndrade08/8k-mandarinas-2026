@@ -32,6 +32,21 @@ const pad = (n: number) => n.toString().padStart(2, "0");
 
 export default function HeroCountdown() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(INITIAL_TIME);
+  // El vídeo de fondo solo en escritorio y solo tras montar.
+  //
+  // `preload="none"` no basta: `autoPlay` obliga al navegador a descargarlo de
+  // todos modos. Eran 2,4 MB compitiendo con el logo y el contador, y en 4G eso
+  // ponía el LCP en 8,9 s — nueve segundos hasta que la página parecía viva.
+  //
+  // Detrás de un degradado al 50% y una viñeta, en un móvil no se distingue casi
+  // nada del vídeo. La espera sí se nota. Queda el póster, que pesa 24 KB.
+  const [ponerVideo, setPonerVideo] = useState(false);
+  useEffect(() => {
+    // El ancho de pantalla no existe en el build: el HTML lo genera el servidor,
+    // que no sabe en qué dispositivo se va a abrir. Por eso se decide al montar.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (window.matchMedia("(min-width: 1024px)").matches) setPonerVideo(true);
+  }, []);
 
   useEffect(() => {
     // La regla set-state-in-effect avisa de renders en cascada, y tiene razón en
@@ -63,18 +78,28 @@ export default function HeroCountdown() {
           arrancar: se quedaba el botón de play fantasma de YouTube en medio del
           hero. Un <video> propio sí autoarranca — muted + playsInline es lo que
           exigen los navegadores — y encima carga desde nuestro dominio. */}
-      <video
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
-        src={VIDEO_FONDO_SRC}
-        poster={VIDEO_FONDO_POSTER}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-        tabIndex={-1}
-      />
+      {ponerVideo ? (
+        <video
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
+          src={VIDEO_FONDO_SRC}
+          poster={VIDEO_FONDO_POSTER}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-hidden="true"
+          tabIndex={-1}
+        />
+      ) : (
+        // En móvil solo el póster: 24 KB en vez de 2,4 MB.
+        <img
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
+          src={VIDEO_FONDO_POSTER}
+          alt=""
+          aria-hidden="true"
+        />
+      )}
 
       {/* OVERLAY MANDARINA — naranja a magenta como en el flyer.
           Estaba a 0.78-0.88 y, con la capa negra encima, tapaba ~95% del vídeo:

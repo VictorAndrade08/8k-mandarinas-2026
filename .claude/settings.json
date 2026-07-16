@@ -99,7 +99,14 @@
       "Bash(sips -g pixelWidth -g pixelHeight op1.png)",
       "Bash(cwebp -version)",
       "Bash(cwebp -q 82 -resize 1600 0 op1.png -o public/fotos/banner-inscripciones.webp)",
-      "Bash(sips -g pixelWidth -g pixelHeight public/fotos/banner-inscripciones.webp)"
+      "Bash(sips -g pixelWidth -g pixelHeight public/fotos/banner-inscripciones.webp)",
+      "Bash(awk '{printf \"  %6.1f KB  %s\\\\n\", $5/1024, $9}')",
+      "Bash(awk '{print \"  total: \"$1}')",
+      "Bash(cwebp -quiet -q 78 -resize 800 0 public/video/8k-promo-poster.jpg -o public/video/8k-promo-poster.webp)",
+      "Bash(cwebp -quiet -q 75 -resize 640 0 public/video/8k-fondo-poster.jpg -o public/video/8k-fondo-poster.webp)",
+      "Bash(cwebp -quiet -q 80 -resize 800 0 public/fotos/post-8k.jpg -o public/fotos/post-8k.webp)",
+      "Bash(sips -g pixelWidth -g pixelHeight public/fotos/post-8k.webp)",
+      "Bash(awk '{printf \"  %.0f KB \\(antes 240 KB en png\\)\\\\n\", $1}')"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"

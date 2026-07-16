@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 
 import HeroCountdown from "./components/HeroCountdown";
 import Publicidad from "./components/Publicidad";
+import MapaRuta from "./components/MapaRuta";
 import Hero from "./components/Hero";
 import FloatingCTA from "./components/FloatingCTA";
 
@@ -59,6 +60,9 @@ export default function Home() {
       <HeroCountdown />
 
       <Publicidad />
+      {/* El mapa arriba del todo: es lo que más se pregunta y hasta ahora no
+          estaba en ningún sitio. */}
+      <MapaRuta />
       <Hero />
 
       <TopGallery />

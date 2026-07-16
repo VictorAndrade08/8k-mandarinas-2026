@@ -8,7 +8,9 @@ import React from "react";
 // calidad 82: 90 KB, un 96% menos, con PSNR 43,6 dB — o sea, sin diferencia
 // visible. Es lo primero que ve quien baja del hero, así que carga en eager.
 const DESKTOP_IMAGE = "/fotos/banner-inscripciones.webp";
-const MOBILE_IMAGE = "/fotos/post-8k.jpg";
+// El vertical, también en webp: 175 KB → 61 KB. Se mostraba a 380px de ancho
+// pero pesaba como si fuera a 1100 — PageSpeed lo cantaba como 154 KB tirados.
+const MOBILE_IMAGE = "/fotos/post-8k.webp";
 
 export default function Publicidad() {
   return (
@@ -29,8 +31,8 @@ export default function Publicidad() {
           <img
             src={MOBILE_IMAGE}
             alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Precio preventa $20 · Lugar: Valle de Patate · Fecha: 29 de agosto · Salida: Patate Gardens"
-            width={1100}
-            height={1281}
+            width={800}
+            height={932}
             className="h-auto w-full"
             loading="eager"
             fetchPriority="high"
