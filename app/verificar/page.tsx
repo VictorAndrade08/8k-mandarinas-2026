@@ -5,9 +5,18 @@ import { IdCard, XCircle, Loader2, X, CheckCircle2, Ticket } from "lucide-react"
 
 // Configuración de estilos y fuentes
 const brandPink = "#FF2D7C";
+// Naranja mandarina. Se sigue llamando "purple" porque el nombre viene del clon
+// del 10K de Ambato y está puesto por medio archivo; el color ya es el correcto.
 const brandPurple = "#FF6B1A";
 
-const bebasClassName = "font-bebas"; 
+const bebasClassName = "font-bebas";
+
+// Patrón fijo del código de barras decorativo del ticket: true = barra alta.
+// Fijo y no aleatorio a propósito — ver el comentario donde se pinta.
+const BARRAS = [
+  true, false, true, true, false, true, false, false, true,
+  true, false, false, true, false, true, true, false, true,
+];
 
 const AIRTABLE_API_KEY = process.env.NEXT_PUBLIC_AIRTABLE_API_KEY!;
 const AIRTABLE_BASE_ID = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID!;
@@ -359,9 +368,22 @@ export default function VerificarPage() {
                                             <span className="text-[10px] uppercase text-white/30 tracking-widest font-bold mb-1">Ticket ID</span>
                                             <span className="text-sm font-mono text-white/70 font-semibold">{data.record_id?.slice(-8).toUpperCase() || 'PRE-ORDER'}</span>
                                         </div>
-                                        <div className="h-6 opacity-30">
+                                        {/* Código de barras decorativo. Antes las alturas
+                                            salían de Math.random() dentro del render, lo que
+                                            daba dos problemas: el servidor pintaba unas barras
+                                            y el cliente otras (error de hidratación), y la
+                                            clase se construía como h-${...}, que Tailwind no
+                                            puede leer al compilar — así que no generaba ni
+                                            h-full ni h-2/3 y las barras salían sin altura.
+                                            Ahora el patrón es fijo y las clases, literales. */}
+                                        <div className="h-6 opacity-30" aria-hidden="true">
                                            <div className="flex gap-[3px] h-full items-end">
-                                              {[...Array(18)].map((_,i) => <div key={i} className={`w-[2px] bg-white h-${Math.random() > 0.5 ? 'full' : '2/3'}`} />)}
+                                              {BARRAS.map((alta, i) => (
+                                                <div
+                                                  key={i}
+                                                  className={`w-[2px] bg-white ${alta ? "h-full" : "h-2/3"}`}
+                                                />
+                                              ))}
                                            </div>
                                         </div>
                                     </div>

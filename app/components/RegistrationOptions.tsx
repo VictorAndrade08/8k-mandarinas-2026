@@ -2,14 +2,15 @@
 
 import React from "react";
 import Link from "next/link"; // MEJORA: Navegación SPA instantánea
-import { 
-  Globe, 
-  MessageCircle, 
-  CheckCircle2, 
-  ArrowRight, 
+import {
+  Globe,
+  MessageCircle,
+  CheckCircle2,
+  ArrowRight,
   Smartphone,
   CreditCard,
-  UserCheck
+  UserCheck,
+  type LucideIcon,
 } from "lucide-react";
 
 // Configuración de la fuente optimizada
@@ -160,15 +161,17 @@ export default function RegistrationOptions() {
   );
 }
 
-// Componentes auxiliares para listas limpias
-const ListItem = ({ icon: Icon, text }: { icon: any, text: string }) => (
+// Componentes auxiliares para listas limpias.
+// LucideIcon en vez de any: con `any` cualquier cosa pasaba por aquí — un string,
+// un número — y reventaba en tiempo de ejecución en vez de al compilar.
+const ListItem = ({ icon: Icon, text }: { icon: LucideIcon, text: string }) => (
   <li className="flex items-start gap-3 text-gray-700">
     <Icon size={20} className="text-[#FF6B1A] mt-0.5 shrink-0" />
     <span className="text-sm sm:text-base font-medium">{text}</span>
   </li>
 );
 
-const ListItemDark = ({ icon: Icon, text }: { icon: any, text: string }) => (
+const ListItemDark = ({ icon: Icon, text }: { icon: LucideIcon, text: string }) => (
   <li className="flex items-start gap-3 text-white/90">
     <Icon size={20} className="text-[#25D366] mt-0.5 shrink-0" />
     <span className="text-sm sm:text-base font-medium">{text}</span>
