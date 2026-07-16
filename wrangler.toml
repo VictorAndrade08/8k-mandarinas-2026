@@ -1,6 +1,11 @@
 name = "8k-mandarinas-2026"
 pages_build_output_dir = "out"
 compatibility_date = "2024-11-06"
+# nodejs_compat se activó para firebase, que necesitaba node:stream. Firebase ya
+# no está en el proyecto y ninguna Function usa APIs de Node — corren sobre Web
+# APIs puras, que es lo único que garantiza el Edge. Se deja puesto porque
+# quitarlo no gana nada y tocar la config del despliegue sin motivo es cómo se
+# rompe un viernes. Si alguna vez estorba, se puede quitar sin miedo.
 compatibility_flags = ["nodejs_compat"]
 
 # Base de datos D1 (inscripciones)  ->  se usa como env.DB
