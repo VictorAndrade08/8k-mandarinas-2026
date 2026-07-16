@@ -238,13 +238,6 @@ export default function VerificarPage() {
           <div className="relative z-10 grid w-full items-center gap-16 lg:grid-cols-2 lg:gap-24">
             {/* --- COLUMNA IZQUIERDA (TEXTO/HERO) --- */}
             <div className="flex flex-col items-center text-center text-white lg:items-start lg:text-left">
-              <div className="animate-in fade-in slide-in-from-bottom-4 mb-8 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 backdrop-blur-sm duration-700">
-                <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-[#00FF94]" />
-                <span className="font-mono text-sm font-semibold tracking-widest text-white uppercase">
-                  Sistema de Verificación 2025
-                </span>
-              </div>
-
               <h1
                 className={`text-7xl leading-[0.9] text-white sm:text-8xl lg:text-9xl ${bebasClassName} animate-in slide-in-from-bottom-4 mb-8 drop-shadow-2xl delay-100 duration-700`}
               >

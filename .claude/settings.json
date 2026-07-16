@@ -81,7 +81,16 @@
       "Bash(awk '{print \"  ahora: \"$1\" líneas\"}')",
       "Bash(git worktree *)",
       "Bash(rm node_modules)",
-      "Bash(cp -al \"/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026/node_modules\" node_modules)"
+      "Bash(cp -al \"/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026/node_modules\" node_modules)",
+      "Bash(awk '{print \"  \"$1}')",
+      "Bash(awk '{print \"  FormInscripcion.tsx: \"$1\" líneas\"}')",
+      "Bash(awk '{print \"  usos en FormInscripcion: \"$1\" \\(solo el import\\)\"}')",
+      "Bash(awk '{print \" \"$1\" avisos\"}')",
+      "Bash(sed 's/^0$/ ✅ sin campo packageManager en conflicto/')",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('package.json'\\)\\); print\\(' '+\\('✅ engines: '+str\\(d['engines']\\) if 'engines' in d else '❌ falta \\\\\"engines\\\\\" en package.json'\\)\\)\")",
+      "Bash(awk '{print \"  variables NEXT_PUBLIC_ en uso: \"$1-1}')",
+      "Bash(awk '{print \" node_modules: \"$1}')",
+      "Bash(rm -rf ~/.npm/_cacache)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
