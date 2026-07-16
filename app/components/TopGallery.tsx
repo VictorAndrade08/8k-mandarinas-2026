@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image"; // IMPORTANTE: Usamos el componente nativo
 
 type GalleryItem = { src: string; alt: string };
@@ -51,16 +52,23 @@ export default function TopGallery() {
     if (!active) return;
     // Focus para accesibilidad
     const t = setTimeout(() => closeBtnRef.current?.focus(), 50);
-    
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setActiveIndex(null);
       if (e.key === "ArrowRight") setActiveIndex(v => (v === null ? 0 : (v + 1) % IMAGES.length));
       if (e.key === "ArrowLeft") setActiveIndex(v => (v === null ? 0 : (v - 1 + IMAGES.length) % IMAGES.length));
     };
     window.addEventListener("keydown", onKey);
+
+    // Congela la página de detrás: sin esto, al arrastrar sobre la foto se
+    // desplaza el fondo y al cerrar apareces en otro sitio del que abriste.
+    const scrollPrevio = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     return () => {
       clearTimeout(t);
       window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = scrollPrevio;
     };
   }, [active]);
 
@@ -181,45 +189,63 @@ export default function TopGallery() {
         </div>
       </section>
 
-      {/* Modal - Fullscreen */}
-      {active && (
-        <div
-          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center p-2 sm:p-4"
-          onClick={() => setActiveIndex(null)}
-          role="dialog"
-          aria-modal="true"
-        >
+      {/* Modal - Fullscreen.
+          Va por portal a <body> y no aquí dentro: <main> lleva `relative z-10`,
+          que abre un contexto de apilamiento, y el header es hermano suyo con
+          z-50. Estando dentro de <main>, el visor competía como z-10 contra el
+          z-50 del header y perdía — por muy alto que le pusiéramos el z-index
+          aquí dentro, el header seguía tapándolo. Colgado del body ya juega en
+          la misma liga y el 10000 sirve de algo. */}
+      {active &&
+        createPortal(
+          // 10000 y no 9999 para quedar también por encima del botón flotante
+          // "Inscribirme", que está en 9999.
+          <div
+            className="fixed inset-0 z-[10000] bg-black/95 backdrop-blur-md flex items-center justify-center p-2 sm:p-4"
+            onClick={() => setActiveIndex(null)}
+            role="dialog"
+            aria-modal="true"
+          >
           <div
             className="relative w-full max-w-6xl h-full flex flex-col items-center justify-center"
             onClick={e => e.stopPropagation()}
           >
-            {/* Botón Cerrar */}
-            <div className="absolute top-4 right-4 z-50">
+            {/* Botón Cerrar. Iba en bg-white/10, que sobre una foto clara casi
+                no se veía: el fondo sólido lo despega de cualquier imagen. */}
+            <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50">
               <button
                 ref={closeBtnRef}
                 onClick={() => setActiveIndex(null)}
                 className="
-                    flex items-center justify-center w-12 h-12
-                    rounded-full bg-white/10 hover:bg-[#FF6B1A] 
-                    backdrop-blur-md border border-white/20 
-                    text-white transition-all active:scale-90
+                    flex items-center justify-center gap-2
+                    h-12 px-4 sm:h-14 sm:px-5
+                    rounded-full bg-black/70 hover:bg-[#FF6B1A]
+                    backdrop-blur-md border-2 border-white/70
+                    text-white font-bold text-sm uppercase tracking-[0.1em]
+                    shadow-[0_8px_24px_rgba(0,0,0,0.5)]
+                    transition-all active:scale-90
+                    outline-none focus-visible:ring-2 focus-visible:ring-white
                 "
                 aria-label="Cerrar galería"
               >
                 <span className="text-2xl leading-none">×</span>
+                <span className="hidden sm:inline">Cerrar</span>
               </button>
             </div>
 
-            {/* Navegación Desktop */}
+            {/* Navegación Desktop. Iban en bg-white/10 translúcido y sobre una
+                foto clara no se veían; ahora llevan el degradado de la marca. */}
             <button
                 onClick={(e) => { e.stopPropagation(); setActiveIndex(v => (v === null ? 0 : (v - 1 + IMAGES.length) % IMAGES.length)); }}
-                className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 items-center justify-center rounded-full bg-white/10 hover:bg-[#FF6B1A] text-white border border-white/20 transition-all z-20"
+                className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 items-center justify-center rounded-full bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] hover:scale-110 text-white text-3xl font-black leading-none border-2 border-white/70 shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all active:scale-95 z-20"
+                aria-label="Foto anterior"
             >
                 ‹
             </button>
             <button
                 onClick={(e) => { e.stopPropagation(); setActiveIndex(v => (v === null ? 0 : (v + 1) % IMAGES.length)); }}
-                className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 items-center justify-center rounded-full bg-white/10 hover:bg-[#FF6B1A] text-white border border-white/20 transition-all z-20"
+                className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 items-center justify-center rounded-full bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] hover:scale-110 text-white text-3xl font-black leading-none border-2 border-white/70 shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all active:scale-95 z-20"
+                aria-label="Foto siguiente"
             >
                 ›
             </button>
@@ -250,8 +276,9 @@ export default function TopGallery() {
                 {activeIndex !== null ? activeIndex + 1 : 0} / {IMAGES.length}
             </div>
           </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }

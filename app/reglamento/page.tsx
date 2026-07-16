@@ -67,8 +67,8 @@ export default function ReglamentoSection() {
           <ArticleCard id="art-1" title="Artículo 1. Denominación">
             <p>
               La Carrera Atlética <strong>8K Ruta de las Mandarinas</strong> es
-              organizada por el Comité Organizador en colaboración con el GAD
-              Municipal de Patate y auspiciantes.
+              organizada por <strong>Vigop Eventos</strong>, Comité Organizador,
+              en colaboración con el GAD Municipal de Patate.
             </p>
           </ArticleCard>
 
@@ -76,8 +76,8 @@ export default function ReglamentoSection() {
             <p>
               La competencia se llevará a cabo el{" "}
               <strong>sábado 29 de agosto de 2026</strong>, con salida desde{" "}
-              <strong>Patate Garden a las 08h00</strong>. El tiempo máximo para
-              completar el recorrido será de <strong>2 horas</strong>.
+              <strong>Patate Gardens a las 08h00</strong>. El tiempo máximo para
+              completar el recorrido será de <strong>90 minutos</strong>.
             </p>
           </ArticleCard>
 
@@ -90,17 +90,79 @@ export default function ReglamentoSection() {
           </ArticleCard>
 
           <ArticleCard id="art-4" title="Artículo 4. Distancia y Recorrido">
-            <div className="space-y-3">
+            {/* El recorrido calle por calle y el cierre de vías salen del oficio
+                N°0084 dirigido al alcalde de Patate y sellado por el GAD. Antes
+                este artículo decía solo "recorrido escénico por las principales
+                calles", que no le sirve de nada a quien viene a correr. */}
+            <div className="space-y-4">
               <p>
                 La carrera tendrá una distancia de{" "}
                 <strong>8 kilómetros</strong>, con un recorrido escénico que
                 conecta las principales calles y zonas rurales de Patate,
                 rodeadas de cultivos de mandarinas.
               </p>
-              <p className="text-black/70">
-                La ruta oficial estará disponible en la página web y en los
-                puntos de información del evento.
-              </p>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
+                  <p className="text-black/60 text-[13px] uppercase tracking-[0.18em] mb-1">
+                    Salida
+                  </p>
+                  <p className="font-extrabold">Patate Gardens</p>
+                  <p className="text-black/70 text-[14px]">08h00</p>
+                </div>
+                <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
+                  <p className="text-black/60 text-[13px] uppercase tracking-[0.18em] mb-1">
+                    Llegada
+                  </p>
+                  <p className="font-extrabold">Estadio Municipal de Patate</p>
+                  <p className="text-black/70 text-[14px]">
+                    Tarima, sonido y premiación
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <p className="font-semibold mb-2">Recorrido oficial</p>
+                <p>
+                  Salida desde <strong>Patate Gardens</strong>. Se gira a la
+                  izquierda a la calle Hilario Torres, luego a la izquierda por la
+                  calle E. Dávila, siguen por la calle bajo la Escalinata de la
+                  Fe, continúan por la calle García Moreno, giran a la izquierda a
+                  la calle Vicente Rocafuerte, a la derecha a la calle Naciones
+                  Unidas, giran a la izquierda y suben a la vía a San Jorge hasta
+                  el sector de Quinta, circunvalan el sector de Chalpi pasando por
+                  los viveros del sector, bajan a la calle Eloy Alfaro tras el
+                  colegio Benjamín Araujo, bajan la calle Manuel Zapater frente al
+                  colegio Benjamín Araujo, giran a la calle Juan León Mera hasta
+                  la calle Vicente Rocafuerte, giran a la izquierda hasta la calle
+                  Naciones Unidas y continúan por la <strong>Av. Ambato</strong>{" "}
+                  para la recta final hasta el ingreso al{" "}
+                  <strong>Estadio Municipal de Patate</strong>.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5 space-y-2">
+                <p className="font-semibold">Cierre de vías y operativo</p>
+                <ul className="list-disc pl-6 space-y-1 text-black/85">
+                  <li>
+                    Cierre de vías desde las <strong>07h00 hasta las 10h00</strong>.
+                    La apertura será progresiva conforme avance la competencia.
+                  </li>
+                  <li>
+                    El control de tránsito estará a cargo de la{" "}
+                    <strong>Policía Nacional</strong>, con vallado en todo el
+                    trayecto.
+                  </li>
+                  <li>
+                    La <strong>Banda Municipal</strong> estará ubicada en el
+                    trayecto de la carrera.
+                  </li>
+                  <li>
+                    La competencia forma parte del programa oficial de Patate en
+                    sus festividades.
+                  </li>
+                </ul>
+              </div>
             </div>
           </ArticleCard>
 
@@ -108,7 +170,7 @@ export default function ReglamentoSection() {
             <div className="space-y-4">
               <div className="grid sm:grid-cols-2 gap-2 text-black/85">
                 <div>
-                  <strong>Élite Pro 8K</strong> — Damas y Varones (Menores de 40
+                  <strong>Élite Pro 8K</strong> — Damas y Varones (hasta 39
                   años)
                 </div>
                 <div>
@@ -150,8 +212,8 @@ export default function ReglamentoSection() {
                 <p className="font-semibold mb-2">Costos de inscripción</p>
                 <ul className="space-y-1 text-black/85">
                   <li>
-                    <strong>${PRECIO_PREVENTA}</strong> — Élite Pro 8K (Menores
-                    de 40 años)
+                    <strong>${PRECIO_PREVENTA}</strong> — Élite Pro 8K (
+                  hasta 39 años)
                   </li>
                   <li>
                     <strong>${PRECIO_PREVENTA}</strong> — Máster (40 – 64 años)

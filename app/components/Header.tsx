@@ -50,11 +50,19 @@ export default function Header() {
 
   return (
     <>
-      {/* fixed y no sticky: sticky ocupa sitio en el flujo, así que empujaba el
-          hero hacia abajo y dejaba una franja del fondo naranja por encima del
-          vídeo. Fuera del flujo, el vídeo arranca en el píxel 0 y la píldora
-          flota encima. Contrapartida: las páginas sin hero necesitan reservar
-          ese hueco a mano — lo hace MainWrapper en SiteChrome.tsx. */}
+      {/* absolute, ni sticky ni fixed:
+          - sticky/normal ocupan sitio en el flujo y empujaban el hero hacia
+            abajo, dejando una franja del fondo naranja por encima del vídeo;
+          - fixed lo arreglaba, pero dejaba la píldora clavada en pantalla todo
+            el rato.
+          Con absolute está fuera del flujo (el vídeo arranca en el píxel 0 y la
+          píldora flota encima) y además se va con el scroll. Se ancla al <body>,
+          que ya es relative desde layout.tsx.
+          Contrapartida: al no ocupar sitio, las páginas sin hero tienen que
+          reservar ese hueco a mano — lo hace MainWrapper en SiteChrome.tsx.
+          Y como la píldora se pierde al bajar, quien lleva a "Inscribirse" a
+          partir de ahí es el botón flotante de FloatingCTA, que aparece justo
+          cuando esta desaparece. */}
       {/* Primer parada del tabulador: saltar el menú e ir al contenido.
           Solo se ve cuando se le da el foco con el teclado. */}
       <a
@@ -64,7 +72,7 @@ export default function Header() {
         Saltar al contenido
       </a>
 
-      <header className={`fixed top-0 inset-x-0 pt-8 sm:pt-10 pb-2 z-50 w-full flex justify-center px-4 font-sans`}>
+      <header className={`absolute top-0 inset-x-0 pt-8 sm:pt-10 pb-2 z-50 w-full flex justify-center px-4 font-sans`}>
         <div
           className="
             w-full max-w-7xl mx-auto

@@ -3,7 +3,7 @@
 Sitio web oficial de la carrera **8K Ruta de las Mandarinas 2026**.
 
 - **Fecha:** Sábado 29 de agosto de 2026
-- **Salida:** Patate Garden, 08:00
+- **Salida:** Patate Gardens, 08:00
 - **Lugar:** Valle de Patate, Tungurahua – Ecuador
 - **Distancia:** 8 km
 - **Precio preventa:** USD 20 (incluye kit)

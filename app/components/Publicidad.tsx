@@ -33,7 +33,7 @@ export default function Publicidad() {
           />
           <img
             src={MOBILE_IMAGE}
-            alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Valle de Patate · 29 de agosto · Salida Patate Garden · Preventa $20"
+            alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Valle de Patate · 29 de agosto · Salida Patate Gardens · Preventa $20"
             width={1100}
             height={1281}
             className="w-full h-auto"

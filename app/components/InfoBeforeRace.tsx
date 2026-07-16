@@ -70,13 +70,6 @@ export default function InfoBeforeRace() {
         <div className="relative z-10">
             {/* Header */}
             <div className="mb-10 sm:mb-12 text-center md:text-left">
-                <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-                    <span className="h-px w-8 bg-[#FF6B1A]"></span>
-                    <p className="text-[#FF6B1A] uppercase tracking-[0.4em] text-xs sm:text-sm font-bold font-sans">
-                        Información Clave
-                    </p>
-                </div>
-
                 <h2 className="text-white text-[38px] sm:text-[52px] md:text-[64px] leading-[0.9] font-[family-name:var(--font-poppins)] uppercase tracking-wide">
                     Todo lo que necesitas <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">

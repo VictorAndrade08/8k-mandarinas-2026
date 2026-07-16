@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link"; // 1. Navegación SPA instantánea
-import { Scale, FileCheck, ArrowRight, ShieldCheck } from "lucide-react";
+import { Scale, ArrowRight } from "lucide-react";
 
 // Configuración de la fuente (Carga eficiente sin bloqueo)
 export default function ReglamentoSection() {
@@ -93,18 +93,6 @@ export default function ReglamentoSection() {
                 </a>
             </div>
             
-            {/* Pie de página con iconos de confianza */}
-            <div className="mt-12 pt-8 border-t border-white/5 flex flex-wrap justify-center gap-6 sm:gap-12 opacity-60 w-full">
-                <div className="flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-wider text-gray-400 font-semibold">
-                    <ShieldCheck size={16} className="text-[#FF6B1A]" />
-                    <span>Avalado por Vigop Eventos</span>
-                </div>
-                 <div className="flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-wider text-gray-400 font-semibold">
-                    <FileCheck size={16} className="text-[#FF6B1A]" />
-                    <span>Actualizado Enero 2026</span>
-                </div>
-            </div>
-
         </div>
       </div>
     </section>

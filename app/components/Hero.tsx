@@ -115,6 +115,7 @@ export default function Hero8K() {
                 poster={VIDEO_POSTER}
                 controls
                 autoPlay
+                loop
                 playsInline
                 preload="none"
               />

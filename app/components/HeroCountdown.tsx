@@ -94,34 +94,38 @@ export default function HeroCountdown() {
         }}
       />
 
-      {/* CONTENIDO — 3 grupos distribuidos verticalmente */}
-      <div className="relative z-10 flex flex-col items-center justify-center gap-12 sm:gap-16 h-full w-full px-4 sm:px-6 pt-10 pb-8 sm:pt-14 sm:pb-12 text-center text-white">
+      {/* CONTENIDO — 3 grupos distribuidos verticalmente.
+          El pt de arriba reserva el header: como el header va fixed, no ocupa
+          sitio, y sin esta reserva el contenido se centraba contra toda la
+          pantalla y en portátiles bajos el logo se metía debajo de la píldora.
+          Las medidas van en vh y no en breakpoints de ancho porque lo que aquí
+          aprieta es el alto: un portátil de 1440x700 es ancho y bajo, así que
+          por ancho no salta ningún breakpoint y aun así no cabe. Con clamp la
+          pieza encoge sola en vez de chocar. */}
+      <div className="relative z-10 flex flex-col items-center justify-center gap-[clamp(1.25rem,4vh,4rem)] h-full w-full px-4 sm:px-6 pt-[140px] sm:pt-[165px] pb-[clamp(1rem,4vh,3rem)] text-center text-white">
 
-        {/* GRUPO SUPERIOR — header + logo principal */}
+        {/* GRUPO SUPERIOR — logo principal.
+            Sin el rótulo "8K · Patate · Ecuador": con el header flotando encima
+            del vídeo, quedaba justo debajo de la píldora y se tocaban. Además
+            repetía lo que ya dice el logo que tiene debajo. */}
         <div className="flex flex-col items-center w-full">
-          <p className="font-[family-name:var(--font-poppins)] text-sm xs:text-base sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.32em] sm:tracking-[0.4em] text-white/85 font-semibold mb-5 sm:mb-7 whitespace-nowrap">
-            <span className="text-white">8K</span>
-            <span className="mx-2 sm:mx-3 text-white/40">·</span>
-            <span>Patate</span>
-            <span className="mx-2 sm:mx-3 text-white/40">·</span>
-            <span>Ecuador</span>
-          </p>
-
+          {/* max-h además del ancho: el logo es muy apaisado, así que fijándolo
+              solo por ancho se comía el alto entero en pantallas bajas. */}
           <img
             src="/logo-mandarinas-blanco.svg"
             alt="8K Ruta de las Mandarinas"
-            className="w-[240px] sm:w-[340px] md:w-[440px] lg:w-[520px] xl:w-[580px] h-auto select-none drop-shadow-[0_10px_40px_rgba(0,0,0,0.7)]"
+            className="w-[min(78vw,580px)] max-h-[min(20vh,190px)] h-auto object-contain select-none drop-shadow-[0_10px_40px_rgba(0,0,0,0.7)]"
             draggable={false}
           />
 
-          <p className="mt-8 sm:mt-10 md:mt-12 font-[family-name:var(--font-poppins)] text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.25em] sm:tracking-[0.32em] text-white font-bold whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
+          <p className="mt-[clamp(0.75rem,2.5vh,3rem)] font-[family-name:var(--font-poppins)] text-[clamp(1.05rem,3.2vh,2.4rem)] uppercase tracking-[0.25em] sm:tracking-[0.32em] text-white font-black whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
             Sábado · 29 agosto · 2026
           </p>
         </div>
 
         {/* GRUPO CENTRAL — contador */}
         <div className="flex flex-col items-center w-full">
-          <p className="font-[family-name:var(--font-poppins)] text-white/85 uppercase tracking-[0.3em] sm:tracking-[0.35em] text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-3 sm:mb-4 md:mb-5">
+          <p className="font-[family-name:var(--font-poppins)] text-white/90 uppercase tracking-[0.3em] sm:tracking-[0.35em] text-[clamp(0.82rem,2vh,1.45rem)] font-black mb-[clamp(0.4rem,1.4vh,1.25rem)]">
             Faltan para el inicio
           </p>
 
@@ -135,10 +139,10 @@ export default function HeroCountdown() {
                   bg-black/55
                   border-x border-b border-white/10
                   rounded-b-xl sm:rounded-b-2xl rounded-t-md
-                  pt-2 pb-2 sm:pt-2.5 sm:pb-2.5 md:pt-3 md:pb-3
+                  py-[clamp(0.35rem,1vh,0.75rem)]
                   px-1 sm:px-2
                   shadow-[0_10px_30px_rgba(0,0,0,0.45)]
-                  min-h-[68px] sm:min-h-[82px] md:min-h-[95px]
+                  min-h-[clamp(56px,11vh,95px)]
                 "
               >
                 {/* franja superior estilo dorsal de carrera */}
@@ -150,14 +154,14 @@ export default function HeroCountdown() {
                   className="
                     font-[family-name:var(--font-poppins)]
                     font-black italic
-                    text-[24px] xs:text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px]
+                    text-[clamp(24px,min(7vw,8vh),68px)]
                     leading-none text-white tabular-nums
                   "
                   suppressHydrationWarning
                 >
                   {b.value}
                 </span>
-                <span className="mt-1 sm:mt-1.5 md:mt-2 font-[family-name:var(--font-poppins)] text-[9px] xs:text-[10px] sm:text-xs md:text-sm tracking-[0.08em] xs:tracking-[0.15em] sm:tracking-[0.22em] uppercase text-white/70 font-bold">
+                <span className="mt-[clamp(0.15rem,0.6vh,0.5rem)] font-[family-name:var(--font-poppins)] text-[clamp(9px,1.5vh,1rem)] tracking-[0.08em] xs:tracking-[0.15em] sm:tracking-[0.22em] uppercase text-white/80 font-black">
                   {b.label}
                 </span>
               </div>
@@ -168,13 +172,13 @@ export default function HeroCountdown() {
           <a
             href="/inscripcion/"
             className="
-              mt-8 sm:mt-10 md:mt-12
+              mt-[clamp(1rem,3.5vh,3rem)]
               inline-flex items-center justify-center
               rounded-full bg-white
-              px-10 py-4 sm:px-14 sm:py-5
+              px-10 sm:px-14 py-[clamp(0.6rem,1.8vh,1.25rem)]
               font-[family-name:var(--font-poppins)]
-              text-base sm:text-lg md:text-xl
-              font-bold uppercase tracking-[0.22em]
+              text-[clamp(0.9rem,2.2vh,1.4rem)]
+              font-black uppercase tracking-[0.22em]
               text-[#B8186A]
               shadow-[0_12px_45px_rgba(0,0,0,0.5)]
               transition-transform duration-300

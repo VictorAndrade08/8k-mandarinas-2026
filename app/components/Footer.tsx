@@ -4,6 +4,20 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image"; // 1. Optimización de imagen
 import { Facebook, Instagram, MessageCircle } from "lucide-react";
+import { WHATSAPP_SOPORTE } from "../lib/carrera";
+
+// Los mismos que la cinta de logos de la home (SPONSOR_LOGOS en SponsorsStrip).
+// Aquí van en texto porque en una columna estrecha ocho logos no se leen.
+const PATROCINADORES = [
+  "OSCUS",
+  "Vehicentro · Sinotruk",
+  "cani",
+  "Nutritec",
+  "VIGOP Eventos",
+  "BOHO",
+  "Patate Gardens",
+  "Prez Agencia",
+];
 
 // Configuración de la fuente
 export default function Footer() {
@@ -46,24 +60,16 @@ export default function Footer() {
 
         {/* IZQUIERDA — LOGO Y TEXTO */}
         <div className="flex-1 flex flex-col sm:flex-row gap-6 md:gap-8 items-start relative z-10">
-          <div
-            className="
-              rounded-2xl
-              bg-[#FF6B1A]
-              flex items-center justify-center
-              shadow-[0_12px_30px_rgba(255,107,26,0.38)]
-              flex-shrink-0
-              px-4 py-3 sm:px-5 sm:py-4
-            "
-            aria-hidden="true"
-          >
-            {/* Logo oficial de las Mandarinas */}
+          {/* Logo desnudo: iba metido en una caja naranja con sombra que sobre el
+              footer oscuro parecía una pegatina encima del logo, no el logo. La
+              versión blanca ya se sostiene sola sobre este fondo. */}
+          <div className="flex-shrink-0" aria-hidden="true">
             <Image
               src="/logo-mandarinas-blanco.svg"
               alt="Logo 8K Ruta de las Mandarinas"
               width={120}
               height={42}
-              className="h-9 sm:h-11 w-auto object-contain"
+              className="h-14 sm:h-16 w-auto object-contain"
               loading="lazy"
             />
           </div>
@@ -98,7 +104,12 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-400">
               {/* Usamos Link o <a> según corresponda. Si es scroll interno, <a> está bien. */}
               <li><Link href="/inscripcion/" className="hover:text-[#FF6B1A] transition-colors duration-200">Inscripción</Link></li>
+              <li><Link href="/verificar" className="hover:text-[#FF6B1A] transition-colors duration-200">Verificar mi pago</Link></li>
+              <li><Link href="/reglamento#art-4" className="hover:text-[#FF6B1A] transition-colors duration-200">Ruta y recorrido</Link></li>
+              <li><Link href="/reglamento#art-5" className="hover:text-[#FF6B1A] transition-colors duration-200">Categorías</Link></li>
+              <li><Link href="/reglamento#art-7" className="hover:text-[#FF6B1A] transition-colors duration-200">Entrega de kits</Link></li>
               <li><Link href="/reglamento" className="hover:text-[#FF6B1A] transition-colors duration-200">Reglamento</Link></li>
+              <li><Link href="/terminos" className="hover:text-[#FF6B1A] transition-colors duration-200">Términos y privacidad</Link></li>
               <li><a href="https://wa.me/593995102378" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6B1A] transition-colors duration-200">Preguntas frecuentes</a></li>
             </ul>
           </div>
@@ -108,13 +119,16 @@ export default function Footer() {
             <h4 className="text-lg md:text-xl mb-6 font-[family-name:var(--font-poppins)] tracking-wide text-white">
               Patrocinadores
             </h4>
+            {/* Los ocho de public/sponsors, los mismos que pasan por la cinta de
+                la home. Aquí solo salían dos, así que el footer contradecía a la
+                propia página. */}
             <ul className="space-y-3 text-gray-400">
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]"></span> Vehicentro
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]"></span> Sinotruk Ecuador
-              </li>
+              {PATROCINADORES.map((nombre) => (
+                <li key={nombre} className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B1A] flex-shrink-0"></span>{" "}
+                  {nombre}
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -92,8 +92,9 @@ export default function SponsorsStrip() {
         {/* Título */}
         <div className="flex items-center justify-center gap-4 mb-6 sm:mb-8">
             <div className="h-px w-8 sm:w-16 bg-gradient-to-r from-transparent to-[#FF6B1A]/50"></div>
-            <p className="text-center text-[24px] sm:text-[32px] tracking-[0.1em] uppercase text-gray-800 font-[family-name:var(--font-poppins)]">
-              Nuestros <span className="text-[#FF6B1A]">Parners</span>
+            {/* "Partners" y no "Parners": llevaba la errata desde el clon. */}
+            <p className="text-center text-[26px] sm:text-[36px] tracking-[0.1em] uppercase text-gray-900 font-black font-[family-name:var(--font-poppins)]">
+              Nuestros <span className="text-[#FF6B1A]">Partners</span>
             </p>
             <div className="h-px w-8 sm:w-16 bg-gradient-to-l from-transparent to-[#FF6B1A]/50"></div>
         </div>
@@ -107,12 +108,18 @@ export default function SponsorsStrip() {
               onMouseEnter={() => handleArrowEnter(-1)}
               onMouseLeave={handleArrowLeave}
               onClick={() => setDirection(-1)}
-              className="
-                h-10 w-10 rounded-full border shadow-md flex items-center justify-center transition-all active:scale-95
-                ${direction === -1 
-                  ? 'bg-[#FF6B1A] text-white border-[#FF6B1A]' 
-                  : 'bg-white text-gray-500 border-gray-200 hover:text-[#FF6B1A] hover:border-[#FF6B1A]'
-                }"
+              // Backticks y no comillas: iba con comillas dobles, así que el
+              // ${...} no se interpolaba nunca y se colaba tal cual como texto
+              // en el class. De ahí que la flecha saliera siempre gris: los
+              // colores del estado activo jamás llegaban a aplicarse.
+              className={`
+                h-10 w-10 rounded-full border-2 shadow-md flex items-center justify-center transition-all active:scale-95
+                ${
+                  direction === -1
+                    ? "bg-[#FF6B1A] text-white border-[#FF6B1A] shadow-[0_6px_18px_rgba(255,107,26,0.5)]"
+                    : "bg-white text-[#FF6B1A] border-[#FF6B1A]/40 hover:bg-[#FF6B1A] hover:text-white hover:border-[#FF6B1A]"
+                }
+              `}
               aria-label="Mover a la derecha rápido"
             >
               <ChevronLeft size={24} />
@@ -174,12 +181,16 @@ export default function SponsorsStrip() {
                onMouseEnter={() => handleArrowEnter(1)}
                onMouseLeave={handleArrowLeave}
                onClick={() => setDirection(1)}
-               className="
-                 h-10 w-10 rounded-full border shadow-md flex items-center justify-center transition-all active:scale-95
-                 ${direction === 1 
-                   ? 'bg-[#FF6B1A] text-white border-[#FF6B1A]' 
-                   : 'bg-white text-gray-500 border-gray-200 hover:text-[#FF6B1A] hover:border-[#FF6B1A]'
-                 }"
+               // Mismo arreglo que la flecha izquierda: iba con comillas dobles
+               // y el ${...} no se interpolaba.
+               className={`
+                 h-10 w-10 rounded-full border-2 shadow-md flex items-center justify-center transition-all active:scale-95
+                 ${
+                   direction === 1
+                     ? "bg-[#FF6B1A] text-white border-[#FF6B1A] shadow-[0_6px_18px_rgba(255,107,26,0.5)]"
+                     : "bg-white text-[#FF6B1A] border-[#FF6B1A]/40 hover:bg-[#FF6B1A] hover:text-white hover:border-[#FF6B1A]"
+                 }
+               `}
                aria-label="Mover a la izquierda rápido"
              >
               <ChevronRight size={24} />

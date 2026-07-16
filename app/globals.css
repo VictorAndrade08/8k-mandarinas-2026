@@ -82,11 +82,11 @@ label,
      sigue siendo font-bold — pero pesa más. Poppins se carga con 400 a 900 en
      layout.tsx, así que todos estos pesos existen de verdad y el navegador no
      tiene que falsificar ninguno engordando los trazos. */
-  --font-weight-light: 400;
-  --font-weight-normal: 500;
-  --font-weight-medium: 600;
-  --font-weight-semibold: 700;
-  --font-weight-bold: 800;
+  --font-weight-light: 500;
+  --font-weight-normal: 600;
+  --font-weight-medium: 700;
+  --font-weight-semibold: 800;
+  --font-weight-bold: 900;
   --font-weight-extrabold: 900;
   --font-weight-black: 900;
 }
@@ -127,9 +127,11 @@ body {
   font-family: var(--font-poppins), system-ui, -apple-system, "Segoe UI", Roboto,
     Arial, sans-serif;
 
-  /* El texto que no lleva ninguna clase de peso arranca en 500, no en 400: es el
-     suelo del sitio para que nada se vea fino al lado del arte. */
-  font-weight: 500;
+  /* El texto que no lleva ninguna clase de peso arranca en 600: es el suelo del
+     sitio para que nada se vea fino al lado del arte. Va en el mismo escalón que
+     font-normal — si no, un párrafo suelto pesaría menos que uno marcado como
+     "normal" a mano, que es justo lo contrario de lo que dice la etiqueta. */
+  font-weight: 600;
 
   /* ✅ mejora mix-blend-mode y stacking */
   isolation: isolate;
@@ -143,12 +145,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 800;
+  font-weight: 900;
 }
 
 strong,
 b {
-  font-weight: 800;
+  font-weight: 900;
 }
 
 /* ✅ Helpers de tipografía para “afiche” */
@@ -298,11 +300,11 @@ b {
   will-change: transform, filter, background-position;
 }
 
-/* El header va fixed, encima de todo: al saltar a una sección con #ancla, sin
-   este margen el título aterriza detrás del header y parece que el enlace falló.
-   Tiene que ser mayor que la altura del header (~142px) — ver HUECO_HEADER en
-   SiteChrome.tsx. */
+/* Un respiro al saltar a una sección con #ancla, para que el título no quede
+   pegado al borde de la pantalla. Antes eran 160px porque el header iba fijo y
+   tapaba el destino; ahora es absolute y se va con el scroll, así que ya no hay
+   nada encima que esquivar. */
 :target,
 section[id] {
-  scroll-margin-top: 160px;
+  scroll-margin-top: 24px;
 }
