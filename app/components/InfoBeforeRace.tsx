@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { MapPin, Users, Package, Trophy, ArrowRight } from "lucide-react";
-import { WHATSAPP_SOPORTE } from "../lib/carrera";
 
 /**
  * Las cuatro cosas que un corredor pregunta antes de inscribirse, y cada una
@@ -46,12 +45,6 @@ const ITEMS = [
 ];
 
 export default function InfoBeforeRace() {
-  const comingSoon = () => {
-    // Nota: alert() bloquea el hilo principal, pero para prototipos está bien.
-    // En producción idealmente usarías un Toast (sonner/react-hot-toast).
-    alert("🚀 ¡Próximamente disponible! Estamos ultimando detalles.");
-  };
-
   return (
     // 4. Inyectamos la variable de fuente CSS
     <section
@@ -77,12 +70,11 @@ export default function InfoBeforeRace() {
           {/* Grid de Tarjetas */}
           <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-4">
             {ITEMS.map((it) => (
-              <button
+              <Link
                 key={it.title}
-                type="button"
-                onClick={comingSoon}
+                href={it.href}
                 className="group relative flex min-h-[280px] flex-col rounded-[24px] border border-white/5 bg-white/5 p-6 text-left backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#FF6B1A]/30 hover:bg-[#FF6B1A]/10 sm:p-8"
-                aria-label={`Ver información sobre ${it.title}`} // Mejora de accesibilidad (PageSpeed 100)
+                aria-label={`${it.cta}: ${it.title}`}
               >
                 {/* Icono */}
                 <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white transition-all duration-300 group-hover:border-[#FF6B1A] group-hover:bg-[#FF6B1A] group-hover:shadow-[0_0_20px_rgba(255,107,26,0.45)]">
@@ -97,14 +89,16 @@ export default function InfoBeforeRace() {
                   {it.desc}
                 </p>
 
-                <div className="mt-auto flex items-center gap-2 text-xs font-bold tracking-[0.15em] text-white/60 uppercase transition-colors group-hover:text-[#FF6B1A]">
+                {/* Botón de verdad, no un rótulo: ahora lleva a algún sitio, así
+                    que tiene que parecer pulsable y medir lo que mide un dedo. */}
+                <span className="mt-auto inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 text-sm font-black tracking-[0.12em] text-white uppercase transition-all group-hover:border-[#FF6B1A] group-hover:bg-[#FF6B1A] group-hover:text-white">
                   {it.cta}
                   <ArrowRight
-                    size={14}
+                    size={16}
                     className="transition-transform group-hover:translate-x-1"
                   />
-                </div>
-              </button>
+                </span>
+              </Link>
             ))}
           </div>
         </div>
