@@ -128,14 +128,19 @@ export default function HeroCountdown() {
             draggable={false}
           />
 
-          <p className="mt-[clamp(0.75rem,2.5vh,3rem)] font-[family-name:var(--font-poppins)] text-[clamp(1.05rem,3.2vh,2.4rem)] font-black tracking-[0.25em] whitespace-nowrap text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:tracking-[0.32em]">
+          {/* min(vh, vw) y no solo vh: con `whitespace-nowrap`, esta línea no
+              puede partirse, así que lo que manda es el ancho. Un móvil es
+              estrecho y alto — 3.2vh de un iPhone son 27px, y a ese tamaño
+              "Sábado · 29 agosto · 2026" con este tracking se sale de los 390px
+              por los dos lados. Mirando también el vw, encoge cuando toca. */}
+          <p className="mt-[clamp(0.75rem,2.5vh,3rem)] font-[family-name:var(--font-poppins)] text-[clamp(0.8rem,min(3.2vh,3.7vw),2.4rem)] font-black tracking-[0.25em] whitespace-nowrap text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:tracking-[0.32em]">
             Sábado · 29 agosto · 2026
           </p>
         </div>
 
         {/* GRUPO CENTRAL — contador */}
         <div className="flex w-full flex-col items-center">
-          <p className="mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-poppins)] text-[clamp(0.82rem,2vh,1.45rem)] font-black tracking-[0.3em] text-white/90 uppercase sm:tracking-[0.35em]">
+          <p className="mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-poppins)] text-[clamp(0.62rem,min(2vh,2.6vw),1.45rem)] font-black tracking-[0.3em] text-white/90 uppercase sm:tracking-[0.35em]">
             Faltan para el inicio
           </p>
 
@@ -156,7 +161,10 @@ export default function HeroCountdown() {
                 >
                   {b.value}
                 </span>
-                <span className="xs:tracking-[0.15em] mt-[clamp(0.15rem,0.6vh,0.5rem)] font-[family-name:var(--font-poppins)] text-[clamp(9px,1.5vh,1rem)] font-black tracking-[0.08em] text-white/80 uppercase sm:tracking-[0.22em]">
+                {/* "SEGUNDOS" es la palabra más larga y su caja mide un cuarto
+                    del ancho: el tamaño tiene que salir del vw, no del vh, o se
+                    corta en móvil. Sin tracking hasta xs por el mismo motivo. */}
+                <span className="xs:tracking-[0.1em] mt-[clamp(0.15rem,0.6vh,0.5rem)] font-[family-name:var(--font-poppins)] text-[clamp(7px,min(1.5vh,2.1vw),1rem)] font-black tracking-normal text-white/80 uppercase sm:tracking-[0.18em]">
                   {b.label}
                 </span>
               </div>

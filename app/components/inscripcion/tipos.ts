@@ -55,5 +55,3 @@ export interface Category {
   desc: string;
   icon: React.ReactNode;
 }
-
-export type MetodoPago = "transferencia" | "qr";

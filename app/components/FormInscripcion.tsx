@@ -1249,10 +1249,11 @@ export default function InscripcionPage() {
                     )}
                   </div>
 
-                  {/* Barra de acción fija en la zona del pulgar. Va con `fixed` y no `sticky`
-                    porque la tarjeta contenedora tiene overflow:hidden y ahí sticky no ancla.
-                    El padding inferior respeta la barra de gestos del teléfono. */}
-                  <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#161A23]/95 px-4 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(0,0,0,0.45)] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:shadow-none md:backdrop-blur-none">
+                  {/* Los botones van en el flujo, no clavados abajo. Iban con
+                    `fixed` para caer en la zona del pulgar, pero en móvil se
+                    quedaban encima del contenido todo el rato y tapaban el final
+                    del formulario mientras se rellenaba. */}
+                  <div className="mt-6 border-t border-white/10 pt-6 md:border-0 md:pt-0">
                     <div className="font-barlow flex gap-3">
                       <button
                         type="button"
@@ -1608,10 +1609,11 @@ export default function InscripcionPage() {
                     </p>
                   </div>
 
-                  {/* Barra de acción fija en la zona del pulgar. Va con `fixed` y no `sticky`
-                    porque la tarjeta contenedora tiene overflow:hidden y ahí sticky no ancla.
-                    El padding inferior respeta la barra de gestos del teléfono. */}
-                  <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#161A23]/95 px-4 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(0,0,0,0.45)] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:shadow-none md:backdrop-blur-none">
+                  {/* Los botones van en el flujo, no clavados abajo. Iban con
+                    `fixed` para caer en la zona del pulgar, pero en móvil se
+                    quedaban encima del contenido todo el rato y tapaban el final
+                    del formulario mientras se rellenaba. */}
+                  <div className="mt-6 border-t border-white/10 pt-6 md:border-0 md:pt-0">
                     <div className="font-barlow flex gap-3">
                       <button
                         type="button"
@@ -1790,17 +1792,11 @@ export default function InscripcionPage() {
                 </div>
               )}
 
-              {/* En móvil la barra lateral queda arriba, así que el soporte va aquí abajo.
-                Como es el último elemento del scroll, es quien reserva el hueco de la
-                barra de acción fija — y solo en los pasos que la tienen. La barra mide
-                ~110px más la franja de gestos del teléfono. */}
-              <div
-                className={`mt-8 border-t border-white/10 pt-6 md:hidden ${
-                  step === 2 || step === 3
-                    ? "mb-[calc(7rem+env(safe-area-inset-bottom))]"
-                    : "mb-4"
-                }`}
-              >
+              {/* En móvil la barra lateral queda arriba, así que el soporte va
+                aquí abajo. Ya no reserva hueco: los botones de Atrás/Siguiente
+                dejaron de ir fijos y ocupan su sitio en el flujo, así que los
+                7rem que se les guardaban solo dejarían un agujero al final. */}
+              <div className="mt-8 mb-4 border-t border-white/10 pt-6 md:hidden">
                 <SoporteReal />
               </div>
             </div>

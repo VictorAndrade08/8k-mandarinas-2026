@@ -67,31 +67,21 @@ export default function Header() {
           Solo se ve cuando se le da el foco con el teclado. */}
       <a
         href="#contenido"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-5 focus:py-3 focus:rounded-full focus:bg-white focus:text-[#FF6B1A] focus:font-bold focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B1A]"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-white focus:px-5 focus:py-3 focus:font-bold focus:text-[#FF6B1A] focus:shadow-lg focus:ring-2 focus:ring-[#FF6B1A] focus:outline-none"
       >
         Saltar al contenido
       </a>
 
-      <header className={`absolute top-0 inset-x-0 pt-8 sm:pt-10 pb-2 z-50 w-full flex justify-center px-4 font-sans`}>
-        <div
-          className="
-            w-full max-w-7xl mx-auto
-            bg-white/95 backdrop-blur-sm
-            rounded-full
-            shadow-[0_8px_28px_rgba(0,0,0,0.10)]
-            hover:shadow-[0_15px_40px_-10px_rgba(255,107,26,0.18)]
-            transition-all duration-300
-            px-4 sm:px-6 lg:px-8 py-3
-            flex items-center justify-between
-            border border-[#EFEFF3]
-          "
-        >
+      <header
+        className={`absolute inset-x-0 top-0 z-50 flex w-full justify-center px-4 pt-8 pb-2 font-sans sm:pt-10`}
+      >
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between rounded-full border border-[#EFEFF3] bg-white/95 px-4 py-3 shadow-[0_8px_28px_rgba(0,0,0,0.10)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_15px_40px_-10px_rgba(255,107,26,0.18)] sm:px-6 lg:px-8">
           {/* IZQUIERDA → HOME. El logo va desnudo: es a color y se sostiene solo. */}
           <Link
             href="/"
-            className="flex items-center cursor-pointer group flex-shrink-0 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2"
+            className="group flex flex-shrink-0 cursor-pointer items-center rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2"
           >
-            <Logo className="h-9 sm:h-11 w-auto group-hover:scale-[1.03] transition-transform duration-300" />
+            <Logo className="h-12 w-auto transition-transform duration-300 group-hover:scale-[1.03] sm:h-14 lg:h-16" />
           </Link>
 
           {/* ================= DESKTOP (LG+) =================
@@ -101,22 +91,14 @@ export default function Header() {
               fondo. El centro estaba vacío 429px mientras la derecha iba apretada. */}
           <nav
             aria-label="Navegación principal"
-            className="hidden lg:flex items-center gap-1 xl:gap-3 mr-auto ml-6 xl:ml-10"
+            className="mr-auto ml-6 hidden items-center gap-1 lg:flex xl:ml-10 xl:gap-3"
           >
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 style={{ ["--acento" as string]: item.acento }}
-                className="
-                  inline-flex items-center min-h-[44px] px-3 xl:px-4
-                  text-sm font-bold text-[#333]
-                  uppercase tracking-[0.08em]
-                  rounded-full hover:bg-black/[0.04] hover:text-(--acento)
-                  transition-colors duration-200
-                  outline-none focus-visible:ring-2 focus-visible:ring-(--acento)
-                  whitespace-nowrap
-                "
+                className="inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold tracking-[0.08em] whitespace-nowrap text-[#333] uppercase transition-colors duration-200 outline-none hover:bg-black/[0.04] hover:text-(--acento) focus-visible:ring-2 focus-visible:ring-(--acento) xl:px-4"
               >
                 {item.label}
               </Link>
@@ -124,19 +106,10 @@ export default function Header() {
           </nav>
 
           {/* Una sola acción con peso visual, a la derecha */}
-          <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
+          <div className="hidden flex-shrink-0 items-center gap-4 lg:flex">
             <Link
               href="/inscripcion"
-              className="
-                inline-flex items-center min-h-[44px] px-6
-                text-sm font-bold
-                bg-[#FF6B1A] text-white
-                rounded-full uppercase tracking-[0.08em]
-                hover:bg-[#E55104] hover:-translate-y-0.5
-                shadow-md hover:shadow-lg transition-all duration-300
-                outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2
-                whitespace-nowrap
-              "
+              className="inline-flex min-h-[44px] items-center rounded-full bg-[#FF6B1A] px-6 text-sm font-bold tracking-[0.08em] whitespace-nowrap text-white uppercase shadow-md transition-all duration-300 outline-none hover:-translate-y-0.5 hover:bg-[#E55104] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2"
             >
               Inscribirse
             </Link>
@@ -145,11 +118,11 @@ export default function Header() {
           {/* ================= BURGER (LG-) ================= */}
           <button
             onClick={() => setOpen(true)}
-            className="lg:hidden w-12 h-12 flex items-center justify-center rounded-full hover:bg-black/5 transition outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A]"
+            className="flex h-12 w-12 items-center justify-center rounded-full transition outline-none hover:bg-black/5 focus-visible:ring-2 focus-visible:ring-[#FF6B1A] lg:hidden"
             aria-label="Abrir menú"
             aria-expanded={open}
           >
-            <Menu className="w-7 h-7 text-[#111]" />
+            <Menu className="h-7 w-7 text-[#111]" />
           </button>
         </div>
       </header>
@@ -158,7 +131,7 @@ export default function Header() {
       {open && (
         // Tocar el fondo cierra: es lo que todo el mundo intenta primero.
         <div
-          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200"
+          className="animate-in fade-in fixed inset-0 z-50 bg-black/70 backdrop-blur-sm duration-200"
           onClick={() => setOpen(false)}
           role="dialog"
           aria-modal="true"
@@ -166,17 +139,9 @@ export default function Header() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="
-              absolute top-4 left-4 right-4
-              bg-[#0B0B0B]
-              rounded-[32px]
-              shadow-[0_30px_80px_rgba(0,0,0,0.85)]
-              p-6 sm:p-8
-              text-white
-              animate-in slide-in-from-top-10 duration-300
-            "
+            className="animate-in slide-in-from-top-10 absolute top-4 right-4 left-4 rounded-[32px] bg-[#0B0B0B] p-6 text-white shadow-[0_30px_80px_rgba(0,0,0,0.85)] duration-300 sm:p-8"
           >
-            <div className="flex items-center justify-between mb-8">
+            <div className="mb-8 flex items-center justify-between">
               {/* Aquí el fondo es negro, así que va la versión blanca del logo:
                   la de color lleva el texto en morado y no se leería. */}
               <img
@@ -186,17 +151,21 @@ export default function Header() {
               />
               <button
                 onClick={() => setOpen(false)}
-                className="w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 transition outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="flex h-12 w-12 items-center justify-center rounded-full transition outline-none hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white"
                 aria-label="Cerrar menú"
               >
-                <X className="w-7 h-7 text-white" />
+                <X className="h-7 w-7 text-white" />
               </button>
             </div>
 
             {/* Cae desde arriba, no entra desde un lado: el burger está arriba a
                 la derecha y el menú aparece donde el dedo acaba de tocar. */}
             <nav className="flex flex-col gap-4">
-              <Link href="/" className="text-xl font-bold py-3 border-b border-white/10 text-white/90" onClick={() => setOpen(false)}>
+              <Link
+                href="/"
+                className="border-b border-white/10 py-3 text-xl font-bold text-white/90"
+                onClick={() => setOpen(false)}
+              >
                 Inicio
               </Link>
 
@@ -204,8 +173,10 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  style={{ color: item.acento === "#FF2D7C" ? item.acento : undefined }}
-                  className="text-xl font-bold py-3 border-b border-white/10 text-white/90"
+                  style={{
+                    color: item.acento === "#FF2D7C" ? item.acento : undefined,
+                  }}
+                  className="border-b border-white/10 py-3 text-xl font-bold text-white/90"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}
@@ -214,17 +185,7 @@ export default function Header() {
 
               <Link
                 href="/inscripcion"
-                className="
-                  mt-6
-                  inline-flex justify-center w-full
-                  px-6 py-5
-                  bg-[#FF6B1A]
-                  rounded-2xl
-                  uppercase tracking-[0.25em]
-                  font-bold text-base
-                  shadow-lg
-                  active:scale-95 transition-transform
-                "
+                className="mt-6 inline-flex w-full justify-center rounded-2xl bg-[#FF6B1A] px-6 py-5 text-base font-bold tracking-[0.25em] uppercase shadow-lg transition-transform active:scale-95"
                 onClick={() => setOpen(false)}
               >
                 Inscribirse Ahora

@@ -14,7 +14,10 @@ const CARDS = [
   {
     Icon: Users,
     title: "Categorías disponibles",
-    text: "ELITE PRO, Juvenil, Senior, Master, Supermaster, Vilcabambas y Colegial.",
+    // Las cuatro reales del artículo 5 del reglamento. Antes listaba Juvenil,
+    // Senior, Supermaster, Vilcabambas y Colegial: las del 10K de Ambato, de
+    // donde se clonó este proyecto. Ninguna de esas existe en esta carrera.
+    text: "Élite Pro 8K, Máster, Leyenda y Especiales / Capacidades Diferentes.",
     cta: "Ver categorías",
   },
   {
@@ -38,107 +41,63 @@ export default function ExperienceSection() {
 
   return (
     // 3. Inyectar la variable de fuente en el contenedor principal
-    <section className={`w-full px-3 py-4 flex justify-center bg-[#0a0a0a] font-sans`}>
-      
+    <section
+      className={`flex w-full justify-center bg-[#0a0a0a] px-3 py-4 font-sans`}
+    >
       {/* Eliminado el tag <style> que bloqueaba el renderizado */}
 
-      <div
-        className="
-          relative
-          w-full max-w-7xl
-          rounded-[32px] sm:rounded-[48px]
-          bg-[#070D18]
-          text-white
-          px-6 sm:px-10 lg:px-16
-          py-10 sm:py-14
-          shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)]
-          border border-white/10
-          overflow-hidden
-        "
-      >
+      <div className="relative w-full max-w-7xl overflow-hidden rounded-[32px] border border-white/10 bg-[#070D18] px-6 py-10 text-white shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)] sm:rounded-[48px] sm:px-10 sm:py-14 lg:px-16">
         {/* Luces de fondo decorativas */}
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#FF6B1A]/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none translate-y-1/3 -translate-x-1/3" />
+        <div className="pointer-events-none absolute top-0 right-0 h-[400px] w-[400px] translate-x-1/3 -translate-y-1/2 rounded-full bg-[#FF6B1A]/10 blur-[100px]" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-[300px] w-[300px] -translate-x-1/3 translate-y-1/3 rounded-full bg-blue-500/5 blur-[80px]" />
 
         <div className="relative z-10">
-            {/* Título de Sección */}
-            <h2
-            className="
-                mb-10 sm:mb-14
-                text-[32px] sm:text-[48px] lg:text-[58px]
-                leading-[0.95]
-                font-[family-name:var(--font-poppins)]
-                text-center md:text-left
-            "
-            >
+          {/* Título de Sección */}
+          <h2 className="mb-10 text-center font-[family-name:var(--font-poppins)] text-[32px] leading-[0.95] sm:mb-14 sm:text-[48px] md:text-left lg:text-[58px]">
             Explora la experiencia <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-                8K Ruta de las Mandarinas
+            <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              8K Ruta de las Mandarinas
             </span>
-            </h2>
+          </h2>
 
-            {/* Grid de Tarjetas */}
-            <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {/* Grid de Tarjetas */}
+          <div className="grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
             {CARDS.map(({ Icon, title, text, cta }) => (
-                <button
+              <button
                 key={title}
                 onClick={handleCTA}
                 // 4. Accesibilidad mejorada para lectores de pantalla
                 aria-label={`Ver más detalles sobre ${title}`}
-                className="
-                    group relative
-                    flex flex-col
-                    rounded-[24px]
-                    overflow-hidden
-                    bg-white/5 backdrop-blur-sm
-                    border border-white/5
-                    min-h-[380px]
-                    text-left
-                    transition-all duration-300
-                    hover:bg-[#FF6B1A]/10 hover:border-[#FF6B1A]/30 hover:-translate-y-2
-                "
-                >
+                className="group relative flex min-h-[380px] flex-col overflow-hidden rounded-[24px] border border-white/5 bg-white/5 text-left backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-[#FF6B1A]/30 hover:bg-[#FF6B1A]/10"
+              >
                 {/* Cabecera Icono */}
-                <div className="
-                    flex items-center justify-center 
-                    h-[120px] 
-                    bg-gradient-to-b from-white/5 to-transparent
-                    border-b border-white/5
-                    group-hover:from-[#FF6B1A]/20 group-hover:to-transparent
-                    transition-colors duration-300
-                ">
-                    <Icon className="w-12 h-12 text-white/70 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
+                <div className="flex h-[120px] items-center justify-center border-b border-white/5 bg-gradient-to-b from-white/5 to-transparent transition-colors duration-300 group-hover:from-[#FF6B1A]/20 group-hover:to-transparent">
+                  <Icon className="h-12 w-12 text-white/70 transition-all duration-300 group-hover:scale-110 group-hover:text-white" />
                 </div>
 
                 {/* Contenido */}
-                <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
-                    <div>
-                    <h3 className="font-[family-name:var(--font-poppins)] text-[24px] sm:text-[28px] mb-3 tracking-wide text-white group-hover:text-[#FF6B1A] transition-colors">
-                        {title}
+                <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
+                  <div>
+                    <h3 className="mb-3 font-[family-name:var(--font-poppins)] text-[24px] tracking-wide text-white transition-colors group-hover:text-[#FF6B1A] sm:text-[28px]">
+                      {title}
                     </h3>
 
-                    <p className="text-sm text-gray-400 leading-relaxed font-medium">
-                        {text}
+                    <p className="text-sm leading-relaxed font-medium text-gray-400">
+                      {text}
                     </p>
-                    </div>
+                  </div>
 
-                    <div
-                    className="
-                        mt-6 text-[11px]
-                        font-bold uppercase
-                        tracking-[0.2em]
-                        text-white/60 group-hover:text-white
-                        flex items-center gap-2
-                        transition-colors
-                    "
-                    >
+                  <div className="mt-6 flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-white/60 uppercase transition-colors group-hover:text-white">
                     {cta}
-                    <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    <ArrowRight
+                      size={14}
+                      className="transition-transform group-hover:translate-x-1"
+                    />
+                  </div>
                 </div>
-                </button>
+              </button>
             ))}
-            </div>
+          </div>
         </div>
       </div>
     </section>

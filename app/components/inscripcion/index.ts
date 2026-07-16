@@ -16,12 +16,11 @@ export { SoporteReal } from "./SoporteReal";
 export { PasoCategoria } from "./PasoCategoria";
 
 export { reglas, formatTelefono, hoyISO } from "./validacion";
-export { STORAGE_KEY, PASOS, BANCO, PRECIOS } from "./constantes";
+export { STORAGE_KEY, BANCO } from "./constantes";
 
 export type {
   FormDataState,
   ProgresoGuardado,
   RespuestaInscribir,
   Category,
-  MetodoPago,
 } from "./tipos";

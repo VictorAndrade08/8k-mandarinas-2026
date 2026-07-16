@@ -1,40 +1,47 @@
 "use client";
 
 import React from "react";
-import { 
-  Users, 
-  GraduationCap, 
-  HeartHandshake, 
-  Megaphone, 
-  ArrowRight 
-} from "lucide-react";
+import Link from "next/link";
+import { MapPin, Users, Package, Trophy, ArrowRight } from "lucide-react";
+import { WHATSAPP_SOPORTE } from "../lib/carrera";
 
-// 2. Configuración de fuente (Zero CLS, Zero Blocking)
-// 3. Constantes fuera del componente para optimizar memoria
+/**
+ * Las cuatro cosas que un corredor pregunta antes de inscribirse, y cada una
+ * lleva al artículo del reglamento que la responde.
+ *
+ * Antes las cuatro tarjetas hacían `alert("Próximamente")` y una de ellas
+ * ("Colegiales & juveniles") anunciaba una categoría del 10K de Ambato que en
+ * esta carrera no existe. Un botón que no lleva a ningún sitio es peor que no
+ * tener botón: el corredor lo pulsa, no pasa nada, y se va.
+ */
 const ITEMS = [
   {
-    title: "Atletas generales",
-    desc: "Requisitos, horarios, puntos de partida y llegada para participantes de todas las categorías.",
-    cta: "Ver info atletas",
+    title: "La ruta",
+    desc: "El recorrido oficial calle por calle: salida en Patate Gardens, 8 km entre los cultivos y llegada al Estadio Municipal.",
+    cta: "Ver el recorrido",
+    href: "/reglamento#art-4",
+    icon: MapPin,
+  },
+  {
+    title: "Categorías y precios",
+    desc: "Élite Pro 8K, Máster, Leyenda y Especiales. Con la edad que corresponde a cada una y lo que cuesta inscribirse.",
+    cta: "Ver categorías",
+    href: "/reglamento#art-5",
     icon: Users,
   },
   {
-    title: "Colegiales & juveniles",
-    desc: "Información especial para estudiantes de colegios y jóvenes que participan en categorías formativas.",
-    cta: "Info colegial",
-    icon: GraduationCap,
+    title: "El kit del corredor",
+    desc: "Camiseta oficial, dorsal, chip de cronometraje, medalla y obsequios. Con lo que hay que llevar para retirarlo.",
+    cta: "Ver el kit",
+    href: "/reglamento#art-7",
+    icon: Package,
   },
   {
-    title: "Capacidades especiales",
-    desc: "Detalles para participantes con discapacidad intelectual, visual y silla de calle, incluyendo acompañantes.",
-    cta: "Ver categorías especiales",
-    icon: HeartHandshake,
-  },
-  {
-    title: "Sponsors & medios",
-    desc: "Oportunidades de visibilidad, activaciones y cobertura para marcas y medios de comunicación.",
-    cta: "Ver dossier",
-    icon: Megaphone,
+    title: "Premios",
+    desc: "Lo que gana cada categoría, cómo se cobra y el plazo para reclamar si no estás de acuerdo con tu ubicación.",
+    cta: "Ver premios",
+    href: "/reglamento#art-13",
+    icon: Trophy,
   },
 ];
 
@@ -47,84 +54,59 @@ export default function InfoBeforeRace() {
 
   return (
     // 4. Inyectamos la variable de fuente CSS
-    <section className={`w-full px-3 py-4 flex justify-center bg-[#0a0a0a] font-sans`}>
-      
+    <section
+      className={`flex w-full justify-center bg-[#0a0a0a] px-3 py-4 font-sans`}
+    >
       {/* Eliminado el tag <style> @import que bloqueaba el renderizado */}
 
-      <div
-        className="
-          relative
-          w-full max-w-7xl mx-auto
-          rounded-[32px] sm:rounded-[56px]
-          bg-[#05071A]
-          border border-white/10
-          shadow-[0_20px_70px_-10px_rgba(255,107,26,0.18)]
-          px-6 sm:px-10 lg:px-14
-          py-10 sm:py-14
-          overflow-hidden
-        "
-      >
+      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-[32px] border border-white/10 bg-[#05071A] px-6 py-10 shadow-[0_20px_70px_-10px_rgba(255,107,26,0.18)] sm:rounded-[56px] sm:px-10 sm:py-14 lg:px-14">
         {/* Decoración de fondo optimizada (pointer-events-none para no interferir con clicks) */}
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#FF6B1A]/10 rounded-full blur-[120px] pointer-events-none" />
-        
-        <div className="relative z-10">
-            {/* Header */}
-            <div className="mb-10 sm:mb-12 text-center md:text-left">
-                <h2 className="text-white text-[38px] sm:text-[52px] md:text-[64px] leading-[0.9] font-[family-name:var(--font-poppins)] uppercase tracking-wide">
-                    Todo lo que necesitas <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
-                        saber antes de correr
-                    </span>
-                </h2>
-            </div>
+        <div className="pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-[#FF6B1A]/10 blur-[120px]" />
 
-            {/* Grid de Tarjetas */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6">
+        <div className="relative z-10">
+          {/* Header */}
+          <div className="mb-10 text-center sm:mb-12 md:text-left">
+            <h2 className="font-[family-name:var(--font-poppins)] text-[38px] leading-[0.9] tracking-wide text-white uppercase sm:text-[52px] md:text-[64px]">
+              Todo lo que necesitas <br />
+              <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
+                saber antes de correr
+              </span>
+            </h2>
+          </div>
+
+          {/* Grid de Tarjetas */}
+          <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-4">
             {ITEMS.map((it) => (
-                <button
+              <button
                 key={it.title}
                 type="button"
                 onClick={comingSoon}
-                className="
-                    group relative text-left
-                    rounded-[24px]
-                    bg-white/5 backdrop-blur-md
-                    border border-white/5
-                    p-6 sm:p-8
-                    transition-all duration-300
-                    hover:bg-[#FF6B1A]/10 hover:border-[#FF6B1A]/30 hover:-translate-y-2
-                    flex flex-col
-                    min-h-[280px]
-                "
+                className="group relative flex min-h-[280px] flex-col rounded-[24px] border border-white/5 bg-white/5 p-6 text-left backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#FF6B1A]/30 hover:bg-[#FF6B1A]/10 sm:p-8"
                 aria-label={`Ver información sobre ${it.title}`} // Mejora de accesibilidad (PageSpeed 100)
-                >
+              >
                 {/* Icono */}
-                <div className="
-                    w-12 h-12 rounded-2xl 
-                    bg-white/5 border border-white/10 
-                    flex items-center justify-center 
-                    text-white mb-6
-                    group-hover:bg-[#FF6B1A] group-hover:border-[#FF6B1A] group-hover:shadow-[0_0_20px_rgba(255,107,26,0.45)]
-                    transition-all duration-300
-                ">
-                    <it.icon size={24} />
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white transition-all duration-300 group-hover:border-[#FF6B1A] group-hover:bg-[#FF6B1A] group-hover:shadow-[0_0_20px_rgba(255,107,26,0.45)]">
+                  <it.icon size={24} />
                 </div>
 
-                <h3 className="text-white text-[28px] leading-[1] font-[family-name:var(--font-poppins)] tracking-wide mb-3">
-                    {it.title}
+                <h3 className="mb-3 font-[family-name:var(--font-poppins)] text-[28px] leading-[1] tracking-wide text-white">
+                  {it.title}
                 </h3>
 
-                <p className="text-gray-400 text-sm sm:text-base leading-relaxed font-medium mb-8">
-                    {it.desc}
+                <p className="mb-8 text-sm leading-relaxed font-medium text-gray-400 sm:text-base">
+                  {it.desc}
                 </p>
 
-                <div className="mt-auto flex items-center gap-2 text-white/60 group-hover:text-[#FF6B1A] transition-colors uppercase tracking-[0.15em] text-xs font-bold">
-                    {it.cta}
-                    <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                <div className="mt-auto flex items-center gap-2 text-xs font-bold tracking-[0.15em] text-white/60 uppercase transition-colors group-hover:text-[#FF6B1A]">
+                  {it.cta}
+                  <ArrowRight
+                    size={14}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
                 </div>
-                </button>
+              </button>
             ))}
-            </div>
+          </div>
         </div>
       </div>
     </section>

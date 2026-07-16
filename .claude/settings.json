@@ -90,7 +90,12 @@
       "Bash(python3 -c \"import json; d=json.load\\(open\\('package.json'\\)\\); print\\(' '+\\('✅ engines: '+str\\(d['engines']\\) if 'engines' in d else '❌ falta \\\\\"engines\\\\\" en package.json'\\)\\)\")",
       "Bash(awk '{print \"  variables NEXT_PUBLIC_ en uso: \"$1-1}')",
       "Bash(awk '{print \" node_modules: \"$1}')",
-      "Bash(rm -rf ~/.npm/_cacache)"
+      "Bash(rm -rf ~/.npm/_cacache)",
+      "Bash(awk '{printf \"  %6.1f MB  %s\\\\n\", $1/1024, substr\\($0, index\\($0,$2\\)\\)}')",
+      "Bash(awk '{print \" out/ total: \"$1}')",
+      "Bash(awk '{print \"    \"$2\" → \"$1}')",
+      "Bash(timeout 180 npx --yes knip)",
+      "Bash(npx --yes knip)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"

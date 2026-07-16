@@ -22,7 +22,7 @@ export function PasoCategoria({
 }) {
   return (
     <div className="animate-in slide-in-from-bottom-4 fade-in duration-500">
-      <h1 className="font-bebas mb-4 text-4xl font-bold md:text-6xl">
+      <h1 className="font-bebas mb-4 text-3xl font-bold md:text-5xl">
         Selecciona tu Categoría
       </h1>
 
