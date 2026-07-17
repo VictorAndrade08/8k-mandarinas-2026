@@ -224,271 +224,276 @@ export default function VerificarPage() {
 
       <NotFoundModal open={modalOpen} onClose={() => setModalOpen(false)} />
 
-      {/* LAYOUT PRINCIPAL */}
-      <div className="flex min-h-screen w-full items-start justify-center px-4 pt-10 pb-20 font-sans">
-        {/* CONTENEDOR "TARJETA" GRANDE */}
-        <div className="relative flex min-h-[800px] w-full max-w-7xl items-center justify-center overflow-hidden rounded-[3rem] bg-[#050505] p-8 shadow-2xl lg:p-20">
-          {/* Fondos ambientales más sutiles para mejorar contraste */}
-          <div className="pointer-events-none absolute top-0 left-0 h-full w-full">
-            <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] animate-pulse rounded-full bg-purple-600/15 opacity-50 mix-blend-screen blur-[150px]" />
-            <div className="absolute right-[-10%] bottom-[-20%] h-[800px] w-[800px] animate-pulse rounded-full bg-pink-600/10 opacity-50 mix-blend-screen blur-[150px] delay-700" />
-          </div>
+      {/* LAYOUT PRINCIPAL — a sangre, sin la tarjeta flotante gigante: el fondo
+          oscuro va de borde a borde como el resto del sitio y el contenido se
+          centra en max-w-7xl. */}
+      <section className="relative w-full overflow-hidden bg-[#050505] px-4 py-12 font-sans sm:px-6 md:py-16 lg:px-8">
+        {/* Fondos ambientales */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] animate-pulse rounded-full bg-purple-600/15 opacity-50 mix-blend-screen blur-[150px]" />
+          <div className="absolute right-[-10%] bottom-[-20%] h-[800px] w-[800px] animate-pulse rounded-full bg-pink-600/10 opacity-50 mix-blend-screen blur-[150px] delay-700" />
+        </div>
 
-          {/* Grid de Contenido */}
-          <div className="relative z-10 grid w-full items-center gap-16 lg:grid-cols-2 lg:gap-24">
-            {/* --- COLUMNA IZQUIERDA (TEXTO/HERO) --- */}
-            <div className="flex flex-col items-center text-center text-white lg:items-start lg:text-left">
-              {/* El logo en vez de un titular gigante: llegaba a text-9xl y se
+        {/* Grid de Contenido. En móvil el formulario va PRIMERO (order-1): quien
+            entra a "Mi pago" quiere teclear su cédula, no bajar por el hero. En
+            lg+ vuelve al orden hero-izquierda / formulario-derecha. */}
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-24">
+          {/* --- COLUMNA IZQUIERDA (TEXTO/HERO) --- */}
+          <div className="order-2 flex flex-col items-center text-center text-white lg:order-1 lg:items-start lg:text-left">
+            {/* El logo en vez de un titular gigante: llegaba a text-9xl y se
                   comía la pantalla entera, y encima leía "8K Ruta de las de
                   Patate", que ni siquiera está bien escrito. El logo dice lo
                   mismo, mejor, y en la tipografía real de la marca. */}
-              <img
-                src="/logo-mandarinas-blanco.svg"
-                alt="8K Ruta de las Mandarinas"
-                className="animate-in slide-in-from-bottom-4 mb-7 h-auto w-[min(82vw,420px)] object-contain drop-shadow-2xl delay-100 duration-700"
-              />
+            {/* hidden en móvil: el header ya trae el logo y aquí, con el hero
+                  debajo del formulario, un segundo logo grande sobra. En lg+
+                  vuelve, que ahí es el hero de la columna izquierda. */}
+            <img
+              src="/logo-mandarinas-blanco.svg"
+              alt="8K Ruta de las Mandarinas"
+              className="animate-in slide-in-from-bottom-4 mb-7 hidden h-auto w-[min(82vw,420px)] object-contain drop-shadow-2xl delay-100 duration-700 lg:block"
+            />
 
-              <h1
-                className={`text-3xl text-white sm:text-4xl ${bebasClassName} animate-in slide-in-from-bottom-4 mb-6 uppercase delay-100 duration-700`}
-              >
-                Verifica tu inscripción
-              </h1>
+            <h1
+              className={`text-3xl text-white sm:text-4xl ${bebasClassName} animate-in slide-in-from-bottom-4 mb-6 uppercase delay-100 duration-700`}
+            >
+              Verifica tu inscripción
+            </h1>
 
-              <p className="animate-in slide-in-from-bottom-4 mb-10 max-w-lg text-xl leading-relaxed font-normal text-white/80 delay-200 duration-700 lg:text-2xl">
-                Consulta el estado de tu inscripción, descarga tu ticket digital
-                y prepárate para la carrera más importante del año.
-              </p>
+            <p className="animate-in slide-in-from-bottom-4 mb-10 max-w-lg text-xl leading-relaxed font-normal text-white/80 delay-200 duration-700 lg:text-2xl">
+              Consulta el estado de tu inscripción, descarga tu ticket digital y
+              prepárate para la carrera más importante del año.
+            </p>
 
-              {/* Stats */}
-              <div className="animate-in slide-in-from-bottom-4 mt-2 flex w-full flex-wrap justify-center gap-12 border-t border-white/20 pt-10 delay-300 duration-700 lg:justify-start">
-                <div>
-                  <p className={`text-4xl ${bebasClassName} text-white`}>8K</p>
-                  <p className="text-sm font-bold tracking-widest text-white/60 uppercase">
-                    Distancia
-                  </p>
-                </div>
-                {/* FECHA ACTUALIZADA AQUÍ */}
-                <div>
-                  <p className={`text-4xl ${bebasClassName} text-white`}>
-                    Ago 29
-                  </p>
-                  <p className="text-sm font-bold tracking-widest text-white/60 uppercase">
-                    Fecha
-                  </p>
-                </div>
-                <div>
-                  <p className={`text-4xl ${bebasClassName} text-white`}>
-                    Patate
-                  </p>
-                  <p className="text-sm font-bold tracking-widest text-white/60 uppercase">
-                    Lugar
-                  </p>
-                </div>
+            {/* Stats */}
+            <div className="animate-in slide-in-from-bottom-4 mt-2 flex w-full flex-wrap justify-center gap-12 border-t border-white/20 pt-10 delay-300 duration-700 lg:justify-start">
+              <div>
+                <p className={`text-4xl ${bebasClassName} text-white`}>8K</p>
+                <p className="text-sm font-bold tracking-widest text-white/60 uppercase">
+                  Distancia
+                </p>
+              </div>
+              {/* FECHA ACTUALIZADA AQUÍ */}
+              <div>
+                <p className={`text-4xl ${bebasClassName} text-white`}>
+                  Ago 29
+                </p>
+                <p className="text-sm font-bold tracking-widest text-white/60 uppercase">
+                  Fecha
+                </p>
+              </div>
+              <div>
+                <p className={`text-4xl ${bebasClassName} text-white`}>
+                  Patate
+                </p>
+                <p className="text-sm font-bold tracking-widest text-white/60 uppercase">
+                  Lugar
+                </p>
               </div>
             </div>
+          </div>
 
-            {/* --- COLUMNA DERECHA (FORMULARIO/TICKET) --- */}
-            <div className="animate-in zoom-in-95 mx-auto flex w-full max-w-lg justify-center delay-150 duration-700 lg:max-w-full lg:justify-end">
-              {/* WRAPPER DEL FORMULARIO/TICKET */}
-              <div className="w-full max-w-[500px] text-white">
-                {!data && (
-                  <div className="relative overflow-hidden rounded-[40px] border border-white/20 bg-[#0B0E13] p-10 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.6)] backdrop-blur-md">
-                    <div className="pointer-events-none absolute top-0 right-0 h-40 w-40 rounded-full bg-white/5 blur-[50px]" />
+          {/* --- COLUMNA DERECHA (FORMULARIO/TICKET) --- */}
+          <div className="animate-in zoom-in-95 order-1 mx-auto flex w-full max-w-lg justify-center delay-150 duration-700 lg:order-2 lg:max-w-full lg:justify-end">
+            {/* WRAPPER DEL FORMULARIO/TICKET */}
+            <div className="w-full max-w-[500px] text-white">
+              {!data && (
+                <div className="relative overflow-hidden rounded-[40px] border border-white/20 bg-[#0B0E13] p-10 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.6)] backdrop-blur-md">
+                  <div className="pointer-events-none absolute top-0 right-0 h-40 w-40 rounded-full bg-white/5 blur-[50px]" />
 
-                    <div className="relative z-10 mb-10 flex items-center gap-5">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-gray-800 to-black shadow-inner">
-                        <IdCard className="h-8 w-8 text-white" />
-                      </div>
-                      <div>
-                        <h2 className="mb-1 text-2xl font-bold text-white">
-                          Consultar Cédula
-                        </h2>
-                        <p className="text-base text-white/60">
-                          Ingresa tus datos para validar
-                        </p>
-                      </div>
+                  <div className="relative z-10 mb-10 flex items-center gap-5">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-gray-800 to-black shadow-inner">
+                      <IdCard className="h-8 w-8 text-white" />
                     </div>
-
-                    <div className="relative z-10 space-y-6">
-                      <div className="group relative">
-                        <label className="mb-2 ml-1 block text-xs font-bold tracking-widest text-white/50 uppercase transition-colors group-focus-within:text-purple-400">
-                          Número de Identificación
-                        </label>
-                        <div className="relative">
-                          <input
-                            value={cedula}
-                            onChange={(e) => setCedula(e.target.value)}
-                            placeholder="Ej: 1801234567"
-                            inputMode="numeric"
-                            className="w-full rounded-2xl border border-white/20 bg-[#15181E] px-5 py-5 pl-5 text-xl font-medium text-white shadow-inner transition-all placeholder:text-white/30 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
-                          />
-                          <div className="pointer-events-none absolute top-1/2 right-5 -translate-y-1/2">
-                            {cedulaOk ? (
-                              <CheckCircle2 className="h-6 w-6 text-[#00FF94]" />
-                            ) : (
-                              <div className="h-2 w-2 rounded-full bg-white/20" />
-                            )}
-                          </div>
-                        </div>
-                      </div>
-
-                      <button
-                        onClick={verify}
-                        disabled={loading || !cedulaOk}
-                        className="group relative mt-4 w-full overflow-hidden rounded-2xl py-5 text-base font-bold tracking-widest text-white uppercase shadow-lg shadow-purple-900/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
-                        style={{
-                          background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
-                        }}
-                      >
-                        <span className="relative z-10 flex items-center justify-center gap-2">
-                          {loading ? (
-                            <Loader2 className="h-6 w-6 animate-spin" />
-                          ) : (
-                            <Ticket className="h-6 w-6" />
-                          )}
-                          {loading ? "Buscando..." : "Consultar Inscripción"}
-                        </span>
-                      </button>
-
-                      {/* role="alert" para que un lector de pantalla lo anuncie
-                                        al aparecer: si no, quien no ve la pantalla se queda
-                                        esperando un resultado que ya falló. */}
-                      {error && (
-                        <p
-                          role="alert"
-                          className="mt-4 flex items-start gap-2 rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300"
-                        >
-                          <XCircle className="mt-0.5 h-5 w-5 shrink-0" />
-                          <span>{error}</span>
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="relative z-10 mt-10 border-t border-white/10 pt-8 text-center">
-                      <p className="text-sm text-white/50">
-                        ¿Tienes problemas?{" "}
-                        <a
-                          href="https://wa.me/593995102378"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-semibold text-white underline decoration-white/50 hover:text-white"
-                        >
-                          Contáctanos
-                        </a>
+                    <div>
+                      <h2 className="mb-1 text-2xl font-bold text-white">
+                        Consultar Cédula
+                      </h2>
+                      <p className="text-base text-white/60">
+                        Ingresa tus datos para validar
                       </p>
                     </div>
                   </div>
-                )}
 
-                {data && (
-                  <div className="animate-in fade-in zoom-in-95 relative w-full duration-500">
+                  <div className="relative z-10 space-y-6">
+                    <div className="group relative">
+                      <label className="mb-2 ml-1 block text-xs font-bold tracking-widest text-white/50 uppercase transition-colors group-focus-within:text-purple-400">
+                        Número de Identificación
+                      </label>
+                      <div className="relative">
+                        <input
+                          value={cedula}
+                          onChange={(e) => setCedula(e.target.value)}
+                          placeholder="Ej: 1801234567"
+                          inputMode="numeric"
+                          className="w-full rounded-2xl border border-white/20 bg-[#15181E] px-5 py-5 pl-5 text-xl font-medium text-white shadow-inner transition-all placeholder:text-white/30 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
+                        />
+                        <div className="pointer-events-none absolute top-1/2 right-5 -translate-y-1/2">
+                          {cedulaOk ? (
+                            <CheckCircle2 className="h-6 w-6 text-[#00FF94]" />
+                          ) : (
+                            <div className="h-2 w-2 rounded-full bg-white/20" />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
                     <button
-                      onClick={() => {
-                        setData(null);
-                        setCedula("");
+                      onClick={verify}
+                      disabled={loading || !cedulaOk}
+                      className="group relative mt-4 w-full overflow-hidden rounded-2xl py-5 text-base font-bold tracking-widest text-white uppercase shadow-lg shadow-purple-900/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+                      style={{
+                        background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
                       }}
-                      className="absolute -top-12 right-0 flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold tracking-wider text-black/60 uppercase transition-colors hover:text-black lg:text-white/50 lg:hover:text-white"
                     >
-                      <X className="h-4 w-4" /> Nueva Consulta
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        {loading ? (
+                          <Loader2 className="h-6 w-6 animate-spin" />
+                        ) : (
+                          <Ticket className="h-6 w-6" />
+                        )}
+                        {loading ? "Buscando..." : "Consultar Inscripción"}
+                      </span>
                     </button>
 
-                    {/* TICKET VISUAL - MÁS GRANDE */}
-                    <div className="relative w-full overflow-hidden rounded-[32px] border border-white/20 bg-[#11141A] shadow-[0_40px_100px_-20px_rgba(255,107,26,0.32)]">
-                      {/* Header del Ticket */}
-                      <div className="relative overflow-hidden border-b border-dashed border-white/10 bg-[#181B21] p-8">
-                        <div
-                          className="absolute top-0 left-0 h-1.5 w-full"
-                          style={{
-                            background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
-                          }}
-                        />
-                        <div className="relative z-10 flex items-start justify-between gap-4">
-                          <div>
-                            <p className="mb-2 text-xs font-bold tracking-[0.25em] text-white/50 uppercase">
-                              Participante
-                            </p>
-                            <h3 className="mb-2 text-3xl leading-tight font-bold text-white">
-                              {data.nombre}
-                            </h3>
-                            <p className="inline-block rounded bg-white/5 px-2 py-0.5 font-mono text-lg tracking-wider text-white/70">
-                              {data.cedula}
-                            </p>
-                          </div>
-                          <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-white p-1.5 shadow-lg">
-                            <img
-                              src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=CEDULA:${data.cedula}|NOMBRE:${data.nombre}`}
-                              alt="QR"
-                              className="h-full w-full object-cover"
+                    {/* role="alert" para que un lector de pantalla lo anuncie
+                                        al aparecer: si no, quien no ve la pantalla se queda
+                                        esperando un resultado que ya falló. */}
+                    {error && (
+                      <p
+                        role="alert"
+                        className="mt-4 flex items-start gap-2 rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300"
+                      >
+                        <XCircle className="mt-0.5 h-5 w-5 shrink-0" />
+                        <span>{error}</span>
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="relative z-10 mt-10 border-t border-white/10 pt-8 text-center">
+                    <p className="text-sm text-white/50">
+                      ¿Tienes problemas?{" "}
+                      <a
+                        href="https://wa.me/593995102378"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-white underline decoration-white/50 hover:text-white"
+                      >
+                        Contáctanos
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {data && (
+                <div className="animate-in fade-in zoom-in-95 relative w-full duration-500">
+                  <button
+                    onClick={() => {
+                      setData(null);
+                      setCedula("");
+                    }}
+                    className="absolute -top-12 right-0 flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold tracking-wider text-white/50 uppercase transition-colors hover:text-white"
+                  >
+                    <X className="h-4 w-4" /> Nueva Consulta
+                  </button>
+
+                  {/* TICKET VISUAL - MÁS GRANDE */}
+                  <div className="relative w-full overflow-hidden rounded-[32px] border border-white/20 bg-[#11141A] shadow-[0_40px_100px_-20px_rgba(255,107,26,0.32)]">
+                    {/* Header del Ticket */}
+                    <div className="relative overflow-hidden border-b border-dashed border-white/10 bg-[#181B21] p-8">
+                      <div
+                        className="absolute top-0 left-0 h-1.5 w-full"
+                        style={{
+                          background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
+                        }}
+                      />
+                      <div className="relative z-10 flex items-start justify-between gap-4">
+                        <div>
+                          <p className="mb-2 text-xs font-bold tracking-[0.25em] text-white/50 uppercase">
+                            Participante
+                          </p>
+                          <h3 className="mb-2 text-3xl leading-tight font-bold text-white">
+                            {data.nombre}
+                          </h3>
+                          <p className="inline-block rounded bg-white/5 px-2 py-0.5 font-mono text-lg tracking-wider text-white/70">
+                            {data.cedula}
+                          </p>
+                        </div>
+                        <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-white p-1.5 shadow-lg">
+                          <img
+                            src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=CEDULA:${data.cedula}|NOMBRE:${data.nombre}`}
+                            alt="QR"
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                      </div>
+                      <div className="absolute -bottom-4 -left-4 z-20 h-8 w-8 rounded-full border-t border-r border-white/20 bg-[#050505]" />
+                      <div className="absolute -right-4 -bottom-4 z-20 h-8 w-8 rounded-full border-t border-l border-white/20 bg-[#050505]" />
+                    </div>
+
+                    {/* Body del Ticket */}
+                    <div className="bg-[#11141A] p-8 pt-10">
+                      <div className="grid grid-cols-2 gap-x-6 gap-y-8">
+                        <div className="col-span-2">
+                          <p className="mb-2 text-xs font-bold tracking-widest text-white/50 uppercase">
+                            Estado
+                          </p>
+                          <div
+                            className={`text-5xl ${bebasClassName} ${getStatusColor(data.etapa || "")} flex items-center gap-3`}
+                          >
+                            <span
+                              className={`h-3 w-3 rounded-full ${data.etapa?.toLowerCase().includes("verificado") ? "bg-[#00FF94]" : "bg-yellow-400"} animate-pulse shadow-[0_0_15px_currentColor]`}
                             />
+                            {data.etapa}
                           </div>
                         </div>
-                        <div className="absolute -bottom-4 -left-4 z-20 h-8 w-8 rounded-full border-t border-r border-white/20 bg-[#050505]" />
-                        <div className="absolute -right-4 -bottom-4 z-20 h-8 w-8 rounded-full border-t border-l border-white/20 bg-[#050505]" />
-                      </div>
-
-                      {/* Body del Ticket */}
-                      <div className="bg-[#11141A] p-8 pt-10">
-                        <div className="grid grid-cols-2 gap-x-6 gap-y-8">
-                          <div className="col-span-2">
-                            <p className="mb-2 text-xs font-bold tracking-widest text-white/50 uppercase">
-                              Estado
-                            </p>
-                            <div
-                              className={`text-5xl ${bebasClassName} ${getStatusColor(data.etapa || "")} flex items-center gap-3`}
-                            >
-                              <span
-                                className={`h-3 w-3 rounded-full ${data.etapa?.toLowerCase().includes("verificado") ? "bg-[#00FF94]" : "bg-yellow-400"} animate-pulse shadow-[0_0_15px_currentColor]`}
-                              />
-                              {data.etapa}
-                            </div>
-                          </div>
-                          <div>
-                            <p className="mb-1.5 text-xs font-bold tracking-widest text-white/50 uppercase">
-                              Categoría
-                            </p>
-                            <p className="border-l-2 border-purple-500 pl-3 text-lg font-bold text-white">
-                              {data.categorias}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="mb-1.5 text-xs font-bold tracking-widest text-white/50 uppercase">
-                              Ciudad
-                            </p>
-                            <p className="border-l-2 border-pink-500 pl-3 text-lg font-bold text-white">
-                              {data.ciudad}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="mb-1.5 text-xs font-bold tracking-widest text-white/50 uppercase">
-                              Edad
-                            </p>
-                            <p className="text-lg font-medium text-white">
-                              {data.edad ? `${data.edad} Años` : "-"}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="mb-1.5 text-xs font-bold tracking-widest text-white/50 uppercase">
-                              Género
-                            </p>
-                            <p className="text-lg font-medium text-white">
-                              {data.genero || "-"}
-                            </p>
-                          </div>
+                        <div>
+                          <p className="mb-1.5 text-xs font-bold tracking-widest text-white/50 uppercase">
+                            Categoría
+                          </p>
+                          <p className="border-l-2 border-purple-500 pl-3 text-lg font-bold text-white">
+                            {data.categorias}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="mb-1.5 text-xs font-bold tracking-widest text-white/50 uppercase">
+                            Ciudad
+                          </p>
+                          <p className="border-l-2 border-pink-500 pl-3 text-lg font-bold text-white">
+                            {data.ciudad}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="mb-1.5 text-xs font-bold tracking-widest text-white/50 uppercase">
+                            Edad
+                          </p>
+                          <p className="text-lg font-medium text-white">
+                            {data.edad ? `${data.edad} Años` : "-"}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="mb-1.5 text-xs font-bold tracking-widest text-white/50 uppercase">
+                            Género
+                          </p>
+                          <p className="text-lg font-medium text-white">
+                            {data.genero || "-"}
+                          </p>
                         </div>
                       </div>
+                    </div>
 
-                      {/* Footer del Ticket */}
-                      <div className="flex items-center justify-between border-t border-white/10 bg-[#0E1116] p-6">
-                        <div className="flex flex-col">
-                          <span className="mb-1 text-[10px] font-bold tracking-widest text-white/30 uppercase">
-                            Ticket ID
-                          </span>
-                          <span className="font-mono text-sm font-semibold text-white/70">
-                            {data.record_id?.slice(-8).toUpperCase() ||
-                              "PRE-ORDER"}
-                          </span>
-                        </div>
-                        {/* Código de barras decorativo. Antes las alturas
+                    {/* Footer del Ticket */}
+                    <div className="flex items-center justify-between border-t border-white/10 bg-[#0E1116] p-6">
+                      <div className="flex flex-col">
+                        <span className="mb-1 text-[10px] font-bold tracking-widest text-white/30 uppercase">
+                          Ticket ID
+                        </span>
+                        <span className="font-mono text-sm font-semibold text-white/70">
+                          {data.record_id?.slice(-8).toUpperCase() ||
+                            "PRE-ORDER"}
+                        </span>
+                      </div>
+                      {/* Código de barras decorativo. Antes las alturas
                                             salían de Math.random() dentro del render, lo que
                                             daba dos problemas: el servidor pintaba unas barras
                                             y el cliente otras (error de hidratación), y la
@@ -496,30 +501,29 @@ export default function VerificarPage() {
                                             puede leer al compilar — así que no generaba ni
                                             h-full ni h-2/3 y las barras salían sin altura.
                                             Ahora el patrón es fijo y las clases, literales. */}
-                        <div className="h-6 opacity-30" aria-hidden="true">
-                          <div className="flex h-full items-end gap-[3px]">
-                            {BARRAS.map((alta, i) => (
-                              <div
-                                key={i}
-                                className={`w-[2px] bg-white ${alta ? "h-full" : "h-2/3"}`}
-                              />
-                            ))}
-                          </div>
+                      <div className="h-6 opacity-30" aria-hidden="true">
+                        <div className="flex h-full items-end gap-[3px]">
+                          {BARRAS.map((alta, i) => (
+                            <div
+                              key={i}
+                              className={`w-[2px] bg-white ${alta ? "h-full" : "h-2/3"}`}
+                            />
+                          ))}
                         </div>
                       </div>
                     </div>
-
-                    <p className="mx-auto mt-6 max-w-sm text-center text-xs leading-relaxed text-white/40">
-                      Presenta este comprobante digital el día de la entrega de
-                      kits. Puedes tomar una captura de pantalla.
-                    </p>
                   </div>
-                )}
-              </div>
+
+                  <p className="mx-auto mt-6 max-w-sm text-center text-xs leading-relaxed text-white/40">
+                    Presenta este comprobante digital el día de la entrega de
+                    kits. Puedes tomar una captura de pantalla.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
