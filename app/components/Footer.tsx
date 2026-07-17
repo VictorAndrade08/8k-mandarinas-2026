@@ -47,26 +47,26 @@ export default function Footer() {
     // llegar aquí. Si se renombra, el botón se queda encima del footer.
     <footer
       id="site-footer"
-      className="relative w-full bg-[#0B0B0B] text-white font-sans border-t border-white/10 overflow-hidden"
+      className="relative w-full overflow-hidden border-t border-white/10 bg-[#0B0B0B] font-sans text-white"
     >
       {/* Resplandor de marca, muy sutil: da profundidad sin meter otra caja */}
       <div
-        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#FF6B1A]/10 blur-[130px]"
+        className="pointer-events-none absolute top-0 left-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF6B1A]/10 blur-[130px]"
         aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6 py-14 sm:py-16 flex flex-col items-center text-center">
+      <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-6 py-14 text-center sm:py-16">
         {/* Logo desnudo: la versión blanca se sostiene sola sobre este fondo */}
         <Image
           src="/logo-mandarinas-blanco.svg"
           alt="8K Ruta de las Mandarinas"
           width={480}
           height={168}
-          className="w-[min(78vw,420px)] h-auto object-contain"
+          className="h-auto w-[min(78vw,420px)] object-contain"
           loading="lazy"
         />
 
-        <p className="mt-5 text-sm sm:text-base uppercase tracking-[0.28em] text-white/50">
+        <p className="mt-5 text-sm tracking-[0.28em] text-white/50 uppercase sm:text-base">
           29 Agosto 2026 · Patate · Ecuador
         </p>
 
@@ -79,7 +79,7 @@ export default function Footer() {
             <Link
               key={e.href}
               href={e.href}
-              className="inline-flex items-center min-h-[44px] text-sm uppercase tracking-[0.12em] text-white/80 hover:text-[#FF6B1A] transition-colors duration-200"
+              className="inline-flex min-h-[44px] items-center text-sm tracking-[0.12em] text-white/80 uppercase transition-colors duration-200 hover:text-[#FF6B1A]"
             >
               {e.label}
             </Link>
@@ -94,14 +94,14 @@ export default function Footer() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 min-h-[44px] text-sm uppercase tracking-[0.12em] text-white/60 ${color} transition-colors duration-200`}
+              className={`inline-flex min-h-[44px] items-center gap-2 text-sm tracking-[0.12em] text-white/60 uppercase ${color} transition-colors duration-200`}
             >
               <Icon size={17} /> {label}
             </a>
           ))}
         </div>
 
-        <p className="mt-10 text-xs text-white/35">
+        <p className="mt-10 text-xs text-white/60">
           © 2026 Vigop Eventos · Desarrollo web por{" "}
           <span className="text-[#FF6B1A]/80">Prez Agencia</span>
         </p>

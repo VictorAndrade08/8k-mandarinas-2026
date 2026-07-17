@@ -8,91 +8,61 @@ import { Scale, ArrowRight } from "lucide-react";
 export default function ReglamentoSection() {
   return (
     // 3. Inyectamos la variable de fuente en el contenedor principal
-    <section id="reglamento" className={`w-full px-3 py-4 flex justify-center bg-[#0a0a0a] font-sans`}>
-      
+    <section
+      id="reglamento"
+      className={`flex w-full justify-center bg-[#0a0a0a] px-3 py-4 font-sans`}
+    >
       {/* Eliminamos el <style> @import que bloqueaba el renderizado */}
 
-      <div
-        className="
-          relative
-          w-full max-w-7xl
-          rounded-[32px] sm:rounded-[48px]
-          bg-[#070D18]
-          text-white
-          px-6 sm:px-10 lg:px-16
-          py-12 sm:py-20
-          shadow-[0_20px_70px_-10px_rgba(0,0,0,0.6)]
-          border border-white/10
-          overflow-hidden
-          flex flex-col items-center text-center
-        "
-      >
+      <div className="relative flex w-full max-w-7xl flex-col items-center overflow-hidden rounded-[32px] border border-white/10 bg-[#070D18] px-6 py-12 text-center text-white shadow-[0_20px_70px_-10px_rgba(0,0,0,0.6)] sm:rounded-[48px] sm:px-10 sm:py-20 lg:px-16">
         {/* Fondo Decorativo Magenta */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#FF6B1A]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="pointer-events-none absolute top-0 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#FF6B1A]/10 blur-[120px]" />
 
-        <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-            
-            {/* Icono Principal */}
-            <div className="mb-6 p-4 rounded-2xl bg-white/5 border border-white/10 shadow-[0_0_30px_rgba(255,107,26,0.18)] backdrop-blur-sm">
-                <Scale className="w-8 h-8 sm:w-10 sm:h-10 text-[#FF6B1A]" />
-            </div>
+        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
+          {/* Icono Principal */}
+          <div className="mb-6 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_0_30px_rgba(255,107,26,0.18)] backdrop-blur-sm">
+            <Scale className="h-8 w-8 text-[#FF6B1A] sm:h-10 sm:w-10" />
+          </div>
 
-            {/* Etiqueta */}
-            <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-gray-500 font-bold mb-4">
-               Normativa Oficial
-            </p>
+          {/* Etiqueta */}
+          <p className="mb-4 text-xs font-bold tracking-[0.3em] text-gray-300 uppercase sm:text-sm">
+            Normativa Oficial
+          </p>
 
-            {/* Título usando la variable de fuente */}
-            <h2 className="text-[36px] sm:text-[52px] lg:text-[64px] leading-[0.95] mb-6 font-[family-name:var(--font-poppins)] text-white tracking-wide">
-               Reglamento General <br className="hidden sm:block" />
-               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-                 8K Ruta de las Mandarinas 2026
-               </span>
-            </h2>
+          {/* Título usando la variable de fuente */}
+          <h2 className="mb-6 font-[family-name:var(--font-poppins)] text-[36px] leading-[0.95] tracking-wide text-white sm:text-[52px] lg:text-[64px]">
+            Reglamento General <br className="hidden sm:block" />
+            <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              8K Ruta de las Mandarinas 2026
+            </span>
+          </h2>
 
-            {/* Descripción */}
-            <p className="text-base sm:text-lg text-gray-400 mb-10 leading-relaxed max-w-2xl font-medium">
-               Para garantizar una competencia justa y segura, es obligatorio conocer las reglas. Aquí encontrarás detalles sobre categorías, chips de cronometraje, puntos de hidratación, descalificaciones y premiación.
-            </p>
+          {/* Descripción */}
+          <p className="mb-10 max-w-2xl text-base leading-relaxed font-medium text-gray-400 sm:text-lg">
+            Para garantizar una competencia justa y segura, es obligatorio
+            conocer las reglas. Aquí encontrarás detalles sobre categorías,
+            chips de cronometraje, puntos de hidratación, descalificaciones y
+            premiación.
+          </p>
 
-            {/* Botones de Acción (Reemplazados <a> por <Link>) */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                <Link
-                    href="/reglamento"
-                    className="
-                    inline-flex items-center justify-center gap-2
-                    px-8 py-4
-                    rounded-full
-                    bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C]
-                    text-white text-sm tracking-[0.15em]
-                    font-bold uppercase
-                    shadow-lg shadow-[#FF6B1A]/30
-                    hover:shadow-[#FF6B1A]/50 hover:-translate-y-1 hover:gap-3
-                    transition-all duration-300
-                    "
-                >
-                    Leer Reglamento Completo <ArrowRight size={18} />
-                </Link>
-                
-                 <a
-                    href="https://wa.me/593995102378"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-                    inline-flex items-center justify-center gap-2
-                    px-8 py-4
-                    rounded-full
-                    bg-white/5 border border-white/10
-                    text-white text-sm tracking-[0.15em]
-                    font-bold uppercase
-                    hover:bg-white/10 hover:border-white/20 hover:-translate-y-1
-                    transition-all duration-300
-                    "
-                >
-                    Preguntas Frecuentes
-                </a>
-            </div>
-            
+          {/* Botones de Acción (Reemplazados <a> por <Link>) */}
+          <div className="flex w-full flex-col justify-center gap-4 sm:flex-row">
+            <Link
+              href="/reglamento"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] px-8 py-4 text-sm font-bold tracking-[0.15em] text-white uppercase shadow-lg shadow-[#FF6B1A]/30 transition-all duration-300 hover:-translate-y-1 hover:gap-3 hover:shadow-[#FF6B1A]/50"
+            >
+              Leer Reglamento Completo <ArrowRight size={18} />
+            </Link>
+
+            <a
+              href="https://wa.me/593995102378"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-bold tracking-[0.15em] text-white uppercase transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
+            >
+              Preguntas Frecuentes
+            </a>
+          </div>
         </div>
       </div>
     </section>

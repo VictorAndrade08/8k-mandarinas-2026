@@ -177,13 +177,16 @@ export default function HeroCountdown() {
               pantallazo. fetchPriority="high" le dice al navegador que lo baje
               antes que nada — sin esto esperaba su turno detrás del CSS y los
               chunks, y ese retraso era casi 2 s del LCP. Nunca lazy aquí. */}
+          {/* webp y no SVG: el SVG del logo son 55 KB de vectores que el
+              navegador rasteriza en el móvil (era parte de los 2 s de retraso);
+              el webp son 21 KB y ya viene pintado. Sin drop-shadow por el mismo
+              motivo — la viñeta del hero ya oscurece el fondo.
+              width/height reales para reservar el hueco y no causar CLS. */}
           <img
-            src="/logo-mandarinas-blanco.svg"
+            src="/logo-mandarinas-blanco.webp"
             alt="8K Ruta de las Mandarinas"
-            // Sin drop-shadow en el className: es un filtro sobre un SVG y el
-            // navegador rasteriza el vector y recalcula la sombra píxel a píxel
-            // ANTES de pintarlo. Este logo es el LCP y el informe marca 2 s de
-            // retraso con la imagen ya descargada. La viñeta ya oscurece el fondo.
+            width={1160}
+            height={407}
             fetchPriority="high"
             loading="eager"
             decoding="sync"

@@ -133,7 +133,19 @@
       "Bash(awk '{printf \"  index.html: %.1f KB comprimido \\(eran 68 con inlineCss\\)\\\\n\", $1/1024}')",
       "Bash(awk '{print \"  \"$1\"  \\(1 = solo el logo del hero ✅\\)\"}')",
       "Bash(awk '{print \"  \"$1\"  \\(0 = fuera ✅\\)\"}')",
-      "Bash(awk '{printf \"  index.html: %.1f KB \\(eran 68 con inlineCss\\)\\\\n\", $1/1024}')"
+      "Bash(awk '{printf \"  index.html: %.1f KB \\(eran 68 con inlineCss\\)\\\\n\", $1/1024}')",
+      "Bash(awk '{printf \"  %.0f KB\\\\n\", $5/1024}')",
+      "Bash(npx --yes svgo -i public/logo-mandarinas-blanco.svg -o /tmp/logo-min.svg)",
+      "Bash(awk '{printf \"  optimizado: %.0f KB \\(era 71 KB\\)\\\\n\", $5/1024}')",
+      "Bash(awk '{print \"  \"$1\" preload del logo ✅\"}')",
+      "Bash(sed -i '' 's|text-white/35|text-white/60|' app/components/Footer.tsx)",
+      "Bash(sed -i '' 's|text-gray-500 font-bold mb-4|text-gray-300 font-bold mb-4|' app/components/ReglamentoSection.tsx)",
+      "Bash(dwebp -quiet public/logo-mandarinas-color.webp -o /tmp/lc.png)",
+      "Bash(dwebp -version)",
+      "Bash(cwebp -quiet -q 90 -resize 1160 0 /tmp/logo.png -o public/logo-mandarinas-blanco.webp)",
+      "Bash(awk '{printf \" logo webp: %.0f KB \\(el SVG eran 55\\)\\\\n\", $5/1024}')",
+      "Bash(sips -g pixelWidth -g pixelHeight public/logo-mandarinas-blanco.webp)",
+      "Bash(awk '{print \"  \"$1\" preload webp\"}')"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
