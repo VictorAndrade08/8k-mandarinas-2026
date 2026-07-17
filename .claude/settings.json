@@ -150,7 +150,9 @@
       "Bash(rsvg-convert -w 1600 /tmp/logo-orig.svg -o /tmp/logo2x.png)",
       "Bash(awk '{printf \"  PNG 1600px: %.0f KB\\\\n\", $5/1024}')",
       "Bash(cwebp -quiet -q 92 -resize 1600 0 /tmp/logo2x.png -o public/logo-mandarinas-blanco.webp)",
-      "Bash(awk '{printf \" logo webp 1600px q92: %.0f KB\\\\n\", $5/1024}')"
+      "Bash(awk '{printf \" logo webp 1600px q92: %.0f KB\\\\n\", $5/1024}')",
+      "Bash(awk '{print \" \"$1\" propiedades de composición pesada \\(mix-blend + clip-path\\)\"}')",
+      "Bash(awk '{print \"  \"$1\" KB de JS en total\"}')"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
