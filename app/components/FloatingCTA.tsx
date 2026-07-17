@@ -87,8 +87,10 @@ export default function FloatingCTA() {
   const isVisible = mounted && pasoElHeader && !isOverFooter;
 
   return (
-    // Inyectamos la variable de fuente
-    <div>
+    // hidden en móvil: ahí la barra de navegación inferior (BottomNav) ya lleva
+    // "Inscribirme" siempre visible, y dos botones flotando abajo se pisan.
+    // Este queda para escritorio, donde no hay barra inferior.
+    <div className="hidden lg:block">
       <Link
         href="/inscripcion"
         aria-label="Ir a formulario de inscripción"

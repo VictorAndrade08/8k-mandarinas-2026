@@ -8,6 +8,7 @@ import {
   MainWrapper,
 } from "./components/SiteChrome";
 import { Toaster } from "sonner";
+import BottomNav from "./components/BottomNav";
 
 // ==============================
 // Tipografía
@@ -198,6 +199,14 @@ export default function RootLayout({
         <Toaster position="top-center" richColors closeButton duration={2400} />
         <MainWrapper>{children}</MainWrapper>
         <ConditionalFooter />
+
+        {/* Hueco para la barra inferior (solo móvil), o taparía el final del
+            footer. Reserva su altura + la franja de gestos del teléfono. */}
+        <div
+          className="h-[calc(64px+env(safe-area-inset-bottom))] lg:hidden"
+          aria-hidden="true"
+        />
+        <BottomNav />
       </body>
     </html>
   );

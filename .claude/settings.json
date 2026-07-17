@@ -152,7 +152,8 @@
       "Bash(cwebp -quiet -q 92 -resize 1600 0 /tmp/logo2x.png -o public/logo-mandarinas-blanco.webp)",
       "Bash(awk '{printf \" logo webp 1600px q92: %.0f KB\\\\n\", $5/1024}')",
       "Bash(awk '{print \" \"$1\" propiedades de composición pesada \\(mix-blend + clip-path\\)\"}')",
-      "Bash(awk '{print \"  \"$1\" KB de JS en total\"}')"
+      "Bash(awk '{print \"  \"$1\" KB de JS en total\"}')",
+      "Bash(awk '{print \"  FloatingCTA en page.tsx: \"$1}')"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
