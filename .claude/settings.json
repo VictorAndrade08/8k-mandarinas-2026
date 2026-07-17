@@ -145,7 +145,12 @@
       "Bash(cwebp -quiet -q 90 -resize 1160 0 /tmp/logo.png -o public/logo-mandarinas-blanco.webp)",
       "Bash(awk '{printf \" logo webp: %.0f KB \\(el SVG eran 55\\)\\\\n\", $5/1024}')",
       "Bash(sips -g pixelWidth -g pixelHeight public/logo-mandarinas-blanco.webp)",
-      "Bash(awk '{print \"  \"$1\" preload webp\"}')"
+      "Bash(awk '{print \"  \"$1\" preload webp\"}')",
+      "Bash(awk '{printf \" original: %.0f KB\\\\n\", $5/1024}')",
+      "Bash(rsvg-convert -w 1600 /tmp/logo-orig.svg -o /tmp/logo2x.png)",
+      "Bash(awk '{printf \"  PNG 1600px: %.0f KB\\\\n\", $5/1024}')",
+      "Bash(cwebp -quiet -q 92 -resize 1600 0 /tmp/logo2x.png -o public/logo-mandarinas-blanco.webp)",
+      "Bash(awk '{printf \" logo webp 1600px q92: %.0f KB\\\\n\", $5/1024}')"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"

@@ -185,8 +185,8 @@ export default function HeroCountdown() {
           <img
             src="/logo-mandarinas-blanco.webp"
             alt="8K Ruta de las Mandarinas"
-            width={1160}
-            height={407}
+            width={1600}
+            height={561}
             fetchPriority="high"
             loading="eager"
             decoding="sync"
