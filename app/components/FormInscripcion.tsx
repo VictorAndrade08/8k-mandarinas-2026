@@ -1299,6 +1299,12 @@ export default function InscripcionPage() {
                       al flujo. El hueco que reserva lo pone el div de soporte del
                       final (pb-40 en móvil), para que no tape el último campo. */}
                   <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#161A23]/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:pt-6 md:backdrop-blur-none">
+                    {/* La microcopia va ARRIBA de los botones: si va debajo queda
+                        pegada al borde y en teléfonos con barra de gestos se corta.
+                        Encima, además, se lee antes de tocar "Siguiente". */}
+                    <p className="font-barlow mb-2.5 text-center text-xs text-gray-400 md:mb-3 md:text-sm">
+                      Aquí no se cobra nada. El pago va en el siguiente paso.
+                    </p>
                     <div className="font-barlow mx-auto flex max-w-3xl gap-3">
                       <button
                         type="button"
@@ -1316,9 +1322,6 @@ export default function InscripcionPage() {
                         <CaretRight size={24} />
                       </button>
                     </div>
-                    <p className="font-barlow mt-2 text-center text-xs text-gray-400 md:mt-2.5 md:text-sm">
-                      Aquí no se cobra nada. El pago va en el siguiente paso.
-                    </p>
                   </div>
                 </form>
               )}
