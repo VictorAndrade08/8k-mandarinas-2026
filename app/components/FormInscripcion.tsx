@@ -620,11 +620,25 @@ export default function InscripcionPage() {
     }
 
     try {
-      const res = await fetch("/api/inscribir", {
-        method: "POST",
-        body,
-        cache: "no-store",
-      });
+      // Timeout duro: sin esto, si la conexión del móvil se cae o el servidor
+      // tarda subiendo el comprobante, el fetch se queda PENDIENTE para siempre
+      // y el spinner "Procesando..." gira sin fin. Con AbortController cortamos a
+      // los 45s y caemos al catch con un mensaje claro. Si por un caso raro el
+      // servidor sí llegó a guardar, al reintentar salta el aviso de "cédula ya
+      // registrada", que le confirma que quedó dentro.
+      const controlador = new AbortController();
+      const idTimeout = setTimeout(() => controlador.abort(), 45000);
+      let res: Response;
+      try {
+        res = await fetch("/api/inscribir", {
+          method: "POST",
+          body,
+          cache: "no-store",
+          signal: controlador.signal,
+        });
+      } finally {
+        clearTimeout(idTimeout);
+      }
       const rawText = await res.text();
       // La respuesta del servidor es un dato externo: se tipa como el contrato
       // que esperamos, no como `any`, para que el compilador avise si alguien
@@ -653,11 +667,15 @@ export default function InscripcionPage() {
         localStorage.removeItem(STORAGE_KEY);
       } catch {}
       setStep(4);
-    } catch {
+    } catch (e) {
       setLoading(false);
+      const seAgotoElTiempo =
+        e instanceof DOMException && e.name === "AbortError";
       showAlert(
         "Error de conexión",
-        "Revisa tu internet e inténtalo de nuevo."
+        seAgotoElTiempo
+          ? "La conexión tardó demasiado y se canceló. No se cobró nada: revisa tu internet e inténtalo otra vez."
+          : "Revisa tu internet e inténtalo de nuevo. No se cobró nada."
       );
     }
     setSubmitting(false);
@@ -804,6 +822,13 @@ export default function InscripcionPage() {
             }}
             placeholder={placeholder}
             className={`font-barlow min-h-[56px] w-full rounded-xl border-2 bg-[#0F1218] px-5 py-4 pr-12 text-lg text-white placeholder-gray-500 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#161A23] md:text-xl ${
+              // El input type="date" en iOS trae un ancho nativo propio y no
+              // respeta w-full: se sale por la derecha. appearance-none + min-w-0
+              // le quitan ese ancho intrínseco y ya cabe en la tarjeta.
+              type === "date"
+                ? "min-w-0 appearance-none [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-date-and-time-value]:text-left"
+                : ""
+            } ${
               error
                 ? "border-red-400 focus-visible:ring-red-400"
                 : ok

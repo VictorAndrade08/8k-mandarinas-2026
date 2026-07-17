@@ -24,19 +24,27 @@ export const ResumeModal = ({
   const labels = ["Categoría", "Datos", "Pago", "Final"];
 
   return (
-    <div className="animate-in fade-in fixed inset-0 z-[110] flex items-end justify-center bg-black/95 backdrop-blur-md duration-300 sm:items-center sm:p-4">
-      <div className="animate-in slide-in-from-bottom-6 sm:zoom-in-95 sm:slide-in-from-bottom-0 relative w-full max-w-lg rounded-t-3xl border border-[#FF6B1A]/30 bg-[#1C2029] p-6 pb-8 shadow-[0_0_50px_rgba(255,107,26,0.18)] sm:rounded-3xl md:p-8">
-        <div
-          className="mx-auto -mt-2 mb-4 h-1.5 w-12 rounded-full bg-white/25 sm:hidden"
-          aria-hidden="true"
-        />
+    // Centrado en TODAS las pantallas: antes iba anclado abajo en móvil (estilo
+    // bottom-sheet) y la barra del navegador le tapaba los botones. Como es un
+    // diálogo de decisión —no un panel deslizable— centrarlo se lee mejor y no
+    // pelea con el chrome del teléfono.
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="resume-title"
+      className="animate-in fade-in fixed inset-0 z-[110] flex items-center justify-center bg-black/95 p-4 backdrop-blur-md duration-300"
+    >
+      <div className="animate-in zoom-in-95 fade-in relative max-h-[90dvh] w-full max-w-md overflow-y-auto rounded-3xl border border-[#FF6B1A]/30 bg-[#1C2029] p-6 shadow-[0_0_50px_rgba(255,107,26,0.18)] duration-300 sm:p-8">
         <div className="flex flex-col items-center gap-6 text-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#FF6B1A]/10 text-[#FF6B1A]">
             <ArrowsClockwise size={40} />
           </div>
 
           <div>
-            <h3 className="font-barlow mb-3 text-3xl font-bold text-white uppercase md:text-4xl">
+            <h3
+              id="resume-title"
+              className="font-barlow mb-3 text-2xl font-bold text-white uppercase sm:text-3xl md:text-4xl"
+            >
               Tienes una inscripción sin terminar
             </h3>
             <p className="font-barlow text-lg leading-relaxed text-gray-300 md:text-xl">
