@@ -4,40 +4,23 @@ import React from "react";
 
 export default function PoliticaPrivacidad8K() {
   return (
+    // Sin tarjeta: el blanco va a sangre, contenido centrado en max-w-7xl.
     <section
       id="politica-privacidad"
-      className="w-full px-4 py-10 md:py-14 flex justify-center"
+      className="w-full bg-white px-4 py-12 sm:px-6 md:py-16 lg:px-8"
     >
-      <div
-        className="
-          w-full max-w-7xl mx-auto
-          bg-white
-          rounded-[48px]
-          border border-black/10
-          shadow-[0_20px_60px_rgba(0,0,0,0.12)]
-          px-6 sm:px-10 md:px-16
-          py-12 md:py-16
-          text-black
-        "
-      >
+      <div className="mx-auto w-full max-w-7xl text-black">
         {/* HEADER */}
         <div className="text-center">
-          <p className="uppercase tracking-[0.32em] text-xs sm:text-sm text-black/60 font-semibold">
+          <p className="text-xs font-semibold tracking-[0.32em] text-black/60 uppercase sm:text-sm">
             Información legal — protección de datos personales
           </p>
 
-          <h1
-            className="
-              mt-4
-              text-[40px] sm:text-[54px] lg:text-[66px]
-              leading-[1.02]
-              uppercase tracking-[0.08em]
-              ${bebas.className}"
-          >
+          <h1 className="${bebas.className} mt-4 text-[40px] leading-[1.02] tracking-[0.08em] uppercase sm:text-[54px] lg:text-[66px]">
             Política de Privacidad
           </h1>
 
-          <p className="mt-3 text-black/70 max-w-3xl mx-auto text-[15px] sm:text-[16px] leading-relaxed">
+          <p className="mx-auto mt-3 max-w-3xl text-[15px] leading-relaxed text-black/70 sm:text-[16px]">
             8K Ruta de las Mandarinas · Patate – Ecuador
           </p>
         </div>
@@ -45,16 +28,21 @@ export default function PoliticaPrivacidad8K() {
         {/* BODY */}
         {/* Mismo criterio que el reglamento: con el peso nuevo, 18px de texto
             legal seguido se lee como un muro. */}
-        <div className="mt-12 space-y-6 text-[15px] sm:text-[16px] leading-[1.8] text-black/85">
+        <div className="mt-12 space-y-6 text-[15px] leading-[1.8] text-black/85 sm:text-[16px]">
           <ArticleCard title="Responsable del tratamiento de datos">
             <p>
               La carrera atlética <strong>8K Ruta de las Mandarinas</strong>,
               organizada por <strong>Vigop Eventos</strong>, con domicilio en
-              Patate – Ecuador,
-              actúa como <strong>RESPONSABLE del tratamiento de los datos
-              personales</strong> del titular, obtenidos mediante consentimiento
-              verbal, escrito o digital, conforme a la{" "}
-              <strong>Ley Orgánica de Protección de Datos Personales (LOPDP)</strong>.
+              Patate – Ecuador, actúa como{" "}
+              <strong>
+                RESPONSABLE del tratamiento de los datos personales
+              </strong>{" "}
+              del titular, obtenidos mediante consentimiento verbal, escrito o
+              digital, conforme a la{" "}
+              <strong>
+                Ley Orgánica de Protección de Datos Personales (LOPDP)
+              </strong>
+              .
             </p>
           </ArticleCard>
 
@@ -66,7 +54,7 @@ export default function PoliticaPrivacidad8K() {
                 evento deportivo.
               </p>
 
-              <ul className="list-disc pl-6 space-y-1">
+              <ul className="list-disc space-y-1 pl-6">
                 <li>Registro e inscripción de atletas.</li>
                 <li>Verificación de identidad y categorías.</li>
                 <li>Gestión de pagos y comprobantes.</li>
@@ -75,7 +63,9 @@ export default function PoliticaPrivacidad8K() {
                 <li>Publicación de resultados y clasificaciones.</li>
                 <li>Atención médica, seguros y control logístico.</li>
                 <li>Sorteos, premiaciones y actividades promocionales.</li>
-                <li>Difusión de fotografías y material audiovisual del evento.</li>
+                <li>
+                  Difusión de fotografías y material audiovisual del evento.
+                </li>
               </ul>
             </div>
           </ArticleCard>
@@ -86,10 +76,18 @@ export default function PoliticaPrivacidad8K() {
                 La organización no trata datos sensibles de manera general,
                 salvo en los casos permitidos por la LOPDP:
               </p>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Datos de salud, únicamente para atención médica del evento.</li>
-                <li>Datos de discapacidad para validación de categorías especiales.</li>
-                <li>Datos de menores de edad en categorías colegiales, con autorización del representante legal.</li>
+              <ul className="list-disc space-y-1 pl-6">
+                <li>
+                  Datos de salud, únicamente para atención médica del evento.
+                </li>
+                <li>
+                  Datos de discapacidad para validación de categorías
+                  especiales.
+                </li>
+                <li>
+                  Datos de menores de edad en categorías colegiales, con
+                  autorización del representante legal.
+                </li>
                 <li>Imágenes y videos captados durante el evento.</li>
               </ul>
             </div>
@@ -100,7 +98,7 @@ export default function PoliticaPrivacidad8K() {
               Los datos personales podrán ser compartidos únicamente cuando sea
               necesario con:
             </p>
-            <ul className="list-disc pl-6 space-y-1">
+            <ul className="list-disc space-y-1 pl-6">
               <li>Empresas de cronometraje deportivo.</li>
               <li>Aseguradoras y servicios médicos.</li>
               <li>Entidades públicas (GAD Patate u otras autoridades).</li>
@@ -119,14 +117,14 @@ export default function PoliticaPrivacidad8K() {
               redes sociales, correos electrónicos o registros autorizados.
             </p>
             <p className="mt-3">
-              El consentimiento podrá ser revocado en cualquier momento,
-              salvo cuando exista una obligación legal que lo impida.
+              El consentimiento podrá ser revocado en cualquier momento, salvo
+              cuando exista una obligación legal que lo impida.
             </p>
           </ArticleCard>
 
           <ArticleCard title="5. Derechos del titular">
             <p>El titular podrá ejercer los siguientes derechos:</p>
-            <ul className="list-disc pl-6 space-y-1">
+            <ul className="list-disc space-y-1 pl-6">
               <li>Acceso</li>
               <li>Rectificación y actualización</li>
               <li>Eliminación</li>
@@ -151,13 +149,15 @@ export default function PoliticaPrivacidad8K() {
 
           <ArticleCard title="7. Contacto">
             <p>
-              Para ejercer sus derechos o realizar consultas relacionadas con
-              el tratamiento de datos personales, el titular puede comunicarse
-              a:
+              Para ejercer sus derechos o realizar consultas relacionadas con el
+              tratamiento de datos personales, el titular puede comunicarse a:
             </p>
             <p className="mt-3">
-              📧 <strong>Correo:</strong> inscripciones@8krutadelasmandarinas.com<br />
-              📱 <strong>WhatsApp oficial:</strong> +593 99 510 2378<br />
+              📧 <strong>Correo:</strong>{" "}
+              inscripciones@8krutadelasmandarinas.com
+              <br />
+              📱 <strong>WhatsApp oficial:</strong> +593 99 510 2378
+              <br />
               📍 <strong>Ciudad:</strong> Patate – Ecuador
             </p>
           </ArticleCard>
@@ -186,11 +186,11 @@ function ArticleCard({
   children: React.ReactNode;
 }) {
   return (
-    <article className="rounded-[28px] border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] overflow-hidden">
-      <div className="px-5 sm:px-7 py-4 bg-black/[0.03] border-b border-black/10">
+    <article className="overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+      <div className="border-b border-black/10 bg-black/[0.03] px-5 py-4 sm:px-7">
         <h3 className="font-extrabold text-black/90">{title}</h3>
       </div>
-      <div className="px-5 sm:px-7 py-6">{children}</div>
+      <div className="px-5 py-6 sm:px-7">{children}</div>
     </article>
   );
 }

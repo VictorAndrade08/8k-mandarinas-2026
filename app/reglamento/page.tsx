@@ -13,9 +13,11 @@ const WHATSAPP_RECLAMOS = "593997241804";
 
 export default function ReglamentoSection() {
   return (
+    // Sin tarjeta: el blanco va a sangre (de borde a borde) como en el home, y
+    // solo el contenido queda centrado en max-w-7xl.
     <section
       id="reglamento"
-      className="w-full px-4 py-10 md:py-14 flex justify-center"
+      className="w-full bg-white px-4 py-12 sm:px-6 md:py-16 lg:px-8"
     >
       {/* La familia la sirve next/font desde el layout */}
       <style>{`
@@ -25,37 +27,18 @@ export default function ReglamentoSection() {
         }
       `}</style>
 
-      {/* ✅ MISMO ANCHO QUE EL HEADER */}
-      <div
-        className="
-          w-full max-w-7xl mx-auto
-          bg-white
-          rounded-[48px]
-          border border-black/10
-          shadow-[0_20px_60px_rgba(0,0,0,0.12)]
-          px-6 sm:px-10 md:px-16
-          py-12 md:py-16
-          text-black
-        "
-      >
+      <div className="mx-auto w-full max-w-7xl text-black">
         {/* HEADER */}
         <div className="text-center">
-          <p className="uppercase tracking-[0.32em] text-xs sm:text-sm text-black/60 font-semibold">
+          <p className="text-xs font-semibold tracking-[0.32em] text-black/60 uppercase sm:text-sm">
             Información oficial — lectura clara y accesible
           </p>
 
-          <h2
-            className="
-              mt-4
-              text-[40px] sm:text-[54px] lg:text-[66px]
-              leading-[1.02]
-              uppercase tracking-[0.08em]
-              font-bebas"
-          >
+          <h2 className="font-bebas mt-4 text-[40px] leading-[1.02] tracking-[0.08em] uppercase sm:text-[54px] lg:text-[66px]">
             Reglamento Oficial
           </h2>
 
-          <p className="mt-3 text-black/70 max-w-3xl mx-auto text-[15px] sm:text-[16px] leading-relaxed">
+          <p className="mx-auto mt-3 max-w-3xl text-[15px] leading-relaxed text-black/70 sm:text-[16px]">
             8K Ruta de las Mandarinas 2026 — Patate, Tungurahua · Ecuador
           </p>
         </div>
@@ -63,7 +46,7 @@ export default function ReglamentoSection() {
         {/* BODY */}
         {/* 15/16px y no 17/18: el texto va un escalón más grueso que antes en
             todo el sitio, y a 18px un reglamento entero se lee como un muro. */}
-        <div className="mt-12 space-y-6 text-[15px] sm:text-[16px] leading-[1.8] text-black/85">
+        <div className="mt-12 space-y-6 text-[15px] leading-[1.8] text-black/85 sm:text-[16px]">
           <ArticleCard id="art-1" title="Artículo 1. Denominación">
             <p>
               La Carrera Atlética <strong>8K Ruta de las Mandarinas</strong> es
@@ -96,57 +79,57 @@ export default function ReglamentoSection() {
                 calles", que no le sirve de nada a quien viene a correr. */}
             <div className="space-y-4">
               <p>
-                La carrera tendrá una distancia de{" "}
-                <strong>8 kilómetros</strong>, con un recorrido escénico que
-                conecta las principales calles y zonas rurales de Patate,
-                rodeadas de cultivos de mandarinas.
+                La carrera tendrá una distancia de <strong>8 kilómetros</strong>
+                , con un recorrido escénico que conecta las principales calles y
+                zonas rurales de Patate, rodeadas de cultivos de mandarinas.
               </p>
 
-              <div className="grid sm:grid-cols-2 gap-3">
+              <div className="grid gap-3 sm:grid-cols-2">
                 <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
-                  <p className="text-black/60 text-[13px] uppercase tracking-[0.18em] mb-1">
+                  <p className="mb-1 text-[13px] tracking-[0.18em] text-black/60 uppercase">
                     Salida
                   </p>
                   <p className="font-extrabold">Patate Gardens</p>
-                  <p className="text-black/70 text-[14px]">08h00</p>
+                  <p className="text-[14px] text-black/70">08h00</p>
                 </div>
                 <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
-                  <p className="text-black/60 text-[13px] uppercase tracking-[0.18em] mb-1">
+                  <p className="mb-1 text-[13px] tracking-[0.18em] text-black/60 uppercase">
                     Llegada
                   </p>
                   <p className="font-extrabold">Estadio Municipal de Patate</p>
-                  <p className="text-black/70 text-[14px]">
+                  <p className="text-[14px] text-black/70">
                     Tarima, sonido y premiación
                   </p>
                 </div>
               </div>
 
               <div>
-                <p className="font-semibold mb-2">Recorrido oficial</p>
+                <p className="mb-2 font-semibold">Recorrido oficial</p>
                 <p>
                   Salida desde <strong>Patate Gardens</strong>. Se gira a la
-                  izquierda a la calle Hilario Torres, luego a la izquierda por la
-                  calle E. Dávila, siguen por la calle bajo la Escalinata de la
-                  Fe, continúan por la calle García Moreno, giran a la izquierda a
-                  la calle Vicente Rocafuerte, a la derecha a la calle Naciones
-                  Unidas, giran a la izquierda y suben a la vía a San Jorge hasta
-                  el sector de Quinta, circunvalan el sector de Chalpi pasando por
-                  los viveros del sector, bajan a la calle Eloy Alfaro tras el
-                  colegio Benjamín Araujo, bajan la calle Manuel Zapater frente al
-                  colegio Benjamín Araujo, giran a la calle Juan León Mera hasta
-                  la calle Vicente Rocafuerte, giran a la izquierda hasta la calle
-                  Naciones Unidas y continúan por la <strong>Av. Ambato</strong>{" "}
-                  para la recta final hasta el ingreso al{" "}
-                  <strong>Estadio Municipal de Patate</strong>.
+                  izquierda a la calle Hilario Torres, luego a la izquierda por
+                  la calle E. Dávila, siguen por la calle bajo la Escalinata de
+                  la Fe, continúan por la calle García Moreno, giran a la
+                  izquierda a la calle Vicente Rocafuerte, a la derecha a la
+                  calle Naciones Unidas, giran a la izquierda y suben a la vía a
+                  San Jorge hasta el sector de Quinta, circunvalan el sector de
+                  Chalpi pasando por los viveros del sector, bajan a la calle
+                  Eloy Alfaro tras el colegio Benjamín Araujo, bajan la calle
+                  Manuel Zapater frente al colegio Benjamín Araujo, giran a la
+                  calle Juan León Mera hasta la calle Vicente Rocafuerte, giran
+                  a la izquierda hasta la calle Naciones Unidas y continúan por
+                  la <strong>Av. Ambato</strong> para la recta final hasta el
+                  ingreso al <strong>Estadio Municipal de Patate</strong>.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5 space-y-2">
+              <div className="space-y-2 rounded-2xl border border-black/10 bg-black/[0.03] p-5">
                 <p className="font-semibold">Cierre de vías y operativo</p>
-                <ul className="list-disc pl-6 space-y-1 text-black/85">
+                <ul className="list-disc space-y-1 pl-6 text-black/85">
                   <li>
-                    Cierre de vías desde las <strong>07h00 hasta las 10h00</strong>.
-                    La apertura será progresiva conforme avance la competencia.
+                    Cierre de vías desde las{" "}
+                    <strong>07h00 hasta las 10h00</strong>. La apertura será
+                    progresiva conforme avance la competencia.
                   </li>
                   <li>
                     El control de tránsito estará a cargo de la{" "}
@@ -168,7 +151,7 @@ export default function ReglamentoSection() {
 
           <ArticleCard id="art-5" title="Artículo 5. Categorías">
             <div className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-2 text-black/85">
+              <div className="grid gap-2 text-black/85 sm:grid-cols-2">
                 <div>
                   <strong>Élite Pro 8K</strong> — Damas y Varones (hasta 39
                   años)
@@ -209,11 +192,11 @@ export default function ReglamentoSection() {
               </p>
 
               <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
-                <p className="font-semibold mb-2">Costos de inscripción</p>
+                <p className="mb-2 font-semibold">Costos de inscripción</p>
                 <ul className="space-y-1 text-black/85">
                   <li>
-                    <strong>${PRECIO_PREVENTA}</strong> — Élite Pro 8K (
-                  hasta 39 años)
+                    <strong>${PRECIO_PREVENTA}</strong> — Élite Pro 8K ( hasta
+                    39 años)
                   </li>
                   <li>
                     <strong>${PRECIO_PREVENTA}</strong> — Máster (40 – 64 años)
@@ -249,7 +232,7 @@ export default function ReglamentoSection() {
                   edición anterior: un corredor que viaja a retirar el kit a un
                   sitio equivocado es un problema real, no una errata. */}
               <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
-                <p className="font-semibold mb-1">Por definir</p>
+                <p className="mb-1 font-semibold">Por definir</p>
                 <p className="text-black/80">
                   La fecha, el lugar y el horario de entrega del kit oficial del
                   corredor se anunciarán próximamente en esta página y en los
@@ -258,7 +241,7 @@ export default function ReglamentoSection() {
               </div>
 
               <p>Requisitos para el retiro:</p>
-              <ul className="list-disc pl-6 space-y-1 text-black/85">
+              <ul className="list-disc space-y-1 pl-6 text-black/85">
                 <li>Comprobante de inscripción</li>
                 <li>Cédula de identidad a color</li>
               </ul>
@@ -291,8 +274,11 @@ export default function ReglamentoSection() {
           <ArticleCard id="art-9" title="Artículo 9. Puntos de Control">
             <p>
               La organización contará con puntos de control de ruta, hidratación
-            . <strong>El no pasar por un punto de control
-              será motivo de descalificación.</strong>
+              .{" "}
+              <strong>
+                El no pasar por un punto de control será motivo de
+                descalificación.
+              </strong>
             </p>
           </ArticleCard>
 
@@ -304,16 +290,12 @@ export default function ReglamentoSection() {
             </p>
           </ArticleCard>
 
-          <ArticleCard
-            id="art-11"
-            title="Artículo 11. Seguridad"
-          >
+          <ArticleCard id="art-11" title="Artículo 11. Seguridad">
             <p>
-              Habrá asistencia, seguridad y personal ubicados
-              estratégicamente a lo largo del recorrido y en la meta,
-              garantizando el bienestar de todos los participantes durante la
-              competencia, además de contar con un{" "}
-              <strong>seguro de accidentes</strong>.
+              Habrá asistencia, seguridad y personal ubicados estratégicamente a
+              lo largo del recorrido y en la meta, garantizando el bienestar de
+              todos los participantes durante la competencia, además de contar
+              con un <strong>seguro de accidentes</strong>.
             </p>
           </ArticleCard>
 
@@ -322,7 +304,7 @@ export default function ReglamentoSection() {
               <p>Serán descalificados los atletas que:</p>
 
               <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
-                <ul className="list-disc pl-6 space-y-1 text-black/85">
+                <ul className="list-disc space-y-1 pl-6 text-black/85">
                   <li>No completen el recorrido oficial.</li>
                   <li>Excedan el tiempo límite (90 minutos).</li>
                   <li>No pasen por los puntos de control designados.</li>
@@ -334,9 +316,9 @@ export default function ReglamentoSection() {
               </div>
 
               <p>
-                <strong>Sanción adicional:</strong> los corredores descalificados
-                quedarán inhabilitados para participar en competencias de la
-                organización por <strong>5 años</strong>.
+                <strong>Sanción adicional:</strong> los corredores
+                descalificados quedarán inhabilitados para participar en
+                competencias de la organización por <strong>5 años</strong>.
               </p>
             </div>
           </ArticleCard>
@@ -353,9 +335,9 @@ export default function ReglamentoSection() {
               <p>
                 Al inscribirse, cada atleta declara bajo su responsabilidad que
                 se encuentra en condiciones físicas y de salud adecuadas para
-                participar. Asimismo, exonera al Comité Organizador, auspiciantes
-                y entidades colaboradoras de cualquier responsabilidad médica o
-                legal derivada de su participación.
+                participar. Asimismo, exonera al Comité Organizador,
+                auspiciantes y entidades colaboradoras de cualquier
+                responsabilidad médica o legal derivada de su participación.
               </p>
               <p>
                 La inscripción implica la aceptación total del presente
@@ -369,12 +351,11 @@ export default function ReglamentoSection() {
             <p>
               El Comité Organizador se reserva el derecho de modificar el
               reglamento, el recorrido o las fechas de la competencia, así como
-              de cancelar el evento en caso de fuerza mayor. En tal situación, no
-              habrá obligación de reembolso; sin embargo, se establecerá una
+              de cancelar el evento en caso de fuerza mayor. En tal situación,
+              no habrá obligación de reembolso; sin embargo, se establecerá una
               nueva fecha para la carrera.
             </p>
           </ArticleCard>
-
         </div>
       </div>
     </section>
@@ -393,21 +374,14 @@ function ArticleCard({
   return (
     <article
       id={id}
-      className="
-        rounded-[28px]
-        border border-black/10
-        bg-white
-        shadow-[0_10px_30px_rgba(0,0,0,0.06)]
-        overflow-hidden
-        scroll-mt-28
-      "
+      className="scroll-mt-28 overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)]"
     >
-      <div className="px-5 sm:px-7 py-4 sm:py-5 bg-black/[0.03] border-b border-black/10">
-        <h3 className="font-extrabold text-black/90 text-[16px] sm:text-[18px]">
+      <div className="border-b border-black/10 bg-black/[0.03] px-5 py-4 sm:px-7 sm:py-5">
+        <h3 className="text-[16px] font-extrabold text-black/90 sm:text-[18px]">
           {title}
         </h3>
       </div>
-      <div className="px-5 sm:px-7 py-6">{children}</div>
+      <div className="px-5 py-6 sm:px-7">{children}</div>
     </article>
   );
 }
@@ -419,7 +393,12 @@ function ArticleCard({
  */
 function PremiosTables() {
   const tabla = [
-    { categoria: "Élite Pro 8K", primero: "120", segundo: "100", tercero: "80" },
+    {
+      categoria: "Élite Pro 8K",
+      primero: "120",
+      segundo: "100",
+      tercero: "80",
+    },
     { categoria: "Máster", primero: "80", segundo: "60", tercero: "40" },
     { categoria: "Leyenda", primero: "80", segundo: "60", tercero: "40" },
     { categoria: "Discapacidad", primero: "80", segundo: "60", tercero: "40" },
@@ -429,7 +408,7 @@ function PremiosTables() {
     <div className="space-y-5">
       <p className="font-semibold">Premios económicos</p>
 
-      <div className="rounded-2xl border border-black/10 overflow-hidden">
+      <div className="overflow-hidden rounded-2xl border border-black/10">
         <div className="overflow-auto">
           <table className="w-full min-w-[560px] text-[15px] sm:text-[16px]">
             <thead>
@@ -437,7 +416,7 @@ function PremiosTables() {
                 {["CATEGORÍA", "1° LUGAR", "2° LUGAR", "3° LUGAR"].map((h) => (
                   <th
                     key={h}
-                    className="px-4 py-3 font-extrabold text-black/70 border-b border-black/10 bg-black/[0.03]"
+                    className="border-b border-black/10 bg-black/[0.03] px-4 py-3 font-extrabold text-black/70"
                   >
                     {h}
                   </th>
@@ -481,7 +460,7 @@ function PremiosTables() {
       </p>
 
       <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
-        <p className="font-semibold mb-1">Reclamos y consultas sobre premios</p>
+        <p className="mb-1 font-semibold">Reclamos y consultas sobre premios</p>
         <p className="text-black/75">
           Escríbenos por WhatsApp:{" "}
           <WhatsAppLink
