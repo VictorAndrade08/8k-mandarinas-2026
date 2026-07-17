@@ -34,8 +34,10 @@ export default function Publicidad() {
             width={640}
             height={746}
             className="h-auto w-full"
-            loading="eager"
-            fetchPriority="high"
+            // Ni eager ni fetchPriority: este banner está DEBAJO del pliegue —
+            // el hero ocupa la pantalla entera. Con prioridad alta le robaba el
+            // turno al logo del hero, que es el LCP de verdad.
+            loading="lazy"
             decoding="async"
           />
         </picture>

@@ -129,7 +129,11 @@
       "Bash(awk '{print \"  \"$1\" bloques <style>\"}')",
       "Bash(awk '{printf \"  index.html: %.0f KB\\\\n\", $5/1024}')",
       "Bash(gzip -c out/index.html)",
-      "Bash(awk '{printf \"  comprimido: %.1f KB \\(lo que viaja\\)\\\\n\", $1/1024}')"
+      "Bash(awk '{printf \"  comprimido: %.1f KB \\(lo que viaja\\)\\\\n\", $1/1024}')",
+      "Bash(awk '{printf \"  index.html: %.1f KB comprimido \\(eran 68 con inlineCss\\)\\\\n\", $1/1024}')",
+      "Bash(awk '{print \"  \"$1\"  \\(1 = solo el logo del hero ✅\\)\"}')",
+      "Bash(awk '{print \"  \"$1\"  \\(0 = fuera ✅\\)\"}')",
+      "Bash(awk '{printf \"  index.html: %.1f KB \\(eran 68 con inlineCss\\)\\\\n\", $1/1024}')"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"

@@ -180,10 +180,14 @@ export default function HeroCountdown() {
           <img
             src="/logo-mandarinas-blanco.svg"
             alt="8K Ruta de las Mandarinas"
+            // Sin drop-shadow en el className: es un filtro sobre un SVG y el
+            // navegador rasteriza el vector y recalcula la sombra píxel a píxel
+            // ANTES de pintarlo. Este logo es el LCP y el informe marca 2 s de
+            // retraso con la imagen ya descargada. La viñeta ya oscurece el fondo.
             fetchPriority="high"
             loading="eager"
             decoding="sync"
-            className="h-auto max-h-[min(20vh,190px)] w-[min(78vw,580px)] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.7)] select-none"
+            className="h-auto max-h-[min(20vh,190px)] w-[min(78vw,580px)] object-contain select-none"
             draggable={false}
           />
 
