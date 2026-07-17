@@ -16,7 +16,7 @@ export default function PoliticaPrivacidad8K() {
             Información legal — protección de datos personales
           </p>
 
-          <h1 className="${bebas.className} mt-4 text-[40px] leading-[1.02] tracking-[0.08em] uppercase sm:text-[54px] lg:text-[66px]">
+          <h1 className="mt-4 text-[40px] leading-[1.02] font-extrabold tracking-[0.08em] uppercase sm:text-[54px] lg:text-[66px]">
             Política de Privacidad
           </h1>
 
