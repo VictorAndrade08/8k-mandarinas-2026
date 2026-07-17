@@ -10,11 +10,10 @@ export default function ReglamentoSection() {
     // 3. Inyectamos la variable de fuente en el contenedor principal
     <section
       id="reglamento"
-      className={`flex w-full justify-center bg-[#0a0a0a] px-3 py-4 font-sans`}
+      className={`relative w-full overflow-hidden bg-[#070D18] px-4 py-14 font-sans text-white sm:px-6 sm:py-20 lg:px-8`}
     >
-      {/* Eliminamos el <style> @import que bloqueaba el renderizado */}
-
-      <div className="relative flex w-full max-w-7xl flex-col items-center overflow-hidden rounded-[32px] border border-white/10 bg-[#070D18] px-6 py-12 text-center text-white shadow-[0_20px_70px_-10px_rgba(0,0,0,0.6)] sm:rounded-[48px] sm:px-10 sm:py-20 lg:px-16">
+      {/* Sin tarjeta: fondo a sangre, contenido centrado en max-w-7xl. */}
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center text-center">
         {/* Fondo Decorativo Magenta */}
         <div className="pointer-events-none absolute top-0 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#FF6B1A]/10 blur-[120px]" />
 

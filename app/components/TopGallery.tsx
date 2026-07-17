@@ -174,75 +174,75 @@ export default function TopGallery() {
 
   return (
     <>
-      <section className="flex w-full justify-center bg-gray-50 px-3 py-4 md:py-6">
-        <div className="w-full max-w-7xl">
-          {/* Contenedor Principal */}
-          <div className="relative overflow-hidden rounded-[20px] border border-black/5 bg-[#1a1a1a] shadow-lg sm:rounded-[32px]">
-            {/* Gradientes laterales */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#1a1a1a] to-transparent sm:w-20" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#1a1a1a] to-transparent sm:w-20" />
+      {/* Sin tarjeta: el carrusel va a sangre, de borde a borde. El fondo oscuro
+          pasa a la <section> y las fotos ocupan todo el ancho de la pantalla. */}
+      <section className="relative w-full overflow-hidden bg-[#1a1a1a] py-5 sm:py-6">
+        <div className="relative">
+          {/* Gradientes laterales */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#1a1a1a] to-transparent sm:w-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#1a1a1a] to-transparent sm:w-20" />
 
-            {/* Carrusel */}
-            <div className="overflow-hidden py-5 sm:py-6">
-              <div
-                ref={marqueeRef}
-                className="tg-marquee flex gap-4 sm:gap-6"
-                style={
-                  {
-                    "--tgDuration": "40s", // Un poco más lento para apreciar las fotos
-                    "--tgDurationMobile": "25s",
-                  } as React.CSSProperties
-                }
-              >
-                {belt.map((img, i) => (
-                  <button
-                    key={i} // Usamos índice porque la lista es estática duplicada
-                    type="button"
-                    onClick={() => setActiveIndex(i % IMAGES.length)}
-                    className="group relative h-[130px] w-[200px] flex-shrink-0 overflow-hidden rounded-[16px] border border-white/10 bg-black transition-transform hover:scale-[1.02] focus:ring-2 focus:ring-[#FF6B1A] focus:outline-none active:scale-95 sm:h-[170px] sm:w-[260px] md:h-[210px] md:w-[320px]"
-                    aria-label={`Ver foto ${img.alt}`}
-                  >
-                    {/* OPTIMIZACIÓN: Next Image con 'fill' y 'sizes' */}
-                    {/* 'sizes' le dice al navegador que descargue la versión pequeña, no la original de 2MB */}
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      fill
-                      // Las tarjetas miden 200/260/320px, pero en pantallas 2x y
-                      // 3x el navegador pide el doble o el triple. Sin este tope
-                      // bajaba el archivo de 640px para pintarlo a 198.
-                      sizes="(max-width: 640px) 200px, (max-width: 768px) 260px, 320px"
-                      quality={70}
-                      className="object-cover opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
-                      loading="lazy"
-                    />
+          {/* Carrusel */}
+          <div className="overflow-hidden">
+            <div
+              ref={marqueeRef}
+              className="tg-marquee flex gap-4 sm:gap-6"
+              style={
+                {
+                  "--tgDuration": "40s", // Un poco más lento para apreciar las fotos
+                  "--tgDurationMobile": "25s",
+                } as React.CSSProperties
+              }
+            >
+              {belt.map((img, i) => (
+                <button
+                  key={i} // Usamos índice porque la lista es estática duplicada
+                  type="button"
+                  onClick={() => setActiveIndex(i % IMAGES.length)}
+                  className="group relative h-[130px] w-[200px] flex-shrink-0 overflow-hidden rounded-[16px] border border-white/10 bg-black transition-transform hover:scale-[1.02] focus:ring-2 focus:ring-[#FF6B1A] focus:outline-none active:scale-95 sm:h-[170px] sm:w-[260px] md:h-[210px] md:w-[320px]"
+                  aria-label={`Ver foto ${img.alt}`}
+                >
+                  {/* OPTIMIZACIÓN: Next Image con 'fill' y 'sizes' */}
+                  {/* 'sizes' le dice al navegador que descargue la versión pequeña, no la original de 2MB */}
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    // Las tarjetas miden 200/260/320px, pero en pantallas 2x y
+                    // 3x el navegador pide el doble o el triple. Sin este tope
+                    // bajaba el archivo de 640px para pintarlo a 198.
+                    sizes="(max-width: 640px) 200px, (max-width: 768px) 260px, 320px"
+                    quality={70}
+                    className="object-cover opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
+                    loading="lazy"
+                  />
 
-                    {/* Overlay y efecto hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#FF6B1A]/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  {/* Overlay y efecto hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#FF6B1A]/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <div className="rounded-full bg-black/30 p-2 backdrop-blur-sm">
-                        <svg
-                          className="h-6 w-6 text-white"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                          />
-                        </svg>
-                      </div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <div className="rounded-full bg-black/30 p-2 backdrop-blur-sm">
+                      <svg
+                        className="h-6 w-6 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                        />
+                      </svg>
                     </div>
-                  </button>
-                ))}
-              </div>
+                  </div>
+                </button>
+              ))}
             </div>
+          </div>
 
-            <style>{`
+          <style>{`
               @keyframes tgMarquee {
                 0% { transform: translate3d(0, 0, 0); }
                 100% { transform: translate3d(-50%, 0, 0); }
@@ -261,7 +261,6 @@ export default function TopGallery() {
                 .tg-marquee { animation: none; transform: none; }
               }
             `}</style>
-          </div>
         </div>
       </section>
 

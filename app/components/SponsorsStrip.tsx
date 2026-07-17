@@ -84,24 +84,21 @@ export default function SponsorsStrip() {
 
   return (
     <section
-      className={`flex w-full justify-center bg-gray-50 px-3 py-4 font-sans`}
+      className={`relative w-full overflow-hidden bg-white px-4 py-10 font-sans sm:px-6 sm:py-14 md:px-8`}
     >
-      <div className="relative w-full max-w-7xl overflow-hidden rounded-[24px] border border-gray-100 bg-white px-4 py-6 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.08)] sm:rounded-[32px] sm:px-6 sm:py-8 md:px-10">
-        {/* Las montañas del arte oficial, ancladas abajo y al 40%: es fondo, no
-            ilustración. A opacidad plena compiten con los logos, que es lo que
-            la gente viene a mirar aquí. Van en <div> con background y no en
-            <img> para que no cuenten como contenido ni las lea nadie. */}
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-bottom bg-no-repeat opacity-[0.18]"
-          style={{
-            backgroundImage: "url(/fotos/montanas.webp)",
-            // 100% auto y no `contain`: contain la encaja entera y la deja
-            // pequeña y centrada. Así se estira de borde a borde y la cordillera
-            // hace de línea de horizonte, que es para lo que está.
-            backgroundSize: "100% auto",
-          }}
-          aria-hidden="true"
-        />
+      {/* Las montañas del arte oficial, ancladas abajo y al 18%: es fondo, no
+          ilustración. Ahora a sangre (antes vivían dentro de la tarjeta). Van en
+          <div> con background y no en <img> para que no cuenten como contenido. */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-bottom bg-no-repeat opacity-[0.18]"
+        style={{
+          backgroundImage: "url(/fotos/montanas.webp)",
+          backgroundSize: "100% auto",
+        }}
+        aria-hidden="true"
+      />
+      {/* Sin tarjeta: fondo a sangre, contenido centrado en max-w-7xl. */}
+      <div className="relative mx-auto w-full max-w-7xl">
         {/* Título. z-10 para quedar por encima de las montañas del fondo. */}
         <div className="relative z-10 mb-6 flex items-center justify-center gap-4 sm:mb-8">
           <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#FF6B1A]/50 sm:w-16"></div>

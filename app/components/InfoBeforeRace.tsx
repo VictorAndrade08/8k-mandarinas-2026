@@ -48,11 +48,12 @@ export default function InfoBeforeRace() {
   return (
     // 4. Inyectamos la variable de fuente CSS
     <section
-      className={`flex w-full justify-center bg-[#0a0a0a] px-3 py-4 font-sans`}
+      className={`relative w-full overflow-hidden bg-[#05071A] px-4 py-14 font-sans sm:px-6 sm:py-20 lg:px-8`}
     >
-      {/* Eliminado el tag <style> @import que bloqueaba el renderizado */}
-
-      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-[32px] border border-white/10 bg-[#05071A] px-6 py-10 shadow-[0_20px_70px_-10px_rgba(255,107,26,0.18)] sm:rounded-[56px] sm:px-10 sm:py-14 lg:px-14">
+      {/* Sin tarjeta: el fondo va a sangre (de borde a borde) y solo el contenido
+          queda centrado en max-w-7xl. Antes esto vivía en una caja redondeada
+          flotando sobre un fondo de separación. */}
+      <div className="relative mx-auto w-full max-w-7xl">
         {/* Decoración de fondo optimizada (pointer-events-none para no interferir con clicks) */}
         <div className="pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-[#FF6B1A]/10 blur-[120px]" />
 

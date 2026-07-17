@@ -18,7 +18,7 @@ export default function RegistrationOptions() {
   return (
     // Inyectamos la variable de fuente en el contenedor principal
     <section
-      className={`flex w-full justify-center bg-gray-50 px-3 py-4 font-sans`}
+      className={`flex w-full justify-center bg-gray-50 px-4 py-12 font-sans sm:py-16`}
     >
       <div className="grid w-full max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
         {/* ================================

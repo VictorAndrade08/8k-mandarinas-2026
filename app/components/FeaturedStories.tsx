@@ -8,11 +8,10 @@ export default function FeaturedStories() {
   return (
     // 3. Inyección de variable de fuente
     <section
-      className={`flex w-full justify-center bg-[#0a0a0a] px-3 py-4 font-sans`}
+      className={`relative w-full overflow-hidden bg-[#070D18] px-4 py-14 font-sans text-white sm:px-6 sm:py-20 lg:px-8`}
     >
-      {/* <style> Eliminado para evitar bloqueo de renderizado */}
-
-      <div className="relative w-full max-w-7xl overflow-hidden rounded-[32px] border border-white/10 bg-[#070D18] px-6 py-10 text-white shadow-[0_20px_60px_-10px_rgba(0,0,0,0.6)] sm:rounded-[48px] sm:px-10 sm:py-14 lg:px-16">
+      {/* Sin tarjeta: fondo a sangre, contenido centrado en max-w-7xl. */}
+      <div className="relative mx-auto w-full max-w-7xl">
         {/* Fondo decorativo */}
         <div className="pointer-events-none absolute right-0 bottom-0 h-[500px] w-[500px] translate-x-1/3 translate-y-1/3 rounded-full bg-[#FF6B1A]/5 blur-[100px]" />
 

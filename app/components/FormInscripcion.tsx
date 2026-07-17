@@ -848,7 +848,7 @@ export default function InscripcionPage() {
     // Duotone: borde sólido más un relleno del mismo color al 20%. Es lo que separa
     // esto de un formulario de plantilla, donde los iconos son todos trazo fino gris.
     <IconContext.Provider value={{ weight: "duotone" }}>
-      <main className="flex min-h-dvh w-full items-start justify-center bg-transparent px-3 py-6 text-white md:px-4 md:py-12">
+      <main className="flex min-h-dvh w-full items-start justify-center bg-transparent py-6 text-white md:px-4 md:py-12">
         {/* INYECCIÓN DE FUENTES */}
         <style>{`
         
@@ -877,7 +877,7 @@ export default function InscripcionPage() {
           acción a esta tarjeta (donde el overflow-hidden la recorta) en vez de al viewport. */}
         <div
           ref={componentRef}
-          className="mx-auto flex w-full max-w-7xl flex-col overflow-hidden rounded-[24px] border border-white/5 bg-[#1C2029]/80 shadow-2xl md:flex-row md:rounded-[32px] md:backdrop-blur-xl"
+          className="mx-auto flex w-full max-w-7xl flex-col overflow-hidden bg-[#1C2029]/80 md:flex-row md:rounded-[32px] md:border md:border-white/5 md:shadow-2xl md:backdrop-blur-xl"
         >
           {/* --- SIDEBAR / HEADER --- */}
           <div className="relative flex min-w-[300px] flex-col justify-between border-b border-white/5 bg-[#11141A] p-6 md:w-1/3 md:border-r md:border-b-0 md:p-12">

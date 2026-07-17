@@ -42,11 +42,10 @@ export default function ExperienceSection() {
   return (
     // 3. Inyectar la variable de fuente en el contenedor principal
     <section
-      className={`flex w-full justify-center bg-[#0a0a0a] px-3 py-4 font-sans`}
+      className={`relative w-full overflow-hidden bg-[#070D18] px-4 py-14 font-sans text-white sm:px-6 sm:py-20 lg:px-8`}
     >
-      {/* Eliminado el tag <style> que bloqueaba el renderizado */}
-
-      <div className="relative w-full max-w-7xl overflow-hidden rounded-[32px] border border-white/10 bg-[#070D18] px-6 py-10 text-white shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)] sm:rounded-[48px] sm:px-10 sm:py-14 lg:px-16">
+      {/* Sin tarjeta: fondo a sangre, contenido centrado en max-w-7xl. */}
+      <div className="relative mx-auto w-full max-w-7xl">
         {/* Luces de fondo decorativas */}
         <div className="pointer-events-none absolute top-0 right-0 h-[400px] w-[400px] translate-x-1/3 -translate-y-1/2 rounded-full bg-[#FF6B1A]/10 blur-[100px]" />
         <div className="pointer-events-none absolute bottom-0 left-0 h-[300px] w-[300px] -translate-x-1/3 translate-y-1/3 rounded-full bg-blue-500/5 blur-[80px]" />

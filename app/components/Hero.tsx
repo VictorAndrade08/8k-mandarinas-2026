@@ -44,10 +44,12 @@ export default function Hero8K() {
   }, []);
 
   return (
+    // Sin tarjeta: el fondo blanco va a sangre y el contenido (vídeo + texto)
+    // queda centrado en max-w-7xl.
     <section
-      className={`flex w-full justify-center bg-gray-50 px-3 py-6 font-sans md:py-8`}
+      className={`w-full bg-white px-4 py-12 font-sans sm:px-6 sm:py-16 lg:px-8`}
     >
-      <div className="relative grid w-full max-w-7xl grid-cols-1 gap-8 overflow-hidden rounded-[24px] border border-black/5 bg-white px-5 py-8 shadow-[0_15px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 hover:shadow-[0_25px_50px_-12px_rgba(255,107,26,0.18)] sm:rounded-[40px] sm:px-8 sm:py-10 md:px-12 md:py-12 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
+      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
         {/* 🎬 VIDEO CONTAINER */}
         <div className="relative z-10 order-1 flex items-center justify-center lg:order-none">
           <div
