@@ -114,7 +114,7 @@ function NotFoundModal({
             </button>
             <a
               href={hrefInscripcion}
-              className="flex items-center justify-center rounded-2xl px-8 py-4 text-base font-bold tracking-wide text-[#050505] uppercase shadow-[0_0_20px_rgba(255,45,124,0.32)] transition hover:shadow-[0_0_30px_rgba(255,45,124,0.52)] hover:brightness-110"
+              className="flex items-center justify-center rounded-2xl px-8 py-4 text-base font-bold tracking-wide text-white uppercase shadow-[0_0_20px_rgba(255,45,124,0.32)] transition hover:shadow-[0_0_30px_rgba(255,45,124,0.52)] hover:brightness-110"
               style={{
                 background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
               }}
@@ -335,7 +335,7 @@ export default function VerificarPage() {
                       <button
                         onClick={verify}
                         disabled={loading || !cedulaOk}
-                        className="group relative mt-4 w-full overflow-hidden rounded-2xl py-5 text-base font-bold tracking-widest text-[#050505] uppercase shadow-lg shadow-purple-900/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="group relative mt-4 w-full overflow-hidden rounded-2xl py-5 text-base font-bold tracking-widest text-white uppercase shadow-lg shadow-purple-900/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
                         style={{
                           background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
                         }}
