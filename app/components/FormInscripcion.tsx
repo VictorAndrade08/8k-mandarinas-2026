@@ -848,7 +848,11 @@ export default function InscripcionPage() {
     // Duotone: borde sólido más un relleno del mismo color al 20%. Es lo que separa
     // esto de un formulario de plantilla, donde los iconos son todos trazo fino gris.
     <IconContext.Provider value={{ weight: "duotone" }}>
-      <main className="flex min-h-dvh w-full items-start justify-center bg-transparent py-6 text-white md:px-4 md:py-12">
+      {/* En móvil el fondo va oscuro (el mismo del panel del formulario): sin
+          esto, el py-6 de arriba dejaba ver el degradado naranja del layout como
+          una franja por encima del form. En md+ vuelve a transparente para que
+          la tarjeta flote sobre el naranja, que ahí sí queda bien. */}
+      <main className="flex min-h-dvh w-full items-start justify-center bg-[#11141A] py-6 text-white md:bg-transparent md:px-4 md:py-12">
         {/* INYECCIÓN DE FUENTES */}
         <style>{`
         
@@ -1020,70 +1024,21 @@ export default function InscripcionPage() {
                   {/* gap más ancho en móvil: el pulgar es menos preciso que el ratón */}
                   <div className="mb-8 grid grid-cols-1 gap-y-7 md:grid-cols-2 md:gap-x-8 md:gap-y-8">
                     <div className="md:col-span-2">
-                      {/* Extranjeros sin cédula: el tipo decide teclado, validación y límite. */}
-                      <div
-                        role="radiogroup"
-                        aria-label="Tipo de documento"
-                        className="mb-4 grid grid-cols-2 gap-2"
-                      >
-                        {[
-                          {
-                            valor: "cedula" as const,
-                            texto: "Cédula ecuatoriana",
-                          },
-                          { valor: "pasaporte" as const, texto: "Pasaporte" },
-                        ].map(({ valor, texto }) => (
-                          <button
-                            key={valor}
-                            type="button"
-                            role="radio"
-                            aria-checked={formData.tipo_documento === valor}
-                            onClick={() => {
-                              if (formData.tipo_documento === valor) return;
-                              // Cambiar de tipo invalida lo escrito: un pasaporte no es una cédula.
-                              setFormData((f) => ({
-                                ...f,
-                                tipo_documento: valor,
-                                cedula: "",
-                              }));
-                              setErrors((prev) => ({ ...prev, cedula: "" }));
-                            }}
-                            className={`font-barlow min-h-[52px] rounded-xl border-2 px-3 text-base font-bold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#161A23] md:text-lg ${
-                              formData.tipo_documento === valor
-                                ? "border-[#FF6B1A] bg-[#FF6B1A] text-white"
-                                : "border-white/15 bg-[#0F1218] text-gray-200 hover:border-white/40"
-                            }`}
-                          >
-                            {texto}
-                          </button>
-                        ))}
-                      </div>
-
-                      {formData.tipo_documento === "pasaporte"
-                        ? renderInputField({
-                            name: "cedula",
-                            label: "Número de Pasaporte",
-                            icon: <IdentificationCard size={20} />,
-                            placeholder: "Ej: AB1234567",
-                            onBlur: handleCedulaBlur,
-                            autoComplete: "off",
-                            inputMode: "text",
-                            maxLength: 15,
-                            autoFocus: true,
-                            hint: "Tal como aparece en tu pasaporte, con letras si las tiene.",
-                          })
-                        : renderInputField({
-                            name: "cedula",
-                            label: "Cédula",
-                            icon: <IdentificationCard size={20} />,
-                            placeholder: "Ej: 1801234567",
-                            onBlur: handleCedulaBlur,
-                            autoComplete: "off",
-                            inputMode: "numeric",
-                            maxLength: 10,
-                            autoFocus: true,
-                            hint: "Va en tu dorsal. También evita que alguien se inscriba dos veces.",
-                          })}
+                      {/* Solo cédula: se quitó el selector Cédula/Pasaporte. El
+                          tipo_documento se queda en "cedula" por defecto, así que
+                          la validación sigue igual sin tocar nada más. */}
+                      {renderInputField({
+                        name: "cedula",
+                        label: "Cédula",
+                        icon: <IdentificationCard size={20} />,
+                        placeholder: "Ej: 1801234567",
+                        onBlur: handleCedulaBlur,
+                        autoComplete: "off",
+                        inputMode: "numeric",
+                        maxLength: 10,
+                        autoFocus: true,
+                        hint: "Va en tu dorsal. También evita que alguien se inscriba dos veces.",
+                      })}
                     </div>
 
                     {renderInputField({
