@@ -153,7 +153,10 @@
       "Bash(awk '{printf \" logo webp 1600px q92: %.0f KB\\\\n\", $5/1024}')",
       "Bash(awk '{print \" \"$1\" propiedades de composición pesada \\(mix-blend + clip-path\\)\"}')",
       "Bash(awk '{print \"  \"$1\" KB de JS en total\"}')",
-      "Bash(awk '{print \"  FloatingCTA en page.tsx: \"$1}')"
+      "Bash(awk '{print \"  FloatingCTA en page.tsx: \"$1}')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/inscripcion/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(kill 14498)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
