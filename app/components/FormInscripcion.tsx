@@ -1294,8 +1294,12 @@ export default function InscripcionPage() {
                     `fixed` para caer en la zona del pulgar, pero en móvil se
                     quedaban encima del contenido todo el rato y tapaban el final
                     del formulario mientras se rellenaba. */}
-                  <div className="mt-6 border-t border-white/10 pt-6 md:border-0 md:pt-0">
-                    <div className="font-barlow flex gap-3">
+                  {/* Barra de navegación fija abajo en móvil: "Siguiente" siempre
+                      a un toque, sin bajar hasta el fondo a buscarlo. En md+ vuelve
+                      al flujo. El hueco que reserva lo pone el div de soporte del
+                      final (pb-40 en móvil), para que no tape el último campo. */}
+                  <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#161A23]/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:pt-6 md:backdrop-blur-none">
+                    <div className="font-barlow mx-auto flex max-w-3xl gap-3">
                       <button
                         type="button"
                         onClick={sinRebote(() => setStep(1))}
@@ -1312,7 +1316,7 @@ export default function InscripcionPage() {
                         <CaretRight size={24} />
                       </button>
                     </div>
-                    <p className="font-barlow mt-2.5 text-center text-sm text-gray-400">
+                    <p className="font-barlow mt-2 text-center text-xs text-gray-400 md:mt-2.5 md:text-sm">
                       Aquí no se cobra nada. El pago va en el siguiente paso.
                     </p>
                   </div>
@@ -1654,8 +1658,9 @@ export default function InscripcionPage() {
                     `fixed` para caer en la zona del pulgar, pero en móvil se
                     quedaban encima del contenido todo el rato y tapaban el final
                     del formulario mientras se rellenaba. */}
-                  <div className="mt-6 border-t border-white/10 pt-6 md:border-0 md:pt-0">
-                    <div className="font-barlow flex gap-3">
+                  {/* Barra fija abajo en móvil, igual que el paso 2. */}
+                  <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#161A23]/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:pt-6 md:backdrop-blur-none">
+                    <div className="font-barlow mx-auto flex max-w-3xl gap-3">
                       <button
                         type="button"
                         onClick={sinRebote(() => setStep(2))}
@@ -1834,10 +1839,16 @@ export default function InscripcionPage() {
               )}
 
               {/* En móvil la barra lateral queda arriba, así que el soporte va
-                aquí abajo. Ya no reserva hueco: los botones de Atrás/Siguiente
-                dejaron de ir fijos y ocupan su sitio en el flujo, así que los
-                7rem que se les guardaban solo dejarían un agujero al final. */}
-              <div className="mt-8 mb-4 border-t border-white/10 pt-6 md:hidden">
+                aquí abajo. En los pasos 2 y 3 reserva el hueco de la barra de
+                navegación fija (~120px + la franja de gestos del teléfono), para
+                que el botón "Siguiente" no tape el último campo ni el soporte. */}
+              <div
+                className={`mt-8 border-t border-white/10 pt-6 md:hidden ${
+                  step === 2 || step === 3
+                    ? "mb-[calc(120px+env(safe-area-inset-bottom))]"
+                    : "mb-4"
+                }`}
+              >
                 <SoporteReal />
               </div>
             </div>
