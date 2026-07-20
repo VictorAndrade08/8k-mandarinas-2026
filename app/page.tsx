@@ -34,10 +34,6 @@ const InfoBeforeRace = dynamic(() => import("./components/InfoBeforeRace"), {
   loading: () => <SectionLoader heightClass="min-h-[400px]" />,
 });
 
-const Premios = dynamic(() => import("./components/Premios"), {
-  loading: () => <SectionLoader heightClass="min-h-[500px]" />,
-});
-
 const FeaturedStories = dynamic(() => import("./components/FeaturedStories"), {
   loading: () => <SectionLoader heightClass="min-h-[500px]" />,
 });
@@ -73,11 +69,10 @@ export default function Home() {
         <InfoBeforeRace />
       </section>
 
-      {/* Los premios van aquí y no más arriba a propósito: el corredor acaba de
-          leer qué incluye la inscripción y cuánto cuesta, así que es cuando el
-          "$840 repartidos" significa algo. Puesto antes del precio sería un
-          cebo sin contexto. */}
-      <Premios />
+      {/* Los premios NO se enseñan aquí: viven en el artículo 13 del reglamento
+          y ahí se quedan. Se probó ponerlos en el inicio y se quitó a petición.
+          Los valores siguen en app/lib/carrera.ts, que es de donde los lee el
+          reglamento. */}
 
       {/* Aquí iba <ExperienceSection />: repetía las mismas tres cosas que
           InfoBeforeRace —la ruta, las categorías y el kit— y sus cuatro botones

@@ -33,13 +33,13 @@ export const PRECIO_DESCUENTO = 18;
 export const WHATSAPP_SOPORTE = "593995102378";
 
 /**
- * Premios económicos por categoría, en dólares.
+ * Premios económicos por categoría, en dólares. Solo se enseñan en el artículo
+ * 13 del reglamento.
  *
- * Vivían dentro de app/reglamento/page.tsx con una nota que decía que los
- * valores se escriben una vez y allí. Al sacarlos también al inicio, "allí" pasa
- * a ser este archivo: si se hubieran copiado, tendríamos la misma tabla en dos
- * sitios y el día que cambie un premio uno de los dos se quedaría mintiendo,
- * exactamente lo que pasó con el precio de inscripción.
+ * Están aquí y no dentro de app/reglamento/page.tsx por lo mismo que el resto de
+ * este archivo: los datos de la carrera se escriben en un solo sitio. El precio
+ * de inscripción llegó a decir tres cosas distintas en tres páginas por tenerlo
+ * repartido.
  */
 export const PREMIOS = [
   { categoria: "Élite Pro 8K", primero: 120, segundo: 100, tercero: 80 },
@@ -47,12 +47,3 @@ export const PREMIOS = [
   { categoria: "Leyenda", primero: 80, segundo: 60, tercero: 40 },
   { categoria: "Discapacidad", primero: 80, segundo: 60, tercero: 40 },
 ] as const;
-
-/** Lo que se lleva el primero de la categoría que más paga. */
-export const PREMIO_MAYOR = Math.max(...PREMIOS.map((p) => p.primero));
-
-/** Suma de todo lo que se reparte en premios económicos. */
-export const BOLSA_TOTAL = PREMIOS.reduce(
-  (t, p) => t + p.primero + p.segundo + p.tercero,
-  0
-);

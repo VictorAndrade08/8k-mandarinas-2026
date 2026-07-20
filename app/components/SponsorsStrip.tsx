@@ -7,17 +7,26 @@ import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 // Sacados de las capas del arte oficial (myairbridge/FACEBOOK PORTADA.psd) y servidos
 // desde /public. Antes esto apuntaba a fotos de la 10K de Ambato alojadas en dominios
 // temporales de Hostinger: contenido de otra carrera y un enlace que puede morir solo.
-// Los seis primeros vienen del vector .ai incrustado; boho y patate-gardens solo
-// existían como píxeles en el PSD, así que van a su tamaño nativo.
+// Salen del vector .ai incrustado, salvo boho, que solo existía como píxeles en
+// el PSD y va a su tamaño nativo.
+//
+// Los tres últimos llegaron sueltos y se prepararon a mano: recortados al
+// contenido y con el fondo a transparente. El de Full Fun Travel venía en blanco
+// sobre azul marino y se recoloreó al azul del propio logo — un rectángulo azul
+// dentro de una tarjeta clara desentonaba con los demás, que son marca oscura
+// sobre nada.
 const SPONSOR_LOGOS = [
   { src: "/sponsors/vehicentro-sinotruk.webp", alt: "Vehicentro · Sinotruk" },
-  { src: "/sponsors/cani.webp", alt: "cani" },
-  { src: "/sponsors/nutritec.webp", alt: "Nutritec" },
   { src: "/sponsors/oscus.webp", alt: "OSCUS" },
   { src: "/sponsors/vigop.webp", alt: "VIGOP Eventos" },
   { src: "/sponsors/boho.webp", alt: "BOHO" },
   { src: "/sponsors/prez.webp", alt: "PREZ · Agencia de Growth Marketing" },
-  { src: "/sponsors/patate-gardens.webp", alt: "Patate Gardens" },
+  { src: "/sponsors/aurum.webp", alt: "Aurum Estética Dental" },
+  { src: "/sponsors/full-fun-travel.webp", alt: "Full Fun Travel" },
+  { src: "/sponsors/mokenla.webp", alt: "Mokenla" },
+  { src: "/sponsors/m-verde.webp", alt: "Patrocinador oficial" },
+  { src: "/sponsors/sweaden.webp", alt: "Sweaden Compañía de Seguros" },
+  { src: "/sponsors/neurovitalfit.webp", alt: "NeuroVitalFit" },
 ];
 
 export default function SponsorsStrip() {
@@ -146,16 +155,16 @@ export default function SponsorsStrip() {
               {duplicated.map((logo, i) => (
                 <div
                   key={`${logo.src}-${i}`}
-                  className="/* Ancho fijo para evitar CLS */ group relative flex h-16 w-[120px] flex-none items-center justify-center rounded-2xl border border-gray-100 bg-gray-50 px-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#f7771c]/20 hover:bg-white hover:shadow-lg sm:h-20 sm:w-[160px] sm:px-6 md:h-24"
+                  className="group relative flex h-28 w-[170px] flex-none items-center justify-center rounded-2xl border border-gray-100 bg-gray-50 px-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#f7771c]/20 hover:bg-white hover:shadow-lg sm:h-32 sm:w-[220px] sm:px-6 md:h-36 md:w-[260px]"
                 >
                   {/* OPTIMIZACIÓN DE IMAGEN */}
-                  <div className="relative h-full max-h-12 w-full sm:max-h-14 md:max-h-16">
+                  <div className="relative h-full max-h-24 w-full sm:max-h-28 md:max-h-32">
                     <Image
                       src={logo.src}
                       alt={logo.alt}
                       fill
                       className="object-contain opacity-70 grayscale transition-all duration-500 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0"
-                      sizes="(max-width: 768px) 120px, 160px"
+                      sizes="(max-width: 640px) 170px, (max-width: 768px) 220px, 260px"
                       loading="lazy"
                     />
                   </div>
