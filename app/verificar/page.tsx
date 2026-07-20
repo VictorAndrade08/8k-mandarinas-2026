@@ -2,13 +2,13 @@
 
 import React, { useMemo, useState } from "react";
 import {
-  IdCard,
+  IdentificationCard,
   XCircle,
-  Loader2,
+  CircleNotch,
   X,
-  CheckCircle2,
+  CheckCircle,
   Ticket,
-} from "lucide-react";
+} from "@phosphor-icons/react";
 
 // Configuración de estilos y fuentes
 const brandPink = "#c51850";
@@ -302,7 +302,7 @@ export default function VerificarPage() {
 
                   <div className="relative z-10 mb-10 flex items-center gap-5">
                     <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-gray-800 to-black shadow-inner">
-                      <IdCard className="h-8 w-8 text-white" />
+                      <IdentificationCard className="h-8 w-8 text-white" />
                     </div>
                     <div>
                       <h2 className="mb-1 text-2xl font-bold text-white">
@@ -329,7 +329,7 @@ export default function VerificarPage() {
                         />
                         <div className="pointer-events-none absolute top-1/2 right-5 -translate-y-1/2">
                           {cedulaOk ? (
-                            <CheckCircle2 className="h-6 w-6 text-[#2bd98a]" />
+                            <CheckCircle className="h-6 w-6 text-[#2bd98a]" />
                           ) : (
                             <div className="h-2 w-2 rounded-full bg-white/20" />
                           )}
@@ -347,7 +347,7 @@ export default function VerificarPage() {
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2">
                         {loading ? (
-                          <Loader2 className="h-6 w-6 animate-spin" />
+                          <CircleNotch className="h-6 w-6 animate-spin" />
                         ) : (
                           <Ticket className="h-6 w-6" />
                         )}

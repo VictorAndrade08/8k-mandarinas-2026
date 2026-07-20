@@ -1,12 +1,18 @@
 "use client";
 
 import React from "react";
-import { Map, Users, Package, PartyPopper, ArrowRight } from "lucide-react";
+import {
+  MapTrifold,
+  Users,
+  Package,
+  Confetti,
+  ArrowRight,
+} from "@phosphor-icons/react";
 
 // 2. Configurar la fuente (Carga eficiente sin bloqueo)
 const CARDS = [
   {
-    Icon: Map,
+    Icon: MapTrifold,
     title: "La Ruta de la Carrera",
     text: "Conoce cada tramo del recorrido por las calles de Patate.",
     cta: "Ver mapa 3D",
@@ -27,7 +33,7 @@ const CARDS = [
     cta: "Ver kit completo",
   },
   {
-    Icon: PartyPopper,
+    Icon: Confetti,
     title: "Fiesta, ciudad & ambiente",
     text: "La carrera se integra al aniversario de la Ruta de las Mandarinas: ciudad, ambiente y celebración.",
     cta: "Ver galería",

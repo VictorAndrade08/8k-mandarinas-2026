@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FileDown } from "lucide-react";
+import { FileArrowDown } from "@phosphor-icons/react";
 
 interface Atleta {
   ubicacion: string;
@@ -346,7 +346,7 @@ export default function GanadoresPage() {
             onClick={handleDownloadPDF}
             className="flex items-center gap-3 rounded-xl bg-[#c51850] px-8 py-4 font-[family-name:var(--font-titular)] text-xl font-bold tracking-widest text-white uppercase shadow-lg transition-all duration-300 hover:bg-[#f7771c]"
           >
-            <FileDown className="h-6 w-6" />
+            <FileArrowDown className="h-6 w-6" />
             Descargar PDF Oficial
           </button>
         </div>

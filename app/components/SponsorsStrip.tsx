@@ -2,7 +2,7 @@
 
 import React, { useMemo, useEffect, useRef, useState } from "react";
 import Image from "next/image"; // IMPORTANTE: Optimización de imágenes
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 
 // Sacados de las capas del arte oficial (myairbridge/FACEBOOK PORTADA.psd) y servidos
 // desde /public. Antes esto apuntaba a fotos de la 10K de Ambato alojadas en dominios
@@ -128,7 +128,7 @@ export default function SponsorsStrip() {
               } `}
               aria-label="Mover a la derecha rápido"
             >
-              <ChevronLeft size={24} />
+              <CaretLeft size={24} />
             </button>
           </div>
 
@@ -178,7 +178,7 @@ export default function SponsorsStrip() {
               } `}
               aria-label="Mover a la izquierda rápido"
             >
-              <ChevronRight size={24} />
+              <CaretRight size={24} />
             </button>
           </div>
         </div>

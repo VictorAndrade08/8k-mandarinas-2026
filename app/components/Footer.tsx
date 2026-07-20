@@ -3,7 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, MessageCircle } from "lucide-react";
+import {
+  FacebookLogo,
+  InstagramLogo,
+  WhatsappLogo,
+} from "@phosphor-icons/react";
 import { WHATSAPP_SOPORTE } from "../lib/carrera";
 
 // Los patrocinadores no se listan aquí: ya pasan todos por la cinta de logos de
@@ -23,19 +27,19 @@ const REDES = [
   {
     href: `https://wa.me/${WHATSAPP_SOPORTE}`,
     label: "WhatsApp",
-    Icon: MessageCircle,
+    Icon: WhatsappLogo,
     color: "hover:text-[#25D366]",
   },
   {
     href: "https://instagram.com",
     label: "Instagram",
-    Icon: Instagram,
+    Icon: InstagramLogo,
     color: "hover:text-[#E1306C]",
   },
   {
     href: "https://facebook.com",
     label: "Facebook",
-    Icon: Facebook,
+    Icon: FacebookLogo,
     color: "hover:text-[#1877F2]",
   },
 ];

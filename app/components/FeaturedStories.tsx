@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Trophy, ArrowRight } from "lucide-react";
+import { Trophy, ArrowRight } from "@phosphor-icons/react";
 
 // 2. Configuración de fuente (Sin bloqueo)
 export default function FeaturedStories() {

@@ -2,7 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
-import { MapPin, Users, Package, Trophy, ArrowRight } from "lucide-react";
+import {
+  MapPin,
+  Users,
+  Package,
+  Trophy,
+  ArrowRight,
+} from "@phosphor-icons/react";
 
 /**
  * Las cuatro cosas que un corredor pregunta antes de inscribirse, y cada una

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link"; // 1. Navegación SPA instantánea
-import { Scale, ArrowRight } from "lucide-react";
+import { Scales, ArrowRight } from "@phosphor-icons/react";
 
 // Configuración de la fuente (Carga eficiente sin bloqueo)
 export default function ReglamentoSection() {
@@ -20,7 +20,7 @@ export default function ReglamentoSection() {
         <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
           {/* Icono Principal */}
           <div className="mb-6 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_0_30px_rgba(247,119,28,0.18)] backdrop-blur-sm">
-            <Scale className="h-8 w-8 text-[#f7771c] sm:h-10 sm:w-10" />
+            <Scales className="h-8 w-8 text-[#f7771c] sm:h-10 sm:w-10" />
           </div>
 
           {/* Etiqueta */}

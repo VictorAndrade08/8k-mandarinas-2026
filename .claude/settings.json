@@ -185,7 +185,8 @@
       "Bash(rm -rf capturas)",
       "Bash(perl -0pi -e 's/strong,\\\\nb \\\\{\\\\n  font-weight: 900;\\\\n\\\\}/strong,\\\\nb {\\\\n  \\\\/* 700, el peso más alto que se carga de Archivo. Estaba en 900, que no\\\\n     existe: el navegador lo falsificaba engordando los trazos. *\\\\/\\\\n  font-weight: 700;\\\\n}/' app/globals.css)",
       "Bash(perl -pi -e 's/var\\\\\\(--font-poppins\\\\\\)/var\\(--font-titular\\), var\\(--font-texto\\)/g if $. >= 218 && $. <= 232' app/globals.css)",
-      "Bash(perl -pi -e 's/font-\\\\[family-name:var\\\\\\(--font-titular\\\\\\)\\\\] text-\\\\[20px\\\\]/text-[20px]/' app/components/FloatingCTA.tsx)"
+      "Bash(perl -pi -e 's/font-\\\\[family-name:var\\\\\\(--font-titular\\\\\\)\\\\] text-\\\\[20px\\\\]/text-[20px]/' app/components/FloatingCTA.tsx)",
+      "Bash(perl -pi -e 's/label: \"InstagramLogo\"/label: \"Instagram\"/; s/label: \"FacebookLogo\"/label: \"Facebook\"/' app/components/Footer.tsx)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"

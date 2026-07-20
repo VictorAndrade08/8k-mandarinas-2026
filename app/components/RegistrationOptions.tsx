@@ -4,14 +4,14 @@ import React from "react";
 import Link from "next/link"; // MEJORA: Navegación SPA instantánea
 import {
   Globe,
-  MessageCircle,
-  CheckCircle2,
+  WhatsappLogo,
+  CheckCircle,
   ArrowRight,
-  Smartphone,
+  DeviceMobile,
   CreditCard,
   UserCheck,
-  type LucideIcon,
-} from "lucide-react";
+  type Icon,
+} from "@phosphor-icons/react";
 
 // Configuración de la fuente optimizada
 export default function RegistrationOptions() {
@@ -55,7 +55,7 @@ export default function RegistrationOptions() {
               <ListItem icon={UserCheck} text="Elige tu categoría." />
               <ListItem icon={CreditCard} text="Completa tus datos y paga." />
               <ListItem
-                icon={CheckCircle2}
+                icon={CheckCircle}
                 text="Recibe confirmación instantánea."
               />
             </ul>
@@ -87,7 +87,7 @@ export default function RegistrationOptions() {
           <div className="relative z-10">
             <div className="mb-4 flex items-center gap-2">
               <div className="rounded-full bg-white/10 p-2 text-[#25D366]">
-                <MessageCircle size={20} />
+                <WhatsappLogo size={20} />
               </div>
               {/* Mismo criterio que "Recomendado": el peso ya era el máximo,
                    lo que faltaba era contraste. */}
@@ -108,7 +108,7 @@ export default function RegistrationOptions() {
 
             <ul className="space-y-4">
               <ListItemDark
-                icon={Smartphone}
+                icon={DeviceMobile}
                 text="Envía tus datos por chat."
               />
               <ListItemDark
@@ -116,7 +116,7 @@ export default function RegistrationOptions() {
                 text="Recibe los datos para transferencia."
               />
               <ListItemDark
-                icon={CheckCircle2}
+                icon={CheckCircle}
                 text="Envía comprobante y confirma."
               />
             </ul>
@@ -130,7 +130,7 @@ export default function RegistrationOptions() {
               rel="noopener noreferrer"
               className="flex h-14 w-full items-center justify-center gap-2 rounded-full border-2 border-transparent bg-white text-sm font-bold tracking-[0.15em] text-gray-900 uppercase shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:bg-[#25D366] hover:text-white"
             >
-              Abrir WhatsApp <MessageCircle size={18} />
+              Abrir WhatsApp <WhatsappLogo size={18} />
             </a>
 
             <p className="mt-5 text-center text-sm text-white/50">
@@ -145,22 +145,16 @@ export default function RegistrationOptions() {
 }
 
 // Componentes auxiliares para listas limpias.
-// LucideIcon en vez de any: con `any` cualquier cosa pasaba por aquí — un string,
+// Icon en vez de any: con `any` cualquier cosa pasaba por aquí — un string,
 // un número — y reventaba en tiempo de ejecución en vez de al compilar.
-const ListItem = ({ icon: Icon, text }: { icon: LucideIcon; text: string }) => (
+const ListItem = ({ icon: Icon, text }: { icon: Icon; text: string }) => (
   <li className="flex items-start gap-3 text-gray-700">
     <Icon size={20} className="mt-0.5 shrink-0 text-[#f7771c]" />
     <span className="text-sm font-medium sm:text-base">{text}</span>
   </li>
 );
 
-const ListItemDark = ({
-  icon: Icon,
-  text,
-}: {
-  icon: LucideIcon;
-  text: string;
-}) => (
+const ListItemDark = ({ icon: Icon, text }: { icon: Icon; text: string }) => (
   <li className="flex items-start gap-3 text-white/90">
     <Icon size={20} className="mt-0.5 shrink-0 text-[#25D366]" />
     <span className="text-sm font-medium sm:text-base">{text}</span>
