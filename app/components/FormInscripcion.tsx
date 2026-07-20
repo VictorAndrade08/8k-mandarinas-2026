@@ -34,7 +34,6 @@ import {
   useNavegacionPasos,
   enviarInscripcion,
   useCuentaAtras,
-  MINUTOS_SESION,
   ContadorSesion,
   PasoPago,
   PasoFinal,
@@ -138,20 +137,9 @@ export default function InscripcionPage() {
     },
   });
 
-  // Cuenta atrás de 15 minutos, visible mientras se rellena (pasos 2 y 3).
-  // Está para meter prisa: al llegar a cero avisa, pero no borra nada.
-  const sesion = useCuentaAtras({
-    activo: step === 2 || step === 3,
-    alExpirar: () => {
-      // NO se borra nada. Los datos siguen donde estaban y en localStorage; lo
-      // único que pasa es que se avisa y se ofrece seguir. Ver el porqué en el
-      // comentario de cabecera de useCuentaAtras.
-      showAlert(
-        "Se acabó el tiempo",
-        `Pasaron ${MINUTOS_SESION} minutos. Tus datos siguen aquí, no perdiste nada: cierra este aviso y continúa donde ibas.`
-      );
-    },
-  });
+  // Cuenta atrás visible en los pasos 2 y 3. Es solo presión visual: al llegar
+  // a cero se reinicia sola y en silencio, no caduca nada y no bloquea nada.
+  const sesion = useCuentaAtras({ activo: step === 2 || step === 3 });
 
   // Función para reiniciar el formulario
   const handleReset = () => {
@@ -596,13 +584,7 @@ export default function InscripcionPage() {
             type={modalState.type}
             actionLabel={modalState.actionLabel}
             onAction={modalState.onAction}
-            onClose={() => {
-              setModalState({ ...modalState, isOpen: false });
-              // Si el aviso era el de "se acabó el tiempo", cerrarlo da otros
-              // quince minutos. Sin esto el contador se quedaría clavado en
-              // 00:00 y volvería a avisar cada segundo.
-              if (sesion.expirada) sesion.renovar();
-            }}
+            onClose={() => setModalState({ ...modalState, isOpen: false })}
           />
           <ResumeModal
             isOpen={progreso.modalAbierto}
