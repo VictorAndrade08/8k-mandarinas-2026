@@ -219,7 +219,14 @@
       "Bash(awk -F: '$1>1574')",
       "Bash(perl -0pi -e 's/    <\\\\/form>\\\\n                    \\\\\\)\\\\}\\\\n  \\\\\\);/    <\\\\/form>\\\\n  \\);/' app/components/inscripcion/PasoPago.tsx)",
       "Bash(node /tmp/cap4321.mjs)",
-      "Bash(python3 -c \"import json,sys;d=json.load\\(sys.stdin\\);print\\('páginas capturadas:',len\\(d\\)\\);print\\('con desbordamiento:',sum\\(1 for r in d if r['overflow']\\)\\)\")"
+      "Bash(python3 -c \"import json,sys;d=json.load\\(sys.stdin\\);print\\('páginas capturadas:',len\\(d\\)\\);print\\('con desbordamiento:',sum\\(1 for r in d if r['overflow']\\)\\)\")",
+      "Bash(perl -0pi -e 's/^  type RespuestaInscribir,\\\\n//m' app/components/FormInscripcion.tsx)",
+      "Bash(perl -pi -e 's/validarCampo: \\\\\\(name: keyof FormDataState\\\\\\) => string/validarCampo: \\(name: keyof FormDataState\\) => string | null/g' app/components/inscripcion/validacion.ts)",
+      "Bash(node aviso.mjs)",
+      "Bash(perl -pi -e 's/inscripcion8k_v1/inscripcion_8k_progreso/' final.mjs)",
+      "Bash(node final.mjs)",
+      "Bash(perl -pi -e 's/^  WHATSAPP_SOPORTE,$/  WHATSAPP_SOPORTE,\\\\n  PREMIOS,/' app/reglamento/page.tsx)",
+      "Bash(perl -0pi -e 's/import \\\\{ PREMIOS \\\\} from \"\\\\@\\\\/app\\\\/lib\\\\/carrera\";\\\\n//' app/reglamento/page.tsx)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
