@@ -14,7 +14,12 @@ import type { FormDataState } from "./tipos";
  */
 export interface Formulario {
   formData: FormDataState;
-  errors: Partial<Record<keyof FormDataState, string>>;
+  /**
+   * Errores por nombre de campo. Es Record<string, string> y no está indexado
+   * por keyof FormDataState porque también guarda "acceptTerms", que es una
+   * casilla de la interfaz y no un dato del corredor.
+   */
+  errors: Record<string, string>;
   /** Si el valor actual del campo pasa sus reglas. Pinta el visto verde. */
   esValido: (name: keyof FormDataState) => boolean;
   // Sin HTMLTextAreaElement: este formulario no tiene ninguno, y añadirlo "por
