@@ -14,6 +14,9 @@ export { CustomModal } from "./CustomModal";
 export { ResumeModal } from "./ResumeModal";
 export { SoporteReal } from "./SoporteReal";
 export { PasoCategoria } from "./PasoCategoria";
+export { CampoTexto } from "./CampoTexto";
+export { FormularioProvider, useFormulario } from "./contexto";
+export type { Formulario } from "./contexto";
 
 export { reglas, formatTelefono, hoyISO } from "./validacion";
 export { STORAGE_KEY, BANCO } from "./constantes";

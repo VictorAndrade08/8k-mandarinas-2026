@@ -50,6 +50,8 @@ import {
   ResumeModal,
   SoporteReal,
   PasoCategoria,
+  CampoTexto,
+  FormularioProvider,
   reglas,
   formatTelefono,
   hoyISO,
@@ -745,1104 +747,1007 @@ export default function InscripcionPage() {
     );
   };
 
-  const renderInputField = ({
-    name,
-    label,
-    icon,
-    type = "text",
-    placeholder,
-    onBlur,
-    autoComplete,
-    inputMode,
-    enterKeyHint = "next",
-    maxLength,
-    max,
-    hint,
-    list,
-    autoFocus,
-  }: {
-    name: keyof FormDataState;
-    label: string;
-    icon: React.ReactNode;
-    type?: string;
-    placeholder?: string;
-    onBlur?: () => void;
-    autoComplete?: string;
-    inputMode?: "text" | "numeric" | "email" | "tel" | "decimal";
-    enterKeyHint?: "next" | "done" | "send";
-    maxLength?: number;
-    max?: string;
-    hint?: string;
-    list?: string;
-    autoFocus?: boolean;
-  }) => {
-    const error = errors[name];
-    const ok = isFieldValid(name) && !error;
-
-    // Los iconos de Phosphor pintan con currentColor, así que el color de la etiqueta
-    // los arrastra. Al mover la etiqueta según el estado, el icono cambia en sincronía
-    // con el borde del input y sin una línea de JS: gris en reposo, naranja al tocarlo,
-    // verde cuando el dato sirve, rojo si falla. El error manda sobre el foco.
-    const colorEtiqueta = error
-      ? "text-red-300"
-      : ok
-        ? "text-green-400 group-focus-within:text-[#f7771c]"
-        : "text-gray-200 group-focus-within:text-[#f7771c]";
-
-    return (
-      <div className="group relative">
-        <label
-          htmlFor={name}
-          className={`font-barlow mb-2 flex items-center gap-2 text-sm font-bold tracking-wide uppercase transition-colors duration-150 md:text-base ${colorEtiqueta}`}
-        >
-          {icon} {label}
-        </label>
-        <div className="relative">
-          <input
-            id={name}
-            name={name}
-            type={type}
-            inputMode={inputMode}
-            enterKeyHint={enterKeyHint}
-            autoComplete={autoComplete}
-            maxLength={maxLength}
-            max={max}
-            list={list}
-            autoFocus={autoFocus}
-            aria-invalid={Boolean(error)}
-            aria-describedby={
-              error ? `${name}-error` : hint ? `${name}-hint` : undefined
-            }
-            value={formData[name] ? String(formData[name]) : ""}
-            onChange={handleInput}
-            onFocus={scrollAlEnfocar}
-            onBlur={() => {
-              handleBlur(name);
-              onBlur?.();
-            }}
-            placeholder={placeholder}
-            className={`font-barlow min-h-[56px] w-full rounded-xl border-2 bg-[#200815] px-5 py-4 pr-12 text-lg text-white placeholder-gray-500 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] md:text-xl ${
-              // El input type="date" en iOS trae un ancho nativo propio y no
-              // respeta w-full: se sale por la derecha. appearance-none + min-w-0
-              // le quitan ese ancho intrínseco y ya cabe en la tarjeta.
-              type === "date"
-                ? "min-w-0 appearance-none [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-date-and-time-value]:text-left"
-                : ""
-            } ${
-              error
-                ? "border-red-400 focus-visible:ring-red-400"
-                : ok
-                  ? "border-green-500/70 focus-visible:ring-green-500"
-                  : "border-white/25 hover:border-white/45 focus:border-[#f7771c] focus-visible:ring-[#f7771c]"
-            } `}
-          />
-          {ok && (
-            <CheckCircle
-              size={22}
-              className="animate-in fade-in zoom-in-75 pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-green-500 duration-200"
-            />
-          )}
-          {error && (
-            <WarningCircle
-              size={22}
-              className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-red-400"
-            />
-          )}
-        </div>
-        {error ? (
-          <p
-            id={`${name}-error`}
-            role="alert"
-            className="font-barlow mt-2 flex items-start gap-1.5 text-sm font-medium text-red-300 md:text-base"
-          >
-            <WarningCircle size={16} className="mt-0.5 shrink-0" /> {error}
-          </p>
-        ) : hint ? (
-          <p
-            id={`${name}-hint`}
-            className="font-barlow mt-2 text-sm text-gray-400"
-          >
-            {hint}
-          </p>
-        ) : null}
-      </div>
-    );
-  };
-
   return (
     // Duotone: borde sólido más un relleno del mismo color al 20%. Es lo que separa
     // esto de un formulario de plantilla, donde los iconos son todos trazo fino gris.
-    <IconContext.Provider value={{ weight: "duotone" }}>
-      {/* El Toaster estaba en app/layout.tsx, así que sonner entraba en el JS de
+    // El contexto es lo que permite que los campos y los pasos vivan en sus
+    // propios archivos: sin él, cada <CampoTexto> necesitaría seis props que el
+    // paso que lo contiene no usa para nada, solo para reenviarlas.
+    <FormularioProvider
+      value={{
+        formData,
+        errors,
+        esValido: isFieldValid,
+        alEscribir: handleInput,
+        alSalir: handleBlur,
+        alEnfocar: scrollAlEnfocar,
+      }}
+    >
+      <IconContext.Provider value={{ weight: "duotone" }}>
+        {/* El Toaster estaba en app/layout.tsx, así que sonner entraba en el JS de
           las seis páginas del sitio y solo se usa aquí: los avisos de "copiado"
           y "categoría cambiada" son de este formulario. */}
-      <Toaster position="top-center" richColors closeButton duration={2400} />
+        <Toaster position="top-center" richColors closeButton duration={2400} />
 
-      {/* En móvil el fondo va oscuro (el mismo del panel del formulario): sin
+        {/* En móvil el fondo va oscuro (el mismo del panel del formulario): sin
           esto, el py-6 de arriba dejaba ver el degradado naranja del layout como
           una franja por encima del form. En md+ vuelve a transparente para que
           la tarjeta flote sobre el naranja, que ahí sí queda bien. */}
-      <main className="flex min-h-dvh w-full items-start justify-center bg-[#230a17] py-6 text-white md:bg-transparent md:px-4 md:py-12">
-        {/* INYECCIÓN DE FUENTES */}
-        <style>{`
+        <main className="flex min-h-dvh w-full items-start justify-center bg-[#230a17] py-6 text-white md:bg-transparent md:px-4 md:py-12">
+          {/* INYECCIÓN DE FUENTES */}
+          <style>{`
         
         
       `}</style>
 
-        {/* Modales */}
-        <CustomModal
-          isOpen={modalState.isOpen}
-          title={modalState.title}
-          message={modalState.message}
-          type={modalState.type}
-          actionLabel={modalState.actionLabel}
-          onAction={modalState.onAction}
-          onClose={() => setModalState({ ...modalState, isOpen: false })}
-        />
-        <ResumeModal
-          isOpen={resumeModalOpen}
-          step={resumeStep}
-          onResume={resumeSaved}
-          onNew={startFreshInscription}
-        />
-        {/* Contenedor Principal */}
-        {/* El backdrop-blur solo en desktop: un backdrop-filter crea bloque contenedor
+          {/* Modales */}
+          <CustomModal
+            isOpen={modalState.isOpen}
+            title={modalState.title}
+            message={modalState.message}
+            type={modalState.type}
+            actionLabel={modalState.actionLabel}
+            onAction={modalState.onAction}
+            onClose={() => setModalState({ ...modalState, isOpen: false })}
+          />
+          <ResumeModal
+            isOpen={resumeModalOpen}
+            step={resumeStep}
+            onResume={resumeSaved}
+            onNew={startFreshInscription}
+          />
+          {/* Contenedor Principal */}
+          {/* El backdrop-blur solo en desktop: un backdrop-filter crea bloque contenedor
           para los descendientes `position:fixed`, y en móvil eso ancla la barra de
           acción a esta tarjeta (donde el overflow-hidden la recorta) en vez de al viewport. */}
-        <div
-          ref={componentRef}
-          className="mx-auto flex w-full max-w-7xl flex-col overflow-hidden bg-[#361126]/80 md:flex-row md:rounded-[32px] md:border md:border-white/5 md:shadow-2xl md:backdrop-blur-xl"
-        >
-          {/* --- SIDEBAR / HEADER --- */}
-          <div className="relative flex min-w-[300px] flex-col justify-between border-b border-white/5 bg-[#230a17] p-6 md:w-1/3 md:border-r md:border-b-0 md:p-12">
-            <div>
-              <div className="mb-6 flex items-center gap-4 md:mb-12">
-                <img
-                  src="/logo-mandarinas-blanco.svg"
-                  alt="8K Ruta de las Mandarinas"
-                  className="h-20 w-auto object-contain md:h-24"
-                />
-              </div>
-
-              {/* BARRA DE PROGRESO (Móvil) */}
-              <div className="mb-2 md:hidden">
-                {/* mb-7: el corredor mide 48px y sobresale 24px sobre la barra;
-                    con menos separación se monta encima del texto "Paso X de 4". */}
-                <div className="font-barlow mb-7 flex items-center justify-between">
-                  <span className="text-base font-bold tracking-wider text-gray-300 uppercase sm:text-lg">
-                    Paso {step} de 4
-                  </span>
-                  <span className="text-base font-bold text-white uppercase sm:text-lg">
-                    {stepsLabels[step - 1]}
-                  </span>
-                </div>
-                <div className="relative mt-1 h-2.5 w-full rounded-full bg-white/10">
-                  <div
-                    className="h-full rounded-full bg-[#f7771c] transition-all duration-500"
-                    style={{ width: `${(step / 4) * 100}%` }}
+          <div
+            ref={componentRef}
+            className="mx-auto flex w-full max-w-7xl flex-col overflow-hidden bg-[#361126]/80 md:flex-row md:rounded-[32px] md:border md:border-white/5 md:shadow-2xl md:backdrop-blur-xl"
+          >
+            {/* --- SIDEBAR / HEADER --- */}
+            <div className="relative flex min-w-[300px] flex-col justify-between border-b border-white/5 bg-[#230a17] p-6 md:w-1/3 md:border-r md:border-b-0 md:p-12">
+              <div>
+                <div className="mb-6 flex items-center gap-4 md:mb-12">
+                  <img
+                    src="/logo-mandarinas-blanco.svg"
+                    alt="8K Ruta de las Mandarinas"
+                    className="h-20 w-auto object-contain md:h-24"
                   />
-                  <div
-                    className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500"
-                    style={{ left: `${(step / 4) * 100}%` }}
-                  >
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#f7771c] shadow-[0_5px_16px_rgba(0,0,0,0.55)] ring-2 ring-[#f7771c]/50">
-                      <PersonSimpleRun size={24} aria-hidden="true" />
+                </div>
+
+                {/* BARRA DE PROGRESO (Móvil) */}
+                <div className="mb-2 md:hidden">
+                  {/* mb-7: el corredor mide 48px y sobresale 24px sobre la barra;
+                    con menos separación se monta encima del texto "Paso X de 4". */}
+                  <div className="font-barlow mb-7 flex items-center justify-between">
+                    <span className="text-base font-bold tracking-wider text-gray-300 uppercase sm:text-lg">
+                      Paso {step} de 4
+                    </span>
+                    <span className="text-base font-bold text-white uppercase sm:text-lg">
+                      {stepsLabels[step - 1]}
                     </span>
                   </div>
-                </div>
-              </div>
-
-              {/* LISTA DE PASOS (Desktop) */}
-              <div className="font-barlow relative z-10 hidden space-y-8 md:block">
-                {stepsLabels.map((label, index) => {
-                  const stepNum = index + 1;
-                  const active = step === stepNum;
-                  const completed = step > stepNum;
-                  return (
+                  <div className="relative mt-1 h-2.5 w-full rounded-full bg-white/10">
                     <div
-                      key={index}
-                      className={`flex items-center gap-5 transition-all duration-300 ${active ? "translate-x-2 opacity-100" : "opacity-40"}`}
+                      className="h-full rounded-full bg-[#f7771c] transition-all duration-500"
+                      style={{ width: `${(step / 4) * 100}%` }}
+                    />
+                    <div
+                      className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500"
+                      style={{ left: `${(step / 4) * 100}%` }}
                     >
-                      <div
-                        className={`flex h-12 w-12 items-center justify-center rounded-full border-2 text-lg font-bold transition-all ${active ? `border-[#f7771c] bg-[#f7771c] text-white` : completed ? "border-green-500 bg-green-500 text-black" : "border-white/20 bg-transparent text-white"}`}
-                      >
-                        {completed ? <CheckCircle size={24} /> : stepNum}
-                      </div>
-                      <div>
-                        <p
-                          className={`text-xl font-bold tracking-wider uppercase ${active ? "text-white" : "text-gray-400"}`}
-                        >
-                          {label}
-                        </p>
-                      </div>
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#f7771c] shadow-[0_5px_16px_rgba(0,0,0,0.55)] ring-2 ring-[#f7771c]/50">
+                        <PersonSimpleRun size={24} aria-hidden="true" />
+                      </span>
                     </div>
-                  );
-                })}
-              </div>
-            </div>
+                  </div>
+                </div>
 
-            {/* En móvil esta columna se apila ARRIBA del formulario, así que el soporte
+                {/* LISTA DE PASOS (Desktop) */}
+                <div className="font-barlow relative z-10 hidden space-y-8 md:block">
+                  {stepsLabels.map((label, index) => {
+                    const stepNum = index + 1;
+                    const active = step === stepNum;
+                    const completed = step > stepNum;
+                    return (
+                      <div
+                        key={index}
+                        className={`flex items-center gap-5 transition-all duration-300 ${active ? "translate-x-2 opacity-100" : "opacity-40"}`}
+                      >
+                        <div
+                          className={`flex h-12 w-12 items-center justify-center rounded-full border-2 text-lg font-bold transition-all ${active ? `border-[#f7771c] bg-[#f7771c] text-white` : completed ? "border-green-500 bg-green-500 text-black" : "border-white/20 bg-transparent text-white"}`}
+                        >
+                          {completed ? <CheckCircle size={24} /> : stepNum}
+                        </div>
+                        <div>
+                          <p
+                            className={`text-xl font-bold tracking-wider uppercase ${active ? "text-white" : "text-gray-400"}`}
+                          >
+                            {label}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* En móvil esta columna se apila ARRIBA del formulario, así que el soporte
               va al final del contenido (ver <SoporteReal />) y aquí solo en desktop. */}
-            <div className="font-barlow relative z-10 mt-16 hidden md:mt-0 md:block">
-              <SoporteReal />
-            </div>
-          </div>
-
-          {/* --- ÁREA DE CONTENIDO --- */}
-          <div className="relative min-h-[500px] bg-[#2b0d1d] p-5 md:w-2/3 md:p-14">
-            {(loading || verifying) && (
-              <div className="animate-in fade-in absolute inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-[#2b0d1d]/95 backdrop-blur-sm">
-                <div className="h-16 w-16 animate-spin rounded-full border-4 border-[#f7771c] border-t-transparent" />
-                <p className="font-barlow animate-pulse text-lg font-bold tracking-widest text-white uppercase md:text-xl">
-                  {verifying
-                    ? "Verificando cédula..."
-                    : "Procesando inscripción..."}
-                </p>
+              <div className="font-barlow relative z-10 mt-16 hidden md:mt-0 md:block">
+                <SoporteReal />
               </div>
-            )}
+            </div>
 
-            <div className="mx-auto max-w-3xl">
-              {/* RESUMEN FIJO DE CATEGORÍA + PRECIO (pasos 2 y 3) */}
-              {(step === 2 || step === 3) && selectedCategory && (
-                <div className="font-barlow mb-6 flex items-center justify-between gap-3 rounded-2xl border border-[#f7771c]/30 bg-[#200815] px-5 py-3.5">
-                  <div className="flex flex-col">
-                    <span className="text-[11px] font-bold tracking-widest text-gray-400 uppercase md:text-xs">
-                      Tu categoría
-                    </span>
-                    <span className="text-base leading-tight font-bold text-white md:text-lg">
-                      {selectedCategory}
-                    </span>
-                  </div>
-                  <div className="shrink-0 text-right">
-                    <span className="block text-[11px] font-bold tracking-widest text-gray-400 uppercase md:text-xs">
-                      Total preventa
-                    </span>
-                    <span className="text-2xl leading-none font-black text-[#f7771c] md:text-3xl">
-                      ${selectedPrice}
-                    </span>
-                  </div>
+            {/* --- ÁREA DE CONTENIDO --- */}
+            <div className="relative min-h-[500px] bg-[#2b0d1d] p-5 md:w-2/3 md:p-14">
+              {(loading || verifying) && (
+                <div className="animate-in fade-in absolute inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-[#2b0d1d]/95 backdrop-blur-sm">
+                  <div className="h-16 w-16 animate-spin rounded-full border-4 border-[#f7771c] border-t-transparent" />
+                  <p className="font-barlow animate-pulse text-lg font-bold tracking-widest text-white uppercase md:text-xl">
+                    {verifying
+                      ? "Verificando cédula..."
+                      : "Procesando inscripción..."}
+                  </p>
                 </div>
               )}
 
-              {/* --- PASO 1: CATEGORÍA --- */}
-              {step === 1 && (
-                <PasoCategoria
-                  categorias={categories}
-                  onElegir={(cat) =>
-                    sinRebote(() => handleCategoryClick(cat))()
-                  }
-                />
-              )}
+              <div className="mx-auto max-w-3xl">
+                {/* RESUMEN FIJO DE CATEGORÍA + PRECIO (pasos 2 y 3) */}
+                {(step === 2 || step === 3) && selectedCategory && (
+                  <div className="font-barlow mb-6 flex items-center justify-between gap-3 rounded-2xl border border-[#f7771c]/30 bg-[#200815] px-5 py-3.5">
+                    <div className="flex flex-col">
+                      <span className="text-[11px] font-bold tracking-widest text-gray-400 uppercase md:text-xs">
+                        Tu categoría
+                      </span>
+                      <span className="text-base leading-tight font-bold text-white md:text-lg">
+                        {selectedCategory}
+                      </span>
+                    </div>
+                    <div className="shrink-0 text-right">
+                      <span className="block text-[11px] font-bold tracking-widest text-gray-400 uppercase md:text-xs">
+                        Total preventa
+                      </span>
+                      <span className="text-2xl leading-none font-black text-[#f7771c] md:text-3xl">
+                        ${selectedPrice}
+                      </span>
+                    </div>
+                  </div>
+                )}
 
-              {/* --- PASO 2: DATOS --- */}
-              {step === 2 && (
-                <form
-                  noValidate
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    goToStep3();
-                  }}
-                  className="animate-in slide-in-from-bottom-4 fade-in duration-500"
-                >
-                  <h1 className="font-bebas mb-2 text-4xl font-bold md:text-6xl">
-                    Tus Datos Personales
-                  </h1>
-                  <p className="font-barlow mb-8 text-base text-gray-400 md:text-lg">
-                    Son 2 minutos. Guardamos tu avance por si necesitas volver.
-                  </p>
+                {/* --- PASO 1: CATEGORÍA --- */}
+                {step === 1 && (
+                  <PasoCategoria
+                    categorias={categories}
+                    onElegir={(cat) =>
+                      sinRebote(() => handleCategoryClick(cat))()
+                    }
+                  />
+                )}
 
-                  {/* gap más ancho en móvil: el pulgar es menos preciso que el ratón */}
-                  <div className="mb-8 grid grid-cols-1 gap-y-7 md:grid-cols-2 md:gap-x-8 md:gap-y-8">
-                    <div className="md:col-span-2">
-                      {/* Solo cédula: se quitó el selector Cédula/Pasaporte. El
+                {/* --- PASO 2: DATOS --- */}
+                {step === 2 && (
+                  <form
+                    noValidate
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      goToStep3();
+                    }}
+                    className="animate-in slide-in-from-bottom-4 fade-in duration-500"
+                  >
+                    <h1 className="font-bebas mb-2 text-4xl font-bold md:text-6xl">
+                      Tus Datos Personales
+                    </h1>
+                    <p className="font-barlow mb-8 text-base text-gray-400 md:text-lg">
+                      Son 2 minutos. Guardamos tu avance por si necesitas
+                      volver.
+                    </p>
+
+                    {/* gap más ancho en móvil: el pulgar es menos preciso que el ratón */}
+                    <div className="mb-8 grid grid-cols-1 gap-y-7 md:grid-cols-2 md:gap-x-8 md:gap-y-8">
+                      <div className="md:col-span-2">
+                        {/* Solo cédula: se quitó el selector Cédula/Pasaporte. El
                           tipo_documento se queda en "cedula" por defecto, así que
                           la validación sigue igual sin tocar nada más. */}
-                      {renderInputField({
-                        name: "cedula",
-                        label: "Cédula",
-                        icon: <IdentificationCard size={20} />,
-                        placeholder: "Ej: 1801234567",
-                        onBlur: handleCedulaBlur,
-                        autoComplete: "off",
-                        inputMode: "numeric",
-                        maxLength: 10,
-                        autoFocus: true,
-                        hint: "Va en tu dorsal. También evita que alguien se inscriba dos veces.",
-                      })}
-                    </div>
+                        <CampoTexto
+                          name="cedula"
+                          label="Cédula"
+                          icon={<IdentificationCard size={20} />}
+                          placeholder="Ej: 1801234567"
+                          onBlur={handleCedulaBlur}
+                          autoComplete="off"
+                          inputMode="numeric"
+                          maxLength={10}
+                          autoFocus
+                          hint="Va en tu dorsal. También evita que alguien se inscriba dos veces."
+                        />
+                      </div>
 
-                    {renderInputField({
-                      name: "nombres",
-                      label: "Nombres",
-                      icon: <User size={20} />,
-                      placeholder: "Ej: María Fernanda",
-                      autoComplete: "given-name",
-                      inputMode: "text",
-                    })}
-                    {renderInputField({
-                      name: "apellidos",
-                      label: "Apellidos",
-                      icon: <User size={20} />,
-                      placeholder: "Ej: Pérez Andrade",
-                      autoComplete: "family-name",
-                      inputMode: "text",
-                    })}
+                      <CampoTexto
+                        name="nombres"
+                        label="Nombres"
+                        icon={<User size={20} />}
+                        placeholder="Ej: María Fernanda"
+                        autoComplete="given-name"
+                        inputMode="text"
+                      />
+                      <CampoTexto
+                        name="apellidos"
+                        label="Apellidos"
+                        icon={<User size={20} />}
+                        placeholder="Ej: Pérez Andrade"
+                        autoComplete="family-name"
+                        inputMode="text"
+                      />
 
-                    {/* Sin datalist: era solo una sugerencia, pero el desplegable
+                      {/* Sin datalist: era solo una sugerencia, pero el desplegable
                         se abre encima del campo en cuanto tecleas y en móvil
                         estorba más que ayuda. Aquí vienen corredores de todo el
                         país y de fuera, así que la lista nunca iba a estar
                         completa. Se escribe libre y ya. */}
-                    {renderInputField({
-                      name: "ciudad",
-                      label: "Ciudad",
-                      icon: <MapPin size={20} />,
-                      placeholder: "Ej: Ambato",
-                      autoComplete: "address-level2",
-                      inputMode: "text",
-                    })}
-
-                    {renderInputField({
-                      name: "telefono",
-                      label: "WhatsApp",
-                      icon: <WhatsappLogo size={20} />,
-                      type: "tel",
-                      placeholder: "Ej: 099 123 4567",
-                      autoComplete: "tel",
-                      inputMode: "numeric",
-                      hint: "Solo para confirmarte el cupo y avisarte del kit.",
-                    })}
-
-                    <div className="md:col-span-2">
-                      {renderInputField({
-                        name: "email",
-                        label: "Correo Electrónico",
-                        icon: <Envelope size={20} />,
-                        type: "email",
-                        placeholder: "Ej: tunombre@gmail.com",
-                        autoComplete: "email",
-                        inputMode: "email",
-                        hint: emailSuggestion
-                          ? undefined
-                          : "Ahí llega tu confirmación. Nada de spam.",
-                      })}
-                      {emailSuggestion && (
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setFormData((f) => ({
-                              ...f,
-                              email: emailSuggestion,
-                            }))
-                          }
-                          className="font-barlow mt-2 flex min-h-[48px] items-center gap-1.5 text-left text-sm font-bold text-[#f7771c] hover:text-[#c51850] md:text-base"
-                        >
-                          <Info size={16} className="shrink-0" /> ¿Quisiste
-                          decir{" "}
-                          <span className="underline">{emailSuggestion}</span>?
-                          Tócalo para corregir.
-                        </button>
-                      )}
-                    </div>
-
-                    {renderInputField({
-                      name: "edad",
-                      label: "Edad",
-                      icon: <Cake size={20} />,
-                      placeholder: "Ej: 25",
-                      autoComplete: "off",
-                      inputMode: "numeric",
-                      maxLength: 2,
-                    })}
-
-                    {/* 3 opciones: tarjetas a la vista en vez de un <select> nativo */}
-                    <div>
-                      <span className="font-barlow mb-2 flex items-center gap-2 text-sm font-bold tracking-wide text-gray-200 uppercase md:text-base">
-                        <User size={20} /> Género
-                      </span>
-                      <div
-                        role="radiogroup"
-                        aria-label="Género"
-                        className="grid grid-cols-3 gap-2"
-                      >
-                        {[
-                          { valor: "Masculino", texto: "Hombre" },
-                          { valor: "Femenino", texto: "Mujer" },
-                          { valor: "Otro", texto: "Otro" },
-                        ].map(({ valor, texto }) => (
-                          <button
-                            key={valor}
-                            type="button"
-                            role="radio"
-                            aria-checked={formData.genero === valor}
-                            onClick={() => {
-                              setFormData((f) => ({ ...f, genero: valor }));
-                              setErrors((prev) => ({ ...prev, genero: "" }));
-                            }}
-                            className={`font-barlow min-h-[56px] rounded-xl border-2 px-2 text-base font-bold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] md:text-lg ${
-                              formData.genero === valor
-                                ? "border-[#f7771c] bg-[#f7771c] text-white"
-                                : errors.genero
-                                  ? "border-red-400 bg-[#200815] text-gray-200"
-                                  : "border-white/15 bg-[#200815] text-gray-200 hover:border-white/40"
-                            }`}
-                          >
-                            {texto}
-                          </button>
-                        ))}
-                      </div>
-                      {errors.genero && (
-                        <p
-                          role="alert"
-                          className="font-barlow mt-2 flex items-center gap-1.5 text-sm font-medium text-red-300 md:text-base"
-                        >
-                          <WarningCircle size={16} className="shrink-0" />{" "}
-                          {errors.genero}
-                        </p>
-                      )}
-                    </div>
-
-                    {categoriaNoCuadra && (
-                      <div className="font-barlow animate-in fade-in slide-in-from-top-2 flex items-start gap-3 rounded-xl border border-yellow-500/40 bg-yellow-500/10 px-4 py-4 md:col-span-2">
-                        <Info
-                          size={20}
-                          className="mt-0.5 shrink-0 text-yellow-400"
-                        />
-                        <div className="text-base leading-relaxed text-yellow-50 md:text-lg">
-                          Con {edadNum} años te toca{" "}
-                          <strong className="text-white">
-                            {categoriaSugerida}
-                          </strong>
-                          , no {selectedCategory}.{" "}
-                          <button
-                            type="button"
-                            onClick={aplicarCategoriaSugerida}
-                            className="min-h-[48px] font-bold text-white underline decoration-2 underline-offset-2 hover:text-yellow-300"
-                          >
-                            Cambiar a {categoriaSugerida} ($
-                            {
-                              categories.find(
-                                (c) => c.name === categoriaSugerida
-                              )?.price
-                            }
-                            )
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div
-                    className={`mb-8 rounded-2xl border bg-[#200815] p-5 transition-colors md:p-6 ${
-                      errors.acceptTerms ? "border-red-400" : "border-white/10"
-                    }`}
-                  >
-                    <label
-                      htmlFor="acceptTerms"
-                      className="flex cursor-pointer items-start gap-4"
-                    >
-                      <input
-                        id="acceptTerms"
-                        type="checkbox"
-                        checked={acceptTerms}
-                        onChange={(e) => {
-                          setAcceptTerms(e.target.checked);
-                          if (e.target.checked)
-                            setErrors((prev) => ({ ...prev, acceptTerms: "" }));
-                        }}
-                        className="mt-0.5 h-7 w-7 shrink-0 cursor-pointer accent-[#f7771c]"
+                      <CampoTexto
+                        name="ciudad"
+                        label="Ciudad"
+                        icon={<MapPin size={20} />}
+                        placeholder="Ej: Ambato"
+                        autoComplete="address-level2"
+                        inputMode="text"
                       />
-                      <span className="font-barlow text-base leading-relaxed text-gray-200 md:text-lg">
-                        Acepto los{" "}
-                        <a
-                          href="/terminos"
-                          target="_blank"
-                          className="font-bold text-[#f7771c] underline hover:text-[#c51850]"
-                        >
-                          Términos y Condiciones
-                        </a>{" "}
-                        y declaro estar apto físicamente.
-                      </span>
-                    </label>
-                    {errors.acceptTerms && (
-                      <p
-                        role="alert"
-                        className="font-barlow mt-3 flex items-center gap-1.5 text-sm font-medium text-red-300 md:text-base"
-                      >
-                        <WarningCircle size={16} className="shrink-0" />{" "}
-                        {errors.acceptTerms}
-                      </p>
-                    )}
-                  </div>
 
-                  {/* Los botones van en el flujo, no clavados abajo. Iban con
-                    `fixed` para caer en la zona del pulgar, pero en móvil se
-                    quedaban encima del contenido todo el rato y tapaban el final
-                    del formulario mientras se rellenaba. */}
-                  {/* Barra de navegación fija abajo en móvil: "Siguiente" siempre
-                      a un toque, sin bajar hasta el fondo a buscarlo. En md+ vuelve
-                      al flujo. El hueco que reserva lo pone el div de soporte del
-                      final (pb-40 en móvil), para que no tape el último campo. */}
-                  <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#2b0d1d]/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:pt-6 md:backdrop-blur-none">
-                    {/* La microcopia va ARRIBA de los botones: si va debajo queda
-                        pegada al borde y en teléfonos con barra de gestos se corta.
-                        Encima, además, se lee antes de tocar "Siguiente". */}
-                    <p className="font-barlow mb-2.5 text-center text-xs text-gray-400 md:mb-3 md:text-sm">
-                      Aquí no se cobra nada. El pago va en el siguiente paso.
-                    </p>
-                    <div className="font-barlow mx-auto flex max-w-3xl gap-3">
-                      <button
-                        type="button"
-                        onClick={sinRebote(() => setStep(1))}
-                        className="flex min-h-[56px] items-center gap-2 rounded-xl border border-white/15 px-5 text-lg font-bold text-gray-200 transition outline-none hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-white/60 md:px-10 md:text-xl"
-                      >
-                        <CaretLeft size={24} /> Atrás
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={verifying}
-                        className="flex min-h-[56px] flex-1 items-center justify-center gap-2 rounded-xl bg-white text-lg font-bold text-black shadow-lg transition outline-none hover:bg-gray-200 focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] disabled:opacity-60 md:text-xl"
-                      >
-                        {verifying ? "Verificando..." : "Siguiente"}{" "}
-                        <CaretRight size={24} />
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              )}
+                      <CampoTexto
+                        name="telefono"
+                        label="WhatsApp"
+                        icon={<WhatsappLogo size={20} />}
+                        type="tel"
+                        placeholder="Ej: 099 123 4567"
+                        autoComplete="tel"
+                        inputMode="numeric"
+                        hint="Solo para confirmarte el cupo y avisarte del kit."
+                      />
 
-              {/* --- PASO 3: PAGO (MEJORADO: VERIFICACIÓN FÁCIL) --- */}
-              {step === 3 && (
-                <form
-                  noValidate
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    submitForm();
-                  }}
-                  className="animate-in slide-in-from-right-8 fade-in duration-500"
-                >
-                  <h1 className="font-bebas mb-6 text-4xl font-bold md:text-6xl">
-                    Validación de Pago
-                  </h1>
-
-                  {/* Trampa para bots: invisible y fuera del recorrido de tabulación.
-                    Nadie que use el sitio de verdad puede llenarlo. */}
-                  <input
-                    ref={honeypot}
-                    type="text"
-                    name="apellido_materno"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    aria-hidden="true"
-                    className="absolute left-[-9999px] h-px w-px opacity-0"
-                  />
-
-                  {/* SELECTOR DE MÉTODO DE PAGO */}
-                  <p className="font-barlow mb-3 text-base text-gray-400 md:text-lg">
-                    Elige cómo vas a pagar:
-                  </p>
-                  <div className="font-barlow mb-8 grid grid-cols-2 gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setMetodoPago("transferencia")}
-                      className={`flex items-center justify-center gap-2 rounded-xl border-2 px-4 py-4 text-base font-bold transition-all md:text-lg ${
-                        metodoPago === "transferencia"
-                          ? "border-[#f7771c] bg-[#f7771c] text-white shadow-lg shadow-[#f7771c]/20"
-                          : "border-white/10 bg-[#200815] text-gray-300 hover:border-white/30"
-                      }`}
-                    >
-                      <Bank size={22} /> Transferencia
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setMetodoPago("qr")}
-                      className={`flex items-center justify-center gap-2 rounded-xl border-2 px-4 py-4 text-base font-bold transition-all md:text-lg ${
-                        metodoPago === "qr"
-                          ? "border-[#f7771c] bg-[#f7771c] text-white shadow-lg shadow-[#f7771c]/20"
-                          : "border-white/10 bg-[#200815] text-gray-300 hover:border-white/30"
-                      }`}
-                    >
-                      <QrCode size={22} /> QR (deúna!)
-                    </button>
-                  </div>
-
-                  {metodoPago === "transferencia" && (
-                    <div className="font-barlow mb-8 rounded-2xl border border-white/10 bg-gradient-to-br from-[#331023] to-black p-6 shadow-lg md:p-10">
-                      <div className="mb-8 flex items-center gap-5 border-b border-white/10 pb-6">
-                        <div className="rounded-full bg-[#f7771c]/20 p-4 text-[#f7771c]">
-                          <Bank size={32} />
-                        </div>
-                        <div>
-                          <p className="mb-1 text-sm tracking-wider text-gray-400 uppercase md:text-base">
-                            Institución Financiera
-                          </p>
-                          <p className="text-2xl font-bold md:text-3xl">
-                            {BANCO.entidad}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="space-y-6 text-lg md:text-xl">
-                        <div className="flex items-center justify-between gap-3">
-                          <span className="text-gray-500">
-                            Cuenta Corriente:
-                          </span>
+                      <div className="md:col-span-2">
+                        <CampoTexto
+                          name="email"
+                          label="Correo Electrónico"
+                          icon={<Envelope size={20} />}
+                          type="email"
+                          placeholder="Ej: tunombre@gmail.com"
+                          autoComplete="email"
+                          inputMode="email"
+                          hint={
+                            emailSuggestion
+                              ? undefined
+                              : "Ahí llega tu confirmación. Nada de spam."
+                          }
+                        />
+                        {emailSuggestion && (
                           <button
                             type="button"
                             onClick={() =>
-                              copyToClipboard(BANCO.numero, "Número de cuenta")
+                              setFormData((f) => ({
+                                ...f,
+                                email: emailSuggestion,
+                              }))
                             }
-                            className="group inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 font-mono text-white transition hover:bg-white/10 active:scale-95"
-                            title="Copiar número de cuenta"
+                            className="font-barlow mt-2 flex min-h-[48px] items-center gap-1.5 text-left text-sm font-bold text-[#f7771c] hover:text-[#c51850] md:text-base"
                           >
-                            {BANCO.numero}
-                            <Copy
-                              size={16}
-                              className="text-gray-400 group-hover:text-[#f7771c]"
-                            />
+                            <Info size={16} className="shrink-0" /> ¿Quisiste
+                            decir{" "}
+                            <span className="underline">{emailSuggestion}</span>
+                            ? Tócalo para corregir.
                           </button>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span className="text-gray-500">Tipo:</span>
-                          <span className="text-right font-medium text-white">
-                            Corriente
-                          </span>
-                        </div>
-                        <div className="flex items-start justify-between">
-                          <span className="text-gray-500">Titular:</span>
-                          <span className="max-w-[200px] text-right leading-tight text-white">
-                            {BANCO.titular}
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between gap-3">
-                          <span className="text-gray-500">RUC:</span>
-                          <button
-                            type="button"
-                            onClick={() => copyToClipboard(BANCO.ruc, "RUC")}
-                            className="group inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 font-mono text-white transition hover:bg-white/10 active:scale-95"
-                            title="Copiar RUC"
-                          >
-                            {BANCO.ruc}
-                            <Copy
-                              size={16}
-                              className="text-gray-400 group-hover:text-[#f7771c]"
-                            />
-                          </button>
-                        </div>
-                        <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-6">
-                          <div>
-                            <span className="block text-2xl leading-tight font-bold text-gray-200 md:text-3xl">
-                              Total a pagar:
-                            </span>
-                            <span className="text-xs font-bold tracking-widest text-[#ffc53d] uppercase">
-                              Precio de preventa · sin recargos
-                            </span>
-                          </div>
-                          <span className="text-4xl font-black text-[#f7771c] md:text-5xl">
-                            ${selectedPrice}.00
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* --- MÉTODO 2: PAGO CON QR (deúna! / Banco Pichincha) --- */}
-                  {metodoPago === "qr" && (
-                    <div className="font-barlow mb-8 rounded-2xl border border-white/10 bg-gradient-to-br from-[#331023] to-black p-6 shadow-lg md:p-8">
-                      <div className="mb-5 flex items-center gap-4">
-                        <div className="rounded-full bg-[#f7771c]/20 p-3 text-[#f7771c]">
-                          <QrCode size={28} />
-                        </div>
-                        <div>
-                          <p className="mb-1 text-sm tracking-wider text-gray-400 uppercase md:text-base">
-                            Opción rápida
-                          </p>
-                          <p className="text-2xl font-bold md:text-3xl">
-                            Paga con QR (deúna!)
-                          </p>
-                        </div>
-                      </div>
-                      <p className="mb-6 text-base text-gray-400 md:text-lg">
-                        Desde la app de tu banco o{" "}
-                        <strong className="text-white">deúna!</strong>, escanea
-                        este código e ingresa el monto{" "}
-                        <strong className="text-white">
-                          ${selectedPrice}.00
-                        </strong>
-                        .
-                      </p>
-                      <div className="flex justify-center">
-                        <img
-                          src="/qr-pichincha.png"
-                          alt="Código QR para pago con deúna! y Banco Pichincha a nombre de Diego David Mantilla Villavicencio"
-                          className="h-auto w-full max-w-[360px] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
-                          loading="lazy"
-                        />
-                      </div>
-                    </div>
-                  )}
-
-                  {/* --- SECCIÓN ANTI-FRAUDE Y VERIFICACIÓN --- */}
-                  <div className="mb-10 space-y-6">
-                    <div className="mb-2 flex items-center gap-2 text-yellow-500">
-                      <ShieldCheck size={20} />
-                      <h3 className="font-bebas text-xl font-bold tracking-wide uppercase">
-                        Datos para Verificación Rápida
-                      </h3>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                      {/* 1. Número de Comprobante (Evita tener que mirar la foto) */}
-                      <div className="md:col-span-1">
-                        {renderInputField({
-                          name: "num_comprobante",
-                          label: "Núm. Comprobante",
-                          icon: <FileText size={20} />,
-                          placeholder: "Ej: 123456",
-                          autoComplete: "off",
-                          inputMode: "numeric",
-                          maxLength: 20,
-                          hint: "El número de documento de la transferencia. Con eso lo buscamos en el banco sin abrir tu foto.",
-                        })}
+                        )}
                       </div>
 
-                      {/* 2. Fecha (Ayuda a filtrar) */}
-                      <div className="md:col-span-1">
-                        {renderInputField({
-                          name: "fecha_pago",
-                          label: "Fecha de Transferencia",
-                          icon: <CalendarBlank size={20} />,
-                          type: "date",
-                          max: hoyISO(),
-                        })}
-                      </div>
+                      <CampoTexto
+                        name="edad"
+                        label="Edad"
+                        icon={<Cake size={20} />}
+                        placeholder="Ej: 25"
+                        autoComplete="off"
+                        inputMode="numeric"
+                        maxLength={2}
+                      />
 
-                      {/* 3. Titular de la Cuenta (Evita confusión de nombres) */}
-                      <div className="rounded-xl border border-white/10 bg-[#200815] p-5 md:col-span-2">
-                        <span className="font-barlow mb-3 block text-base font-bold tracking-wide text-gray-200 uppercase">
-                          ¿La cuenta bancaria es tuya?
+                      {/* 3 opciones: tarjetas a la vista en vez de un <select> nativo */}
+                      <div>
+                        <span className="font-barlow mb-2 flex items-center gap-2 text-sm font-bold tracking-wide text-gray-200 uppercase md:text-base">
+                          <User size={20} /> Género
                         </span>
                         <div
                           role="radiogroup"
-                          aria-label="¿La cuenta bancaria es tuya?"
-                          className="mb-4 grid grid-cols-2 gap-3"
+                          aria-label="Género"
+                          className="grid grid-cols-3 gap-2"
                         >
                           {[
-                            { valor: "si", texto: "Sí, es mía" },
-                            { valor: "no", texto: "No, prestada" },
+                            { valor: "Masculino", texto: "Hombre" },
+                            { valor: "Femenino", texto: "Mujer" },
+                            { valor: "Otro", texto: "Otro" },
                           ].map(({ valor, texto }) => (
                             <button
                               key={valor}
                               type="button"
                               role="radio"
-                              aria-checked={formData.es_titular === valor}
-                              onClick={() =>
-                                setFormData((prev) => ({
-                                  ...prev,
-                                  es_titular: valor,
-                                  // Si la cuenta es suya, el titular ya lo sabemos del paso anterior.
-                                  nombre_titular_cuenta:
-                                    valor === "si"
-                                      ? `${prev.nombres} ${prev.apellidos}`.trim()
-                                      : "",
-                                }))
-                              }
-                              className={`font-barlow min-h-[56px] rounded-xl border-2 px-3 text-base font-bold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#200815] md:text-lg ${
-                                formData.es_titular === valor
+                              aria-checked={formData.genero === valor}
+                              onClick={() => {
+                                setFormData((f) => ({ ...f, genero: valor }));
+                                setErrors((prev) => ({ ...prev, genero: "" }));
+                              }}
+                              className={`font-barlow min-h-[56px] rounded-xl border-2 px-2 text-base font-bold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] md:text-lg ${
+                                formData.genero === valor
                                   ? "border-[#f7771c] bg-[#f7771c] text-white"
-                                  : "border-white/15 bg-white/5 text-gray-200 hover:border-white/40"
+                                  : errors.genero
+                                    ? "border-red-400 bg-[#200815] text-gray-200"
+                                    : "border-white/15 bg-[#200815] text-gray-200 hover:border-white/40"
                               }`}
                             >
                               {texto}
                             </button>
                           ))}
                         </div>
-
-                        {/* Si NO es titular, pedimos el nombre real */}
-                        {formData.es_titular === "no" && (
-                          <div className="animate-in slide-in-from-top-2 fade-in">
-                            {renderInputField({
-                              name: "nombre_titular_cuenta",
-                              label: "Nombre del Dueño de la Cuenta",
-                              icon: <User size={20} />,
-                              placeholder: "Ej: Juan Pérez (mi papá)",
-                              autoComplete: "off",
-                              hint: "Sin este nombre no podemos encontrar tu pago en el banco.",
-                            })}
-                          </div>
+                        {errors.genero && (
+                          <p
+                            role="alert"
+                            className="font-barlow mt-2 flex items-center gap-1.5 text-sm font-medium text-red-300 md:text-base"
+                          >
+                            <WarningCircle size={16} className="shrink-0" />{" "}
+                            {errors.genero}
+                          </p>
                         )}
                       </div>
-                    </div>
-                  </div>
 
-                  <div className="mb-10 border-t border-white/10 pt-6">
-                    <label className="font-barlow mb-3 block text-base font-bold tracking-wide text-gray-200 uppercase md:text-lg">
-                      Adjuntar Comprobante (Foto/PDF)
-                    </label>
-                    {!previewName ? (
-                      <label
-                        className={`flex h-36 w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed bg-[#200815] transition-colors focus-within:ring-2 focus-within:ring-[#f7771c] hover:border-[#f7771c] hover:bg-[#f7771c]/5 md:h-48 ${
-                          errors.comprobante
-                            ? "border-red-400"
-                            : "border-gray-500"
-                        }`}
-                      >
-                        <UploadSimple className="mb-2 h-12 w-12 text-gray-300 md:h-16 md:w-16" />
-                        <p className="font-barlow text-base text-gray-300 md:text-lg">
-                          Toca aquí para subir tu archivo
-                        </p>
-                        <p className="font-barlow mt-1 text-sm text-gray-400">
-                          Foto o PDF · máximo 10MB
-                        </p>
-                        <input
-                          type="file"
-                          name="comprobante"
-                          accept="image/*,application/pdf"
-                          onChange={handleInput}
-                          className="sr-only"
-                        />
-                      </label>
-                    ) : (
-                      <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#f7771c]/30 bg-[#f7771c]/10 p-4">
-                        <div className="flex items-center gap-4 overflow-hidden">
-                          <CheckCircle
-                            className="shrink-0 text-green-500"
-                            size={28}
+                      {categoriaNoCuadra && (
+                        <div className="font-barlow animate-in fade-in slide-in-from-top-2 flex items-start gap-3 rounded-xl border border-yellow-500/40 bg-yellow-500/10 px-4 py-4 md:col-span-2">
+                          <Info
+                            size={20}
+                            className="mt-0.5 shrink-0 text-yellow-400"
                           />
-                          <span className="truncate text-base font-bold text-gray-100 md:text-xl">
-                            {previewName}
-                          </span>
+                          <div className="text-base leading-relaxed text-yellow-50 md:text-lg">
+                            Con {edadNum} años te toca{" "}
+                            <strong className="text-white">
+                              {categoriaSugerida}
+                            </strong>
+                            , no {selectedCategory}.{" "}
+                            <button
+                              type="button"
+                              onClick={aplicarCategoriaSugerida}
+                              className="min-h-[48px] font-bold text-white underline decoration-2 underline-offset-2 hover:text-yellow-300"
+                            >
+                              Cambiar a {categoriaSugerida} ($
+                              {
+                                categories.find(
+                                  (c) => c.name === categoriaSugerida
+                                )?.price
+                              }
+                              )
+                            </button>
+                          </div>
                         </div>
-                        <button
-                          type="button"
-                          onClick={clearFile}
-                          aria-label="Quitar el archivo"
-                          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-red-300 transition outline-none hover:bg-red-500/10 focus-visible:ring-2 focus-visible:ring-red-400"
-                        >
-                          <Trash size={24} />
-                        </button>
-                      </div>
-                    )}
-                    {errors.comprobante && (
-                      <p
-                        role="alert"
-                        className="font-barlow mt-2 flex items-center gap-1.5 text-sm font-medium text-red-300 md:text-base"
-                      >
-                        <WarningCircle size={16} className="shrink-0" />{" "}
-                        {errors.comprobante}
-                      </p>
-                    )}
-                    <p className="font-barlow mt-3 flex items-start gap-1.5 text-sm text-gray-400">
-                      <ShieldCheck
-                        size={16}
-                        className="mt-0.5 shrink-0 text-gray-400"
-                      />
-                      Tu comprobante es privado: solo lo ve el equipo que valida
-                      los pagos.
-                    </p>
-                  </div>
+                      )}
+                    </div>
 
-                  {/* Los botones van en el flujo, no clavados abajo. Iban con
+                    <div
+                      className={`mb-8 rounded-2xl border bg-[#200815] p-5 transition-colors md:p-6 ${
+                        errors.acceptTerms
+                          ? "border-red-400"
+                          : "border-white/10"
+                      }`}
+                    >
+                      <label
+                        htmlFor="acceptTerms"
+                        className="flex cursor-pointer items-start gap-4"
+                      >
+                        <input
+                          id="acceptTerms"
+                          type="checkbox"
+                          checked={acceptTerms}
+                          onChange={(e) => {
+                            setAcceptTerms(e.target.checked);
+                            if (e.target.checked)
+                              setErrors((prev) => ({
+                                ...prev,
+                                acceptTerms: "",
+                              }));
+                          }}
+                          className="mt-0.5 h-7 w-7 shrink-0 cursor-pointer accent-[#f7771c]"
+                        />
+                        <span className="font-barlow text-base leading-relaxed text-gray-200 md:text-lg">
+                          Acepto los{" "}
+                          <a
+                            href="/terminos"
+                            target="_blank"
+                            className="font-bold text-[#f7771c] underline hover:text-[#c51850]"
+                          >
+                            Términos y Condiciones
+                          </a>{" "}
+                          y declaro estar apto físicamente.
+                        </span>
+                      </label>
+                      {errors.acceptTerms && (
+                        <p
+                          role="alert"
+                          className="font-barlow mt-3 flex items-center gap-1.5 text-sm font-medium text-red-300 md:text-base"
+                        >
+                          <WarningCircle size={16} className="shrink-0" />{" "}
+                          {errors.acceptTerms}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Los botones van en el flujo, no clavados abajo. Iban con
                     `fixed` para caer en la zona del pulgar, pero en móvil se
                     quedaban encima del contenido todo el rato y tapaban el final
                     del formulario mientras se rellenaba. */}
-                  {/* Barra fija abajo en móvil, igual que el paso 2. */}
-                  <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#2b0d1d]/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:pt-6 md:backdrop-blur-none">
-                    <div className="font-barlow mx-auto flex max-w-3xl gap-3">
+                    {/* Barra de navegación fija abajo en móvil: "Siguiente" siempre
+                      a un toque, sin bajar hasta el fondo a buscarlo. En md+ vuelve
+                      al flujo. El hueco que reserva lo pone el div de soporte del
+                      final (pb-40 en móvil), para que no tape el último campo. */}
+                    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#2b0d1d]/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:pt-6 md:backdrop-blur-none">
+                      {/* La microcopia va ARRIBA de los botones: si va debajo queda
+                        pegada al borde y en teléfonos con barra de gestos se corta.
+                        Encima, además, se lee antes de tocar "Siguiente". */}
+                      <p className="font-barlow mb-2.5 text-center text-xs text-gray-400 md:mb-3 md:text-sm">
+                        Aquí no se cobra nada. El pago va en el siguiente paso.
+                      </p>
+                      <div className="font-barlow mx-auto flex max-w-3xl gap-3">
+                        <button
+                          type="button"
+                          onClick={sinRebote(() => setStep(1))}
+                          className="flex min-h-[56px] items-center gap-2 rounded-xl border border-white/15 px-5 text-lg font-bold text-gray-200 transition outline-none hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-white/60 md:px-10 md:text-xl"
+                        >
+                          <CaretLeft size={24} /> Atrás
+                        </button>
+                        <button
+                          type="submit"
+                          disabled={verifying}
+                          className="flex min-h-[56px] flex-1 items-center justify-center gap-2 rounded-xl bg-white text-lg font-bold text-black shadow-lg transition outline-none hover:bg-gray-200 focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] disabled:opacity-60 md:text-xl"
+                        >
+                          {verifying ? "Verificando..." : "Siguiente"}{" "}
+                          <CaretRight size={24} />
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                )}
+
+                {/* --- PASO 3: PAGO (MEJORADO: VERIFICACIÓN FÁCIL) --- */}
+                {step === 3 && (
+                  <form
+                    noValidate
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      submitForm();
+                    }}
+                    className="animate-in slide-in-from-right-8 fade-in duration-500"
+                  >
+                    <h1 className="font-bebas mb-6 text-4xl font-bold md:text-6xl">
+                      Validación de Pago
+                    </h1>
+
+                    {/* Trampa para bots: invisible y fuera del recorrido de tabulación.
+                    Nadie que use el sitio de verdad puede llenarlo. */}
+                    <input
+                      ref={honeypot}
+                      type="text"
+                      name="apellido_materno"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      className="absolute left-[-9999px] h-px w-px opacity-0"
+                    />
+
+                    {/* SELECTOR DE MÉTODO DE PAGO */}
+                    <p className="font-barlow mb-3 text-base text-gray-400 md:text-lg">
+                      Elige cómo vas a pagar:
+                    </p>
+                    <div className="font-barlow mb-8 grid grid-cols-2 gap-3">
                       <button
                         type="button"
-                        onClick={sinRebote(() => setStep(2))}
-                        className="flex min-h-[56px] items-center gap-2 rounded-xl border border-white/15 px-5 text-lg font-bold text-gray-200 transition outline-none hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-white/60 md:px-10 md:text-xl"
+                        onClick={() => setMetodoPago("transferencia")}
+                        className={`flex items-center justify-center gap-2 rounded-xl border-2 px-4 py-4 text-base font-bold transition-all md:text-lg ${
+                          metodoPago === "transferencia"
+                            ? "border-[#f7771c] bg-[#f7771c] text-white shadow-lg shadow-[#f7771c]/20"
+                            : "border-white/10 bg-[#200815] text-gray-300 hover:border-white/30"
+                        }`}
                       >
-                        <CaretLeft size={24} /> Atrás
+                        <Bank size={22} /> Transferencia
                       </button>
                       <button
-                        type="submit"
-                        disabled={submitting}
-                        className="min-h-[56px] flex-1 rounded-xl bg-[#f7771c] text-lg font-bold text-white shadow-[0_0_20px_#f7771c50] transition outline-none hover:bg-[#d2600f] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] disabled:cursor-not-allowed disabled:opacity-50 md:text-xl"
+                        type="button"
+                        onClick={() => setMetodoPago("qr")}
+                        className={`flex items-center justify-center gap-2 rounded-xl border-2 px-4 py-4 text-base font-bold transition-all md:text-lg ${
+                          metodoPago === "qr"
+                            ? "border-[#f7771c] bg-[#f7771c] text-white shadow-lg shadow-[#f7771c]/20"
+                            : "border-white/10 bg-[#200815] text-gray-300 hover:border-white/30"
+                        }`}
                       >
-                        {submitting ? "Enviando..." : "Confirmar Inscripción"}
+                        <QrCode size={22} /> QR (deúna!)
+                      </button>
+                    </div>
+
+                    {metodoPago === "transferencia" && (
+                      <div className="font-barlow mb-8 rounded-2xl border border-white/10 bg-gradient-to-br from-[#331023] to-black p-6 shadow-lg md:p-10">
+                        <div className="mb-8 flex items-center gap-5 border-b border-white/10 pb-6">
+                          <div className="rounded-full bg-[#f7771c]/20 p-4 text-[#f7771c]">
+                            <Bank size={32} />
+                          </div>
+                          <div>
+                            <p className="mb-1 text-sm tracking-wider text-gray-400 uppercase md:text-base">
+                              Institución Financiera
+                            </p>
+                            <p className="text-2xl font-bold md:text-3xl">
+                              {BANCO.entidad}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-6 text-lg md:text-xl">
+                          <div className="flex items-center justify-between gap-3">
+                            <span className="text-gray-500">
+                              Cuenta Corriente:
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                copyToClipboard(
+                                  BANCO.numero,
+                                  "Número de cuenta"
+                                )
+                              }
+                              className="group inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 font-mono text-white transition hover:bg-white/10 active:scale-95"
+                              title="Copiar número de cuenta"
+                            >
+                              {BANCO.numero}
+                              <Copy
+                                size={16}
+                                className="text-gray-400 group-hover:text-[#f7771c]"
+                              />
+                            </button>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-500">Tipo:</span>
+                            <span className="text-right font-medium text-white">
+                              Corriente
+                            </span>
+                          </div>
+                          <div className="flex items-start justify-between">
+                            <span className="text-gray-500">Titular:</span>
+                            <span className="max-w-[200px] text-right leading-tight text-white">
+                              {BANCO.titular}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between gap-3">
+                            <span className="text-gray-500">RUC:</span>
+                            <button
+                              type="button"
+                              onClick={() => copyToClipboard(BANCO.ruc, "RUC")}
+                              className="group inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 font-mono text-white transition hover:bg-white/10 active:scale-95"
+                              title="Copiar RUC"
+                            >
+                              {BANCO.ruc}
+                              <Copy
+                                size={16}
+                                className="text-gray-400 group-hover:text-[#f7771c]"
+                              />
+                            </button>
+                          </div>
+                          <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-6">
+                            <div>
+                              <span className="block text-2xl leading-tight font-bold text-gray-200 md:text-3xl">
+                                Total a pagar:
+                              </span>
+                              <span className="text-xs font-bold tracking-widest text-[#ffc53d] uppercase">
+                                Precio de preventa · sin recargos
+                              </span>
+                            </div>
+                            <span className="text-4xl font-black text-[#f7771c] md:text-5xl">
+                              ${selectedPrice}.00
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* --- MÉTODO 2: PAGO CON QR (deúna! / Banco Pichincha) --- */}
+                    {metodoPago === "qr" && (
+                      <div className="font-barlow mb-8 rounded-2xl border border-white/10 bg-gradient-to-br from-[#331023] to-black p-6 shadow-lg md:p-8">
+                        <div className="mb-5 flex items-center gap-4">
+                          <div className="rounded-full bg-[#f7771c]/20 p-3 text-[#f7771c]">
+                            <QrCode size={28} />
+                          </div>
+                          <div>
+                            <p className="mb-1 text-sm tracking-wider text-gray-400 uppercase md:text-base">
+                              Opción rápida
+                            </p>
+                            <p className="text-2xl font-bold md:text-3xl">
+                              Paga con QR (deúna!)
+                            </p>
+                          </div>
+                        </div>
+                        <p className="mb-6 text-base text-gray-400 md:text-lg">
+                          Desde la app de tu banco o{" "}
+                          <strong className="text-white">deúna!</strong>,
+                          escanea este código e ingresa el monto{" "}
+                          <strong className="text-white">
+                            ${selectedPrice}.00
+                          </strong>
+                          .
+                        </p>
+                        <div className="flex justify-center">
+                          <img
+                            src="/qr-pichincha.png"
+                            alt="Código QR para pago con deúna! y Banco Pichincha a nombre de Diego David Mantilla Villavicencio"
+                            className="h-auto w-full max-w-[360px] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* --- SECCIÓN ANTI-FRAUDE Y VERIFICACIÓN --- */}
+                    <div className="mb-10 space-y-6">
+                      <div className="mb-2 flex items-center gap-2 text-yellow-500">
+                        <ShieldCheck size={20} />
+                        <h3 className="font-bebas text-xl font-bold tracking-wide uppercase">
+                          Datos para Verificación Rápida
+                        </h3>
+                      </div>
+
+                      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                        {/* 1. Número de Comprobante (Evita tener que mirar la foto) */}
+                        <div className="md:col-span-1">
+                          <CampoTexto
+                            name="num_comprobante"
+                            label="Núm. Comprobante"
+                            icon={<FileText size={20} />}
+                            placeholder="Ej: 123456"
+                            autoComplete="off"
+                            inputMode="numeric"
+                            maxLength={20}
+                            hint="El número de documento de la transferencia. Con eso lo buscamos en el banco sin abrir tu foto."
+                          />
+                        </div>
+
+                        {/* 2. Fecha (Ayuda a filtrar) */}
+                        <div className="md:col-span-1">
+                          <CampoTexto
+                            name="fecha_pago"
+                            label="Fecha de Transferencia"
+                            icon={<CalendarBlank size={20} />}
+                            type="date"
+                            max={hoyISO()}
+                          />
+                        </div>
+
+                        {/* 3. Titular de la Cuenta (Evita confusión de nombres) */}
+                        <div className="rounded-xl border border-white/10 bg-[#200815] p-5 md:col-span-2">
+                          <span className="font-barlow mb-3 block text-base font-bold tracking-wide text-gray-200 uppercase">
+                            ¿La cuenta bancaria es tuya?
+                          </span>
+                          <div
+                            role="radiogroup"
+                            aria-label="¿La cuenta bancaria es tuya?"
+                            className="mb-4 grid grid-cols-2 gap-3"
+                          >
+                            {[
+                              { valor: "si", texto: "Sí, es mía" },
+                              { valor: "no", texto: "No, prestada" },
+                            ].map(({ valor, texto }) => (
+                              <button
+                                key={valor}
+                                type="button"
+                                role="radio"
+                                aria-checked={formData.es_titular === valor}
+                                onClick={() =>
+                                  setFormData((prev) => ({
+                                    ...prev,
+                                    es_titular: valor,
+                                    // Si la cuenta es suya, el titular ya lo sabemos del paso anterior.
+                                    nombre_titular_cuenta:
+                                      valor === "si"
+                                        ? `${prev.nombres} ${prev.apellidos}`.trim()
+                                        : "",
+                                  }))
+                                }
+                                className={`font-barlow min-h-[56px] rounded-xl border-2 px-3 text-base font-bold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#200815] md:text-lg ${
+                                  formData.es_titular === valor
+                                    ? "border-[#f7771c] bg-[#f7771c] text-white"
+                                    : "border-white/15 bg-white/5 text-gray-200 hover:border-white/40"
+                                }`}
+                              >
+                                {texto}
+                              </button>
+                            ))}
+                          </div>
+
+                          {/* Si NO es titular, pedimos el nombre real */}
+                          {formData.es_titular === "no" && (
+                            <div className="animate-in slide-in-from-top-2 fade-in">
+                              <CampoTexto
+                                name="nombre_titular_cuenta"
+                                label="Nombre del Dueño de la Cuenta"
+                                icon={<User size={20} />}
+                                placeholder="Ej: Juan Pérez (mi papá)"
+                                autoComplete="off"
+                                hint="Sin este nombre no podemos encontrar tu pago en el banco."
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mb-10 border-t border-white/10 pt-6">
+                      <label className="font-barlow mb-3 block text-base font-bold tracking-wide text-gray-200 uppercase md:text-lg">
+                        Adjuntar Comprobante (Foto/PDF)
+                      </label>
+                      {!previewName ? (
+                        <label
+                          className={`flex h-36 w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed bg-[#200815] transition-colors focus-within:ring-2 focus-within:ring-[#f7771c] hover:border-[#f7771c] hover:bg-[#f7771c]/5 md:h-48 ${
+                            errors.comprobante
+                              ? "border-red-400"
+                              : "border-gray-500"
+                          }`}
+                        >
+                          <UploadSimple className="mb-2 h-12 w-12 text-gray-300 md:h-16 md:w-16" />
+                          <p className="font-barlow text-base text-gray-300 md:text-lg">
+                            Toca aquí para subir tu archivo
+                          </p>
+                          <p className="font-barlow mt-1 text-sm text-gray-400">
+                            Foto o PDF · máximo 10MB
+                          </p>
+                          <input
+                            type="file"
+                            name="comprobante"
+                            accept="image/*,application/pdf"
+                            onChange={handleInput}
+                            className="sr-only"
+                          />
+                        </label>
+                      ) : (
+                        <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#f7771c]/30 bg-[#f7771c]/10 p-4">
+                          <div className="flex items-center gap-4 overflow-hidden">
+                            <CheckCircle
+                              className="shrink-0 text-green-500"
+                              size={28}
+                            />
+                            <span className="truncate text-base font-bold text-gray-100 md:text-xl">
+                              {previewName}
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={clearFile}
+                            aria-label="Quitar el archivo"
+                            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-red-300 transition outline-none hover:bg-red-500/10 focus-visible:ring-2 focus-visible:ring-red-400"
+                          >
+                            <Trash size={24} />
+                          </button>
+                        </div>
+                      )}
+                      {errors.comprobante && (
+                        <p
+                          role="alert"
+                          className="font-barlow mt-2 flex items-center gap-1.5 text-sm font-medium text-red-300 md:text-base"
+                        >
+                          <WarningCircle size={16} className="shrink-0" />{" "}
+                          {errors.comprobante}
+                        </p>
+                      )}
+                      <p className="font-barlow mt-3 flex items-start gap-1.5 text-sm text-gray-400">
+                        <ShieldCheck
+                          size={16}
+                          className="mt-0.5 shrink-0 text-gray-400"
+                        />
+                        Tu comprobante es privado: solo lo ve el equipo que
+                        valida los pagos.
+                      </p>
+                    </div>
+
+                    {/* Los botones van en el flujo, no clavados abajo. Iban con
+                    `fixed` para caer en la zona del pulgar, pero en móvil se
+                    quedaban encima del contenido todo el rato y tapaban el final
+                    del formulario mientras se rellenaba. */}
+                    {/* Barra fija abajo en móvil, igual que el paso 2. */}
+                    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#2b0d1d]/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:pt-6 md:backdrop-blur-none">
+                      <div className="font-barlow mx-auto flex max-w-3xl gap-3">
+                        <button
+                          type="button"
+                          onClick={sinRebote(() => setStep(2))}
+                          className="flex min-h-[56px] items-center gap-2 rounded-xl border border-white/15 px-5 text-lg font-bold text-gray-200 transition outline-none hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-white/60 md:px-10 md:text-xl"
+                        >
+                          <CaretLeft size={24} /> Atrás
+                        </button>
+                        <button
+                          type="submit"
+                          disabled={submitting}
+                          className="min-h-[56px] flex-1 rounded-xl bg-[#f7771c] text-lg font-bold text-white shadow-[0_0_20px_#f7771c50] transition outline-none hover:bg-[#d2600f] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] disabled:cursor-not-allowed disabled:opacity-50 md:text-xl"
+                        >
+                          {submitting ? "Enviando..." : "Confirmar Inscripción"}
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                )}
+
+                {/* --- PASO 4: RESUMEN FINAL --- */}
+                {step === 4 && (
+                  <div className="animate-in zoom-in-95 fade-in py-10 text-center duration-500">
+                    <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-green-500/20 text-green-500 shadow-[0_0_50px_#2bd98a40] md:h-32 md:w-32">
+                      <CheckCircle size={64} />
+                    </div>
+                    <h1 className="font-bebas mb-6 text-4xl font-bold text-white md:text-6xl">
+                      ¡Inscripción Exitosa!
+                    </h1>
+                    <p className="font-barlow mx-auto mb-10 max-w-2xl px-4 text-lg leading-relaxed text-gray-300 md:text-2xl">
+                      Hemos recibido tus datos correctamente. Tu pago será
+                      validado en los siguientes{" "}
+                      <strong className="text-white">
+                        2 a 3 días laborales.
+                      </strong>
+                    </p>
+
+                    {/* Resumen Completo */}
+                    <div className="font-barlow relative mx-auto mb-10 max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#200815] p-8 text-left shadow-2xl">
+                      <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-[#c51850] to-[#f7771c]" />
+
+                      <div className="mb-8 grid grid-cols-2 gap-6 text-base md:text-lg">
+                        <div className="col-span-2 mb-2 border-b border-white/5 pb-6">
+                          <p className="mb-2 text-xs font-bold tracking-wider text-gray-500 uppercase">
+                            Nombre Completo
+                          </p>
+                          <p className="text-2xl font-bold text-white capitalize md:text-3xl">
+                            {formData.nombres} {formData.apellidos}
+                          </p>
+                        </div>
+
+                        <div>
+                          <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
+                            <IdentificationCard size={12} /> Cédula
+                          </p>
+                          <p className="font-mono text-lg text-gray-200 md:text-xl">
+                            {formData.cedula}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
+                            <Medal size={12} /> Categoría
+                          </p>
+                          <p className="text-lg font-bold text-[#f7771c] md:text-xl">
+                            {selectedCategory}
+                          </p>
+                        </div>
+
+                        <div>
+                          <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
+                            <MapPin size={12} /> Ciudad
+                          </p>
+                          <p className="text-lg text-gray-200">
+                            {formData.ciudad}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-400 uppercase">
+                            <WhatsappLogo size={12} /> WhatsApp
+                          </p>
+                          <p className="text-lg text-gray-200">
+                            {formData.telefono}
+                          </p>
+                        </div>
+
+                        <div className="col-span-2">
+                          <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
+                            <Envelope size={12} /> Email
+                          </p>
+                          <p
+                            className="truncate text-lg text-gray-200"
+                            title={formData.email}
+                          >
+                            {formData.email}
+                          </p>
+                        </div>
+
+                        <div>
+                          <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
+                            <Cake size={12} /> Edad
+                          </p>
+                          <p className="text-lg text-gray-200">
+                            {formData.edad} años
+                          </p>
+                        </div>
+                        <div>
+                          <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
+                            <GenderIntersex size={12} /> Género
+                          </p>
+                          <p className="text-lg text-gray-200">
+                            {formData.genero}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-5 rounded-xl border border-white/5 bg-[#331023] p-5">
+                        <div className="shrink-0 rounded-lg bg-white p-2">
+                          <img
+                            alt="QR"
+                            src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(formData.cedula || "8K")}`}
+                            className="h-20 w-20"
+                          />
+                        </div>
+                        <div className="overflow-hidden">
+                          <p className="mb-1 text-sm font-bold text-gray-500 uppercase">
+                            Comprobante de Inscripción
+                          </p>
+                          <p className="truncate text-sm text-gray-400">
+                            Estado:{" "}
+                            <span className="ml-1 rounded bg-yellow-500/10 px-2 py-1 font-bold text-yellow-500">
+                              Pendiente de Verificación
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col items-center gap-4">
+                      <p className="font-barlow max-w-xl text-base text-white/90 md:text-lg">
+                        <strong className="text-white">Último paso:</strong>{" "}
+                        envíanos tu comprobante por WhatsApp para confirmar tu
+                        cupo.
+                      </p>
+                      <a
+                        href={`https://wa.me/593997241804?text=${encodeURIComponent(
+                          `Hola, acabo de inscribirme en la 8K Ruta de las Mandarinas 2026. 🎽\n\n` +
+                            `Nombre: ${formData.nombres} ${formData.apellidos}\n` +
+                            `Cédula: ${formData.cedula}\n` +
+                            `Categoría: ${selectedCategory}\n` +
+                            `Valor: $${selectedPrice}\n\n` +
+                            (uploadedFileUrl
+                              ? `📎 Mi comprobante de pago:\n${uploadedFileUrl}`
+                              : `Adjunto mi comprobante de pago.`)
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-barlow inline-flex items-center gap-3 rounded-full bg-[#25D366] px-10 py-5 text-lg font-bold text-white shadow-[0_0_30px_rgba(37,211,102,0.4)] transition hover:scale-105 hover:bg-[#1EBE57] md:text-xl"
+                      >
+                        <WhatsappLogo size={26} /> Enviar comprobante por
+                        WhatsApp
+                      </a>
+
+                      <a
+                        href="/verificar"
+                        className="font-barlow mt-1 inline-flex items-center gap-2 text-base text-gray-300 transition-colors hover:text-white md:text-lg"
+                      >
+                        <MagnifyingGlass size={20} /> Ver estado de mi
+                        inscripción
+                      </a>
+
+                      <button
+                        onClick={handleReset}
+                        className="font-barlow mt-2 flex items-center gap-2 text-base text-gray-500 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white hover:decoration-white md:text-lg"
+                      >
+                        <ArrowsClockwise size={16} /> Registrar a otra persona
                       </button>
                     </div>
                   </div>
-                </form>
-              )}
+                )}
 
-              {/* --- PASO 4: RESUMEN FINAL --- */}
-              {step === 4 && (
-                <div className="animate-in zoom-in-95 fade-in py-10 text-center duration-500">
-                  <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-green-500/20 text-green-500 shadow-[0_0_50px_#2bd98a40] md:h-32 md:w-32">
-                    <CheckCircle size={64} />
-                  </div>
-                  <h1 className="font-bebas mb-6 text-4xl font-bold text-white md:text-6xl">
-                    ¡Inscripción Exitosa!
-                  </h1>
-                  <p className="font-barlow mx-auto mb-10 max-w-2xl px-4 text-lg leading-relaxed text-gray-300 md:text-2xl">
-                    Hemos recibido tus datos correctamente. Tu pago será
-                    validado en los siguientes{" "}
-                    <strong className="text-white">
-                      2 a 3 días laborales.
-                    </strong>
-                  </p>
-
-                  {/* Resumen Completo */}
-                  <div className="font-barlow relative mx-auto mb-10 max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#200815] p-8 text-left shadow-2xl">
-                    <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-[#c51850] to-[#f7771c]" />
-
-                    <div className="mb-8 grid grid-cols-2 gap-6 text-base md:text-lg">
-                      <div className="col-span-2 mb-2 border-b border-white/5 pb-6">
-                        <p className="mb-2 text-xs font-bold tracking-wider text-gray-500 uppercase">
-                          Nombre Completo
-                        </p>
-                        <p className="text-2xl font-bold text-white capitalize md:text-3xl">
-                          {formData.nombres} {formData.apellidos}
-                        </p>
-                      </div>
-
-                      <div>
-                        <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
-                          <IdentificationCard size={12} /> Cédula
-                        </p>
-                        <p className="font-mono text-lg text-gray-200 md:text-xl">
-                          {formData.cedula}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
-                          <Medal size={12} /> Categoría
-                        </p>
-                        <p className="text-lg font-bold text-[#f7771c] md:text-xl">
-                          {selectedCategory}
-                        </p>
-                      </div>
-
-                      <div>
-                        <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
-                          <MapPin size={12} /> Ciudad
-                        </p>
-                        <p className="text-lg text-gray-200">
-                          {formData.ciudad}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-400 uppercase">
-                          <WhatsappLogo size={12} /> WhatsApp
-                        </p>
-                        <p className="text-lg text-gray-200">
-                          {formData.telefono}
-                        </p>
-                      </div>
-
-                      <div className="col-span-2">
-                        <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
-                          <Envelope size={12} /> Email
-                        </p>
-                        <p
-                          className="truncate text-lg text-gray-200"
-                          title={formData.email}
-                        >
-                          {formData.email}
-                        </p>
-                      </div>
-
-                      <div>
-                        <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
-                          <Cake size={12} /> Edad
-                        </p>
-                        <p className="text-lg text-gray-200">
-                          {formData.edad} años
-                        </p>
-                      </div>
-                      <div>
-                        <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
-                          <GenderIntersex size={12} /> Género
-                        </p>
-                        <p className="text-lg text-gray-200">
-                          {formData.genero}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-5 rounded-xl border border-white/5 bg-[#331023] p-5">
-                      <div className="shrink-0 rounded-lg bg-white p-2">
-                        <img
-                          alt="QR"
-                          src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(formData.cedula || "8K")}`}
-                          className="h-20 w-20"
-                        />
-                      </div>
-                      <div className="overflow-hidden">
-                        <p className="mb-1 text-sm font-bold text-gray-500 uppercase">
-                          Comprobante de Inscripción
-                        </p>
-                        <p className="truncate text-sm text-gray-400">
-                          Estado:{" "}
-                          <span className="ml-1 rounded bg-yellow-500/10 px-2 py-1 font-bold text-yellow-500">
-                            Pendiente de Verificación
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col items-center gap-4">
-                    <p className="font-barlow max-w-xl text-base text-white/90 md:text-lg">
-                      <strong className="text-white">Último paso:</strong>{" "}
-                      envíanos tu comprobante por WhatsApp para confirmar tu
-                      cupo.
-                    </p>
-                    <a
-                      href={`https://wa.me/593997241804?text=${encodeURIComponent(
-                        `Hola, acabo de inscribirme en la 8K Ruta de las Mandarinas 2026. 🎽\n\n` +
-                          `Nombre: ${formData.nombres} ${formData.apellidos}\n` +
-                          `Cédula: ${formData.cedula}\n` +
-                          `Categoría: ${selectedCategory}\n` +
-                          `Valor: $${selectedPrice}\n\n` +
-                          (uploadedFileUrl
-                            ? `📎 Mi comprobante de pago:\n${uploadedFileUrl}`
-                            : `Adjunto mi comprobante de pago.`)
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-barlow inline-flex items-center gap-3 rounded-full bg-[#25D366] px-10 py-5 text-lg font-bold text-white shadow-[0_0_30px_rgba(37,211,102,0.4)] transition hover:scale-105 hover:bg-[#1EBE57] md:text-xl"
-                    >
-                      <WhatsappLogo size={26} /> Enviar comprobante por WhatsApp
-                    </a>
-
-                    <a
-                      href="/verificar"
-                      className="font-barlow mt-1 inline-flex items-center gap-2 text-base text-gray-300 transition-colors hover:text-white md:text-lg"
-                    >
-                      <MagnifyingGlass size={20} /> Ver estado de mi inscripción
-                    </a>
-
-                    <button
-                      onClick={handleReset}
-                      className="font-barlow mt-2 flex items-center gap-2 text-base text-gray-500 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white hover:decoration-white md:text-lg"
-                    >
-                      <ArrowsClockwise size={16} /> Registrar a otra persona
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* En móvil la barra lateral queda arriba, así que el soporte va
+                {/* En móvil la barra lateral queda arriba, así que el soporte va
                 aquí abajo. En los pasos 2 y 3 reserva el hueco de la barra de
                 navegación fija (~120px + la franja de gestos del teléfono), para
                 que el botón "Siguiente" no tape el último campo ni el soporte. */}
-              <div
-                className={`mt-8 border-t border-white/10 pt-6 md:hidden ${
-                  step === 2 || step === 3
-                    ? "mb-[calc(120px+env(safe-area-inset-bottom))]"
-                    : "mb-4"
-                }`}
-              >
-                <SoporteReal />
+                <div
+                  className={`mt-8 border-t border-white/10 pt-6 md:hidden ${
+                    step === 2 || step === 3
+                      ? "mb-[calc(120px+env(safe-area-inset-bottom))]"
+                      : "mb-4"
+                  }`}
+                >
+                  <SoporteReal />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
-    </IconContext.Provider>
+        </main>
+      </IconContext.Provider>
+    </FormularioProvider>
   );
 }
