@@ -15,6 +15,8 @@ export { ResumeModal } from "./ResumeModal";
 export { SoporteReal } from "./SoporteReal";
 export { PasoCategoria } from "./PasoCategoria";
 export { CampoTexto } from "./CampoTexto";
+export { PasoPago } from "./PasoPago";
+export { PasoFinal } from "./PasoFinal";
 export { FormularioProvider, useFormulario } from "./contexto";
 export type { Formulario } from "./contexto";
 
@@ -26,4 +28,5 @@ export type {
   ProgresoGuardado,
   RespuestaInscribir,
   Category,
+  MetodoPago,
 } from "./tipos";

@@ -55,3 +55,10 @@ export interface Category {
   desc: string;
   icon: React.ReactNode;
 }
+
+/**
+ * Cómo dice el corredor que pagó. Es un tipo cerrado y no un string: si mañana
+ * alguien escribe "transferencía" con tilde en un sitio, el paso 3 deja de
+ * pintar el bloque del banco y nadie se entera hasta que llegan las quejas.
+ */
+export type MetodoPago = "transferencia" | "qr";
