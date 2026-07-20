@@ -17,8 +17,12 @@
 import pkg from "playwright";
 const { chromium } = pkg;
 import fs from "fs";
+import { fileURLToPath } from "url";
 
-const OUT = new URL("../capturas", import.meta.url).pathname;
+// fileURLToPath y no .pathname: la carpeta del proyecto tiene espacios en el
+// nombre y .pathname los devuelve como %20, así que el script se creaba a sí
+// mismo un "Prez%20-%20Backup" al lado y dejaba las capturas ahí dentro.
+const OUT = fileURLToPath(new URL("../capturas", import.meta.url));
 const BASE = "http://localhost:3000";
 
 const RUTAS = [

@@ -13,7 +13,9 @@ import { WHATSAPP_SOPORTE } from "../lib/carrera";
 const ENLACES = [
   { href: "/inscripcion/", label: "Inscripción" },
   { href: "/reglamento", label: "Reglamento" },
-  { href: "/verificar", label: "Verificar mi pago" },
+  // El mismo nombre que en el header y en la barra inferior del móvil: la misma
+  // página no puede llamarse de dos maneras según dónde la mires.
+  { href: "/verificar", label: "Mi pago" },
   { href: "/terminos", label: "Términos" },
 ];
 
