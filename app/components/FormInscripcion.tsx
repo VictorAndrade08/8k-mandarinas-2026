@@ -30,13 +30,14 @@ import {
   SoporteReal,
   PasoCategoria,
   PasoDatos,
+  useProgresoGuardado,
+  useNavegacionPasos,
   PasoPago,
   PasoFinal,
   FormularioProvider,
   reglas,
   formatTelefono,
   hoyISO,
-  STORAGE_KEY,
   type FormDataState,
   type ProgresoGuardado,
   type RespuestaInscribir,
@@ -99,76 +100,24 @@ export default function InscripcionPage() {
 
   const [formData, setFormData] = useState<FormDataState>(initialFormData);
 
-  // --- EL BOTÓN ATRÁS DEL NAVEGADOR RETROCEDE UN PASO, NO SALE DE LA PÁGINA ---
-  //
-  // Son cuatro pasos dentro de una sola URL, así que para el navegador todo esto
-  // es una única página: al dar atrás en el paso 3 te echaba del formulario
-  // entero. Y en móvil "atrás" es un gesto, no un botón — se hace sin querer.
-  //
-  // Metemos una entrada de historial por paso para que el gesto haga lo que
-  // cualquiera espera. Los datos no se pierden en ningún caso (siguen en
-  // localStorage), pero volver a entrar y reencontrar el sitio es fricción que
-  // no hace falta.
-  const pasoRef = useRef(step);
-  useEffect(() => {
-    pasoRef.current = step;
-  }, [step]);
+  // El botón "atrás" del navegador va al paso anterior, no fuera del formulario.
+  useNavegacionPasos(setStep);
 
-  useEffect(() => {
-    // La entrada base: sin esto, el primer "atrás" desde el paso 2 saldría de la
-    // página en vez de volver al 1.
-    window.history.replaceState({ paso: 1 }, "");
-
-    const alVolver = (e: PopStateEvent) => {
-      const destino = (e.state as { paso?: number } | null)?.paso;
-      // Sin paso en el estado, es que salimos del formulario: no lo estorbamos.
-      if (typeof destino !== "number") return;
-      setStep(destino);
-    };
-
-    window.addEventListener("popstate", alVolver);
-    return () => window.removeEventListener("popstate", alVolver);
-  }, []);
-
-  // --- PERSISTENCIA: que el usuario NO pierda su avance si refresca ---
-  const hydrated = useRef(false);
-  const savedSnapshot = useRef<ProgresoGuardado | null>(null);
-  const [resumeModalOpen, setResumeModalOpen] = useState(false);
-  const [resumeStep, setResumeStep] = useState(1);
-
-  // 1) Al entrar: si hay avance real, preguntamos si continúa o empieza de nuevo
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const data = JSON.parse(saved) as ProgresoGuardado;
-        const fd = data.formData || {};
-        const hasProgress =
-          (data.step && data.step > 1) ||
-          Boolean(fd.cedula || fd.nombres || fd.email || data.selectedCategory);
-        if (hasProgress) {
-          savedSnapshot.current = data;
-          // localStorage solo existe en el navegador: el HTML lo genera el build
-          // y allí no hay nada guardado. Leerlo durante el render daría un HTML
-          // distinto del que pinta el cliente y React se quejaría de hidratación.
-          // eslint-disable-next-line react-hooks/set-state-in-effect
-          setResumeStep(data.step || 1);
-          setResumeModalOpen(true);
-          return; // esperamos la decisión del usuario antes de guardar
-        }
-      }
-    } catch {}
-    hydrated.current = true;
-  }, []);
-
-  // Continuar donde se quedó
-  const resumeSaved = () => {
-    const data = savedSnapshot.current;
-    if (data) {
+  // El avance se guarda solo en localStorage y se ofrece al volver.
+  const progreso = useProgresoGuardado({
+    step,
+    selectedCategory,
+    selectedPrice,
+    acceptTerms,
+    metodoPago,
+    formData,
+    aplicar: (data: ProgresoGuardado) => {
       if (data.formData)
         setFormData((prev) => ({
           ...prev,
           ...data.formData,
+          // El File no se serializa, así que lo guardado nunca lo trae: hay que
+          // dejarlo en null explícitamente o quedaría el del render anterior.
           comprobante: null,
         }));
       if (data.step) setStep(data.step);
@@ -179,46 +128,8 @@ export default function InscripcionPage() {
         setAcceptTerms(data.acceptTerms);
       if (data.metodoPago === "qr" || data.metodoPago === "transferencia")
         setMetodoPago(data.metodoPago);
-    }
-    setResumeModalOpen(false);
-    hydrated.current = true;
-  };
-
-  // Empezar una inscripción nueva (descarta lo guardado)
-  const startFreshInscription = () => {
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch {}
-    savedSnapshot.current = null;
-    setResumeModalOpen(false);
-    hydrated.current = true;
-  };
-
-  // 2) Guardar progreso ante cualquier cambio (el archivo no se serializa)
-  useEffect(() => {
-    if (!hydrated.current) return; // no sobrescribir antes de cargar
-    if (step >= 4) return; // ya finalizó
-    try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({
-          step,
-          selectedCategory,
-          selectedPrice,
-          acceptTerms,
-          metodoPago,
-          formData: { ...formData, comprobante: undefined },
-        })
-      );
-    } catch {}
-  }, [
-    step,
-    selectedCategory,
-    selectedPrice,
-    acceptTerms,
-    metodoPago,
-    formData,
-  ]);
+    },
+  });
 
   // Función para reiniciar el formulario
   const handleReset = () => {
@@ -230,9 +141,7 @@ export default function InscripcionPage() {
     setUploadedFileUrl("");
     setAcceptTerms(false);
     setErrors({});
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch {}
+    progreso.olvidar();
     if (componentRef.current) {
       componentRef.current.scrollIntoView({
         behavior: "smooth",
@@ -645,9 +554,8 @@ export default function InscripcionPage() {
       }
 
       if (json?.file_url) setUploadedFileUrl(String(json.file_url));
-      try {
-        localStorage.removeItem(STORAGE_KEY);
-      } catch {}
+      // Ya está enviada: lo guardado ya no sirve para retomar nada.
+      progreso.olvidar();
       setStep(4);
     } catch (e) {
       setLoading(false);
@@ -771,10 +679,10 @@ export default function InscripcionPage() {
             onClose={() => setModalState({ ...modalState, isOpen: false })}
           />
           <ResumeModal
-            isOpen={resumeModalOpen}
-            step={resumeStep}
-            onResume={resumeSaved}
-            onNew={startFreshInscription}
+            isOpen={progreso.modalAbierto}
+            step={progreso.pasoGuardado}
+            onResume={progreso.retomar}
+            onNew={progreso.empezarDeNuevo}
           />
           {/* Contenedor Principal */}
           {/* El backdrop-blur solo en desktop: un backdrop-filter crea bloque contenedor
