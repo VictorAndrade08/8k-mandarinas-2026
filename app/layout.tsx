@@ -7,7 +7,6 @@ import {
   ConditionalFooter,
   MainWrapper,
 } from "./components/SiteChrome";
-import { Toaster } from "sonner";
 import BottomNav from "./components/BottomNav";
 
 // ==============================
@@ -204,7 +203,9 @@ export default function RootLayout({
         />
 
         <ConditionalHeader />
-        <Toaster position="top-center" richColors closeButton duration={2400} />
+        {/* El <Toaster/> de sonner vivía aquí, así que la librería entraba en el
+            JS de las seis páginas cuando el único que enseña avisos es el
+            formulario de inscripción. Se ha movido a FormInscripcion.tsx. */}
         <MainWrapper>{children}</MainWrapper>
         <ConditionalFooter />
 

@@ -89,12 +89,13 @@ export default function SponsorsStrip() {
       {/* Las montañas del arte oficial, ancladas abajo y al 18%: es fondo, no
           ilustración. Ahora a sangre (antes vivían dentro de la tarjeta). Van en
           <div> con background y no en <img> para que no cuenten como contenido. */}
+      {/* La clase `montanas-fondo` vive en globals.css y no aquí, en un style
+          inline, porque hace falta una media query: el archivo original mide
+          1600px de ancho y pesa 54 KB — era la imagen más pesada que se bajaba
+          un teléfono, para pintarla a 390px y al 18% de opacidad. En pantallas
+          pequeñas se sirve la versión de 400px, que son 8 KB. */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-bottom bg-no-repeat opacity-[0.18]"
-        style={{
-          backgroundImage: "url(/fotos/montanas.webp)",
-          backgroundSize: "100% auto",
-        }}
+        className="montanas-fondo pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-bottom bg-no-repeat opacity-[0.18]"
         aria-hidden="true"
       />
       {/* Sin tarjeta: fondo a sangre, contenido centrado en max-w-7xl. */}

@@ -395,3 +395,22 @@ b {
 section[id] {
   scroll-margin-top: 24px;
 }
+
+/* ========================================= */
+/* ✅ FONDO DE MONTAÑAS (SponsorsStrip)      */
+/* ========================================= */
+
+/* Va aquí y no en un style inline del componente porque necesita una media
+   query. El archivo original mide 1600px y pesa 54 KB: era la imagen más pesada
+   que se descargaba un teléfono, y lo hacía para pintarla a 390px y al 18% de
+   opacidad. La variante de 400px la genera scripts/imagenes.mjs. */
+.montanas-fondo {
+  background-image: url("/fotos/montanas@400w.webp");
+  background-size: 100% auto;
+}
+
+@media (min-width: 640px) {
+  .montanas-fondo {
+    background-image: url("/fotos/montanas.webp");
+  }
+}

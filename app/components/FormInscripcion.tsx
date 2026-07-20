@@ -41,7 +41,7 @@ import {
   WhatsappLogo,
   PersonSimpleRun,
 } from "@phosphor-icons/react";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 
 // --- Interfaces Actualizadas ---
 /** Lo que promete devolver functions/api/inscribir.js */
@@ -873,6 +873,11 @@ export default function InscripcionPage() {
     // Duotone: borde sólido más un relleno del mismo color al 20%. Es lo que separa
     // esto de un formulario de plantilla, donde los iconos son todos trazo fino gris.
     <IconContext.Provider value={{ weight: "duotone" }}>
+      {/* El Toaster estaba en app/layout.tsx, así que sonner entraba en el JS de
+          las seis páginas del sitio y solo se usa aquí: los avisos de "copiado"
+          y "categoría cambiada" son de este formulario. */}
+      <Toaster position="top-center" richColors closeButton duration={2400} />
+
       {/* En móvil el fondo va oscuro (el mismo del panel del formulario): sin
           esto, el py-6 de arriba dejaba ver el degradado naranja del layout como
           una franja por encima del form. En md+ vuelve a transparente para que

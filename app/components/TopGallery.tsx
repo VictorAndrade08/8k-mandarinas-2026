@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import Image from "next/image"; // IMPORTANTE: Usamos el componente nativo
+import { srcSetDe } from "../lib/imagen";
 
 type GalleryItem = { src: string; alt: string };
 
@@ -202,19 +202,27 @@ export default function TopGallery() {
                   className="group relative h-[130px] w-[200px] flex-shrink-0 overflow-hidden rounded-[16px] border border-white/10 bg-black transition-transform hover:scale-[1.02] focus:ring-2 focus:ring-[#f7771c] focus:outline-none active:scale-95 sm:h-[170px] sm:w-[260px] md:h-[210px] md:w-[320px]"
                   aria-label={`Ver foto ${img.alt}`}
                 >
-                  {/* OPTIMIZACIÓN: Next Image con 'fill' y 'sizes' */}
-                  {/* 'sizes' le dice al navegador que descargue la versión pequeña, no la original de 2MB */}
-                  <Image
+                  {/* Aquí había un <Image> de Next con `sizes` y `quality={70}`,
+                      y un comentario diciendo que así el navegador se bajaba la
+                      versión pequeña. No era verdad: con `output: "export"` e
+                      `images: { unoptimized: true }` el optimizador de Next no
+                      llega a correr, `next/image` pinta un <img> normal con el
+                      archivo original y `sizes`/`quality` se quedan de adorno.
+                      Se bajaban los 640px para pintarlos a 198.
+
+                      Ahora los anchos los genera scripts/imagenes.mjs y el
+                      srcset es de verdad: un teléfono normal se lleva la de
+                      400px (17 KB) en vez de la de 640 (47 KB). */}
+                  <img
                     src={img.src}
-                    alt={img.alt}
-                    fill
-                    // Las tarjetas miden 200/260/320px, pero en pantallas 2x y
-                    // 3x el navegador pide el doble o el triple. Sin este tope
-                    // bajaba el archivo de 640px para pintarlo a 198.
+                    srcSet={srcSetDe(img.src)}
                     sizes="(max-width: 640px) 200px, (max-width: 768px) 260px, 320px"
-                    quality={70}
-                    className="object-cover opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
+                    alt={img.alt}
+                    width={640}
+                    height={427}
+                    className="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
                     loading="lazy"
+                    decoding="async"
                   />
 
                   {/* Overlay y efecto hover */}
@@ -328,15 +336,14 @@ export default function TopGallery() {
 
               {/* Imagen Principal del Modal */}
               <div className="relative h-[80vh] w-full overflow-hidden rounded-[20px] bg-black/50 shadow-2xl sm:h-[85vh]">
-                {/* OPTIMIZACIÓN: Modal con alta calidad pero optimizado */}
-                <Image
+                {/* Aquí sí va el original y sin srcset: el usuario acaba de
+                    pedir ver la foto grande, es el único sitio donde los 640px
+                    completos se justifican. */}
+                <img
                   src={active.src}
                   alt={active.alt}
-                  fill
-                  className="object-contain"
-                  sizes="100vw"
-                  priority // Prioridad alta porque el usuario la acaba de pedir
-                  quality={85}
+                  className="absolute inset-0 h-full w-full object-contain"
+                  decoding="async"
                 />
 
                 {/* Zonas táctiles invisibles para móvil */}
