@@ -60,7 +60,7 @@ export default function InfoBeforeRace() {
         <div className="relative z-10">
           {/* Header */}
           <div className="mb-10 text-center sm:mb-12 md:text-left">
-            <h2 className="font-[family-name:var(--font-poppins)] text-[38px] leading-[0.9] tracking-wide text-white uppercase sm:text-[52px] md:text-[64px]">
+            <h2 className="font-[family-name:var(--font-titular)] text-[38px] leading-[0.9] tracking-wide text-white uppercase sm:text-[52px] md:text-[64px]">
               Todo lo que necesitas <br />
               <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
                 saber antes de correr
@@ -82,7 +82,7 @@ export default function InfoBeforeRace() {
                   <it.icon size={24} />
                 </div>
 
-                <h3 className="mb-3 font-[family-name:var(--font-poppins)] text-[28px] leading-[1] tracking-wide text-white">
+                <h3 className="mb-3 font-[family-name:var(--font-titular)] text-[28px] leading-[1] tracking-wide text-white">
                   {it.title}
                 </h3>
 

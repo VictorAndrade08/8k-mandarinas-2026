@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Archivo, Archivo_Black } from "next/font/google";
 import "./globals.css";
 
 import {
@@ -17,26 +17,34 @@ import BottomNav from "./components/BottomNav";
 // Montserrat, Bebas Neue y Barlow Condensed) y tres de ellas se cargaban con
 // @import desde la CDN de Google dentro de un <style>, lo que bloquea el render.
 //
-// Poppins porque es lo más cercano en Google Fonts a lo que usa el arte oficial:
-// el PSD tira de Gilroy-Bold y Brakle (geométricas) y de Cocogoose Pro para los
-// titulares. Poppins es geométrica pura como las dos primeras, y a peso 800/900
-// da la masa de Cocogoose. Las tres del diseño son de pago — la de Cocogoose es
-// literalmente una "Trial".
-// Solo los pesos que el sitio usa de verdad.
+// Antes era Poppins para todo. Poppins es una geométrica correcta y por eso está
+// en media web: aparece por su nombre en las listas de "tipografías que delatan
+// una plantilla" (docs/30-REGLAS-ANTI-IA.md, reglas 2 y 47). El arte oficial
+// tampoco es geométrico puro — el PSD tira de Cocogoose Pro para los titulares,
+// que es una grotesca ancha y muy pesada, y esas son de pago.
 //
-// Iban 6 pesos × 2 estilos = 12 variantes, y next/font las PRECARGA todas en el
-// <head>: doce peticiones peleando con el logo del hero, que es el LCP. Miré el
-// CSS compilado y el 400 y el 500 no aparecían ni una vez — la escala de pesos
-// del sitio arranca en 600 (ver --font-weight-* en globals.css).
+// Archivo es lo que más se le acerca de lo gratuito: una grotesca dibujada para
+// señalética y prensa, con formas más rectas y menos "burbuja" que Poppins.
+// Aguanta bien el peso alto sin cerrarse, que es lo que pide un cartel de
+// carrera. Y trae itálica de verdad, que la usan los dígitos del contador y los
+// titulares del flyer.
 //
-// La itálica solo la usan los dígitos del contador, así que basta con una.
-// Si algún día hace falta otro peso, se añade aquí; pero cada uno son dos
-// peticiones más antes de que se pinte nada.
-const poppins = Poppins({
-  variable: "--font-poppins",
+// Dos cortes, no dos familias distintas:
+//   - Archivo Black para los titulares grandes. Es un diseño aparte, más ancho
+//     que un Archivo 900 forzado, y da la masa de Cocogoose.
+//   - Archivo para todo lo demás, con pesos reales de 400 a 700.
+const archivo = Archivo({
+  variable: "--font-texto",
   subsets: ["latin"],
-  weight: ["600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const archivoBlack = Archivo_Black({
+  variable: "--font-titular",
+  subsets: ["latin"],
+  weight: "400", // Archivo Black solo existe en un peso: el peso ES la fuente.
   display: "swap",
 });
 
@@ -71,7 +79,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`dark ${poppins.variable}`}
+      className={`dark ${archivo.variable} ${archivoBlack.variable}`}
       style={{ colorScheme: "dark" }}
       suppressHydrationWarning
     >

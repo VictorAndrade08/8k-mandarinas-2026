@@ -114,7 +114,7 @@ export default function Hero8K() {
           {/* A 72px el titular partía en cuatro líneas y "Mandarinas" se comía el
               ancho de la columna. Con el peso nuevo del sitio, menos cuerpo se
               lee mejor y cabe en dos. */}
-          <h1 className="mb-4 font-[family-name:var(--font-poppins)] text-[30px] leading-[1] text-black sm:mb-5 sm:text-[38px] lg:text-[46px] xl:text-[54px]">
+          <h1 className="mb-4 font-[family-name:var(--font-titular)] text-[30px] leading-[1] text-black sm:mb-5 sm:text-[38px] lg:text-[46px] xl:text-[54px]">
             <span className="block tracking-wide">
               8K Ruta de las Mandarinas
             </span>

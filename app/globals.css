@@ -108,17 +108,15 @@ label,
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Una sola familia en todo el sitio: Poppins, cargada por next/font en el
-     layout. Es lo más parecido en Google Fonts a las tipografías del arte
-     oficial (Gilroy y Brakle, geométricas; Cocogoose para titulares), que son
-     todas de pago. */
-  /* La pila entera, no solo la variable: si aquí va únicamente var(--font-poppins),
-     la utilidad `font-sans` de Tailwind acaba resolviendo a su ui-sans-serif por
-     defecto y medio sitio se queda sin Poppins. */
+  /* Archivo para el texto y Archivo Black para los titulares. Las carga
+     next/font en el layout; el porqué de estas dos y no otras está allí.
+     La pila entera, no solo la variable: si aquí va únicamente
+     var(--font-texto), la utilidad `font-sans` de Tailwind acaba resolviendo a
+     su ui-sans-serif por defecto y medio sitio se queda sin fuente. */
   --font-sans:
-    var(--font-poppins), system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-poppins), system-ui, sans-serif;
-  --font-mono: var(--font-poppins), ui-monospace, monospace;
+    var(--font-texto), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-titular), var(--font-texto), system-ui, sans-serif;
+  --font-mono: var(--font-texto), ui-monospace, monospace;
 
   /* Móviles estrechos (iPhone SE y similares). Vivía en tailwind.config.js, que
      Tailwind 4 ya no lee salvo que se le apunte con @config — así que las tres
@@ -127,35 +125,43 @@ label,
      y punto. Aquí sí existe. */
   --breakpoint-xs: 400px;
 
-  /* Todo el sitio va un escalón más grueso. El arte oficial (Cocogoose, Gilroy)
-     está en 800-900 y Poppins a peso normal se veía delgada al lado del flyer.
-     En vez de repasar los ~200 puntos que llevan font-medium/font-bold a mano,
-     subimos la escala entera: cada utilidad se sigue llamando igual — font-bold
-     sigue siendo font-bold — pero pesa más. Poppins se carga con 400 a 900 en
-     layout.tsx, así que todos estos pesos existen de verdad y el navegador no
-     tiene que falsificar ninguno engordando los trazos. */
-  --font-weight-light: 500;
-  --font-weight-normal: 600;
-  --font-weight-medium: 700;
-  --font-weight-semibold: 800;
-  --font-weight-bold: 900;
-  --font-weight-extrabold: 900;
-  --font-weight-black: 900;
+  /* La escala de pesos vuelve a ser la de verdad. Estaba desplazada un escalón
+     entero hacia arriba —font-normal pesaba 600 y font-bold 900— para que el
+     texto no se viera delgado al lado del flyer, y el efecto era que el sitio
+     ENTERO iba en negrita: sin pesos ligeros no hay contraste, y sin contraste
+     no hay jerarquía, solo ruido (docs/30-REGLAS-ANTI-IA.md, reglas 41 y 42).
+     La masa de los titulares la pone ahora Archivo Black, que para eso está.
+     Los cuatro pesos que se declaran aquí son exactamente los que carga
+     layout.tsx: si se añade uno, hay que añadirlo allí o el navegador lo
+     falsifica engordando los trazos. */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  /* 700 y no 800/900: son los 21 sitios que llevan font-extrabold o font-black
+     puestos a mano. Archivo no se carga por encima de 700, y una utilidad que
+     pide un peso que no existe no falla — el navegador se inventa la negrita
+     engordando los trazos, que es justo lo que se ve emborronado en pantallas
+     normales. Lo que necesite más masa que esto, que use .font-bebas. */
+  --font-weight-extrabold: 700;
+  --font-weight-black: 700;
 }
 
-/* Estas clases nacieron apuntando a Bebas Neue y Barlow Condensed, que se
-   cargaban con @import desde la CDN de Google en mitad de un <style>. Se quedan
-   con su nombre porque están puestas en 113 sitios, pero ahora las dos apuntan a
-   Poppins: cambian el peso, no la familia. */
+/* Estas dos clases nacieron apuntando a Bebas Neue y Barlow Condensed, que se
+   cargaban con @import desde la CDN de Google en mitad de un <style>. Conservan
+   el nombre porque están puestas en 113 sitios, pero son los dos papeles del
+   sistema: .font-bebas es EL titular y .font-barlow es el texto. */
 .font-bebas {
-  font-family: var(--font-poppins), system-ui, sans-serif;
-  font-weight: 900;
-  letter-spacing: -0.01em;
+  font-family: var(--font-titular), var(--font-texto), system-ui, sans-serif;
+  /* Archivo Black solo tiene un peso: pedirle 900 haría que el navegador se
+     inventara uno encima del que ya es. */
+  font-weight: 400;
+  letter-spacing: -0.015em;
 }
 
 .font-barlow {
-  font-family: var(--font-poppins), system-ui, sans-serif;
-  font-weight: 600;
+  font-family: var(--font-texto), system-ui, sans-serif;
+  font-weight: 500;
 }
 
 /* ========================================= */
@@ -172,12 +178,12 @@ body {
   background: transparent;
   color: var(--foreground);
 
-  /* Apunta a --font-poppins y no a --font-sans: `@theme inline` mete el valor
+  /* Apunta a --font-texto y no a --font-sans: `@theme inline` mete el valor
      dentro de las utilidades de Tailwind pero NO publica la variable en :root,
      así que var(--font-sans) aquí no resolvía a nada y todo el sitio se caía al
      ui-sans-serif por defecto. */
   font-family:
-    var(--font-poppins),
+    var(--font-texto),
     system-ui,
     -apple-system,
     "Segoe UI",
@@ -185,11 +191,10 @@ body {
     Arial,
     sans-serif;
 
-  /* El texto que no lleva ninguna clase de peso arranca en 600: es el suelo del
-     sitio para que nada se vea fino al lado del arte. Va en el mismo escalón que
-     font-normal — si no, un párrafo suelto pesaría menos que uno marcado como
-     "normal" a mano, que es justo lo contrario de lo que dice la etiqueta. */
-  font-weight: 600;
+  /* 400, el peso normal de verdad. Antes arrancaba en 600 "para que nada se
+     viera fino", y lo que conseguía era que un párrafo de reglamento pesara lo
+     mismo que un botón. */
+  font-weight: 400;
 
   /* ✅ mejora mix-blend-mode y stacking */
   isolation: isolate;
@@ -208,15 +213,17 @@ h6 {
 
 strong,
 b {
-  font-weight: 900;
+  /* 700, el peso más alto que se carga de Archivo. Estaba en 900, que no
+     existe: el navegador lo falsificaba engordando los trazos. */
+  font-weight: 700;
 }
 
 /* ✅ Helpers de tipografía para “afiche” */
 .font-display {
-  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-family: var(--font-titular), var(--font-texto), system-ui, sans-serif;
 }
 .h-afiche {
-  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-family: var(--font-titular), var(--font-texto), system-ui, sans-serif;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 0.95;

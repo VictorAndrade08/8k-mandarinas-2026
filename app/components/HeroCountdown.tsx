@@ -199,14 +199,14 @@ export default function HeroCountdown() {
               estrecho y alto — 3.2vh de un iPhone son 27px, y a ese tamaño
               "Sábado · 29 agosto · 2026" con este tracking se sale de los 390px
               por los dos lados. Mirando también el vw, encoge cuando toca. */}
-          <p className="mt-[clamp(0.75rem,2.5vh,3rem)] font-[family-name:var(--font-poppins)] text-[clamp(0.8rem,min(3.2vh,3.7vw),2.4rem)] font-black tracking-[0.25em] whitespace-nowrap text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:tracking-[0.32em]">
+          <p className="mt-[clamp(0.75rem,2.5vh,3rem)] font-[family-name:var(--font-titular)] text-[clamp(0.8rem,min(3.2vh,3.7vw),2.4rem)] font-black tracking-[0.25em] whitespace-nowrap text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:tracking-[0.32em]">
             Sábado · 29 agosto · 2026
           </p>
         </div>
 
         {/* GRUPO CENTRAL — contador */}
         <div className="flex w-full flex-col items-center">
-          <p className="mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-poppins)] text-[clamp(0.62rem,min(2vh,2.6vw),1.45rem)] font-black tracking-[0.3em] text-white/90 uppercase sm:tracking-[0.35em]">
+          <p className="mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.62rem,min(2vh,2.6vw),1.45rem)] font-black tracking-[0.3em] text-white/90 uppercase sm:tracking-[0.35em]">
             Faltan para el inicio
           </p>
 
@@ -222,7 +222,7 @@ export default function HeroCountdown() {
                   aria-hidden="true"
                 />
                 <span
-                  className="font-[family-name:var(--font-poppins)] text-[clamp(24px,min(7vw,8vh),68px)] leading-none font-black text-white italic tabular-nums"
+                  className="font-[family-name:var(--font-titular)] text-[clamp(24px,min(7vw,8vh),68px)] leading-none font-black text-white italic tabular-nums"
                   suppressHydrationWarning
                 >
                   {b.value}
@@ -230,7 +230,7 @@ export default function HeroCountdown() {
                 {/* "SEGUNDOS" es la palabra más larga y su caja mide un cuarto
                     del ancho: el tamaño tiene que salir del vw, no del vh, o se
                     corta en móvil. Sin tracking hasta xs por el mismo motivo. */}
-                <span className="xs:tracking-[0.1em] mt-[clamp(0.15rem,0.6vh,0.5rem)] font-[family-name:var(--font-poppins)] text-[clamp(7px,min(1.5vh,2.1vw),1rem)] font-black tracking-normal text-white/80 uppercase sm:tracking-[0.18em]">
+                <span className="xs:tracking-[0.1em] mt-[clamp(0.15rem,0.6vh,0.5rem)] font-[family-name:var(--font-titular)] text-[clamp(7px,min(1.5vh,2.1vw),1rem)] font-black tracking-normal text-white/80 uppercase sm:tracking-[0.18em]">
                   {b.label}
                 </span>
               </div>
@@ -240,7 +240,7 @@ export default function HeroCountdown() {
           {/* BOTÓN DE INSCRIPCIÓN */}
           <a
             href="/inscripcion/"
-            className="mt-[clamp(1rem,3.5vh,3rem)] inline-flex items-center justify-center rounded-full bg-white px-10 py-[clamp(0.6rem,1.8vh,1.25rem)] font-[family-name:var(--font-poppins)] text-[clamp(0.9rem,2.2vh,1.4rem)] font-black tracking-[0.22em] text-[#c51850] uppercase shadow-[0_12px_45px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-105 active:scale-95 sm:px-14"
+            className="mt-[clamp(1rem,3.5vh,3rem)] inline-flex items-center justify-center rounded-full bg-white px-10 py-[clamp(0.6rem,1.8vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.9rem,2.2vh,1.4rem)] font-black tracking-[0.22em] text-[#c51850] uppercase shadow-[0_12px_45px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-105 active:scale-95 sm:px-14"
           >
             Inscríbete ahora
           </a>

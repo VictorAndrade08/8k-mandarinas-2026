@@ -18,7 +18,7 @@ export default function FeaturedStories() {
         <div className="relative z-10">
           {/* CABECERA */}
           <div className="mb-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-            <h2 className="font-[family-name:var(--font-poppins)] text-[32px] leading-[0.95] tracking-wide text-white sm:text-[48px] lg:text-[58px]">
+            <h2 className="font-[family-name:var(--font-titular)] text-[32px] leading-[0.95] tracking-wide text-white sm:text-[48px] lg:text-[58px]">
               Noticias &amp; <br className="sm:hidden" />
               <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
                 Historias Destacadas
@@ -45,7 +45,7 @@ export default function FeaturedStories() {
               {/* Sin fecha: decía "Diciembre 2025", que es de la edición
                   anterior. Poner una falsa es peor que no poner ninguna. */}
 
-              <h3 className="mb-5 font-[family-name:var(--font-poppins)] text-[28px] leading-[1] tracking-wide text-white transition-colors group-hover:text-white sm:text-[42px]">
+              <h3 className="mb-5 font-[family-name:var(--font-titular)] text-[28px] leading-[1] tracking-wide text-white transition-colors group-hover:text-white sm:text-[42px]">
                 {/* Ni "nocturna" ni "la independencia de la ciudad": las dos
                     eran del 10K de Ambato. Esta carrera sale a las 08h00 y
                     celebra la Ruta de las Mandarinas. */}

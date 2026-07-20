@@ -41,7 +41,7 @@ export default function RegistrationOptions() {
               </p>
             </div>
 
-            <h2 className="mb-4 font-[family-name:var(--font-poppins)] text-[32px] leading-[1] text-gray-900 sm:text-[42px]">
+            <h2 className="mb-4 font-[family-name:var(--font-titular)] text-[32px] leading-[1] text-gray-900 sm:text-[42px]">
               ¡Inscríbete online <br />
               <span className="text-[#780030]">en menos de 3 minutos!</span>
             </h2>
@@ -96,7 +96,7 @@ export default function RegistrationOptions() {
               </p>
             </div>
 
-            <h2 className="mb-4 font-[family-name:var(--font-poppins)] text-[32px] leading-[1] text-white sm:text-[42px]">
+            <h2 className="mb-4 font-[family-name:var(--font-titular)] text-[32px] leading-[1] text-white sm:text-[42px]">
               ¿Prefieres ayuda? <br />
               <span className="text-[#25D366]">Hazlo por WhatsApp</span>
             </h2>

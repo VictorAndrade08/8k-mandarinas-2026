@@ -29,7 +29,7 @@ export default function ReglamentoSection() {
           </p>
 
           {/* Título usando la variable de fuente */}
-          <h2 className="mb-6 font-[family-name:var(--font-poppins)] text-[36px] leading-[0.95] tracking-wide text-white sm:text-[52px] lg:text-[64px]">
+          <h2 className="mb-6 font-[family-name:var(--font-titular)] text-[36px] leading-[0.95] tracking-wide text-white sm:text-[52px] lg:text-[64px]">
             Reglamento General <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
               8K Ruta de las Mandarinas 2026

@@ -176,7 +176,16 @@
       "Bash(mkdir -p scripts)",
       "Bash(sed -e 's#/private/tmp/claude-501/[^\"]*/node_modules/playwright/index.js#playwright#' -e 's#const OUT = \"[^\"]*\";#const OUT = new URL\\(\"../capturas\", import.meta.url\\).pathname;#' \"/private/tmp/claude-501/-Users-skychopan-Desktop-Prez---Backup-8k-mandarinas-2026/12f6bf09-2343-4494-873d-c5151c0e2e94/scratchpad/shots.mjs\")",
       "Bash(npx prettier *)",
-      "Bash(grep -hoE '#[0-9A-Fa-f]{3,8}' app/globals.css)"
+      "Bash(grep -hoE '#[0-9A-Fa-f]{3,8}' app/globals.css)",
+      "Bash(node scripts/capturas.mjs)",
+      "Bash(NODE_PATH=/private/tmp/claude-501/-Users-skychopan-Desktop-Prez---Backup-8k-mandarinas-2026/12f6bf09-2343-4494-873d-c5151c0e2e94/scratchpad/node_modules node --experimental-default-type=module -e ' *)",
+      "Bash(ln -sfn \"/private/tmp/claude-501/-Users-skychopan-Desktop-Prez---Backup-8k-mandarinas-2026/12f6bf09-2343-4494-873d-c5151c0e2e94/scratchpad/node_modules/playwright\" node_modules/playwright)",
+      "Bash(ln -sfn \"/private/tmp/claude-501/-Users-skychopan-Desktop-Prez---Backup-8k-mandarinas-2026/12f6bf09-2343-4494-873d-c5151c0e2e94/scratchpad/node_modules/playwright-core\" node_modules/playwright-core)",
+      "Bash(curl -s http://localhost:3000/reglamento/)",
+      "Bash(rm -rf capturas)",
+      "Bash(perl -0pi -e 's/strong,\\\\nb \\\\{\\\\n  font-weight: 900;\\\\n\\\\}/strong,\\\\nb {\\\\n  \\\\/* 700, el peso más alto que se carga de Archivo. Estaba en 900, que no\\\\n     existe: el navegador lo falsificaba engordando los trazos. *\\\\/\\\\n  font-weight: 700;\\\\n}/' app/globals.css)",
+      "Bash(perl -pi -e 's/var\\\\\\(--font-poppins\\\\\\)/var\\(--font-titular\\), var\\(--font-texto\\)/g if $. >= 218 && $. <= 232' app/globals.css)",
+      "Bash(perl -pi -e 's/font-\\\\[family-name:var\\\\\\(--font-titular\\\\\\)\\\\] text-\\\\[20px\\\\]/text-[20px]/' app/components/FloatingCTA.tsx)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"

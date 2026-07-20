@@ -186,12 +186,12 @@ const COLUMNA_DERECHA: ActaCategoria[] = [
 const TablaActa = ({ categoria }: { categoria: ActaCategoria }) => (
   <div className="mb-6 w-full break-inside-avoid print:mb-4">
     <div className="bg-[#780030] px-2 py-2 print:bg-[#780030] print:text-white">
-      <h3 className="text-center font-[family-name:var(--font-poppins)] text-[22px] tracking-wider text-white uppercase print:text-white">
+      <h3 className="text-center font-[family-name:var(--font-titular)] text-[22px] tracking-wider text-white uppercase print:text-white">
         {categoria.titulo}
       </h3>
     </div>
     <div className="border-b-2 border-transparent bg-white">
-      <div className="grid grid-cols-[100px_1fr] border-b border-neutral-300 px-4 py-1 font-[family-name:var(--font-poppins)] text-[12px] font-bold tracking-wider text-[#780030] uppercase">
+      <div className="grid grid-cols-[100px_1fr] border-b border-neutral-300 px-4 py-1 font-[family-name:var(--font-titular)] text-[12px] font-bold tracking-wider text-[#780030] uppercase">
         <span>UBICACIÓN</span>
         <span className="text-center">NOMBRES</span>
       </div>
@@ -200,10 +200,10 @@ const TablaActa = ({ categoria }: { categoria: ActaCategoria }) => (
           key={index}
           className="grid grid-cols-[100px_1fr] items-center border-b border-neutral-200 px-4 py-1.5 last:border-0"
         >
-          <span className="font-[family-name:var(--font-poppins)] text-[13px] font-bold text-[#780030]">
+          <span className="font-[family-name:var(--font-titular)] text-[13px] font-bold text-[#780030]">
             {atleta.ubicacion}
           </span>
-          <span className="text-center font-[family-name:var(--font-poppins)] text-[14px] font-medium text-neutral-800 uppercase">
+          <span className="text-center font-[family-name:var(--font-titular)] text-[14px] font-medium text-neutral-800 uppercase">
             {atleta.nombres}
           </span>
         </div>
@@ -250,7 +250,7 @@ export default function GanadoresPage() {
         {/* ================= HOJA 1 ================= */}
         <div className="container mx-auto px-4 md:px-8 print:px-0">
           <div className="mb-8 flex flex-col items-center justify-center gap-2 text-center">
-            <h1 className="font-[family-name:var(--font-poppins)] text-4xl leading-tight text-[#c51850] uppercase md:text-5xl">
+            <h1 className="font-[family-name:var(--font-titular)] text-4xl leading-tight text-[#c51850] uppercase md:text-5xl">
               CUADRO FINAL <br />{" "}
               <span className="text-neutral-950">DE GANADORES</span>
             </h1>
@@ -285,17 +285,17 @@ export default function GanadoresPage() {
               ))}
 
               <div className="mt-4 mb-6 break-inside-avoid">
-                <div className="mb-2 inline-block bg-[#c51850] px-3 py-1 font-[family-name:var(--font-poppins)] text-xl font-bold text-white italic">
+                <div className="mb-2 inline-block bg-[#c51850] px-3 py-1 font-[family-name:var(--font-titular)] text-xl font-bold text-white italic">
                   COMUNICADO
                 </div>
-                <p className="font-[family-name:var(--font-poppins)] text-[15px] leading-snug text-neutral-800">
+                <p className="font-[family-name:var(--font-titular)] text-[15px] leading-snug text-neutral-800">
                   <span className="font-bold">RECUERDA:</span> La documentación
                   deberá enviarse en formato PDF legible para impresión al
                   WhatsApp <span className="font-bold">0997241804</span> hasta
                   el día 23 de febrero de 2026, hasta las 17 horas.
                 </p>
                 <div className="mt-2 flex items-center gap-2">
-                  <span className="font-[family-name:var(--font-poppins)] text-2xl font-bold tracking-wider text-[#c51850]">
+                  <span className="font-[family-name:var(--font-titular)] text-2xl font-bold tracking-wider text-[#c51850]">
                     0997241804
                   </span>
                 </div>
@@ -305,35 +305,35 @@ export default function GanadoresPage() {
 
           {/* Requisitos Finales */}
           <div className="mt-4 break-inside-avoid border-t border-neutral-300 pt-6">
-            <h4 className="mb-3 font-[family-name:var(--font-poppins)] text-[16px] font-bold text-neutral-800">
+            <h4 className="mb-3 font-[family-name:var(--font-titular)] text-[16px] font-bold text-neutral-800">
               Se deberán enviar los siguientes requisitos:
             </h4>
-            <p className="mb-3 font-[family-name:var(--font-poppins)] text-[14px] leading-relaxed text-neutral-700">
+            <p className="mb-3 font-[family-name:var(--font-titular)] text-[14px] leading-relaxed text-neutral-700">
               Cédula de identidad legible, información de categoría, ubicación,
               dirección, teléfono y correo electrónico (Primer PDF, documento
               transcrito en computadora). Certificado bancario de entidad
               avalada por el GAD PATATE (Segundo PDF).
             </p>
-            <p className="mb-3 font-[family-name:var(--font-poppins)] text-[14px] leading-relaxed text-neutral-700">
+            <p className="mb-3 font-[family-name:var(--font-titular)] text-[14px] leading-relaxed text-neutral-700">
               En el caso de ser menores de edad, adicionar los documentos del
               representante legal, padre o madre, y cuenta bancaria (Tercer
               PDF).
             </p>
-            <p className="font-[family-name:var(--font-poppins)] text-[14px] leading-relaxed text-neutral-700">
+            <p className="font-[family-name:var(--font-titular)] text-[14px] leading-relaxed text-neutral-700">
               Toda la documentación no deberá exceder los 3 PDF.
             </p>
           </div>
 
           {/* NUEVO BLOQUE: Nota y Plazo de acreditación idéntico a la foto */}
           <div className="mt-6 break-inside-avoid bg-gradient-to-r from-[#f7771c] to-[#c51850] p-4 md:p-6">
-            <p className="mb-4 font-[family-name:var(--font-poppins)] text-[13px] leading-relaxed text-white">
+            <p className="mb-4 font-[family-name:var(--font-titular)] text-[13px] leading-relaxed text-white">
               <span className="font-bold">Nota:</span> Para las categorías
               Discapacidad visual e intelectual, Silla de calle, Interfuerzas y
               Colegial, se deberá adjuntar la cédula actualizada, FF.AA. y el
               certificado del colegio de la provincia que avalen dichas
               categorías en el tercer PDF.
             </p>
-            <p className="font-[family-name:var(--font-poppins)] text-[14px] font-bold tracking-wide text-white uppercase">
+            <p className="font-[family-name:var(--font-titular)] text-[14px] font-bold tracking-wide text-white uppercase">
               EL PLAZO ESTIMADO PARA LA ACREDITACIÓN BANCARIA A LA CUENTA DE LOS
               GANADORES ES DE 90 DÍAS LABORABLES A
             </p>
@@ -344,7 +344,7 @@ export default function GanadoresPage() {
         <div className="no-print mt-12 flex justify-center border-t border-neutral-200 pt-8 pb-8">
           <button
             onClick={handleDownloadPDF}
-            className="flex items-center gap-3 rounded-xl bg-[#c51850] px-8 py-4 font-[family-name:var(--font-poppins)] text-xl font-bold tracking-widest text-white uppercase shadow-lg transition-all duration-300 hover:bg-[#f7771c]"
+            className="flex items-center gap-3 rounded-xl bg-[#c51850] px-8 py-4 font-[family-name:var(--font-titular)] text-xl font-bold tracking-widest text-white uppercase shadow-lg transition-all duration-300 hover:bg-[#f7771c]"
           >
             <FileDown className="h-6 w-6" />
             Descargar PDF Oficial

@@ -52,7 +52,7 @@ export default function ExperienceSection() {
 
         <div className="relative z-10">
           {/* Título de Sección */}
-          <h2 className="mb-10 text-center font-[family-name:var(--font-poppins)] text-[32px] leading-[0.95] sm:mb-14 sm:text-[48px] md:text-left lg:text-[58px]">
+          <h2 className="mb-10 text-center font-[family-name:var(--font-titular)] text-[32px] leading-[0.95] sm:mb-14 sm:text-[48px] md:text-left lg:text-[58px]">
             Explora la experiencia <br className="hidden md:block" />
             <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
               8K Ruta de las Mandarinas
@@ -77,7 +77,7 @@ export default function ExperienceSection() {
                 {/* Contenido */}
                 <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
                   <div>
-                    <h3 className="mb-3 font-[family-name:var(--font-poppins)] text-[24px] tracking-wide text-white transition-colors group-hover:text-[#f7771c] sm:text-[28px]">
+                    <h3 className="mb-3 font-[family-name:var(--font-titular)] text-[24px] tracking-wide text-white transition-colors group-hover:text-[#f7771c] sm:text-[28px]">
                       {title}
                     </h3>
 

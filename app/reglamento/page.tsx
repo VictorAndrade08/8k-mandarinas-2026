@@ -19,13 +19,10 @@ export default function ReglamentoSection() {
       id="reglamento"
       className="w-full bg-white px-4 py-12 sm:px-6 md:py-16 lg:px-8"
     >
-      {/* La familia la sirve next/font desde el layout */}
-      <style>{`
-        .font-bebas {
-          font-family: var(--font-poppins), sans-serif;
-          font-weight: 800;
-        }
-      `}</style>
+      {/* Aquí vivía un <style> que redefinía .font-bebas solo para esta página.
+          Dos definiciones de la misma clase, una global y otra local, es cómo se
+          acaba con un reglamento que no se parece al resto del sitio. La buena
+          está en app/globals.css. */}
 
       <div className="mx-auto w-full max-w-7xl text-black">
         {/* HEADER */}
