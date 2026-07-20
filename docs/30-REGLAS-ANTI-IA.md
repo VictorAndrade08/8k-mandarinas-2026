@@ -154,23 +154,23 @@ colores y comportamiento.
 
 ## Dónde incumple este sitio (verificado en las capturas)
 
-| Regla | Qué pasa aquí                                                                                                                                       |
-| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 3     | 14 radios distintos, y la mayoría muy redondeados (`rounded-3xl`, `[32px]`, `[40px]`)                                                               |
-| 5     | `backdrop-blur` en header, barra inferior, modales y varias tarjetas                                                                                |
-| 6     | 32 sombras a medida, muchas con glows de 50-60px                                                                                                    |
-| 8     | Las cuatro tarjetas de "Todo lo que necesitas saber" y las cuatro de "Explora la experiencia" son idénticas entre sí y casi idénticas entre bloques |
-| 12    | El home es una columna centrada de arriba abajo                                                                                                     |
-| 13    | Casi todas las secciones son "título centrado + rejilla de 4 tarjetas"                                                                              |
-| 14    | El mismo `py-12 md:py-16` repetido sección tras sección                                                                                             |
-| 18    | `animate-in fade-in slide-in-from-bottom` en prácticamente todo                                                                                     |
-| 24    | 28 colores elegidos a ojo, ninguno atado a los tokens de marca                                                                                      |
-| 31    | El mismo problema que la regla 3: 14 radios, sin sistema                                                                                            |
-| 38    | Blobs de fondo en el hero, en `/verificar` y en varias secciones del home                                                                           |
-| 40    | Los iconos de las tarjetas de "Todo lo que necesitas" van todos en círculo                                                                          |
-| 42    | `app/globals.css` sube la escala de pesos entera: `font-normal` pesa 600 y `font-bold` pesa 900. El sitio entero está en negrita                    |
-| 43    | `tracking-[0.08em]`, `tracking-widest` y `tracking-wide` repartidos por casi todos los titulares y etiquetas                                        |
-| 79    | `FormInscripcion.tsx` tiene ~1850 líneas                                                                                                            |
+| Regla | Qué pasa aquí                                                                                                                     |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------- |
+| 3     | **[HECHO]** Escala de tres radios (4/10/18px) en `globals.css`. Falta sustituir los valores sueltos que quedan en los componentes |
+| 5     | Sigue en header, barra inferior y modales. Fuera de las tarjetas de "Todo lo que necesitas"                                       |
+| 6     | **[HECHO]** Tres niveles de sombra en `globals.css`; el glow del CTA baja de 60px a 24px                                          |
+| 8     | **[HECHO]** "Todo lo que necesitas" es una grande y tres pequeñas; "Explora la experiencia" se quitó por duplicada                |
+| 12    | **[PARCIAL]** El titular de "Todo lo que necesitas" ya no va centrado; el resto del home sí                                       |
+| 13    | **[PARCIAL]** Queda una rejilla de cuatro, no dos                                                                                 |
+| 14    | El mismo `py-12 md:py-16` repetido sección tras sección                                                                           |
+| 18    | **[HECHO]** Fuera los reveals en cascada de `/verificar`; se queda lo que significa algo (modal, ticket, esqueleto)               |
+| 24    | **[HECHO]** Paleta del flyer medida y tokens con nombre de rol                                                                    |
+| 31    | **[PARCIAL]** Las tarjetas de "Todo lo que necesitas" ya usan dos radios según su peso                                            |
+| 38    | **[PARCIAL]** Los de `/verificar` dejaron de latir y de ser morados; siguen existiendo                                            |
+| 40    | **[HECHO]** El icono va suelto y cambia de peso y tamaño según la tarjeta                                                         |
+| 42    | **[HECHO]** Escala real 400/500/600/700 y `<body>` en 400                                                                         |
+| 43    | `tracking-[0.08em]`, `tracking-widest` y `tracking-wide` por casi todos los titulares y etiquetas                                 |
+| 79    | `FormInscripcion.tsx` tiene ~1850 líneas                                                                                          |
 
 ## Lo que este sitio ya hace bien
 

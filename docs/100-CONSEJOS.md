@@ -12,11 +12,11 @@ La auditoría de lo que este sitio cumple e incumple está en
 
 | #   | Consejo                                       | Prueba                                                     | Estado    |
 | --- | --------------------------------------------- | ---------------------------------------------------------- | --------- |
-| 19  | Tokens semánticos en vez de colores literales | 258 hex a mano en `app/**/*.tsx`, 0 usos de `--brand-*`    | pendiente |
-| 30  | Dos radios de esquina, no más                 | 14 radios distintos                                        | pendiente |
-| 41  | Tres niveles de sombra como máximo            | 32 sombras a medida                                        | pendiente |
+| 19  | Tokens semánticos en vez de colores literales | 258 hex a mano en `app/**/*.tsx`, 0 usos de `--brand-*`    | parcial   |
+| 30  | Dos radios de esquina, no más                 | 14 radios distintos                                        | parcial   |
+| 41  | Tres niveles de sombra como máximo            | 32 sombras a medida                                        | parcial   |
 | 23  | Escala tipográfica fija de 6-8 tamaños        | 20+ tamaños en px sueltos                                  | pendiente |
-| 35  | Paleta sistemática desde un tono clave        | 28 colores elegidos a ojo, tres paletas conviviendo        | pendiente |
+| 35  | Paleta sistemática desde un tono clave        | 28 colores elegidos a ojo, tres paletas conviviendo        | hecho     |
 | 71  | Iconos de una sola familia y un solo estilo   | Barra inferior: 4 iconos `regular` gris + 1 `bold` blanco  | hecho     |
 | 10  | Mismos labels de navegación en todas partes   | Header decía "Verificar mi pago", barra inferior "Mi pago" | hecho     |
 | 20  | Indicar la página activa con más que color    | Solo cambiaba el color del texto                           | hecho     |
