@@ -17,13 +17,22 @@ export { PasoCategoria } from "./PasoCategoria";
 export { CampoTexto } from "./CampoTexto";
 export { useProgresoGuardado } from "./useProgresoGuardado";
 export { useNavegacionPasos } from "./useNavegacionPasos";
+export { enviarInscripcion } from "./enviarInscripcion";
 export { PasoDatos } from "./PasoDatos";
 export { PasoPago } from "./PasoPago";
 export { PasoFinal } from "./PasoFinal";
 export { FormularioProvider, useFormulario } from "./contexto";
 export type { Formulario } from "./contexto";
 
-export { reglas, formatTelefono, hoyISO } from "./validacion";
+export {
+  reglas,
+  formatTelefono,
+  hoyISO,
+  CAMPOS_PASO_2,
+  enfocarPrimerError,
+  erroresPaso2,
+  erroresPaso3,
+} from "./validacion";
 export { STORAGE_KEY, BANCO } from "./constantes";
 
 export type {

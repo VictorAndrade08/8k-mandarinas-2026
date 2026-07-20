@@ -32,15 +32,19 @@ import {
   PasoDatos,
   useProgresoGuardado,
   useNavegacionPasos,
+  enviarInscripcion,
   PasoPago,
   PasoFinal,
   FormularioProvider,
   reglas,
   formatTelefono,
   hoyISO,
+  CAMPOS_PASO_2,
+  enfocarPrimerError,
+  erroresPaso2,
+  erroresPaso3,
   type FormDataState,
   type ProgresoGuardado,
-  type RespuestaInscribir,
   type Category,
 } from "./inscripcion";
 
@@ -358,66 +362,22 @@ export default function InscripcionPage() {
 
   // Lleva el cursor al primer campo que falla: en móvil evita que el usuario
   // tenga que cazar el error rojo haciendo scroll.
-  const enfocarPrimerError = (
-    errs: Record<string, string>,
-    orden: string[]
-  ) => {
-    const primero = orden.find((f) => errs[f]);
-    if (!primero) return;
-    const el = document.getElementById(primero);
-    el?.focus();
-    el?.scrollIntoView({ block: "center", behavior: "smooth" });
-  };
-
-  const CAMPOS_PASO_2: (keyof FormDataState)[] = [
-    "cedula",
-    "nombres",
-    "apellidos",
-    "ciudad",
-    "telefono",
-    "email",
-    "edad",
-    "genero",
-  ];
-
   const validateStep2 = () => {
-    const newErrors: Record<string, string> = {};
-    CAMPOS_PASO_2.forEach((f) => {
-      const msg = validateField(f);
-      if (msg) newErrors[f] = msg;
-    });
-    setErrors(newErrors);
-    enfocarPrimerError(newErrors, CAMPOS_PASO_2 as string[]);
-    return Object.keys(newErrors).length === 0;
+    const errs = erroresPaso2(validateField);
+    setErrors(errs);
+    enfocarPrimerError(errs, CAMPOS_PASO_2 as string[]);
+    return Object.keys(errs).length === 0;
   };
 
-  // Paso 3: los datos que permiten cruzar el pago con el banco sin abrir la foto.
   const validateStep3 = () => {
-    const newErrors: Record<string, string> = {};
-
-    (["num_comprobante", "fecha_pago"] as const).forEach((f) => {
-      const msg = validateField(f);
-      if (msg) newErrors[f] = msg;
-    });
-
-    if (
-      formData.es_titular === "no" &&
-      formData.nombre_titular_cuenta.trim().length < 3
-    ) {
-      newErrors.nombre_titular_cuenta =
-        "Sin este nombre no podemos encontrar tu pago en el banco.";
-    }
-    if (!formData.comprobante) {
-      newErrors.comprobante = "Sube la foto o el PDF del pago para terminar.";
-    }
-
-    setErrors(newErrors);
-    enfocarPrimerError(newErrors, [
+    const errs = erroresPaso3(formData, validateField);
+    setErrors(errs);
+    enfocarPrimerError(errs, [
       "num_comprobante",
       "fecha_pago",
       "nombre_titular_cuenta",
     ]);
-    return Object.keys(newErrors).length === 0;
+    return Object.keys(errs).length === 0;
   };
 
   const checkUserExists = async () => {
@@ -484,93 +444,32 @@ export default function InscripcionPage() {
       return;
     }
 
-    // AGREGAMOS VALIDACIÓN DEL PASO 3 ANTES DE ENVIAR
     if (!validateStep3()) return;
 
     setSubmitting(true);
     setLoading(true);
 
-    const body = new FormData();
-    body.append("categoria", selectedCategory);
-    body.append("precio", selectedPrice.toString());
-    body.append("metodo_pago", metodoPago);
-
-    (Object.keys(formData) as Array<keyof FormDataState>).forEach((key) => {
-      if (key !== "comprobante") {
-        const value = formData[key];
-        if (value !== null) body.append(key, String(value));
-      }
+    const resultado = await enviarInscripcion({
+      formData,
+      categoria: selectedCategory,
+      precio: selectedPrice,
+      metodoPago,
     });
 
-    if (formData.comprobante instanceof File) {
-      body.append(
-        "comprobante",
-        formData.comprobante,
-        formData.comprobante.name
-      );
+    setLoading(false);
+
+    if (!resultado.ok) {
+      showAlert(resultado.titulo, resultado.mensaje);
+      setSubmitting(false);
+      return;
     }
 
-    try {
-      // Timeout duro: sin esto, si la conexión del móvil se cae o el servidor
-      // tarda subiendo el comprobante, el fetch se queda PENDIENTE para siempre
-      // y el spinner "Procesando..." gira sin fin. Con AbortController cortamos a
-      // los 45s y caemos al catch con un mensaje claro. Si por un caso raro el
-      // servidor sí llegó a guardar, al reintentar salta el aviso de "cédula ya
-      // registrada", que le confirma que quedó dentro.
-      const controlador = new AbortController();
-      const idTimeout = setTimeout(() => controlador.abort(), 45000);
-      let res: Response;
-      try {
-        res = await fetch("/api/inscribir", {
-          method: "POST",
-          body,
-          cache: "no-store",
-          signal: controlador.signal,
-        });
-      } finally {
-        clearTimeout(idTimeout);
-      }
-      const rawText = await res.text();
-      // La respuesta del servidor es un dato externo: se tipa como el contrato
-      // que esperamos, no como `any`, para que el compilador avise si alguien
-      // lee un campo que la API no promete.
-      let json: RespuestaInscribir | null = null;
-      try {
-        json = rawText ? (JSON.parse(rawText) as RespuestaInscribir) : null;
-      } catch {
-        json = null;
-      }
-
-      setLoading(false);
-
-      if (!res.ok || !json || json.status !== "success") {
-        showAlert(
-          "Error",
-          json?.message ||
-            "No se pudo guardar la inscripción. Intenta de nuevo."
-        );
-        setSubmitting(false);
-        return;
-      }
-
-      if (json?.file_url) setUploadedFileUrl(String(json.file_url));
-      // Ya está enviada: lo guardado ya no sirve para retomar nada.
-      progreso.olvidar();
-      setStep(4);
-    } catch (e) {
-      setLoading(false);
-      const seAgotoElTiempo =
-        e instanceof DOMException && e.name === "AbortError";
-      showAlert(
-        "Error de conexión",
-        seAgotoElTiempo
-          ? "La conexión tardó demasiado y se canceló. No se cobró nada: revisa tu internet e inténtalo otra vez."
-          : "Revisa tu internet e inténtalo de nuevo. No se cobró nada."
-      );
-    }
+    if (resultado.urlComprobante) setUploadedFileUrl(resultado.urlComprobante);
+    // Ya está enviada: lo guardado ya no sirve para retomar nada.
+    progreso.olvidar();
+    setStep(4);
     setSubmitting(false);
   };
-
   const stepsLabels = ["Categoría", "Datos", "Pago", "Final"];
 
   // Las reglas viven en ./inscripcion/validacion.ts: son funciones puras y allí

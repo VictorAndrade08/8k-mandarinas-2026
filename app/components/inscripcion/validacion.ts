@@ -96,3 +96,84 @@ export const reglas = (
     return null;
   },
 });
+
+// ── Validación por paso ─────────────────────────────────────────────────────
+// Estas tres piezas vivían dentro de FormInscripcion. Salen porque son las que
+// deciden si alguien puede seguir o no, y eso hay que poder leerlo sin bajar por
+// 900 líneas de estado y JSX. Aquí no hay React: reciben datos y devuelven
+// errores; quien llama se encarga de pintarlos.
+
+/** Los ocho campos del paso 2, en el orden en que están en pantalla. */
+export const CAMPOS_PASO_2: (keyof FormDataState)[] = [
+  "cedula",
+  "nombres",
+  "apellidos",
+  "ciudad",
+  "telefono",
+  "email",
+  "edad",
+  "genero",
+];
+
+/**
+ * Lleva el foco al primer campo que falla, en orden de pantalla.
+ *
+ * En el móvil el error puede quedar tres pantallazos más arriba de donde está el
+ * botón: sin esto, el corredor pulsa "Siguiente", no pasa nada visible y no sabe
+ * por qué (WCAG 2.2, 3.3.1).
+ */
+export function enfocarPrimerError(
+  errores: Record<string, string>,
+  orden: string[]
+) {
+  const primero = orden.find((f) => errores[f]);
+  if (!primero) return;
+  const el = document.getElementById(primero);
+  el?.focus();
+  el?.scrollIntoView({ block: "center", behavior: "smooth" });
+}
+
+/** Qué falla en el paso 2. Objeto vacío = se puede pasar al 3. */
+export function erroresPaso2(
+  validarCampo: (name: keyof FormDataState) => string | null
+): Record<string, string> {
+  const errores: Record<string, string> = {};
+  CAMPOS_PASO_2.forEach((f) => {
+    const msg = validarCampo(f);
+    if (msg) errores[f] = msg;
+  });
+  return errores;
+}
+
+/**
+ * Qué falla en el paso 3.
+ *
+ * Los tres datos que pide —número de comprobante, fecha y titular— son los que
+ * permiten cruzar el pago con el extracto del banco sin tener que abrir la foto
+ * una por una. Con cientos de inscripciones, eso es la diferencia entre validar
+ * pagos en una tarde o en una semana.
+ */
+export function erroresPaso3(
+  formData: FormDataState,
+  validarCampo: (name: keyof FormDataState) => string | null
+): Record<string, string> {
+  const errores: Record<string, string> = {};
+
+  (["num_comprobante", "fecha_pago"] as const).forEach((f) => {
+    const msg = validarCampo(f);
+    if (msg) errores[f] = msg;
+  });
+
+  if (
+    formData.es_titular === "no" &&
+    formData.nombre_titular_cuenta.trim().length < 3
+  ) {
+    errores.nombre_titular_cuenta =
+      "Sin este nombre no podemos encontrar tu pago en el banco.";
+  }
+  if (!formData.comprobante) {
+    errores.comprobante = "Sube la foto o el PDF del pago para terminar.";
+  }
+
+  return errores;
+}
