@@ -38,7 +38,10 @@ export function MainWrapper({ children }: { children: React.ReactNode }) {
   const pegado = SIN_MARGEN_SUPERIOR.has(ruta(pathname));
   return (
     // id="contenido": destino del enlace "Saltar al contenido" del header.
-    <main id="contenido" className={`${pegado ? "" : HUECO_HEADER} relative z-10`}>
+    <main
+      id="contenido"
+      className={`${pegado ? "" : HUECO_HEADER} relative z-10`}
+    >
       {children}
     </main>
   );

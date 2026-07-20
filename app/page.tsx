@@ -34,6 +34,10 @@ const InfoBeforeRace = dynamic(() => import("./components/InfoBeforeRace"), {
   loading: () => <SectionLoader heightClass="min-h-[400px]" />,
 });
 
+const Premios = dynamic(() => import("./components/Premios"), {
+  loading: () => <SectionLoader heightClass="min-h-[500px]" />,
+});
+
 const FeaturedStories = dynamic(() => import("./components/FeaturedStories"), {
   loading: () => <SectionLoader heightClass="min-h-[500px]" />,
 });
@@ -68,6 +72,12 @@ export default function Home() {
       <section id="info">
         <InfoBeforeRace />
       </section>
+
+      {/* Los premios van aquí y no más arriba a propósito: el corredor acaba de
+          leer qué incluye la inscripción y cuánto cuesta, así que es cuando el
+          "$840 repartidos" significa algo. Puesto antes del precio sería un
+          cebo sin contexto. */}
+      <Premios />
 
       {/* Aquí iba <ExperienceSection />: repetía las mismas tres cosas que
           InfoBeforeRace —la ruta, las categorías y el kit— y sus cuatro botones

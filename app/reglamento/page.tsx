@@ -5,6 +5,7 @@ import {
   PRECIO_PREVENTA,
   PRECIO_DESCUENTO,
   WHATSAPP_SOPORTE,
+  PREMIOS,
 } from "../lib/carrera";
 
 // WhatsApp de la organización para reclamos de resultados. Es distinto del de
@@ -384,22 +385,14 @@ function ArticleCard({
 }
 
 /**
- * Premios económicos por categoría. Es la única tabla de premios del reglamento:
- * los valores se escriben una vez y aquí. Duplicarlos ya salió caro — el precio
- * de inscripción llegó a decir tres cosas distintas en tres páginas.
+ * Premios económicos por categoría. Los valores ya no viven aquí: están en
+ * app/lib/carrera.ts, porque el inicio también los enseña. Copiarlos habría
+ * dejado la misma tabla en dos archivos, y el día que cambie un premio uno de
+ * los dos se queda mintiendo — que es exactamente lo que pasó con el precio de
+ * inscripción, que llegó a decir tres cosas distintas en tres páginas.
  */
 function PremiosTables() {
-  const tabla = [
-    {
-      categoria: "Élite Pro 8K",
-      primero: "120",
-      segundo: "100",
-      tercero: "80",
-    },
-    { categoria: "Máster", primero: "80", segundo: "60", tercero: "40" },
-    { categoria: "Leyenda", primero: "80", segundo: "60", tercero: "40" },
-    { categoria: "Discapacidad", primero: "80", segundo: "60", tercero: "40" },
-  ];
+  const tabla = PREMIOS;
 
   return (
     <div className="space-y-5">
