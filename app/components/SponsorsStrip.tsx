@@ -9,9 +9,14 @@ import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 // temporales de Hostinger: contenido de otra carrera y un enlace que puede morir solo.
 // Salen del vector .ai incrustado. El de boho solo existía en el PSD como un
 // bitmap de 165x35, y se pintaba a más de 500 de ancho: salía borroso. Se
-// vectorizó TRAZANDO ese original con potrace (no se redibujó a mano ni se
-// generó: es el contorno del logo real), así que ahora es un SVG y se ve nítido
-// a cualquier tamaño.
+// vectorizó TRAZANDO ese original con potrace: el contorno es el del logo real,
+// no está redibujado ni generado. Ahora es un SVG y se ve nítido a cualquier
+// tamaño.
+//
+// El trazado lleva un desenfoque suave antes de binarizar. Sin él salían muescas
+// en la base de la B y en las uniones de la H — el escalonado que arrastra un
+// archivo de 165px. Un trazado reproduce lo que hay; no recupera lo que no está,
+// así que lo bueno de verdad sería el .svg original de la marca.
 //
 // Los tres últimos llegaron sueltos y se prepararon a mano: recortados al
 // contenido y con el fondo a transparente. El de Full Fun Travel venía en blanco
