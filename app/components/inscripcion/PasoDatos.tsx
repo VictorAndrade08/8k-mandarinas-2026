@@ -14,6 +14,7 @@ import {
 } from "@phosphor-icons/react";
 import { CampoTexto } from "./CampoTexto";
 import { useFormulario } from "./contexto";
+import { MINUTOS_SESION } from "./useCuentaAtras";
 import type { Category } from "./tipos";
 
 /**
@@ -78,7 +79,8 @@ export function PasoDatos({
         Tus Datos Personales
       </h1>
       <p className="font-barlow mb-8 text-base text-gray-400 md:text-lg">
-        Son 2 minutos. Guardamos tu avance por si necesitas volver.
+        Son 2 minutos. Ten a mano el comprobante del pago: la sesión dura{" "}
+        {MINUTOS_SESION} minutos.
       </p>
 
       {/* gap más ancho en móvil: el pulgar es menos preciso que el ratón */}
