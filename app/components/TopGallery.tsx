@@ -290,7 +290,7 @@ export default function TopGallery() {
             aria-modal="true"
           >
             <div
-              className="relative flex h-full w-full max-w-6xl flex-col items-center justify-center"
+              className="relative flex h-full w-full max-w-7xl flex-col items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Botón Cerrar. Iba en bg-white/10, que sobre una foto clara casi

@@ -61,7 +61,7 @@ export default function Footer() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-6 py-14 text-center sm:py-16">
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center px-6 py-14 text-center sm:py-16">
         {/* Logo desnudo: la versión blanca se sostiene sola sobre este fondo */}
         <Image
           src="/logo-mandarinas-blanco.svg"

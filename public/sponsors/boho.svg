@@ -1,6 +1,5 @@
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="1980" height="420" viewBox="0 0 1980.000000 420.000000"
- preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="320" viewBox="0 0 640 320" preserveAspectRatio="xMidYMid meet">
+<g transform="translate(113.73,116.25) scale(0.20835)">
 <g transform="translate(0.000000,420.000000) scale(0.100000,-0.100000)"
 fill="currentColor" stroke="none">
 <path d="M573 4141 c4 -33 19 -90 34 -128 l27 -68 6 -520 c8 -555 6 -586 -41
@@ -49,5 +48,6 @@ l-20 88 1 1679 c1 1698 2 1764 39 1890 10 36 22 89 26 117 l7 52 -342 0 -342
 -234 -142 -143 -230 -187 -381 -186 -43 1 -647 2 -1343 5 l-1265 3 -65 17
 c-173 46 -326 194 -376 364 -21 70 -25 2475 -4 2552 43 161 206 321 380 375
 l55 17 1220 -1 c671 0 1252 4 1290 8 76 9 157 5 220 -11z"/>
+</g>
 </g>
 </svg>

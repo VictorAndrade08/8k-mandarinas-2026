@@ -190,16 +190,16 @@ export default function SponsorsStrip() {
               {duplicated.map((logo, i) => (
                 <div
                   key={`${logo.src}-${i}`}
-                  className="group relative flex h-28 w-[170px] flex-none items-center justify-center rounded-2xl border border-gray-100 bg-gray-50 px-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#f7771c]/20 hover:bg-white hover:shadow-lg sm:h-32 sm:w-[220px] sm:px-6 md:h-36 md:w-[260px]"
+                  className="group relative flex h-24 w-[192px] flex-none items-center justify-center rounded-2xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:-translate-y-1 hover:border-[#f7771c]/20 hover:bg-white hover:shadow-lg sm:h-28 sm:w-[224px] md:h-32 md:w-[256px]"
                 >
                   {/* OPTIMIZACIÓN DE IMAGEN */}
-                  <div className="relative h-full max-h-24 w-full sm:max-h-28 md:max-h-32">
+                  <div className="relative h-full w-full">
                     <Image
                       src={logo.src}
                       alt={logo.alt}
                       fill
                       className="object-contain opacity-70 grayscale transition-all duration-500 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0"
-                      sizes="(max-width: 640px) 170px, (max-width: 768px) 220px, 260px"
+                      sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, 256px"
                       loading="lazy"
                     />
                   </div>
