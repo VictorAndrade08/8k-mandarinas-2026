@@ -211,7 +211,15 @@
       "Bash(perl -0pi -e 's{        <ConditionalHeader />\\\\n        <Toaster position=\"top-center\" richColors closeButton duration=\\\\{2400\\\\} />\\\\n}{        <ConditionalHeader />\\\\n        \\\\{/\\\\* El <Toaster/> de sonner vivía aquí, así que la librería entraba en el\\\\n            JS de las seis páginas cuando el único que enseña avisos es el\\\\n            formulario de inscripción. Se ha movido a FormInscripcion.tsx. \\\\*/\\\\}\\\\n}' app/layout.tsx)",
       "Bash(perl -pi -e 's{^import \\\\{ toast \\\\} from \"sonner\";$}{import \\\\{ toast, Toaster \\\\} from \"sonner\";}' app/components/FormInscripcion.tsx)",
       "Bash(sed 's/deviceScaleFactor:3/deviceScaleFactor:1.75/; s/width:390,height:844/width:412,height:823/' net.mjs)",
-      "Bash(node net175.mjs)"
+      "Bash(node net175.mjs)",
+      "Bash(grep -nE \"^\\\\s*\\(const [a-zA-Z]+ = |function |useEffect|useState|useMemo|useCallback|\\\\{step === |\\\\{/\\\\* ={3,}\\)\" app/components/FormInscripcion.tsx)",
+      "Bash(perl -pi -e 's/^\\(\\\\s*\\)\\(\\\\w+\\)=\\\\{\"\\([^\"]*\\)\"\\\\}$/$1$2=\"$3\"/; s/^\\(\\\\s*\\)\\(\\\\w+\\)=\\\\{true\\\\}$/$1$2/;' app/components/FormInscripcion.tsx)",
+      "Bash(node flujo.mjs)",
+      "Bash(awk 'NR>=1574 && NR<=1740 && \\(/^                \\\\\\)\\\\}/ \\)' app/components/FormInscripcion.tsx)",
+      "Bash(awk -F: '$1>1574')",
+      "Bash(perl -0pi -e 's/    <\\\\/form>\\\\n                    \\\\\\)\\\\}\\\\n  \\\\\\);/    <\\\\/form>\\\\n  \\);/' app/components/inscripcion/PasoPago.tsx)",
+      "Bash(node /tmp/cap4321.mjs)",
+      "Bash(python3 -c \"import json,sys;d=json.load\\(sys.stdin\\);print\\('páginas capturadas:',len\\(d\\)\\);print\\('con desbordamiento:',sum\\(1 for r in d if r['overflow']\\)\\)\")"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
