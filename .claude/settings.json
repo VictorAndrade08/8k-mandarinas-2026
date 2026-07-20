@@ -198,7 +198,20 @@
       "Bash(perl -0pi -e 's/const ExperienceSection = dynamic\\\\\\(\\\\n  \\\\\\(\\\\\\) => import\\\\\\(\"\\\\.\\\\/components\\\\/ExperienceSection\"\\\\\\),\\\\n  \\\\{\\\\n    loading: \\\\\\(\\\\\\) => <SectionLoader heightClass=\"min-h-\\\\[600px\\\\]\" \\\\/>,\\\\n  \\\\}\\\\n\\\\\\);\\\\n\\\\n//' app/page.tsx)",
       "Bash(perl -0pi -e 's/      <ExperienceSection \\\\/>\\\\n/      \\\\{\\\\/* Aquí iba <ExperienceSection \\\\/>: repetía las mismas tres cosas que\\\\n          InfoBeforeRace —la ruta, las categorías y el kit— y sus cuatro botones\\\\n          solo hacían alert\\\\\\(\"🚀 ¡Próximamente disponible!\"\\\\\\). Dos rejillas de\\\\n          cuatro tarjetas iguales seguidas, y la segunda sin llevar a ningún\\\\n          sitio. Está en el historial de git si hace falta recuperarla. *\\\\/\\\\}\\\\n/' app/page.tsx)",
       "Bash(rm app/components/ExperienceSection.tsx)",
-      "Bash(python3 -c \"import json,sys; [print\\(r['vista'], r['pagina'], r['alto'], 'OVERFLOW' if r['overflow'] else 'ok'\\) for r in json.load\\(sys.stdin\\)]\")"
+      "Bash(python3 -c \"import json,sys; [print\\(r['vista'], r['pagina'], r['alto'], 'OVERFLOW' if r['overflow'] else 'ok'\\) for r in json.load\\(sys.stdin\\)]\")",
+      "Bash(node perf.mjs)",
+      "Bash(perl -pi -e 's{http://localhost:3000/}{http://localhost:4321/}' perf.mjs)",
+      "Bash(cp /tmp/next.config.bak next.config.ts)",
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('package.json'\\)\\);[print\\(' ',k,v\\) for k,v in d.get\\('dependencies',{}\\).items\\(\\)]\")",
+      "Bash(pkill -f \"http.server 4321\")",
+      "Bash(node -e \"const s=require\\('sharp'\\); console.log\\('sharp', s.versions.vips ? 'OK' : 'OK'\\)\")",
+      "Bash(node scripts/imagenes.mjs)",
+      "Bash(perl -pi -e 's{^import Image from \"next/image\"; // IMPORTANTE: Usamos el componente nativo\\\\n}{import { srcSetDe } from \"../lib/imagen\";\\\\n}' app/components/TopGallery.tsx)",
+      "Bash(perl -0pi -e 's/^import \\\\{ Toaster \\\\} from \"sonner\";\\\\n//m' app/layout.tsx)",
+      "Bash(perl -0pi -e 's{        <ConditionalHeader />\\\\n        <Toaster position=\"top-center\" richColors closeButton duration=\\\\{2400\\\\} />\\\\n}{        <ConditionalHeader />\\\\n        \\\\{/\\\\* El <Toaster/> de sonner vivía aquí, así que la librería entraba en el\\\\n            JS de las seis páginas cuando el único que enseña avisos es el\\\\n            formulario de inscripción. Se ha movido a FormInscripcion.tsx. \\\\*/\\\\}\\\\n}' app/layout.tsx)",
+      "Bash(perl -pi -e 's{^import \\\\{ toast \\\\} from \"sonner\";$}{import \\\\{ toast, Toaster \\\\} from \"sonner\";}' app/components/FormInscripcion.tsx)",
+      "Bash(sed 's/deviceScaleFactor:3/deviceScaleFactor:1.75/; s/width:390,height:844/width:412,height:823/' net.mjs)",
+      "Bash(node net175.mjs)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
