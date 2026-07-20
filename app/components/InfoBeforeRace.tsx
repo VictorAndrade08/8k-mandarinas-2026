@@ -64,49 +64,83 @@ export default function InfoBeforeRace() {
         <div className="pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-[#f7771c]/10 blur-[120px]" />
 
         <div className="relative z-10">
-          {/* Header */}
-          <div className="mb-10 text-center sm:mb-12 md:text-left">
-            <h2 className="font-[family-name:var(--font-titular)] text-[38px] leading-[0.9] tracking-wide text-white uppercase sm:text-[52px] md:text-[64px]">
-              Todo lo que necesitas <br />
-              <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
-                saber antes de correr
-              </span>
-            </h2>
-          </div>
+          {/* Titular a la izquierda y no centrado. El segundo renglón iba con un
+              degradado de blanco a gris recortado sobre el texto: es el mismo
+              efecto que se repetía en otras tres secciones, y un gris apagado
+              como remate lee a plantilla. Va en naranja de marca. */}
+          <h2 className="mb-10 max-w-3xl font-[family-name:var(--font-titular)] text-[38px] leading-[0.9] tracking-wide text-white uppercase sm:mb-14 sm:text-[52px] md:text-[64px]">
+            Todo lo que necesitas <br />
+            <span className="text-[#f7771c]">saber antes de correr</span>
+          </h2>
 
-          {/* Grid de Tarjetas */}
-          <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {ITEMS.map((it) => (
-              <Link
-                key={it.title}
-                href={it.href}
-                className="group relative flex min-h-[280px] flex-col rounded-[24px] border border-white/5 bg-white/5 p-6 text-left backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#f7771c]/30 hover:bg-[#f7771c]/10 sm:p-8"
-                aria-label={`${it.cta}: ${it.title}`}
-              >
-                {/* Icono */}
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white transition-all duration-300 group-hover:border-[#f7771c] group-hover:bg-[#f7771c] group-hover:shadow-[0_0_20px_rgba(247,119,28,0.45)]">
-                  <it.icon size={24} />
-                </div>
+          {/* Una grande y tres pequeñas, no cuatro iguales en fila. Cuatro
+              tarjetas del mismo tamaño, con el mismo icono en la misma esquina y
+              el mismo botón abajo, es la rejilla perfecta que delata que nadie
+              decidió qué importa más (docs/30-REGLAS-ANTI-IA.md, reglas 8, 23 y
+              34). Aquí importa la ruta: es lo que todo el mundo pregunta primero,
+              así que ocupa el doble. */}
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-3 lg:grid-rows-3">
+            {ITEMS.map((it, i) => {
+              const destacada = i === 0;
+              return (
+                <Link
+                  key={it.title}
+                  href={it.href}
+                  aria-label={`${it.cta}: ${it.title}`}
+                  className={`group relative flex flex-col border border-white/10 bg-white/[0.04] text-left transition-colors duration-200 hover:border-[#f7771c]/40 hover:bg-[#f7771c]/10 ${
+                    destacada
+                      ? "justify-end rounded-[18px] p-7 sm:p-9 lg:col-span-2 lg:row-span-3"
+                      : "rounded-[10px] p-5 sm:p-6"
+                  }`}
+                >
+                  <div
+                    className={`flex items-center justify-center text-[#f7771c] transition-colors group-hover:text-white ${
+                      destacada ? "mb-5 h-14 w-14" : "mb-3 h-9 w-9"
+                    }`}
+                  >
+                    {/* La destacada lleva el icono relleno y grande; las otras,
+                        de línea y pequeño. Mismo set, distinto peso: así se nota
+                        cuál manda sin tener que leer nada. */}
+                    <it.icon
+                      size={destacada ? 44 : 26}
+                      weight={destacada ? "fill" : "regular"}
+                    />
+                  </div>
 
-                <h3 className="mb-3 font-[family-name:var(--font-titular)] text-[28px] leading-[1] tracking-wide text-white">
-                  {it.title}
-                </h3>
+                  <h3
+                    className={`mb-2 font-[family-name:var(--font-titular)] leading-[1] tracking-wide text-white ${
+                      destacada ? "text-[34px] sm:text-[44px]" : "text-[22px]"
+                    }`}
+                  >
+                    {it.title}
+                  </h3>
 
-                <p className="mb-8 text-sm leading-relaxed font-medium text-gray-400 sm:text-base">
-                  {it.desc}
-                </p>
+                  <p
+                    className={`leading-relaxed text-gray-400 ${
+                      destacada
+                        ? "mb-7 max-w-md text-base sm:text-lg"
+                        : "mb-5 text-sm"
+                    }`}
+                  >
+                    {it.desc}
+                  </p>
 
-                {/* Botón de verdad, no un rótulo: ahora lleva a algún sitio, así
-                    que tiene que parecer pulsable y medir lo que mide un dedo. */}
-                <span className="mt-auto inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 text-sm font-black tracking-[0.12em] text-white uppercase transition-all group-hover:border-[#f7771c] group-hover:bg-[#f7771c] group-hover:text-white">
-                  {it.cta}
-                  <ArrowRight
-                    size={16}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
-                </span>
-              </Link>
-            ))}
+                  <span
+                    className={`inline-flex items-center gap-2 self-start font-bold tracking-[0.1em] uppercase transition-colors ${
+                      destacada
+                        ? "min-h-[48px] rounded-full bg-[#f7771c] px-6 text-sm text-white group-hover:bg-white group-hover:text-[#780030]"
+                        : "mt-auto text-xs text-white/60 group-hover:text-[#f7771c]"
+                    }`}
+                  >
+                    {it.cta}
+                    <ArrowRight
+                      size={destacada ? 16 : 13}
+                      className="transition-transform group-hover:translate-x-0.5"
+                    />
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

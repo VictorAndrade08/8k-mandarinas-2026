@@ -214,24 +214,21 @@ export default function VerificarPage() {
 
   return (
     <>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        
-      `,
-        }}
-      />
-
       <NotFoundModal open={modalOpen} onClose={() => setModalOpen(false)} />
 
       {/* LAYOUT PRINCIPAL — a sangre, sin la tarjeta flotante gigante: el fondo
           oscuro va de borde a borde como el resto del sitio y el contenido se
           centra en max-w-7xl. */}
       <section className="relative w-full overflow-hidden bg-[#140309] px-4 py-12 font-sans sm:px-6 md:py-16 lg:px-8">
-        {/* Fondos ambientales */}
+        {/* Dos manchas de color para que el fondo no sea un negro plano. Eran
+            moradas y latían con animate-pulse: el morado no está en la marca por
+            ningún lado —es el color que sale por defecto— y dos círculos de
+            800px respirando en bucle es decoración que no cuenta nada
+            (docs/30-REGLAS-ANTI-IA.md, reglas 4, 38 y 63). Ahora son del
+            degradado del flyer y se están quietas. */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] animate-pulse rounded-full bg-purple-600/15 opacity-50 mix-blend-screen blur-[150px]" />
-          <div className="absolute right-[-10%] bottom-[-20%] h-[800px] w-[800px] animate-pulse rounded-full bg-pink-600/10 opacity-50 mix-blend-screen blur-[150px] delay-700" />
+          <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] rounded-full bg-[#c51850]/15 opacity-50 mix-blend-screen blur-[150px]" />
+          <div className="absolute right-[-10%] bottom-[-20%] h-[800px] w-[800px] rounded-full bg-[#f7771c]/10 opacity-50 mix-blend-screen blur-[150px]" />
         </div>
 
         {/* Grid de Contenido. En móvil el formulario va PRIMERO (order-1): quien
@@ -250,22 +247,22 @@ export default function VerificarPage() {
             <img
               src="/logo-mandarinas-blanco.svg"
               alt="8K Ruta de las Mandarinas"
-              className="animate-in slide-in-from-bottom-4 mb-7 hidden h-auto w-[min(82vw,420px)] object-contain drop-shadow-2xl delay-100 duration-700 lg:block"
+              className="mb-7 hidden h-auto w-[min(82vw,420px)] object-contain drop-shadow-2xl lg:block"
             />
 
             <h1
-              className={`text-3xl text-white sm:text-4xl ${bebasClassName} animate-in slide-in-from-bottom-4 mb-6 uppercase delay-100 duration-700`}
+              className={`text-3xl text-white sm:text-4xl ${bebasClassName} mb-6 uppercase`}
             >
               Verifica tu inscripción
             </h1>
 
-            <p className="animate-in slide-in-from-bottom-4 mb-10 max-w-lg text-xl leading-relaxed font-normal text-white/80 delay-200 duration-700 lg:text-2xl">
+            <p className="mb-10 max-w-lg text-xl leading-relaxed font-normal text-white/80 lg:text-2xl">
               Consulta el estado de tu inscripción, descarga tu ticket digital y
               prepárate para la carrera más importante del año.
             </p>
 
             {/* Stats */}
-            <div className="animate-in slide-in-from-bottom-4 mt-2 flex w-full flex-wrap justify-center gap-12 border-t border-white/20 pt-10 delay-300 duration-700 lg:justify-start">
+            <div className="mt-2 flex w-full flex-wrap justify-center gap-12 border-t border-white/20 pt-10 lg:justify-start">
               <div>
                 <p className={`text-4xl ${bebasClassName} text-white`}>8K</p>
                 <p className="text-sm font-bold tracking-widest text-white/60 uppercase">
@@ -293,7 +290,7 @@ export default function VerificarPage() {
           </div>
 
           {/* --- COLUMNA DERECHA (FORMULARIO/TICKET) --- */}
-          <div className="animate-in zoom-in-95 order-1 mx-auto flex w-full max-w-lg justify-center delay-150 duration-700 lg:order-2 lg:max-w-full lg:justify-end">
+          <div className="order-1 mx-auto flex w-full max-w-lg justify-center lg:order-2 lg:max-w-full lg:justify-end">
             {/* WRAPPER DEL FORMULARIO/TICKET */}
             <div className="w-full max-w-[500px] text-white">
               {!data && (

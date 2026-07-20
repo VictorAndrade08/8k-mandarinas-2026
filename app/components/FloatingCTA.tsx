@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link"; // 1. Navegación rápida
 import { usePathname } from "next/navigation"; // 2. Detección reactiva de ruta
-import { CursorClick } from "@phosphor-icons/react";
+import { PersonSimpleRun } from "@phosphor-icons/react";
 
 // Alto del header (pt + píldora + pb). Hasta que no se baja de aquí, el botón
 // flotante no aparece: arriba ya está el "Inscríbete ahora" del hero y dos veces
@@ -94,10 +94,17 @@ export default function FloatingCTA() {
       <Link
         href="/inscripcion"
         aria-label="Ir a formulario de inscripción"
-        className={`/* Gradiente Rojo */ /* Sombras y Efectos */ cubic-bezier(0.34, 1.56, 0.64, 1) /* Estado de visibilidad */ fixed bottom-[calc(env(safe-area-inset-bottom)+24px)] left-1/2 z-[9999] flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-gradient-to-r from-[#f7771c] to-[#c51850] px-10 py-4 text-[20px] leading-none font-bold tracking-[0.1em] text-white uppercase shadow-[0_10px_40px_rgba(247,119,28,0.55)] backdrop-blur-md transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_60px_rgba(247,119,28,0.75)] active:scale-95 md:right-8 md:bottom-8 md:left-auto md:translate-x-0 md:px-12 md:py-5 md:text-[22px] ${isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-20 opacity-0"} `}
+        // Este className llevaba dentro tres comentarios CSS y un
+        // `cubic-bezier(0.34, 1.56, 0.64, 1)` suelto, que Tailwind se comía como
+        // clases inexistentes. Y era un botón de 22px con dos sombras de 40 y
+        // 60px: un CTA gigante que grita (reglas 6 y 20). Ahora tiene el tamaño
+        // de un botón y una sola sombra, la de marca.
+        className={`fixed right-8 bottom-8 z-50 flex items-center gap-2 rounded-full bg-gradient-to-r from-[#f7771c] to-[#c51850] px-7 py-3.5 text-base leading-none font-bold tracking-[0.08em] text-white uppercase shadow-[0_8px_24px_rgba(247,119,28,0.35)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 ${isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"}`}
       >
-        <span>Inscribirme</span>
-        <CursorClick size={24} className="animate-pulse" />
+        {/* "Inscríbete" y el corredor, igual que la barra inferior del móvil:
+            antes decía "Inscribirme" y llevaba un icono de puntero de ratón. */}
+        <span>Inscríbete</span>
+        <PersonSimpleRun size={22} weight="fill" />
       </Link>
     </div>
   );
