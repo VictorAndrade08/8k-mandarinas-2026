@@ -34,13 +34,6 @@ const InfoBeforeRace = dynamic(() => import("./components/InfoBeforeRace"), {
   loading: () => <SectionLoader heightClass="min-h-[400px]" />,
 });
 
-const ExperienceSection = dynamic(
-  () => import("./components/ExperienceSection"),
-  {
-    loading: () => <SectionLoader heightClass="min-h-[600px]" />,
-  }
-);
-
 const FeaturedStories = dynamic(() => import("./components/FeaturedStories"), {
   loading: () => <SectionLoader heightClass="min-h-[500px]" />,
 });
@@ -76,7 +69,11 @@ export default function Home() {
         <InfoBeforeRace />
       </section>
 
-      <ExperienceSection />
+      {/* Aquí iba <ExperienceSection />: repetía las mismas tres cosas que
+          InfoBeforeRace —la ruta, las categorías y el kit— y sus cuatro botones
+          solo hacían alert("🚀 ¡Próximamente disponible!"). Dos rejillas de
+          cuatro tarjetas iguales seguidas, y la segunda sin llevar a ningún
+          sitio. Está en el historial de git si hace falta recuperarla. */}
       <FeaturedStories />
 
       <section id="reglamento">
