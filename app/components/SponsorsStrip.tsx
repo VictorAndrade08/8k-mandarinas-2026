@@ -7,8 +7,11 @@ import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 // Sacados de las capas del arte oficial (myairbridge/FACEBOOK PORTADA.psd) y servidos
 // desde /public. Antes esto apuntaba a fotos de la 10K de Ambato alojadas en dominios
 // temporales de Hostinger: contenido de otra carrera y un enlace que puede morir solo.
-// Salen del vector .ai incrustado, salvo boho, que solo existía como píxeles en
-// el PSD y va a su tamaño nativo.
+// Salen del vector .ai incrustado. El de boho solo existía en el PSD como un
+// bitmap de 165x35, y se pintaba a más de 500 de ancho: salía borroso. Se
+// vectorizó TRAZANDO ese original con potrace (no se redibujó a mano ni se
+// generó: es el contorno del logo real), así que ahora es un SVG y se ve nítido
+// a cualquier tamaño.
 //
 // Los tres últimos llegaron sueltos y se prepararon a mano: recortados al
 // contenido y con el fondo a transparente. El de Full Fun Travel venía en blanco
@@ -19,7 +22,7 @@ const SPONSOR_LOGOS = [
   { src: "/sponsors/vehicentro-sinotruk.webp", alt: "Vehicentro · Sinotruk" },
   { src: "/sponsors/oscus.webp", alt: "OSCUS" },
   { src: "/sponsors/vigop.webp", alt: "VIGOP Eventos" },
-  { src: "/sponsors/boho.webp", alt: "BOHO" },
+  { src: "/sponsors/boho.svg", alt: "BOHO" },
   { src: "/sponsors/prez.webp", alt: "PREZ · Agencia de Growth Marketing" },
   { src: "/sponsors/aurum.webp", alt: "Aurum Estética Dental" },
   { src: "/sponsors/full-fun-travel.webp", alt: "Full Fun Travel" },
@@ -30,15 +33,42 @@ const SPONSOR_LOGOS = [
 ];
 
 export default function SponsorsStrip() {
-  // Orden estable para evitar errores de hidratación y saltos visuales
+  // El orden cambia en cada visita para que ninguna marca esté siempre la
+  // primera ni siempre la última.
+  //
+  // Pero NO se puede barajar durante el render: el HTML lo genera el build una
+  // sola vez, y si el navegador pinta otro orden distinto React se queja de
+  // hidratación y vuelve a dibujar la cinta entera. Así que se arranca con el
+  // orden del archivo —el mismo que trae el HTML— y se baraja justo después de
+  // montar, cuando ya no hay nada que cuadrar.
+  const [orden, setOrden] = useState(SPONSOR_LOGOS);
+
+  useEffect(() => {
+    const mezcla = [...SPONSOR_LOGOS];
+    // Fisher-Yates. Un sort(() => Math.random() - 0.5) parece lo mismo pero no
+    // reparte igual: deja las posiciones sesgadas según el algoritmo de orden
+    // que use el navegador.
+    for (let i = mezcla.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      // El intercambio va con variables y no desestructurando porque el
+      // proyecto compila con noUncheckedIndexedAccess: para TypeScript,
+      // mezcla[i] puede ser undefined aunque aquí nunca lo sea.
+      const a = mezcla[i];
+      const b = mezcla[j];
+      if (a && b) {
+        mezcla[i] = b;
+        mezcla[j] = a;
+      }
+    }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOrden(mezcla);
+  }, []);
+
+  // Cuatro copias seguidas: la cinta gira en bucle y necesita material de sobra
+  // para que nunca se vea el hueco del final.
   const duplicated = useMemo(
-    () => [
-      ...SPONSOR_LOGOS,
-      ...SPONSOR_LOGOS,
-      ...SPONSOR_LOGOS,
-      ...SPONSOR_LOGOS,
-    ],
-    []
+    () => [...orden, ...orden, ...orden, ...orden],
+    [orden]
   );
 
   const containerRef = useRef<HTMLDivElement>(null);

@@ -689,6 +689,16 @@ export default function InscripcionPage() {
                       </div>
                     );
                   })}
+
+                  {/* El mismo contador que en móvil. Estaba solo dentro del
+                      bloque md:hidden de la barra de progreso, así que en
+                      escritorio no salía. */}
+                  <div className="pt-2">
+                    <ContadorSesion
+                      texto={sesion.texto}
+                      enAviso={sesion.enAviso}
+                    />
+                  </div>
                 </div>
               </div>
 
