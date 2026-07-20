@@ -243,7 +243,17 @@
       "Bash(rsvg-convert -w 520 -b '#f9fafb' /tmp/boho4.svg -o /tmp/b4.png)",
       "Bash(rsvg-convert -w 520 -b '#f9fafb' public/sponsors/boho.svg -o /tmp/b3.png)",
       "Bash(echo \"build: $?\")",
-      "Bash(rsvg-convert -w 320 -b '#f9fafb' public/sponsors/boho.svg -o /tmp/bh.png)"
+      "Bash(rsvg-convert -w 320 -b '#f9fafb' public/sponsors/boho.svg -o /tmp/bh.png)",
+      "Bash(sed 's#http://localhost:4321#https://www.8krutadelasmandarinas.com#g' btn.mjs)",
+      "Bash(node btnlive.mjs)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" --max-time 25 \"https://8k-mandarinas-2026.pages.dev/\")",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" --max-time 25 \"https://8krutadelasmandarinas.com/\")",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" --max-time 25 \"https://www.8krutadelasmandarinas.com/\")",
+      "Bash(curl -s --max-time 25 \"https://8krutadelasmandarinas.com/\")",
+      "Bash(sed 's#http://localhost:4321#https://8krutadelasmandarinas.com#g' btn.mjs)",
+      "Bash(node btn_apex.mjs)",
+      "Bash(rsvg-convert -w 640 public/sponsors/boho.svg -o /tmp/bh2.png)",
+      "Bash(perl -0pi -e 's/^  MINUTOS_SESION,\\\\n//m' app/components/FormInscripcion.tsx)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026"
