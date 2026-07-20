@@ -48,3 +48,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 nuevaslineasgraficas/
+
+# Capturas de auditoría visual (se generan en local, no van al repo)
+/capturas/

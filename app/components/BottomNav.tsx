@@ -51,8 +51,12 @@ export default function BottomNav() {
   // El formulario trae su propia barra fija abajo; no encajamos otra encima.
   if (ruta.startsWith("/inscripcion")) return null;
 
+  // min-w-0 y sin tracking: con `tracking-wide` a 10px, "INSCRIBIRME" medía más
+  // que su celda (390/5 = 78px) y el texto tocaba el borde de la pantalla. El
+  // mínimo entre áreas táctiles es 8px (WCAG 2.2, 2.5.8), así que la etiqueta
+  // más larga tiene que caber holgada, no justa.
   const itemBase =
-    "flex flex-1 flex-col items-center justify-center gap-1 py-2 text-[10px] font-bold tracking-wide uppercase transition-colors";
+    "flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-1 py-2 text-[9px] font-bold uppercase transition-colors";
 
   return (
     <nav
@@ -64,7 +68,16 @@ export default function BottomNav() {
           const activo = match(ruta);
           const contenido = (
             <>
-              <Icon size={26} weight={activo ? "fill" : "regular"} />
+              {/* La página activa no puede distinguirse SOLO por color (WCAG
+                  2.2, 1.4.1): además del naranja lleva el icono relleno y esta
+                  barrita encima, que es lo que se ve de reojo sin leer. */}
+              <span
+                aria-hidden="true"
+                className={`h-[3px] w-6 rounded-full transition-colors ${
+                  activo ? "bg-[#FF6B1A]" : "bg-transparent"
+                }`}
+              />
+              <Icon size={24} weight={activo ? "fill" : "regular"} />
               {label}
             </>
           );
@@ -102,10 +115,17 @@ export default function BottomNav() {
           className={`${itemBase} text-[#FF6B1A]`}
           aria-label="Ir a inscripción"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#FF6B1A] to-[#FF2D7C] text-white shadow-md shadow-[#FF6B1A]/40">
-            <PersonSimpleRun size={22} weight="bold" />
+          {/* El mismo hueco que la barrita de "activo" de las otras celdas: sin
+              él, este icono y su etiqueta quedan 3px más arriba que el resto. */}
+          <span aria-hidden="true" className="h-[3px] w-6" />
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#FF6B1A] to-[#FF2D7C] text-white shadow-md shadow-[#FF6B1A]/40">
+            {/* `fill`, como los iconos activos de al lado: en `bold` era el
+                único de la fila con otro estilo de trazo. */}
+            <PersonSimpleRun size={20} weight="fill" />
           </span>
-          Inscribirme
+          {/* "Inscríbete", no "Inscribirme": entra holgado en la celda y es la
+              misma palabra que usa el botón grande del home. */}
+          Inscríbete
         </Link>
       </div>
     </nav>

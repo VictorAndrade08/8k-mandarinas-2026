@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 // --- CONFIGURACIÓN DE FUENTE (Optimización Core Web Vitals) ---
 // El logo a todo color, sacado del vector del arte oficial. El anterior era la
@@ -26,11 +27,17 @@ const NAV = [
   { href: "/#ruta", label: "Ruta", acento: "#FF6B1A" },
   { href: "/#info", label: "Información", acento: "#FF6B1A" },
   { href: "/reglamento", label: "Reglamento", acento: "#FF6B1A" },
-  { href: "/verificar", label: "Verificar mi pago", acento: "#FF2D7C" },
+  // "Mi pago", no "Verificar mi pago": la barra inferior del móvil ya llamaba
+  // así a este mismo destino y dos nombres para la misma página se leen como dos
+  // páginas distintas (NN/g, Consistency and Standards).
+  { href: "/verificar", label: "Mi pago", acento: "#FF2D7C" },
 ];
 
 // --- COMPONENTE PRINCIPAL ---
 export default function Header() {
+  const pathname = usePathname();
+  const ruta = pathname.replace(/\/+$/, "") || "/";
+
   return (
     <>
       {/* Primer parada del tabulador: saltar el menú e ir al contenido.
@@ -81,16 +88,29 @@ export default function Header() {
             aria-label="Navegación principal"
             className="mr-auto ml-6 hidden items-center gap-1 lg:flex xl:ml-10 xl:gap-3"
           >
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                style={{ ["--acento" as string]: item.acento }}
-                className="inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold tracking-[0.08em] whitespace-nowrap text-[#333] uppercase transition-colors duration-200 outline-none hover:bg-black/[0.04] hover:text-(--acento) focus-visible:ring-2 focus-visible:ring-(--acento) xl:px-4"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV.map((item) => {
+              // Los enlaces con ancla (#ruta, #info) apuntan a la home: no hay
+              // "página actual" que marcar, solo las rutas propias.
+              const activo =
+                !item.href.includes("#") && ruta.startsWith(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={activo ? "page" : undefined}
+                  style={{ ["--acento" as string]: item.acento }}
+                  className={`inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-colors duration-200 outline-none hover:bg-black/[0.04] hover:text-(--acento) focus-visible:ring-2 focus-visible:ring-(--acento) xl:px-4 ${
+                    // Dónde estás: color de marca + subrayado. Solo color no
+                    // basta (WCAG 2.2, 1.4.1).
+                    activo
+                      ? "text-(--acento) underline decoration-2 underline-offset-8"
+                      : "text-[#333]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Una sola acción con peso visual, a la derecha */}
