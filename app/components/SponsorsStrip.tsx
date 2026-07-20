@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useEffect, useRef, useState } from "react";
+import { useMemo, useEffect, useRef, useState } from "react";
 import Image from "next/image"; // IMPORTANTE: Optimización de imágenes
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 

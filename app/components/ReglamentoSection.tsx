@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link"; // 1. Navegación SPA instantánea
 import { Scales, ArrowRight } from "@phosphor-icons/react";
 

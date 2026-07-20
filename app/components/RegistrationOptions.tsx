@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link"; // MEJORA: Navegación SPA instantánea
 import {
   Globe,

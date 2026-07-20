@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 /**
  * El mapa oficial del recorrido.
  *

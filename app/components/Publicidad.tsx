@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 // El banner de "Inscripciones abiertas", debajo del contador.
 //
 // Viene de op1.png (1916x821, 2 MB) reescalado a 1600 y pasado por cwebp a
