@@ -38,23 +38,67 @@ label,
 /* ========================================= */
 
 :root {
-  /* Fondo base */
-  --background: #1a0a0f;
-  --foreground: #ededed;
+  /* ── PALETA OFICIAL ──────────────────────────────────────────────────────
+     No son colores elegidos a ojo: están muestreados píxel a píxel del arte
+     oficial de 2026 (nuevaslineasgraficas/POST-CUADRADO-8K.jpg). El degradado
+     del flyer va magenta → coral → naranja en diagonal, y el vino es el color
+     sólido del logo y de los chips LUGAR/FECHA/SALIDA.
+     El detalle de la medición está en docs/LINEA-GRAFICA.md. */
+  --vino: #780030; /* logo y chips. Es el color ancla de la marca */
+  --magenta: #c51850;
+  --coral: #ee374b;
+  --naranja: #f7771c;
 
-  /* Marca — naranja mandarina + magenta */
-  --brand-1: #ff6b1a; /* naranja mandarina (primario) */
-  --brand-2: #ff2d7c; /* magenta rosa (acento) */
-  --brand-3: #ffb800; /* amarillo dorado (label) */
+  /* Variantes de trabajo derivadas de los cuatro de arriba */
+  --naranja-oscuro: #d2600f; /* hover del naranja */
+  --vino-claro: #a01444; /* bordes y texto secundario sobre claro */
 
-  /* Superficies */
+  /* ── ROLES SEMÁNTICOS ────────────────────────────────────────────────────
+     Lo que se usa en los componentes son estos nombres, no los de arriba: si
+     algún día la marca cambia de color, cambia el valor y no hay que repasar
+     el sitio entero. */
+  --cta: var(--naranja); /* acción primaria */
+  --cta-hover: var(--naranja-oscuro);
+  --acento: var(--magenta); /* segunda acción, realces */
+  --sobre-claro: var(--vino); /* texto de marca sobre fondo blanco: 11:1 */
+
+  /* Superficies oscuras. Tiran a vino, no a azul marino: un gris neutro puro
+     hace que la marca no se sienta fuera de los botones (Refactoring UI). */
+  --fondo: #1c0710; /* fondo de página */
+  --fondo-hundido: #140309; /* zonas por debajo del fondo */
+  --superficie: #2b0d1d; /* tarjetas y barras */
+  --superficie-alta: #361126; /* menús, modales, hover de tarjeta */
+  --borde: rgba(255, 255, 255, 0.1);
+
+  --background: var(--fondo);
+  --foreground: #f3e8ec;
   --card: rgba(255, 255, 255, 0.06);
-  --stroke: rgba(255, 255, 255, 0.1);
+  --stroke: var(--borde);
   --muted: rgba(255, 255, 255, 0.7);
   --muted-2: rgba(255, 255, 255, 0.55);
 
-  /* Glow */
-  --glow: 0 18px 60px rgba(255, 107, 26, 0.28);
+  /* Estado. No son colores de marca: son señales, y por eso no se mezclan con
+     el naranja ni el magenta (si el "pagado" fuese naranja, nadie sabría si es
+     un estado o un botón). */
+  --ok: #2bd98a;
+  --aviso: #ffc53d;
+  --error: #ff6b6b;
+
+  /* ── RADIOS ──────────────────────────────────────────────────────────────
+     Tres valores y ninguno enorme. Que todo lleve 24px+ de radio es una de las
+     marcas de agua del diseño generado (docs/30-REGLAS-ANTI-IA.md, regla 3);
+     el arte de la carrera usa chips de esquina casi recta. */
+  --radio-chip: 4px;
+  --radio: 10px;
+  --radio-tarjeta: 18px;
+
+  /* ── ELEVACIÓN ───────────────────────────────────────────────────────────
+     Tres niveles, discretos. Las sombras enormes con glow de 60px son el otro
+     tell clásico (regla 6). El glow de marca queda para UN sitio: el CTA. */
+  --sombra-1: 0 1px 2px rgba(20, 3, 9, 0.18);
+  --sombra-2: 0 4px 12px rgba(20, 3, 9, 0.22);
+  --sombra-3: 0 12px 28px rgba(20, 3, 9, 0.3);
+  --glow: 0 8px 24px rgba(247, 119, 28, 0.35);
 
   /* ✅ Dark UI */
   color-scheme: dark;
@@ -184,7 +228,7 @@ b {
 
 .btn-primary {
   background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
-  color: #0b0b0b;
+  color: #140309;
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: var(--glow);
   transition:

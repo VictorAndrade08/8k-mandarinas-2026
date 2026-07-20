@@ -8,12 +8,12 @@ export default function FeaturedStories() {
   return (
     // 3. Inyección de variable de fuente
     <section
-      className={`relative w-full overflow-hidden bg-[#070D18] px-4 py-14 font-sans text-white sm:px-6 sm:py-20 lg:px-8`}
+      className={`relative w-full overflow-hidden bg-[#190611] px-4 py-14 font-sans text-white sm:px-6 sm:py-20 lg:px-8`}
     >
       {/* Sin tarjeta: fondo a sangre, contenido centrado en max-w-7xl. */}
       <div className="relative mx-auto w-full max-w-7xl">
         {/* Fondo decorativo */}
-        <div className="pointer-events-none absolute right-0 bottom-0 h-[500px] w-[500px] translate-x-1/3 translate-y-1/3 rounded-full bg-[#FF6B1A]/5 blur-[100px]" />
+        <div className="pointer-events-none absolute right-0 bottom-0 h-[500px] w-[500px] translate-x-1/3 translate-y-1/3 rounded-full bg-[#f7771c]/5 blur-[100px]" />
 
         <div className="relative z-10">
           {/* CABECERA */}
@@ -32,14 +32,14 @@ export default function FeaturedStories() {
               className="hidden items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 sm:flex"
               aria-hidden="true"
             >
-              <div className="h-2.5 w-2.5 rounded-full bg-[#FF6B1A] shadow-[0_0_10px_#FF6B1A]" />
+              <div className="h-2.5 w-2.5 rounded-full bg-[#f7771c] shadow-[0_0_10px_#f7771c]" />
               <div className="h-2.5 w-2.5 rounded-full bg-white/20 transition-colors hover:bg-white/50" />
               <div className="h-2.5 w-2.5 rounded-full bg-white/20 transition-colors hover:bg-white/50" />
             </div>
           </div>
 
           {/* TARJETA PRINCIPAL */}
-          <article className="group flex flex-col items-stretch gap-8 rounded-[24px] border border-white/5 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 hover:border-[#FF6B1A]/20 hover:bg-[#FF6B1A]/5 hover:shadow-[0_20px_50px_-20px_rgba(255,107,26,0.18)] sm:rounded-[40px] sm:p-10 md:flex-row md:gap-12 md:p-12">
+          <article className="group flex flex-col items-stretch gap-8 rounded-[24px] border border-white/5 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 hover:border-[#f7771c]/20 hover:bg-[#f7771c]/5 hover:shadow-[0_20px_50px_-20px_rgba(247,119,28,0.18)] sm:rounded-[40px] sm:p-10 md:flex-row md:gap-12 md:p-12">
             {/* TEXTO */}
             <div className="order-2 flex flex-1 flex-col justify-center md:order-1">
               {/* Sin fecha: decía "Diciembre 2025", que es de la edición
@@ -60,7 +60,7 @@ export default function FeaturedStories() {
 
               <div>
                 <button
-                  className="group/btn inline-flex items-center gap-2 text-sm font-bold tracking-[0.2em] text-white uppercase transition-colors hover:text-[#FF6B1A]"
+                  className="group/btn inline-flex items-center gap-2 text-sm font-bold tracking-[0.2em] text-white uppercase transition-colors hover:text-[#f7771c]"
                   aria-label="Leer historia completa sobre la experiencia de los corredores"
                 >
                   Leer historia completa
@@ -74,14 +74,14 @@ export default function FeaturedStories() {
 
             {/* ÍCONO / IMAGEN */}
             <div
-              className="relative order-1 flex min-h-[220px] w-full items-center justify-center overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/5 to-transparent transition-colors group-hover:border-[#FF6B1A]/30 md:order-2 md:min-h-auto md:w-[320px]"
+              className="relative order-1 flex min-h-[220px] w-full items-center justify-center overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/5 to-transparent transition-colors group-hover:border-[#f7771c]/30 md:order-2 md:min-h-auto md:w-[320px]"
               aria-hidden="true"
             >
               {/* Brillo interior al hover */}
-              <div className="absolute inset-0 bg-[#FF6B1A]/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-[#f7771c]/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
 
               <Trophy
-                className="relative z-10 h-20 w-20 text-white/50 transition-all duration-300 group-hover:scale-110 group-hover:text-[#FF6B1A] sm:h-24 sm:w-24"
+                className="relative z-10 h-20 w-20 text-white/50 transition-all duration-300 group-hover:scale-110 group-hover:text-[#f7771c] sm:h-24 sm:w-24"
                 strokeWidth={1.5}
               />
             </div>

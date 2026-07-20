@@ -57,7 +57,7 @@ export const viewport: Viewport = {
   // Encoge el layout cuando sube el teclado, para que la barra de acción fija
   // quede encima del teclado y no flotando sobre el campo que se está llenando.
   interactiveWidget: "resizes-content",
-  themeColor: "#FF6B1A",
+  themeColor: "#f7771c",
 };
 
 // ==============================
@@ -117,23 +117,23 @@ export default function RootLayout({
       </head>
 
       <body
-        className={`relative min-h-screen overflow-x-hidden bg-[#1A0A0F] text-white antialiased`}
+        className={`relative min-h-screen overflow-x-hidden bg-[#1c0710] text-white antialiased`}
       >
         {/* CAPAS DE FONDO */}
         <div
           className="pointer-events-none fixed inset-0 -z-40"
-          style={{ background: "#1A0A0F" }}
+          style={{ background: "#1c0710" }}
         />
         <div
           className="pointer-events-none fixed inset-0 -z-30"
           style={{
             backgroundImage: `
               linear-gradient(135deg,
-                #FF8C1A 0%,
-                #FF6B1A 30%,
-                #FF4E5A 60%,
-                #FF2D7C 85%,
-                #B8186A 100%
+                #f7771c 0%,
+                #f7771c 30%,
+                #ee374b 60%,
+                #c51850 85%,
+                #c51850 100%
               )
             `,
             backgroundSize: "cover",

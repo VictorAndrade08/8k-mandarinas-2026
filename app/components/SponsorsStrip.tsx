@@ -101,12 +101,12 @@ export default function SponsorsStrip() {
       <div className="relative mx-auto w-full max-w-7xl">
         {/* Título. z-10 para quedar por encima de las montañas del fondo. */}
         <div className="relative z-10 mb-6 flex items-center justify-center gap-4 sm:mb-8">
-          <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#FF6B1A]/50 sm:w-16"></div>
+          <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#f7771c]/50 sm:w-16"></div>
           {/* "Partners" y no "Parners": llevaba la errata desde el clon. */}
           <p className="text-center font-[family-name:var(--font-poppins)] text-[26px] font-black tracking-[0.1em] text-gray-900 uppercase sm:text-[36px]">
-            Nuestros <span className="text-[#C2410C]">Partners</span>
+            Nuestros <span className="text-[#780030]">Partners</span>
           </p>
-          <div className="h-px w-8 bg-gradient-to-l from-transparent to-[#FF6B1A]/50 sm:w-16"></div>
+          <div className="h-px w-8 bg-gradient-to-l from-transparent to-[#f7771c]/50 sm:w-16"></div>
         </div>
 
         {/* Contenedor Principal. z-10 por encima de las montañas del fondo. */}
@@ -123,8 +123,8 @@ export default function SponsorsStrip() {
               // colores del estado activo jamás llegaban a aplicarse.
               className={`flex h-10 w-10 items-center justify-center rounded-full border-2 shadow-md transition-all active:scale-95 ${
                 direction === -1
-                  ? "border-[#FF6B1A] bg-[#FF6B1A] text-white shadow-[0_6px_18px_rgba(255,107,26,0.5)]"
-                  : "border-[#FF6B1A]/40 bg-white text-[#FF6B1A] hover:border-[#FF6B1A] hover:bg-[#FF6B1A] hover:text-white"
+                  ? "border-[#f7771c] bg-[#f7771c] text-white shadow-[0_6px_18px_rgba(247,119,28,0.5)]"
+                  : "border-[#f7771c]/40 bg-white text-[#f7771c] hover:border-[#f7771c] hover:bg-[#f7771c] hover:text-white"
               } `}
               aria-label="Mover a la derecha rápido"
             >
@@ -145,7 +145,7 @@ export default function SponsorsStrip() {
               {duplicated.map((logo, i) => (
                 <div
                   key={`${logo.src}-${i}`}
-                  className="/* Ancho fijo para evitar CLS */ group relative flex h-16 w-[120px] flex-none items-center justify-center rounded-2xl border border-gray-100 bg-gray-50 px-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#FF6B1A]/20 hover:bg-white hover:shadow-lg sm:h-20 sm:w-[160px] sm:px-6 md:h-24"
+                  className="/* Ancho fijo para evitar CLS */ group relative flex h-16 w-[120px] flex-none items-center justify-center rounded-2xl border border-gray-100 bg-gray-50 px-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#f7771c]/20 hover:bg-white hover:shadow-lg sm:h-20 sm:w-[160px] sm:px-6 md:h-24"
                 >
                   {/* OPTIMIZACIÓN DE IMAGEN */}
                   <div className="relative h-full max-h-12 w-full sm:max-h-14 md:max-h-16">
@@ -173,8 +173,8 @@ export default function SponsorsStrip() {
               // y el ${...} no se interpolaba.
               className={`flex h-10 w-10 items-center justify-center rounded-full border-2 shadow-md transition-all active:scale-95 ${
                 direction === 1
-                  ? "border-[#FF6B1A] bg-[#FF6B1A] text-white shadow-[0_6px_18px_rgba(255,107,26,0.5)]"
-                  : "border-[#FF6B1A]/40 bg-white text-[#FF6B1A] hover:border-[#FF6B1A] hover:bg-[#FF6B1A] hover:text-white"
+                  ? "border-[#f7771c] bg-[#f7771c] text-white shadow-[0_6px_18px_rgba(247,119,28,0.5)]"
+                  : "border-[#f7771c]/40 bg-white text-[#f7771c] hover:border-[#f7771c] hover:bg-[#f7771c] hover:text-white"
               } `}
               aria-label="Mover a la izquierda rápido"
             >

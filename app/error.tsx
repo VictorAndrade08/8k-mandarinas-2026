@@ -40,13 +40,13 @@ export default function GlobalError({
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <button
             onClick={() => reset()}
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] px-7 py-3.5 text-xs font-bold tracking-[0.15em] text-white uppercase shadow-md transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-gradient-to-r from-[#f7771c] to-[#c51850] px-7 py-3.5 text-xs font-bold tracking-[0.15em] text-white uppercase shadow-md transition-all duration-300 hover:-translate-y-0.5"
           >
             Intentar de nuevo
           </button>
           <Link
             href="/"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-gray-300 px-7 py-3.5 text-xs font-bold tracking-[0.15em] text-gray-700 uppercase transition-all duration-300 hover:border-[#FF6B1A] hover:text-[#FF6B1A]"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-gray-300 px-7 py-3.5 text-xs font-bold tracking-[0.15em] text-gray-700 uppercase transition-all duration-300 hover:border-[#f7771c] hover:text-[#f7771c]"
           >
             Ir al inicio
           </Link>
@@ -58,7 +58,7 @@ export default function GlobalError({
             href="https://wa.me/593995102378"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold text-[#FF6B1A] underline underline-offset-4"
+            className="font-bold text-[#f7771c] underline underline-offset-4"
           >
             Escríbenos por WhatsApp
           </a>

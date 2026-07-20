@@ -786,8 +786,8 @@ export default function InscripcionPage() {
     const colorEtiqueta = error
       ? "text-red-300"
       : ok
-        ? "text-green-400 group-focus-within:text-[#FF6B1A]"
-        : "text-gray-200 group-focus-within:text-[#FF6B1A]";
+        ? "text-green-400 group-focus-within:text-[#f7771c]"
+        : "text-gray-200 group-focus-within:text-[#f7771c]";
 
     return (
       <div className="group relative">
@@ -821,7 +821,7 @@ export default function InscripcionPage() {
               onBlur?.();
             }}
             placeholder={placeholder}
-            className={`font-barlow min-h-[56px] w-full rounded-xl border-2 bg-[#0F1218] px-5 py-4 pr-12 text-lg text-white placeholder-gray-500 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#161A23] md:text-xl ${
+            className={`font-barlow min-h-[56px] w-full rounded-xl border-2 bg-[#200815] px-5 py-4 pr-12 text-lg text-white placeholder-gray-500 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] md:text-xl ${
               // El input type="date" en iOS trae un ancho nativo propio y no
               // respeta w-full: se sale por la derecha. appearance-none + min-w-0
               // le quitan ese ancho intrínseco y ya cabe en la tarjeta.
@@ -833,7 +833,7 @@ export default function InscripcionPage() {
                 ? "border-red-400 focus-visible:ring-red-400"
                 : ok
                   ? "border-green-500/70 focus-visible:ring-green-500"
-                  : "border-white/25 hover:border-white/45 focus:border-[#FF6B1A] focus-visible:ring-[#FF6B1A]"
+                  : "border-white/25 hover:border-white/45 focus:border-[#f7771c] focus-visible:ring-[#f7771c]"
             } `}
           />
           {ok && (
@@ -877,7 +877,7 @@ export default function InscripcionPage() {
           esto, el py-6 de arriba dejaba ver el degradado naranja del layout como
           una franja por encima del form. En md+ vuelve a transparente para que
           la tarjeta flote sobre el naranja, que ahí sí queda bien. */}
-      <main className="flex min-h-dvh w-full items-start justify-center bg-[#11141A] py-6 text-white md:bg-transparent md:px-4 md:py-12">
+      <main className="flex min-h-dvh w-full items-start justify-center bg-[#230a17] py-6 text-white md:bg-transparent md:px-4 md:py-12">
         {/* INYECCIÓN DE FUENTES */}
         <style>{`
         
@@ -906,10 +906,10 @@ export default function InscripcionPage() {
           acción a esta tarjeta (donde el overflow-hidden la recorta) en vez de al viewport. */}
         <div
           ref={componentRef}
-          className="mx-auto flex w-full max-w-7xl flex-col overflow-hidden bg-[#1C2029]/80 md:flex-row md:rounded-[32px] md:border md:border-white/5 md:shadow-2xl md:backdrop-blur-xl"
+          className="mx-auto flex w-full max-w-7xl flex-col overflow-hidden bg-[#361126]/80 md:flex-row md:rounded-[32px] md:border md:border-white/5 md:shadow-2xl md:backdrop-blur-xl"
         >
           {/* --- SIDEBAR / HEADER --- */}
-          <div className="relative flex min-w-[300px] flex-col justify-between border-b border-white/5 bg-[#11141A] p-6 md:w-1/3 md:border-r md:border-b-0 md:p-12">
+          <div className="relative flex min-w-[300px] flex-col justify-between border-b border-white/5 bg-[#230a17] p-6 md:w-1/3 md:border-r md:border-b-0 md:p-12">
             <div>
               <div className="mb-6 flex items-center gap-4 md:mb-12">
                 <img
@@ -933,14 +933,14 @@ export default function InscripcionPage() {
                 </div>
                 <div className="relative mt-1 h-2.5 w-full rounded-full bg-white/10">
                   <div
-                    className="h-full rounded-full bg-[#FF6B1A] transition-all duration-500"
+                    className="h-full rounded-full bg-[#f7771c] transition-all duration-500"
                     style={{ width: `${(step / 4) * 100}%` }}
                   />
                   <div
                     className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500"
                     style={{ left: `${(step / 4) * 100}%` }}
                   >
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#FF6B1A] shadow-[0_5px_16px_rgba(0,0,0,0.55)] ring-2 ring-[#FF6B1A]/50">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#f7771c] shadow-[0_5px_16px_rgba(0,0,0,0.55)] ring-2 ring-[#f7771c]/50">
                       <PersonSimpleRun size={24} aria-hidden="true" />
                     </span>
                   </div>
@@ -959,7 +959,7 @@ export default function InscripcionPage() {
                       className={`flex items-center gap-5 transition-all duration-300 ${active ? "translate-x-2 opacity-100" : "opacity-40"}`}
                     >
                       <div
-                        className={`flex h-12 w-12 items-center justify-center rounded-full border-2 text-lg font-bold transition-all ${active ? `border-[#FF6B1A] bg-[#FF6B1A] text-white` : completed ? "border-green-500 bg-green-500 text-black" : "border-white/20 bg-transparent text-white"}`}
+                        className={`flex h-12 w-12 items-center justify-center rounded-full border-2 text-lg font-bold transition-all ${active ? `border-[#f7771c] bg-[#f7771c] text-white` : completed ? "border-green-500 bg-green-500 text-black" : "border-white/20 bg-transparent text-white"}`}
                       >
                         {completed ? <CheckCircle size={24} /> : stepNum}
                       </div>
@@ -984,10 +984,10 @@ export default function InscripcionPage() {
           </div>
 
           {/* --- ÁREA DE CONTENIDO --- */}
-          <div className="relative min-h-[500px] bg-[#161A23] p-5 md:w-2/3 md:p-14">
+          <div className="relative min-h-[500px] bg-[#2b0d1d] p-5 md:w-2/3 md:p-14">
             {(loading || verifying) && (
-              <div className="animate-in fade-in absolute inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-[#161A23]/95 backdrop-blur-sm">
-                <div className="h-16 w-16 animate-spin rounded-full border-4 border-[#FF6B1A] border-t-transparent" />
+              <div className="animate-in fade-in absolute inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-[#2b0d1d]/95 backdrop-blur-sm">
+                <div className="h-16 w-16 animate-spin rounded-full border-4 border-[#f7771c] border-t-transparent" />
                 <p className="font-barlow animate-pulse text-lg font-bold tracking-widest text-white uppercase md:text-xl">
                   {verifying
                     ? "Verificando cédula..."
@@ -999,7 +999,7 @@ export default function InscripcionPage() {
             <div className="mx-auto max-w-3xl">
               {/* RESUMEN FIJO DE CATEGORÍA + PRECIO (pasos 2 y 3) */}
               {(step === 2 || step === 3) && selectedCategory && (
-                <div className="font-barlow mb-6 flex items-center justify-between gap-3 rounded-2xl border border-[#FF6B1A]/30 bg-[#0F1218] px-5 py-3.5">
+                <div className="font-barlow mb-6 flex items-center justify-between gap-3 rounded-2xl border border-[#f7771c]/30 bg-[#200815] px-5 py-3.5">
                   <div className="flex flex-col">
                     <span className="text-[11px] font-bold tracking-widest text-gray-400 uppercase md:text-xs">
                       Tu categoría
@@ -1012,7 +1012,7 @@ export default function InscripcionPage() {
                     <span className="block text-[11px] font-bold tracking-widest text-gray-400 uppercase md:text-xs">
                       Total preventa
                     </span>
-                    <span className="text-2xl leading-none font-black text-[#FF6B1A] md:text-3xl">
+                    <span className="text-2xl leading-none font-black text-[#f7771c] md:text-3xl">
                       ${selectedPrice}
                     </span>
                   </div>
@@ -1130,7 +1130,7 @@ export default function InscripcionPage() {
                               email: emailSuggestion,
                             }))
                           }
-                          className="font-barlow mt-2 flex min-h-[48px] items-center gap-1.5 text-left text-sm font-bold text-[#FF6B1A] hover:text-[#FF2D7C] md:text-base"
+                          className="font-barlow mt-2 flex min-h-[48px] items-center gap-1.5 text-left text-sm font-bold text-[#f7771c] hover:text-[#c51850] md:text-base"
                         >
                           <Info size={16} className="shrink-0" /> ¿Quisiste
                           decir{" "}
@@ -1174,12 +1174,12 @@ export default function InscripcionPage() {
                               setFormData((f) => ({ ...f, genero: valor }));
                               setErrors((prev) => ({ ...prev, genero: "" }));
                             }}
-                            className={`font-barlow min-h-[56px] rounded-xl border-2 px-2 text-base font-bold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#161A23] md:text-lg ${
+                            className={`font-barlow min-h-[56px] rounded-xl border-2 px-2 text-base font-bold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] md:text-lg ${
                               formData.genero === valor
-                                ? "border-[#FF6B1A] bg-[#FF6B1A] text-white"
+                                ? "border-[#f7771c] bg-[#f7771c] text-white"
                                 : errors.genero
-                                  ? "border-red-400 bg-[#0F1218] text-gray-200"
-                                  : "border-white/15 bg-[#0F1218] text-gray-200 hover:border-white/40"
+                                  ? "border-red-400 bg-[#200815] text-gray-200"
+                                  : "border-white/15 bg-[#200815] text-gray-200 hover:border-white/40"
                             }`}
                           >
                             {texto}
@@ -1228,7 +1228,7 @@ export default function InscripcionPage() {
                   </div>
 
                   <div
-                    className={`mb-8 rounded-2xl border bg-[#0F1218] p-5 transition-colors md:p-6 ${
+                    className={`mb-8 rounded-2xl border bg-[#200815] p-5 transition-colors md:p-6 ${
                       errors.acceptTerms ? "border-red-400" : "border-white/10"
                     }`}
                   >
@@ -1245,14 +1245,14 @@ export default function InscripcionPage() {
                           if (e.target.checked)
                             setErrors((prev) => ({ ...prev, acceptTerms: "" }));
                         }}
-                        className="mt-0.5 h-7 w-7 shrink-0 cursor-pointer accent-[#FF6B1A]"
+                        className="mt-0.5 h-7 w-7 shrink-0 cursor-pointer accent-[#f7771c]"
                       />
                       <span className="font-barlow text-base leading-relaxed text-gray-200 md:text-lg">
                         Acepto los{" "}
                         <a
                           href="/terminos"
                           target="_blank"
-                          className="font-bold text-[#FF6B1A] underline hover:text-[#FF2D7C]"
+                          className="font-bold text-[#f7771c] underline hover:text-[#c51850]"
                         >
                           Términos y Condiciones
                         </a>{" "}
@@ -1278,7 +1278,7 @@ export default function InscripcionPage() {
                       a un toque, sin bajar hasta el fondo a buscarlo. En md+ vuelve
                       al flujo. El hueco que reserva lo pone el div de soporte del
                       final (pb-40 en móvil), para que no tape el último campo. */}
-                  <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#161A23]/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:pt-6 md:backdrop-blur-none">
+                  <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#2b0d1d]/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:pt-6 md:backdrop-blur-none">
                     {/* La microcopia va ARRIBA de los botones: si va debajo queda
                         pegada al borde y en teléfonos con barra de gestos se corta.
                         Encima, además, se lee antes de tocar "Siguiente". */}
@@ -1296,7 +1296,7 @@ export default function InscripcionPage() {
                       <button
                         type="submit"
                         disabled={verifying}
-                        className="flex min-h-[56px] flex-1 items-center justify-center gap-2 rounded-xl bg-white text-lg font-bold text-black shadow-lg transition outline-none hover:bg-gray-200 focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#161A23] disabled:opacity-60 md:text-xl"
+                        className="flex min-h-[56px] flex-1 items-center justify-center gap-2 rounded-xl bg-white text-lg font-bold text-black shadow-lg transition outline-none hover:bg-gray-200 focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] disabled:opacity-60 md:text-xl"
                       >
                         {verifying ? "Verificando..." : "Siguiente"}{" "}
                         <CaretRight size={24} />
@@ -1342,8 +1342,8 @@ export default function InscripcionPage() {
                       onClick={() => setMetodoPago("transferencia")}
                       className={`flex items-center justify-center gap-2 rounded-xl border-2 px-4 py-4 text-base font-bold transition-all md:text-lg ${
                         metodoPago === "transferencia"
-                          ? "border-[#FF6B1A] bg-[#FF6B1A] text-white shadow-lg shadow-[#FF6B1A]/20"
-                          : "border-white/10 bg-[#0F1218] text-gray-300 hover:border-white/30"
+                          ? "border-[#f7771c] bg-[#f7771c] text-white shadow-lg shadow-[#f7771c]/20"
+                          : "border-white/10 bg-[#200815] text-gray-300 hover:border-white/30"
                       }`}
                     >
                       <Bank size={22} /> Transferencia
@@ -1353,8 +1353,8 @@ export default function InscripcionPage() {
                       onClick={() => setMetodoPago("qr")}
                       className={`flex items-center justify-center gap-2 rounded-xl border-2 px-4 py-4 text-base font-bold transition-all md:text-lg ${
                         metodoPago === "qr"
-                          ? "border-[#FF6B1A] bg-[#FF6B1A] text-white shadow-lg shadow-[#FF6B1A]/20"
-                          : "border-white/10 bg-[#0F1218] text-gray-300 hover:border-white/30"
+                          ? "border-[#f7771c] bg-[#f7771c] text-white shadow-lg shadow-[#f7771c]/20"
+                          : "border-white/10 bg-[#200815] text-gray-300 hover:border-white/30"
                       }`}
                     >
                       <QrCode size={22} /> QR (deúna!)
@@ -1362,9 +1362,9 @@ export default function InscripcionPage() {
                   </div>
 
                   {metodoPago === "transferencia" && (
-                    <div className="font-barlow mb-8 rounded-2xl border border-white/10 bg-gradient-to-br from-[#1A1E29] to-black p-6 shadow-lg md:p-10">
+                    <div className="font-barlow mb-8 rounded-2xl border border-white/10 bg-gradient-to-br from-[#331023] to-black p-6 shadow-lg md:p-10">
                       <div className="mb-8 flex items-center gap-5 border-b border-white/10 pb-6">
-                        <div className="rounded-full bg-[#FF6B1A]/20 p-4 text-[#FF6B1A]">
+                        <div className="rounded-full bg-[#f7771c]/20 p-4 text-[#f7771c]">
                           <Bank size={32} />
                         </div>
                         <div>
@@ -1393,7 +1393,7 @@ export default function InscripcionPage() {
                             {BANCO.numero}
                             <Copy
                               size={16}
-                              className="text-gray-400 group-hover:text-[#FF6B1A]"
+                              className="text-gray-400 group-hover:text-[#f7771c]"
                             />
                           </button>
                         </div>
@@ -1420,7 +1420,7 @@ export default function InscripcionPage() {
                             {BANCO.ruc}
                             <Copy
                               size={16}
-                              className="text-gray-400 group-hover:text-[#FF6B1A]"
+                              className="text-gray-400 group-hover:text-[#f7771c]"
                             />
                           </button>
                         </div>
@@ -1429,11 +1429,11 @@ export default function InscripcionPage() {
                             <span className="block text-2xl leading-tight font-bold text-gray-200 md:text-3xl">
                               Total a pagar:
                             </span>
-                            <span className="text-xs font-bold tracking-widest text-[#FFB800] uppercase">
+                            <span className="text-xs font-bold tracking-widest text-[#ffc53d] uppercase">
                               Precio de preventa · sin recargos
                             </span>
                           </div>
-                          <span className="text-4xl font-black text-[#FF6B1A] md:text-5xl">
+                          <span className="text-4xl font-black text-[#f7771c] md:text-5xl">
                             ${selectedPrice}.00
                           </span>
                         </div>
@@ -1443,9 +1443,9 @@ export default function InscripcionPage() {
 
                   {/* --- MÉTODO 2: PAGO CON QR (deúna! / Banco Pichincha) --- */}
                   {metodoPago === "qr" && (
-                    <div className="font-barlow mb-8 rounded-2xl border border-white/10 bg-gradient-to-br from-[#1A1E29] to-black p-6 shadow-lg md:p-8">
+                    <div className="font-barlow mb-8 rounded-2xl border border-white/10 bg-gradient-to-br from-[#331023] to-black p-6 shadow-lg md:p-8">
                       <div className="mb-5 flex items-center gap-4">
-                        <div className="rounded-full bg-[#FF6B1A]/20 p-3 text-[#FF6B1A]">
+                        <div className="rounded-full bg-[#f7771c]/20 p-3 text-[#f7771c]">
                           <QrCode size={28} />
                         </div>
                         <div>
@@ -1513,7 +1513,7 @@ export default function InscripcionPage() {
                       </div>
 
                       {/* 3. Titular de la Cuenta (Evita confusión de nombres) */}
-                      <div className="rounded-xl border border-white/10 bg-[#0F1218] p-5 md:col-span-2">
+                      <div className="rounded-xl border border-white/10 bg-[#200815] p-5 md:col-span-2">
                         <span className="font-barlow mb-3 block text-base font-bold tracking-wide text-gray-200 uppercase">
                           ¿La cuenta bancaria es tuya?
                         </span>
@@ -1542,9 +1542,9 @@ export default function InscripcionPage() {
                                       : "",
                                 }))
                               }
-                              className={`font-barlow min-h-[56px] rounded-xl border-2 px-3 text-base font-bold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1218] md:text-lg ${
+                              className={`font-barlow min-h-[56px] rounded-xl border-2 px-3 text-base font-bold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#200815] md:text-lg ${
                                 formData.es_titular === valor
-                                  ? "border-[#FF6B1A] bg-[#FF6B1A] text-white"
+                                  ? "border-[#f7771c] bg-[#f7771c] text-white"
                                   : "border-white/15 bg-white/5 text-gray-200 hover:border-white/40"
                               }`}
                             >
@@ -1576,7 +1576,7 @@ export default function InscripcionPage() {
                     </label>
                     {!previewName ? (
                       <label
-                        className={`flex h-36 w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed bg-[#0F1218] transition-colors focus-within:ring-2 focus-within:ring-[#FF6B1A] hover:border-[#FF6B1A] hover:bg-[#FF6B1A]/5 md:h-48 ${
+                        className={`flex h-36 w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed bg-[#200815] transition-colors focus-within:ring-2 focus-within:ring-[#f7771c] hover:border-[#f7771c] hover:bg-[#f7771c]/5 md:h-48 ${
                           errors.comprobante
                             ? "border-red-400"
                             : "border-gray-500"
@@ -1598,7 +1598,7 @@ export default function InscripcionPage() {
                         />
                       </label>
                     ) : (
-                      <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#FF6B1A]/30 bg-[#FF6B1A]/10 p-4">
+                      <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#f7771c]/30 bg-[#f7771c]/10 p-4">
                         <div className="flex items-center gap-4 overflow-hidden">
                           <CheckCircle
                             className="shrink-0 text-green-500"
@@ -1642,7 +1642,7 @@ export default function InscripcionPage() {
                     quedaban encima del contenido todo el rato y tapaban el final
                     del formulario mientras se rellenaba. */}
                   {/* Barra fija abajo en móvil, igual que el paso 2. */}
-                  <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#161A23]/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:pt-6 md:backdrop-blur-none">
+                  <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#2b0d1d]/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md md:static md:border-0 md:bg-transparent md:p-0 md:pt-6 md:backdrop-blur-none">
                     <div className="font-barlow mx-auto flex max-w-3xl gap-3">
                       <button
                         type="button"
@@ -1654,7 +1654,7 @@ export default function InscripcionPage() {
                       <button
                         type="submit"
                         disabled={submitting}
-                        className="min-h-[56px] flex-1 rounded-xl bg-[#FF6B1A] text-lg font-bold text-white shadow-[0_0_20px_#FF6B1A50] transition outline-none hover:bg-[#E55104] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#161A23] disabled:cursor-not-allowed disabled:opacity-50 md:text-xl"
+                        className="min-h-[56px] flex-1 rounded-xl bg-[#f7771c] text-lg font-bold text-white shadow-[0_0_20px_#f7771c50] transition outline-none hover:bg-[#d2600f] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] disabled:cursor-not-allowed disabled:opacity-50 md:text-xl"
                       >
                         {submitting ? "Enviando..." : "Confirmar Inscripción"}
                       </button>
@@ -1666,7 +1666,7 @@ export default function InscripcionPage() {
               {/* --- PASO 4: RESUMEN FINAL --- */}
               {step === 4 && (
                 <div className="animate-in zoom-in-95 fade-in py-10 text-center duration-500">
-                  <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-green-500/20 text-green-500 shadow-[0_0_50px_#22c55e40] md:h-32 md:w-32">
+                  <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-green-500/20 text-green-500 shadow-[0_0_50px_#2bd98a40] md:h-32 md:w-32">
                     <CheckCircle size={64} />
                   </div>
                   <h1 className="font-bebas mb-6 text-4xl font-bold text-white md:text-6xl">
@@ -1681,8 +1681,8 @@ export default function InscripcionPage() {
                   </p>
 
                   {/* Resumen Completo */}
-                  <div className="font-barlow relative mx-auto mb-10 max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#0F1218] p-8 text-left shadow-2xl">
-                    <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-[#FF2D7C] to-[#FF6B1A]" />
+                  <div className="font-barlow relative mx-auto mb-10 max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#200815] p-8 text-left shadow-2xl">
+                    <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-[#c51850] to-[#f7771c]" />
 
                     <div className="mb-8 grid grid-cols-2 gap-6 text-base md:text-lg">
                       <div className="col-span-2 mb-2 border-b border-white/5 pb-6">
@@ -1706,7 +1706,7 @@ export default function InscripcionPage() {
                         <p className="mb-1 flex items-center gap-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
                           <Medal size={12} /> Categoría
                         </p>
-                        <p className="text-lg font-bold text-[#FF6B1A] md:text-xl">
+                        <p className="text-lg font-bold text-[#f7771c] md:text-xl">
                           {selectedCategory}
                         </p>
                       </div>
@@ -1758,7 +1758,7 @@ export default function InscripcionPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-5 rounded-xl border border-white/5 bg-[#1A1E29] p-5">
+                    <div className="flex items-center gap-5 rounded-xl border border-white/5 bg-[#331023] p-5">
                       <div className="shrink-0 rounded-lg bg-white p-2">
                         <img
                           alt="QR"

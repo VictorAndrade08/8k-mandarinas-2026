@@ -10,17 +10,17 @@ export default function ReglamentoSection() {
     // 3. Inyectamos la variable de fuente en el contenedor principal
     <section
       id="reglamento"
-      className={`relative w-full overflow-hidden bg-[#070D18] px-4 py-14 font-sans text-white sm:px-6 sm:py-20 lg:px-8`}
+      className={`relative w-full overflow-hidden bg-[#190611] px-4 py-14 font-sans text-white sm:px-6 sm:py-20 lg:px-8`}
     >
       {/* Sin tarjeta: fondo a sangre, contenido centrado en max-w-7xl. */}
       <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center text-center">
         {/* Fondo Decorativo Magenta */}
-        <div className="pointer-events-none absolute top-0 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#FF6B1A]/10 blur-[120px]" />
+        <div className="pointer-events-none absolute top-0 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#f7771c]/10 blur-[120px]" />
 
         <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
           {/* Icono Principal */}
-          <div className="mb-6 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_0_30px_rgba(255,107,26,0.18)] backdrop-blur-sm">
-            <Scale className="h-8 w-8 text-[#FF6B1A] sm:h-10 sm:w-10" />
+          <div className="mb-6 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_0_30px_rgba(247,119,28,0.18)] backdrop-blur-sm">
+            <Scale className="h-8 w-8 text-[#f7771c] sm:h-10 sm:w-10" />
           </div>
 
           {/* Etiqueta */}
@@ -48,7 +48,7 @@ export default function ReglamentoSection() {
           <div className="flex w-full flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/reglamento"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] px-8 py-4 text-sm font-bold tracking-[0.15em] text-white uppercase shadow-lg shadow-[#FF6B1A]/30 transition-all duration-300 hover:-translate-y-1 hover:gap-3 hover:shadow-[#FF6B1A]/50"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#f7771c] to-[#c51850] px-8 py-4 text-sm font-bold tracking-[0.15em] text-white uppercase shadow-lg shadow-[#f7771c]/30 transition-all duration-300 hover:-translate-y-1 hover:gap-3 hover:shadow-[#f7771c]/50"
             >
               Leer Reglamento Completo <ArrowRight size={18} />
             </Link>

@@ -47,11 +47,11 @@ export default function Footer() {
     // llegar aquí. Si se renombra, el botón se queda encima del footer.
     <footer
       id="site-footer"
-      className="relative w-full overflow-hidden border-t border-white/10 bg-[#0B0B0B] font-sans text-white"
+      className="relative w-full overflow-hidden border-t border-white/10 bg-[#140309] font-sans text-white"
     >
       {/* Resplandor de marca, muy sutil: da profundidad sin meter otra caja */}
       <div
-        className="pointer-events-none absolute top-0 left-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF6B1A]/10 blur-[130px]"
+        className="pointer-events-none absolute top-0 left-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f7771c]/10 blur-[130px]"
         aria-hidden="true"
       />
 
@@ -79,7 +79,7 @@ export default function Footer() {
             <Link
               key={e.href}
               href={e.href}
-              className="inline-flex min-h-[44px] items-center text-sm tracking-[0.12em] text-white/80 uppercase transition-colors duration-200 hover:text-[#FF6B1A]"
+              className="inline-flex min-h-[44px] items-center text-sm tracking-[0.12em] text-white/80 uppercase transition-colors duration-200 hover:text-[#f7771c]"
             >
               {e.label}
             </Link>
@@ -103,7 +103,7 @@ export default function Footer() {
 
         <p className="mt-10 text-xs text-white/60">
           © 2026 Vigop Eventos · Desarrollo web por{" "}
-          <span className="text-[#FF6B1A]/80">Prez Agencia</span>
+          <span className="text-[#f7771c]/80">Prez Agencia</span>
         </p>
       </div>
     </footer>

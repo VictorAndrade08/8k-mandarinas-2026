@@ -74,7 +74,7 @@ export default function BottomNav() {
               <span
                 aria-hidden="true"
                 className={`h-[3px] w-6 rounded-full transition-colors ${
-                  activo ? "bg-[#FF6B1A]" : "bg-transparent"
+                  activo ? "bg-[#f7771c]" : "bg-transparent"
                 }`}
               />
               <Icon size={24} weight={activo ? "fill" : "regular"} />
@@ -82,7 +82,7 @@ export default function BottomNav() {
             </>
           );
           const clase = `${itemBase} ${
-            activo ? "text-[#FF6B1A]" : "text-gray-500"
+            activo ? "text-[#f7771c]" : "text-gray-500"
           }`;
 
           // "Inicio" estando ya en el home: sube arriba en vez de no hacer nada.
@@ -112,13 +112,13 @@ export default function BottomNav() {
             marca, no por ser una píldora ancha que descuadra la fila. */}
         <Link
           href="/inscripcion"
-          className={`${itemBase} text-[#FF6B1A]`}
+          className={`${itemBase} text-[#f7771c]`}
           aria-label="Ir a inscripción"
         >
           {/* El mismo hueco que la barrita de "activo" de las otras celdas: sin
               él, este icono y su etiqueta quedan 3px más arriba que el resto. */}
           <span aria-hidden="true" className="h-[3px] w-6" />
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#FF6B1A] to-[#FF2D7C] text-white shadow-md shadow-[#FF6B1A]/40">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#f7771c] to-[#c51850] text-white shadow-md shadow-[#f7771c]/40">
             {/* `fill`, como los iconos activos de al lado: en `bold` era el
                 único de la fila con otro estilo de trazo. */}
             <PersonSimpleRun size={20} weight="fill" />

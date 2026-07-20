@@ -136,7 +136,7 @@ export default function HeroCountdown() {
         className="pointer-events-none absolute inset-0 z-[2]"
         style={{
           background:
-            "linear-gradient(135deg, rgba(255,140,26,0.42) 0%, rgba(255,107,26,0.48) 30%, rgba(255,78,90,0.50) 60%, rgba(255,45,124,0.52) 85%, rgba(184,24,106,0.58) 100%)",
+            "linear-gradient(135deg, rgba(255,140,26,0.42) 0%, rgba(247,119,28,0.48) 30%, rgba(255,78,90,0.50) 60%, rgba(197,24,80,0.52) 85%, rgba(184,24,106,0.58) 100%)",
         }}
       />
       {/* Viñeta: oscurece los bordes y deja el centro limpio, que es donde va el
@@ -218,7 +218,7 @@ export default function HeroCountdown() {
               >
                 {/* franja superior estilo dorsal de carrera */}
                 <span
-                  className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#FF8C1A] via-[#FF4E5A] to-[#FF2D7C]"
+                  className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#f7771c] via-[#ee374b] to-[#c51850]"
                   aria-hidden="true"
                 />
                 <span
@@ -240,7 +240,7 @@ export default function HeroCountdown() {
           {/* BOTÓN DE INSCRIPCIÓN */}
           <a
             href="/inscripcion/"
-            className="mt-[clamp(1rem,3.5vh,3rem)] inline-flex items-center justify-center rounded-full bg-white px-10 py-[clamp(0.6rem,1.8vh,1.25rem)] font-[family-name:var(--font-poppins)] text-[clamp(0.9rem,2.2vh,1.4rem)] font-black tracking-[0.22em] text-[#B8186A] uppercase shadow-[0_12px_45px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-105 active:scale-95 sm:px-14"
+            className="mt-[clamp(1rem,3.5vh,3rem)] inline-flex items-center justify-center rounded-full bg-white px-10 py-[clamp(0.6rem,1.8vh,1.25rem)] font-[family-name:var(--font-poppins)] text-[clamp(0.9rem,2.2vh,1.4rem)] font-black tracking-[0.22em] text-[#c51850] uppercase shadow-[0_12px_45px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-105 active:scale-95 sm:px-14"
           >
             Inscríbete ahora
           </a>

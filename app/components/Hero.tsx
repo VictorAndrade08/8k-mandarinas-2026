@@ -77,7 +77,7 @@ export default function Hero8K() {
                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                   <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 group-hover:bg-white sm:h-20 sm:w-20">
                     <svg
-                      className="ml-1 h-6 w-6 text-[#FF6B1A] sm:h-9 sm:w-9"
+                      className="ml-1 h-6 w-6 text-[#f7771c] sm:h-9 sm:w-9"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -118,7 +118,7 @@ export default function Hero8K() {
             <span className="block tracking-wide">
               8K Ruta de las Mandarinas
             </span>
-            <span className="block bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-[#f7771c] to-[#c51850] bg-clip-text text-transparent">
               de Patate
             </span>
           </h1>
@@ -136,7 +136,7 @@ export default function Hero8K() {
           <div className="flex flex-col justify-center gap-3 font-sans sm:flex-row lg:justify-start">
             <Link
               href="/inscripcion"
-              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] px-6 py-3.5 text-xs font-bold tracking-[0.15em] text-white uppercase shadow-md shadow-[#FF6B1A]/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[#FF6B1A]/50 sm:text-sm"
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#f7771c] to-[#c51850] px-6 py-3.5 text-xs font-bold tracking-[0.15em] text-white uppercase shadow-md shadow-[#f7771c]/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[#f7771c]/50 sm:text-sm"
             >
               Inscribirse Ahora
             </Link>

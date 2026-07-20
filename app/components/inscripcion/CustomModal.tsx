@@ -37,7 +37,7 @@ export const CustomModal = ({
   return (
     // En móvil sube desde abajo (bottom sheet); en desktop se centra.
     <div className="animate-in fade-in fixed inset-0 z-[100] flex items-end justify-center bg-black/80 backdrop-blur-md duration-200 sm:items-center sm:p-4">
-      <div className="animate-in slide-in-from-bottom-6 sm:zoom-in-95 sm:slide-in-from-bottom-0 relative w-full max-w-md rounded-t-3xl border border-white/10 bg-[#141820] p-6 pb-8 shadow-2xl sm:rounded-2xl md:p-8">
+      <div className="animate-in slide-in-from-bottom-6 sm:zoom-in-95 sm:slide-in-from-bottom-0 relative w-full max-w-md rounded-t-3xl border border-white/10 bg-[#200815] p-6 pb-8 shadow-2xl sm:rounded-2xl md:p-8">
         <div
           className="mx-auto -mt-2 mb-4 h-1.5 w-12 rounded-full bg-white/25 sm:hidden"
           aria-hidden="true"
@@ -74,14 +74,14 @@ export const CustomModal = ({
             {actionLabel && onAction && (
               <button
                 onClick={onAction}
-                className="font-barlow flex w-full items-center justify-center gap-2 rounded-xl bg-[#FF6B1A] py-4 text-lg font-bold text-white shadow-lg shadow-[#FF6B1A]/20 transition hover:bg-[#E55104] md:text-xl"
+                className="font-barlow flex w-full items-center justify-center gap-2 rounded-xl bg-[#f7771c] py-4 text-lg font-bold text-white shadow-lg shadow-[#f7771c]/20 transition hover:bg-[#d2600f] md:text-xl"
               >
                 {actionLabel} <ArrowRight size={20} />
               </button>
             )}
             <button
               onClick={onClose}
-              className={`font-barlow w-full rounded-xl py-4 text-lg font-bold transition md:text-xl ${actionLabel ? "bg-[#1A1E29] text-gray-400 hover:bg-[#252A36] hover:text-white" : "bg-white text-black hover:bg-gray-200"}`}
+              className={`font-barlow w-full rounded-xl py-4 text-lg font-bold transition md:text-xl ${actionLabel ? "bg-[#331023] text-gray-400 hover:bg-[#471830] hover:text-white" : "bg-white text-black hover:bg-gray-200"}`}
             >
               {actionLabel ? "Cerrar" : "Entendido"}
             </button>

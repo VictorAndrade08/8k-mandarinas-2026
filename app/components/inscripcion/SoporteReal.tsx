@@ -10,7 +10,7 @@ export const SoporteReal = () => (
       href={`https://wa.me/${WHATSAPP_SOPORTE}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex min-h-[48px] items-center gap-2 rounded-lg text-base font-bold text-gray-200 transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-[#FF6B1A]"
+      className="inline-flex min-h-[48px] items-center gap-2 rounded-lg text-base font-bold text-gray-200 transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-[#f7771c]"
     >
       <WhatsappLogo size={20} className="text-[#25D366]" />
       ¿Algún problema? Escríbenos

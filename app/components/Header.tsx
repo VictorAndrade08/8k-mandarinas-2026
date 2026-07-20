@@ -24,13 +24,13 @@ const Logo = ({ className }: { className?: string }) => (
 // "Ruta" lleva al mapa de la home; el detalle calle por calle está en el
 // artículo 4 del reglamento, al que apunta el propio mapa.
 const NAV = [
-  { href: "/#ruta", label: "Ruta", acento: "#FF6B1A" },
-  { href: "/#info", label: "Información", acento: "#FF6B1A" },
-  { href: "/reglamento", label: "Reglamento", acento: "#FF6B1A" },
+  { href: "/#ruta", label: "Ruta", acento: "#f7771c" },
+  { href: "/#info", label: "Información", acento: "#f7771c" },
+  { href: "/reglamento", label: "Reglamento", acento: "#f7771c" },
   // "Mi pago", no "Verificar mi pago": la barra inferior del móvil ya llamaba
   // así a este mismo destino y dos nombres para la misma página se leen como dos
   // páginas distintas (NN/g, Consistency and Standards).
-  { href: "/verificar", label: "Mi pago", acento: "#FF2D7C" },
+  { href: "/verificar", label: "Mi pago", acento: "#c51850" },
 ];
 
 // --- COMPONENTE PRINCIPAL ---
@@ -44,7 +44,7 @@ export default function Header() {
           Solo se ve cuando se le da el foco con el teclado. */}
       <a
         href="#contenido"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-white focus:px-5 focus:py-3 focus:font-bold focus:text-[#FF6B1A] focus:shadow-lg focus:ring-2 focus:ring-[#FF6B1A] focus:outline-none"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-white focus:px-5 focus:py-3 focus:font-bold focus:text-[#f7771c] focus:shadow-lg focus:ring-2 focus:ring-[#f7771c] focus:outline-none"
       >
         Saltar al contenido
       </a>
@@ -67,11 +67,11 @@ export default function Header() {
             Tener dos menús —arriba y abajo— confundía y se pisaban. En lg+
             aparece la navegación completa en línea y el logo vuelve a la
             izquierda. */}
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-center rounded-full border border-[#EFEFF3] bg-white/95 px-4 py-3 shadow-[0_8px_28px_rgba(0,0,0,0.10)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_15px_40px_-10px_rgba(255,107,26,0.18)] sm:px-6 lg:justify-between lg:px-8">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-center rounded-full border border-[#EFEFF3] bg-white/95 px-4 py-3 shadow-[0_8px_28px_rgba(0,0,0,0.10)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_15px_40px_-10px_rgba(247,119,28,0.18)] sm:px-6 lg:justify-between lg:px-8">
           {/* IZQUIERDA → HOME. El logo va desnudo: es a color y se sostiene solo. */}
           <Link
             href="/"
-            className="group flex flex-shrink-0 cursor-pointer items-center rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2"
+            className="group flex flex-shrink-0 cursor-pointer items-center rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2"
           >
             {/* En móvil manda el ancho, no el alto: el logo es muy apaisado, así
                 que con h-16 a secas se comería el sitio. Con min(vw) crece todo
@@ -117,7 +117,7 @@ export default function Header() {
           <div className="hidden flex-shrink-0 items-center gap-4 lg:flex">
             <Link
               href="/inscripcion"
-              className="inline-flex min-h-[44px] items-center rounded-full bg-[#FF6B1A] px-6 text-sm font-bold tracking-[0.08em] whitespace-nowrap text-white uppercase shadow-md transition-all duration-300 outline-none hover:-translate-y-0.5 hover:bg-[#E55104] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2"
+              className="inline-flex min-h-[44px] items-center rounded-full bg-[#f7771c] px-6 text-sm font-bold tracking-[0.08em] whitespace-nowrap text-white uppercase shadow-md transition-all duration-300 outline-none hover:-translate-y-0.5 hover:bg-[#d2600f] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2"
             >
               Inscribirse
             </Link>

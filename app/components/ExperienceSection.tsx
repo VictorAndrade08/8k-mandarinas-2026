@@ -42,12 +42,12 @@ export default function ExperienceSection() {
   return (
     // 3. Inyectar la variable de fuente en el contenedor principal
     <section
-      className={`relative w-full overflow-hidden bg-[#070D18] px-4 py-14 font-sans text-white sm:px-6 sm:py-20 lg:px-8`}
+      className={`relative w-full overflow-hidden bg-[#190611] px-4 py-14 font-sans text-white sm:px-6 sm:py-20 lg:px-8`}
     >
       {/* Sin tarjeta: fondo a sangre, contenido centrado en max-w-7xl. */}
       <div className="relative mx-auto w-full max-w-7xl">
         {/* Luces de fondo decorativas */}
-        <div className="pointer-events-none absolute top-0 right-0 h-[400px] w-[400px] translate-x-1/3 -translate-y-1/2 rounded-full bg-[#FF6B1A]/10 blur-[100px]" />
+        <div className="pointer-events-none absolute top-0 right-0 h-[400px] w-[400px] translate-x-1/3 -translate-y-1/2 rounded-full bg-[#f7771c]/10 blur-[100px]" />
         <div className="pointer-events-none absolute bottom-0 left-0 h-[300px] w-[300px] -translate-x-1/3 translate-y-1/3 rounded-full bg-blue-500/5 blur-[80px]" />
 
         <div className="relative z-10">
@@ -67,17 +67,17 @@ export default function ExperienceSection() {
                 onClick={handleCTA}
                 // 4. Accesibilidad mejorada para lectores de pantalla
                 aria-label={`Ver más detalles sobre ${title}`}
-                className="group relative flex min-h-[380px] flex-col overflow-hidden rounded-[24px] border border-white/5 bg-white/5 text-left backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-[#FF6B1A]/30 hover:bg-[#FF6B1A]/10"
+                className="group relative flex min-h-[380px] flex-col overflow-hidden rounded-[24px] border border-white/5 bg-white/5 text-left backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-[#f7771c]/30 hover:bg-[#f7771c]/10"
               >
                 {/* Cabecera Icono */}
-                <div className="flex h-[120px] items-center justify-center border-b border-white/5 bg-gradient-to-b from-white/5 to-transparent transition-colors duration-300 group-hover:from-[#FF6B1A]/20 group-hover:to-transparent">
+                <div className="flex h-[120px] items-center justify-center border-b border-white/5 bg-gradient-to-b from-white/5 to-transparent transition-colors duration-300 group-hover:from-[#f7771c]/20 group-hover:to-transparent">
                   <Icon className="h-12 w-12 text-white/70 transition-all duration-300 group-hover:scale-110 group-hover:text-white" />
                 </div>
 
                 {/* Contenido */}
                 <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
                   <div>
-                    <h3 className="mb-3 font-[family-name:var(--font-poppins)] text-[24px] tracking-wide text-white transition-colors group-hover:text-[#FF6B1A] sm:text-[28px]">
+                    <h3 className="mb-3 font-[family-name:var(--font-poppins)] text-[24px] tracking-wide text-white transition-colors group-hover:text-[#f7771c] sm:text-[28px]">
                       {title}
                     </h3>
 

@@ -11,10 +11,10 @@ import {
 } from "lucide-react";
 
 // Configuración de estilos y fuentes
-const brandPink = "#FF2D7C";
+const brandPink = "#c51850";
 // Naranja mandarina. Se sigue llamando "purple" porque el nombre viene del clon
 // del 10K de Ambato y está puesto por medio archivo; el color ya es el correcto.
-const brandPurple = "#FF6B1A";
+const brandPurple = "#f7771c";
 
 const bebasClassName = "font-bebas";
 
@@ -82,7 +82,7 @@ function NotFoundModal({
     >
       <div className="absolute inset-0 bg-black/90 backdrop-blur-md" />
       <div
-        className="animate-in zoom-in-95 relative w-full max-w-lg overflow-hidden rounded-[30px] border border-white/10 bg-[#0B0E13] shadow-2xl duration-200"
+        className="animate-in zoom-in-95 relative w-full max-w-lg overflow-hidden rounded-[30px] border border-white/10 bg-[#1c0713] shadow-2xl duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         <div
@@ -114,7 +114,7 @@ function NotFoundModal({
             </button>
             <a
               href={hrefInscripcion}
-              className="flex items-center justify-center rounded-2xl px-8 py-4 text-base font-bold tracking-wide text-white uppercase shadow-[0_0_20px_rgba(255,45,124,0.32)] transition hover:shadow-[0_0_30px_rgba(255,45,124,0.52)] hover:brightness-110"
+              className="flex items-center justify-center rounded-2xl px-8 py-4 text-base font-bold tracking-wide text-white uppercase shadow-[0_0_20px_rgba(197,24,80,0.32)] transition hover:shadow-[0_0_30px_rgba(197,24,80,0.52)] hover:brightness-110"
               style={{
                 background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
               }}
@@ -200,15 +200,15 @@ export default function VerificarPage() {
       t.includes("aprobado") ||
       t.includes("confirmado")
     )
-      return "text-[#00FF94]";
+      return "text-[#2bd98a]";
     if (
       t.includes("verificar") ||
       t.includes("pendiente") ||
       t.includes("solicitado")
     )
-      return "text-[#FFD600]";
+      return "text-[#ffc53d]";
     if (t.includes("rechazado") || t.includes("finalizada"))
-      return "text-[#FF4444]";
+      return "text-[#ff6b6b]";
     return "text-white";
   };
 
@@ -227,7 +227,7 @@ export default function VerificarPage() {
       {/* LAYOUT PRINCIPAL — a sangre, sin la tarjeta flotante gigante: el fondo
           oscuro va de borde a borde como el resto del sitio y el contenido se
           centra en max-w-7xl. */}
-      <section className="relative w-full overflow-hidden bg-[#050505] px-4 py-12 font-sans sm:px-6 md:py-16 lg:px-8">
+      <section className="relative w-full overflow-hidden bg-[#140309] px-4 py-12 font-sans sm:px-6 md:py-16 lg:px-8">
         {/* Fondos ambientales */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] animate-pulse rounded-full bg-purple-600/15 opacity-50 mix-blend-screen blur-[150px]" />
@@ -297,7 +297,7 @@ export default function VerificarPage() {
             {/* WRAPPER DEL FORMULARIO/TICKET */}
             <div className="w-full max-w-[500px] text-white">
               {!data && (
-                <div className="relative overflow-hidden rounded-[40px] border border-white/20 bg-[#0B0E13] p-10 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.6)] backdrop-blur-md">
+                <div className="relative overflow-hidden rounded-[40px] border border-white/20 bg-[#1c0713] p-10 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.6)] backdrop-blur-md">
                   <div className="pointer-events-none absolute top-0 right-0 h-40 w-40 rounded-full bg-white/5 blur-[50px]" />
 
                   <div className="relative z-10 mb-10 flex items-center gap-5">
@@ -325,11 +325,11 @@ export default function VerificarPage() {
                           onChange={(e) => setCedula(e.target.value)}
                           placeholder="Ej: 1801234567"
                           inputMode="numeric"
-                          className="w-full rounded-2xl border border-white/20 bg-[#15181E] px-5 py-5 pl-5 text-xl font-medium text-white shadow-inner transition-all placeholder:text-white/30 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
+                          className="w-full rounded-2xl border border-white/20 bg-[#230a17] px-5 py-5 pl-5 text-xl font-medium text-white shadow-inner transition-all placeholder:text-white/30 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
                         />
                         <div className="pointer-events-none absolute top-1/2 right-5 -translate-y-1/2">
                           {cedulaOk ? (
-                            <CheckCircle2 className="h-6 w-6 text-[#00FF94]" />
+                            <CheckCircle2 className="h-6 w-6 text-[#2bd98a]" />
                           ) : (
                             <div className="h-2 w-2 rounded-full bg-white/20" />
                           )}
@@ -398,9 +398,9 @@ export default function VerificarPage() {
                   </button>
 
                   {/* TICKET VISUAL - MÁS GRANDE */}
-                  <div className="relative w-full overflow-hidden rounded-[32px] border border-white/20 bg-[#11141A] shadow-[0_40px_100px_-20px_rgba(255,107,26,0.32)]">
+                  <div className="relative w-full overflow-hidden rounded-[32px] border border-white/20 bg-[#230a17] shadow-[0_40px_100px_-20px_rgba(247,119,28,0.32)]">
                     {/* Header del Ticket */}
-                    <div className="relative overflow-hidden border-b border-dashed border-white/10 bg-[#181B21] p-8">
+                    <div className="relative overflow-hidden border-b border-dashed border-white/10 bg-[#2b0d1d] p-8">
                       <div
                         className="absolute top-0 left-0 h-1.5 w-full"
                         style={{
@@ -427,12 +427,12 @@ export default function VerificarPage() {
                           />
                         </div>
                       </div>
-                      <div className="absolute -bottom-4 -left-4 z-20 h-8 w-8 rounded-full border-t border-r border-white/20 bg-[#050505]" />
-                      <div className="absolute -right-4 -bottom-4 z-20 h-8 w-8 rounded-full border-t border-l border-white/20 bg-[#050505]" />
+                      <div className="absolute -bottom-4 -left-4 z-20 h-8 w-8 rounded-full border-t border-r border-white/20 bg-[#140309]" />
+                      <div className="absolute -right-4 -bottom-4 z-20 h-8 w-8 rounded-full border-t border-l border-white/20 bg-[#140309]" />
                     </div>
 
                     {/* Body del Ticket */}
-                    <div className="bg-[#11141A] p-8 pt-10">
+                    <div className="bg-[#230a17] p-8 pt-10">
                       <div className="grid grid-cols-2 gap-x-6 gap-y-8">
                         <div className="col-span-2">
                           <p className="mb-2 text-xs font-bold tracking-widest text-white/50 uppercase">
@@ -442,7 +442,7 @@ export default function VerificarPage() {
                             className={`text-5xl ${bebasClassName} ${getStatusColor(data.etapa || "")} flex items-center gap-3`}
                           >
                             <span
-                              className={`h-3 w-3 rounded-full ${data.etapa?.toLowerCase().includes("verificado") ? "bg-[#00FF94]" : "bg-yellow-400"} animate-pulse shadow-[0_0_15px_currentColor]`}
+                              className={`h-3 w-3 rounded-full ${data.etapa?.toLowerCase().includes("verificado") ? "bg-[#2bd98a]" : "bg-yellow-400"} animate-pulse shadow-[0_0_15px_currentColor]`}
                             />
                             {data.etapa}
                           </div>
@@ -483,7 +483,7 @@ export default function VerificarPage() {
                     </div>
 
                     {/* Footer del Ticket */}
-                    <div className="flex items-center justify-between border-t border-white/10 bg-[#0E1116] p-6">
+                    <div className="flex items-center justify-between border-t border-white/10 bg-[#1c0713] p-6">
                       <div className="flex flex-col">
                         <span className="mb-1 text-[10px] font-bold tracking-widest text-white/30 uppercase">
                           Ticket ID

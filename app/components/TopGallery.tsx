@@ -176,11 +176,11 @@ export default function TopGallery() {
     <>
       {/* Sin tarjeta: el carrusel va a sangre, de borde a borde. El fondo oscuro
           pasa a la <section> y las fotos ocupan todo el ancho de la pantalla. */}
-      <section className="relative w-full overflow-hidden bg-[#1a1a1a] py-5 sm:py-6">
+      <section className="relative w-full overflow-hidden bg-[#230a17] py-5 sm:py-6">
         <div className="relative">
           {/* Gradientes laterales */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#1a1a1a] to-transparent sm:w-20" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#1a1a1a] to-transparent sm:w-20" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#230a17] to-transparent sm:w-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#230a17] to-transparent sm:w-20" />
 
           {/* Carrusel */}
           <div className="overflow-hidden">
@@ -199,7 +199,7 @@ export default function TopGallery() {
                   key={i} // Usamos índice porque la lista es estática duplicada
                   type="button"
                   onClick={() => setActiveIndex(i % IMAGES.length)}
-                  className="group relative h-[130px] w-[200px] flex-shrink-0 overflow-hidden rounded-[16px] border border-white/10 bg-black transition-transform hover:scale-[1.02] focus:ring-2 focus:ring-[#FF6B1A] focus:outline-none active:scale-95 sm:h-[170px] sm:w-[260px] md:h-[210px] md:w-[320px]"
+                  className="group relative h-[130px] w-[200px] flex-shrink-0 overflow-hidden rounded-[16px] border border-white/10 bg-black transition-transform hover:scale-[1.02] focus:ring-2 focus:ring-[#f7771c] focus:outline-none active:scale-95 sm:h-[170px] sm:w-[260px] md:h-[210px] md:w-[320px]"
                   aria-label={`Ver foto ${img.alt}`}
                 >
                   {/* OPTIMIZACIÓN: Next Image con 'fill' y 'sizes' */}
@@ -218,7 +218,7 @@ export default function TopGallery() {
                   />
 
                   {/* Overlay y efecto hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#FF6B1A]/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#f7771c]/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <div className="rounded-full bg-black/30 p-2 backdrop-blur-sm">
@@ -291,7 +291,7 @@ export default function TopGallery() {
                 <button
                   ref={closeBtnRef}
                   onClick={() => setActiveIndex(null)}
-                  className="flex h-12 items-center justify-center gap-2 rounded-full border-2 border-white/70 bg-black/70 px-4 text-sm font-bold tracking-[0.1em] text-white uppercase shadow-[0_8px_24px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all outline-none hover:bg-[#FF6B1A] focus-visible:ring-2 focus-visible:ring-white active:scale-90 sm:h-14 sm:px-5"
+                  className="flex h-12 items-center justify-center gap-2 rounded-full border-2 border-white/70 bg-black/70 px-4 text-sm font-bold tracking-[0.1em] text-white uppercase shadow-[0_8px_24px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all outline-none hover:bg-[#f7771c] focus-visible:ring-2 focus-visible:ring-white active:scale-90 sm:h-14 sm:px-5"
                   aria-label="Cerrar galería"
                 >
                   <span className="text-2xl leading-none">×</span>
@@ -308,7 +308,7 @@ export default function TopGallery() {
                     v === null ? 0 : (v - 1 + IMAGES.length) % IMAGES.length
                   );
                 }}
-                className="absolute top-1/2 left-4 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white/70 bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] text-3xl leading-none font-black text-white shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all hover:scale-110 active:scale-95 md:flex"
+                className="absolute top-1/2 left-4 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white/70 bg-gradient-to-r from-[#f7771c] to-[#c51850] text-3xl leading-none font-black text-white shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all hover:scale-110 active:scale-95 md:flex"
                 aria-label="Foto anterior"
               >
                 ‹
@@ -320,7 +320,7 @@ export default function TopGallery() {
                     v === null ? 0 : (v + 1) % IMAGES.length
                   );
                 }}
-                className="absolute top-1/2 right-4 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white/70 bg-gradient-to-r from-[#FF6B1A] to-[#FF2D7C] text-3xl leading-none font-black text-white shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all hover:scale-110 active:scale-95 md:flex"
+                className="absolute top-1/2 right-4 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white/70 bg-gradient-to-r from-[#f7771c] to-[#c51850] text-3xl leading-none font-black text-white shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all hover:scale-110 active:scale-95 md:flex"
                 aria-label="Foto siguiente"
               >
                 ›

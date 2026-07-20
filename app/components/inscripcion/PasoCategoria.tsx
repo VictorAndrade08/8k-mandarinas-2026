@@ -26,8 +26,8 @@ export function PasoCategoria({
         Selecciona tu Categoría
       </h1>
 
-      <div className="font-barlow mb-5 flex items-start gap-3 rounded-xl border border-[#FFB800]/40 bg-[#FFB800]/10 px-4 py-3.5">
-        <ClockCountdown size={20} className="mt-0.5 shrink-0 text-[#FFB800]" />
+      <div className="font-barlow mb-5 flex items-start gap-3 rounded-xl border border-[#ffc53d]/40 bg-[#ffc53d]/10 px-4 py-3.5">
+        <ClockCountdown size={20} className="mt-0.5 shrink-0 text-[#ffc53d]" />
         <p className="text-base leading-relaxed text-yellow-50 md:text-lg">
           <strong className="text-white">Precios de preventa.</strong> Suben
           cuando se cierre la preventa, así que inscribirte hoy te sale más
@@ -49,16 +49,16 @@ export function PasoCategoria({
             key={cat.name}
             type="button"
             onClick={() => onElegir(cat)}
-            className="group relative flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-[#0F1218] p-6 text-left shadow-md transition-all duration-200 outline-none hover:border-[#FF6B1A] hover:bg-[#1A1E29] focus-visible:ring-2 focus-visible:ring-[#FF6B1A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#161A23] active:scale-[0.98] md:p-7"
+            className="group relative flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-[#200815] p-6 text-left shadow-md transition-all duration-200 outline-none hover:border-[#f7771c] hover:bg-[#331023] focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] active:scale-[0.98] md:p-7"
           >
             <div className="mb-3 flex items-start justify-between gap-3">
               {/* min-w-0: sin esto el nombre no puede encogerse y empuja al
               precio fuera de la tarjeta en anchos estrechos. */}
               <div className="flex min-w-0 flex-1 items-center gap-3">
-                <div className="shrink-0 rounded-lg bg-white/5 p-2 text-gray-400 transition-colors group-hover:bg-[#FF6B1A]/20 group-hover:text-[#FF6B1A]">
+                <div className="shrink-0 rounded-lg bg-white/5 p-2 text-gray-400 transition-colors group-hover:bg-[#f7771c]/20 group-hover:text-[#f7771c]">
                   {cat.icon}
                 </div>
-                <span className="min-w-0 text-xl leading-tight font-bold text-white transition-colors group-hover:text-[#FF6B1A] md:text-2xl">
+                <span className="min-w-0 text-xl leading-tight font-bold text-white transition-colors group-hover:text-[#f7771c] md:text-2xl">
                   {cat.name}
                 </span>
               </div>
@@ -66,7 +66,7 @@ export function PasoCategoria({
                 <span className="block rounded-lg border border-white/10 bg-white/5 px-3 py-1 font-mono text-base font-bold text-white md:text-lg">
                   ${cat.price}
                 </span>
-                <span className="mt-1 block text-[10px] font-bold tracking-widest text-[#FFB800] uppercase">
+                <span className="mt-1 block text-[10px] font-bold tracking-widest text-[#ffc53d] uppercase">
                   Preventa
                 </span>
               </div>
