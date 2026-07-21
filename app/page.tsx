@@ -23,6 +23,10 @@ const SponsorsStrip = dynamic(() => import("./components/SponsorsStrip"), {
   loading: () => <SectionLoader heightClass="h-20 md:h-24" />,
 });
 
+const ComoInscribirse = dynamic(() => import("./components/ComoInscribirse"), {
+  loading: () => <SectionLoader heightClass="min-h-[420px]" />,
+});
+
 const RegistrationOptions = dynamic(
   () => import("./components/RegistrationOptions"),
   {
@@ -60,6 +64,11 @@ export default function Home() {
 
       <TopGallery />
       <SponsorsStrip />
+
+      {/* Los cuatro pasos ANTES de las dos opciones de inscripción: quien duda
+          de inscribirse por internet duda porque no sabe qué le van a pedir.
+          Contestar eso primero es lo que hace que llegue al formulario. */}
+      <ComoInscribirse />
 
       <section id="inscripciones">
         <RegistrationOptions />
