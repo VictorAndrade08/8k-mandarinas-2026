@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { srcSetDe } from "../lib/imagen";
 import {
   MapPin,
   Users,
@@ -55,6 +56,24 @@ export default function InfoBeforeRace() {
     <section
       className={`relative w-full overflow-hidden bg-[#140309] px-4 py-14 font-sans sm:px-6 sm:py-20 lg:px-8`}
     >
+      {/* FOTO DE FONDO. Es de la carrera de verdad, de la edición anterior.
+          Encima va una capa oscura al 88%: sin ella el texto blanco cae sobre
+          zonas claras de la foto y se pierde. El contraste se mide sobre la
+          parte MÁS CLARA de la imagen, no sobre la media
+          (docs/100-CONSEJOS.md, consejo 84). */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <img
+          src="/fotos/corredores-09.webp"
+          srcSet={srcSetDe("/fotos/corredores-09.webp")}
+          sizes="100vw"
+          alt=""
+          className="h-full w-full object-cover object-center"
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="absolute inset-0 bg-[#140309]/88" />
+      </div>
+
       {/* Sin tarjeta: el fondo va a sangre (de borde a borde) y solo el contenido
           queda centrado en max-w-7xl. Antes esto vivía en una caja redondeada
           flotando sobre un fondo de separación. */}

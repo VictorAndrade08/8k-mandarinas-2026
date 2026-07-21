@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link"; // 1. Navegación SPA instantánea
+import Link from "next/link";
+import { srcSetDe } from "../lib/imagen";
 import { Scales, ArrowRight } from "@phosphor-icons/react";
 
 // Configuración de la fuente (Carga eficiente sin bloqueo)
@@ -11,6 +12,24 @@ export default function ReglamentoSection() {
       id="reglamento"
       className={`relative w-full overflow-hidden bg-[#190611] px-4 py-14 font-sans text-white sm:px-6 sm:py-20 lg:px-8`}
     >
+      {/* FOTO DE FONDO. Es de la carrera de verdad, de la edición anterior.
+          Encima va una capa oscura al 90%: sin ella el texto blanco cae sobre
+          zonas claras de la foto y se pierde. El contraste se mide sobre la
+          parte MÁS CLARA de la imagen, no sobre la media
+          (docs/100-CONSEJOS.md, consejo 84). */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <img
+          src="/fotos/corredores-22.webp"
+          srcSet={srcSetDe("/fotos/corredores-22.webp")}
+          sizes="100vw"
+          alt=""
+          className="h-full w-full object-cover object-center"
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="absolute inset-0 bg-[#190611]/90" />
+      </div>
+
       {/* Sin tarjeta: fondo a sangre, contenido centrado en max-w-7xl. */}
       <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center text-center">
         {/* Fondo Decorativo Magenta */}
