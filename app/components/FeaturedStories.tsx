@@ -82,7 +82,7 @@ export default function FeaturedStories() {
                 sizes="(max-width: 768px) 100vw, 320px"
                 alt="Corredores de la edición anterior con su medalla, en Patate"
                 width={640}
-                height={427}
+                height={376}
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
                 decoding="async"

@@ -219,7 +219,7 @@ export default function TopGallery() {
                     sizes="(max-width: 640px) 200px, (max-width: 768px) 260px, 320px"
                     alt={img.alt}
                     width={640}
-                    height={427}
+                    height={376}
                     className="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
                     loading="lazy"
                     decoding="async"
