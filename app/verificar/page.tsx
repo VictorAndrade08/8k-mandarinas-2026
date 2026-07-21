@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { srcSetDe } from "../lib/imagen";
 import {
   IdentificationCard,
   XCircle,
@@ -220,15 +221,22 @@ export default function VerificarPage() {
           oscuro va de borde a borde como el resto del sitio y el contenido se
           centra en max-w-7xl. */}
       <section className="relative w-full overflow-hidden bg-[#140309] px-4 py-12 font-sans sm:px-6 md:py-16 lg:px-8">
-        {/* Dos manchas de color para que el fondo no sea un negro plano. Eran
-            moradas y latían con animate-pulse: el morado no está en la marca por
-            ningún lado —es el color que sale por defecto— y dos círculos de
-            800px respirando en bucle es decoración que no cuenta nada
-            (docs/30-REGLAS-ANTI-IA.md, reglas 4, 38 y 63). Ahora son del
-            degradado del flyer y se están quietas. */}
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] rounded-full bg-[#c51850]/15 opacity-50 mix-blend-screen blur-[150px]" />
-          <div className="absolute right-[-10%] bottom-[-20%] h-[800px] w-[800px] rounded-full bg-[#f7771c]/10 opacity-50 mix-blend-screen blur-[150px]" />
+        {/* FOTO DE FONDO: la llegada, que es de lo que va esta página. Antes
+            eran dos manchas de color sobre negro plano.
+
+            La capa oscura al 90% no es decoración: encima va un formulario con
+            texto blanco, y sobre las zonas claras de la foto se perdería. */}
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
+          <img
+            src="/fotos/corredores-21.webp"
+            srcSet={srcSetDe("/fotos/corredores-21.webp")}
+            sizes="100vw"
+            alt=""
+            className="h-full w-full object-cover object-center"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-[#140309]/90" />
         </div>
 
         {/* Grid de Contenido. En móvil el formulario va PRIMERO (order-1): quien

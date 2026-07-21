@@ -13,6 +13,7 @@ import {
   WhatsappLogo,
 } from "@phosphor-icons/react";
 import { useFormulario } from "./contexto";
+import { srcSetDe } from "../../lib/imagen";
 
 /**
  * Paso 4: la pantalla de "ya está".
@@ -39,7 +40,24 @@ export function PasoFinal({
   const { formData } = useFormulario();
 
   return (
-    <div className="animate-in zoom-in-95 fade-in py-10 text-center duration-500">
+    <div className="animate-in zoom-in-95 fade-in relative overflow-hidden rounded-2xl py-10 text-center duration-500">
+      {/* Corredores de verdad detrás del "ya estás dentro". Es lo último que ve
+          quien acaba de pagar $20: un fondo liso lo deja frío. */}
+      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
+        <img
+          src="/fotos/corredores-13.webp"
+          srcSet={srcSetDe("/fotos/corredores-13.webp")}
+          sizes="(max-width: 768px) 100vw, 800px"
+          alt=""
+          className="h-full w-full object-cover object-center"
+          loading="lazy"
+          decoding="async"
+        />
+        {/* 92%: aquí van la cédula y el correo del corredor para que los repase.
+            Si no se leen bien, la pantalla no sirve para nada. */}
+        <div className="absolute inset-0 bg-[#200815]/92" />
+      </div>
+
       <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-green-500/20 text-green-500 shadow-[0_0_50px_#2bd98a40] md:h-32 md:w-32">
         <CheckCircle size={64} />
       </div>

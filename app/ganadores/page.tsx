@@ -1,6 +1,7 @@
 "use client";
 
 import { FileArrowDown } from "@phosphor-icons/react";
+import { srcSetDe } from "../lib/imagen";
 
 interface Atleta {
   ubicacion: string;
@@ -248,11 +249,34 @@ export default function GanadoresPage() {
       >
         {/* ================= HOJA 1 ================= */}
         <div className="container mx-auto px-4 md:px-8 print:px-0">
-          <div className="mb-8 flex flex-col items-center justify-center gap-2 text-center">
-            <h1 className="font-[family-name:var(--font-titular)] text-4xl leading-tight text-[#c51850] uppercase md:text-5xl">
-              CUADRO FINAL <br />{" "}
-              <span className="text-neutral-950">DE GANADORES</span>
-            </h1>
+          {/* Cabecera con una foto de podio de verdad. Era un título suelto
+              sobre blanco, en la página que precisamente celebra a la gente que
+              ganó. print:hidden porque esta página se imprime en PDF y una foto
+              a sangre se come el tóner sin aportar nada al cuadro. */}
+          <div className="relative mb-8 overflow-hidden rounded-[20px] print:mb-4 print:rounded-none">
+            <img
+              src="/fotos/corredores-05.webp"
+              srcSet={srcSetDe("/fotos/corredores-05.webp")}
+              sizes="(max-width: 1000px) 100vw, 1000px"
+              alt="Podio de la edición anterior de la 8K Ruta de las Mandarinas, en Patate"
+              width={640}
+              height={376}
+              className="h-[190px] w-full object-cover object-center md:h-[260px] print:hidden"
+              loading="eager"
+              decoding="async"
+            />
+            {/* Degradado de abajo arriba: el título va encima de la foto y
+                necesita fondo oscuro justo detrás de las letras, no en toda la
+                imagen. */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/20 print:hidden" />
+            <div className="absolute inset-0 flex flex-col items-center justify-end gap-2 p-6 text-center print:static print:p-0">
+              <h1 className="font-[family-name:var(--font-titular)] text-4xl leading-tight text-white uppercase md:text-5xl print:text-neutral-950">
+                CUADRO FINAL <br />{" "}
+                <span className="text-[#f7771c] print:text-neutral-950">
+                  DE GANADORES
+                </span>
+              </h1>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 gap-x-8 md:grid-cols-2">
