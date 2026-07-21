@@ -7,6 +7,7 @@ import {
   ArrowRight,
 } from "@phosphor-icons/react/dist/ssr";
 import { PRECIO_PREVENTA } from "../lib/carrera";
+import { srcSetDe } from "../lib/imagen";
 
 /**
  * Los cuatro pasos para inscribirse, en grande.
@@ -56,17 +57,40 @@ export default function ComoInscribirse() {
       className="w-full bg-white px-4 py-14 font-sans sm:px-6 sm:py-20 lg:px-8"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="mb-10 sm:mb-14">
-          <p className="font-barlow mb-3 text-sm font-bold tracking-[0.2em] text-[#780030] uppercase">
-            Cómo inscribirse
-          </p>
-          <h2 className="max-w-3xl font-[family-name:var(--font-titular)] text-[34px] leading-[0.95] tracking-wide text-gray-900 uppercase sm:text-[48px] md:text-[58px]">
-            Cuatro pasos, <span className="text-[#f7771c]">tres minutos</span>
-          </h2>
-          <p className="font-barlow mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg">
-            Aquí no se cobra nada. El pago va por transferencia a la cuenta de
-            la organización y tú solo subes el comprobante.
-          </p>
+        {/* Titular a la izquierda y foto a la derecha, no un titular centrado con
+          las tarjetas debajo: rompe la simetría y de paso mete gente de verdad
+          en la única sección del inicio que era solo texto e iconos
+          (docs/30-REGLAS-ANTI-IA.md, reglas 12 y 13). */}
+        <div className="mb-10 grid items-center gap-8 sm:mb-14 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
+          <div>
+            <p className="font-barlow mb-3 text-sm font-bold tracking-[0.2em] text-[#780030] uppercase">
+              Cómo inscribirse
+            </p>
+            <h2 className="max-w-3xl font-[family-name:var(--font-titular)] text-[34px] leading-[0.95] tracking-wide text-gray-900 uppercase sm:text-[48px] md:text-[58px]">
+              Cuatro pasos, <span className="text-[#f7771c]">tres minutos</span>
+            </h2>
+            <p className="font-barlow mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg">
+              Aquí no se cobra nada. El pago va por transferencia a la cuenta de
+              la organización y tú solo subes el comprobante.
+            </p>
+          </div>
+
+          {/* Foto real de la salida. Sin capa oscura encima: aquí el texto va al
+            lado, no sobre la imagen, así que no hay nada que rescatar de
+            contraste y la foto se ve como es. */}
+          <div className="overflow-hidden rounded-[18px] border border-gray-200">
+            <img
+              src="/fotos/corredores-10.webp"
+              srcSet={srcSetDe("/fotos/corredores-10.webp")}
+              sizes="(max-width: 1024px) 100vw, 520px"
+              alt="Corredores de la edición anterior en Patate, antes de la salida"
+              width={640}
+              height={376}
+              className="h-[220px] w-full object-cover object-center sm:h-[280px] lg:h-[320px]"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
 
         {/* Cuatro columnas en escritorio y una sola en móvil. El número va grande
