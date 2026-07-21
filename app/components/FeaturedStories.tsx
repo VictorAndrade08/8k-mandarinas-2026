@@ -1,6 +1,8 @@
 "use client";
 
-import { Trophy, ArrowRight } from "@phosphor-icons/react";
+import Link from "next/link";
+import { ArrowRight } from "@phosphor-icons/react";
+import { srcSetDe } from "../lib/imagen";
 
 // 2. Configuración de fuente (Sin bloqueo)
 export default function FeaturedStories() {
@@ -18,23 +20,14 @@ export default function FeaturedStories() {
           {/* CABECERA */}
           <div className="mb-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
             <h2 className="font-[family-name:var(--font-titular)] text-[32px] leading-[0.95] tracking-wide text-white sm:text-[48px] lg:text-[58px]">
-              Noticias &amp; <br className="sm:hidden" />
-              <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                Historias Destacadas
-              </span>
+              {/* Se llamaba "Noticias & Historias Destacadas" y no hay ni
+                  noticias ni historias: era una sola tarjeta con puntos de
+                  paginación que prometían más. Ahora dice lo que de verdad
+                  enseña. El degradado de blanco a gris del segundo renglón se
+                  cambia por naranja, como en el resto de secciones. */}
+              Así fue <br className="sm:hidden" />
+              <span className="text-[#f7771c]">la edición anterior</span>
             </h2>
-
-            {/* Paginación Visual OPTIMIZADA */}
-            {/* CORRECCIÓN A11Y: Cambiamos <button> por <div> porque están dentro de aria-hidden="true".
-                Esto evita que el teclado haga foco en elementos invisibles para el lector de pantalla. */}
-            <div
-              className="hidden items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 sm:flex"
-              aria-hidden="true"
-            >
-              <div className="h-2.5 w-2.5 rounded-full bg-[#f7771c] shadow-[0_0_10px_#f7771c]" />
-              <div className="h-2.5 w-2.5 rounded-full bg-white/20 transition-colors hover:bg-white/50" />
-              <div className="h-2.5 w-2.5 rounded-full bg-white/20 transition-colors hover:bg-white/50" />
-            </div>
           </div>
 
           {/* TARJETA PRINCIPAL */}
@@ -44,45 +37,59 @@ export default function FeaturedStories() {
               {/* Sin fecha: decía "Diciembre 2025", que es de la edición
                   anterior. Poner una falsa es peor que no poner ninguna. */}
 
-              <h3 className="mb-5 font-[family-name:var(--font-titular)] text-[28px] leading-[1] tracking-wide text-white transition-colors group-hover:text-white sm:text-[42px]">
-                {/* Ni "nocturna" ni "la independencia de la ciudad": las dos
-                    eran del 10K de Ambato. Esta carrera sale a las 08h00 y
-                    celebra la Ruta de las Mandarinas. */}
-                “La mejor carrera del valle”
+              <h3 className="mb-5 font-[family-name:var(--font-titular)] text-[28px] leading-[1] tracking-wide text-white sm:text-[42px]">
+                {/* Aquí había un “La mejor carrera del valle” entrecomillado y
+                    sin autor. Una frase entre comillas es un testimonio, y un
+                    testimonio que nadie dijo es exactamente lo que la gente
+                    detecta (docs/30-REGLAS-ANTI-IA.md, regla 69). */}
+                Corredores de verdad, en las calles de Patate
               </h3>
 
               <p className="mb-8 max-w-xl text-base leading-relaxed font-medium text-gray-400 sm:text-lg">
-                Conoce la experiencia de quienes ya corrieron la 8K Ruta de las
-                Mandarinas: la organización, el ambiente y lo que tiene de único
-                correr entre los cultivos de Patate con el Tungurahua de fondo.
+                Las fotos de esta página son de la edición anterior: la salida
+                desde Patate Gardens, los 8 km entre los cultivos con el
+                Tungurahua de fondo y la llegada al Estadio Municipal. Los
+                nombres de quienes subieron al podio están publicados.
               </p>
 
+              {/* Un enlace que lleva a algo que existe de verdad: el cuadro de
+                  ganadores, con nombre y apellido de cada uno. Antes había un
+                  <button> de "Leer historia completa" sin onClick ni href: se
+                  pulsaba y no pasaba nada. */}
               <div>
-                <button
-                  className="group/btn inline-flex items-center gap-2 text-sm font-bold tracking-[0.2em] text-white uppercase transition-colors hover:text-[#f7771c]"
-                  aria-label="Leer historia completa sobre la experiencia de los corredores"
+                <Link
+                  href="/ganadores"
+                  className="group/btn inline-flex min-h-[48px] items-center gap-2 self-start text-sm font-bold tracking-[0.2em] text-white uppercase transition-colors hover:text-[#f7771c]"
                 >
-                  Leer historia completa
+                  Ver el cuadro de ganadores
                   <ArrowRight
                     size={16}
                     className="transition-transform group-hover/btn:translate-x-1"
                   />
-                </button>
+                </Link>
               </div>
             </div>
 
-            {/* ÍCONO / IMAGEN */}
-            <div
-              className="relative order-1 flex min-h-[220px] w-full items-center justify-center overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/5 to-transparent transition-colors group-hover:border-[#f7771c]/30 md:order-2 md:min-h-auto md:w-[320px]"
-              aria-hidden="true"
-            >
-              {/* Brillo interior al hover */}
-              <div className="absolute inset-0 bg-[#f7771c]/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
-
-              <Trophy
-                className="relative z-10 h-20 w-20 text-white/50 transition-all duration-300 group-hover:scale-110 group-hover:text-[#f7771c] sm:h-24 sm:w-24"
-                strokeWidth={1.5}
+            {/* Aquí había un icono de trofeo de relleno dentro de una caja
+                vacía. Es una sección que habla de la experiencia de quien ya
+                corrió: enseñarla con un pictograma en vez de con la gente es
+                desaprovechar lo único que ningún competidor puede copiarte
+                (docs/AUTENTICIDAD-LOCAL.md, consejo 3). */}
+            <div className="relative order-1 min-h-[220px] w-full overflow-hidden rounded-[20px] border border-white/10 md:order-2 md:min-h-auto md:w-[320px]">
+              <img
+                src="/fotos/corredores-15.webp"
+                srcSet={srcSetDe("/fotos/corredores-15.webp")}
+                sizes="(max-width: 768px) 100vw, 320px"
+                alt="Corredores de la edición anterior con su medalla, en Patate"
+                width={640}
+                height={427}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
               />
+              {/* Degradado por abajo: sin él la foto choca de golpe con el borde
+                  de la tarjeta y la sección se parte en dos. */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             </div>
           </article>
         </div>
