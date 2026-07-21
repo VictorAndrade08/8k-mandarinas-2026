@@ -21,10 +21,10 @@ const Logo = ({ className }: { className?: string }) => (
 );
 
 // Navegación del sitio. Cada entrada apunta a algo que existe de verdad.
-// "Ruta" lleva al mapa de la home; el detalle calle por calle está en el
-// artículo 4 del reglamento, al que apunta el propio mapa.
+// "Ruta" ya no lleva al ancla del mapa en el home: hay una página entera con el
+// recorrido tramo por tramo.
 const NAV = [
-  { href: "/#ruta", label: "Ruta", acento: "#f7771c" },
+  { href: "/ruta", label: "Ruta", acento: "#f7771c" },
   { href: "/#info", label: "Información", acento: "#f7771c" },
   { href: "/reglamento", label: "Reglamento", acento: "#f7771c" },
   // "Mi pago", no "Verificar mi pago": la barra inferior del móvil ya llamaba

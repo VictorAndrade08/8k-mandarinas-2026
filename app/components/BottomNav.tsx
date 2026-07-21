@@ -29,7 +29,12 @@ import {
 
 const DESTINOS = [
   { href: "/", label: "Inicio", Icon: House, match: (p: string) => p === "/" },
-  { href: "/#ruta", label: "Ruta", Icon: MapTrifold, match: () => false },
+  {
+    href: "/ruta",
+    label: "Ruta",
+    Icon: MapTrifold,
+    match: (p: string) => p.startsWith("/ruta"),
+  },
   {
     href: "/reglamento",
     label: "Reglas",

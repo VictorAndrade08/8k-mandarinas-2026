@@ -24,7 +24,7 @@ const ITEMS = [
     title: "La ruta",
     desc: "El recorrido oficial calle por calle: salida en Patate Gardens, 8 km entre los cultivos y llegada al Estadio Municipal.",
     cta: "Ver el recorrido",
-    href: "/#ruta",
+    href: "/ruta",
     icon: MapPin,
   },
   {
