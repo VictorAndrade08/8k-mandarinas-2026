@@ -27,5 +27,14 @@
   "/fotos/mapa-ruta-movil.webp": [240, 400, 640],
   "/fotos/mapa-ruta.webp": [240, 400, 1600],
   "/fotos/montanas.webp": [240, 400, 1600],
-  "/fotos/post-8k.webp": [240, 400, 640]
+  "/fotos/post-8k.webp": [240, 400, 640],
+  "/ilustraciones/alta.webp": [480, 800, 1280],
+  "/ilustraciones/casco.webp": [480, 800, 1280],
+  "/ilustraciones/cuatro-pasos.webp": [480, 800, 1280],
+  "/ilustraciones/kit.webp": [480, 800, 1280],
+  "/ilustraciones/meta.webp": [480, 800, 1280],
+  "/ilustraciones/multitud.webp": [480, 800, 1280],
+  "/ilustraciones/salida.webp": [480, 800, 1280],
+  "/ilustraciones/subida.webp": [480, 800, 1280],
+  "/ilustraciones/vuelta.webp": [480, 800, 1280]
 }

@@ -63,8 +63,8 @@ export default function InfoBeforeRace() {
           (docs/100-CONSEJOS.md, consejo 84). */}
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <img
-          src="/fotos/corredores-09.webp"
-          srcSet={srcSetDe("/fotos/corredores-09.webp")}
+          src="/ilustraciones/subida.webp"
+          srcSet={srcSetDe("/ilustraciones/subida.webp")}
           sizes="100vw"
           alt=""
           className="h-full w-full object-cover object-center"

@@ -24,7 +24,11 @@ export const metadata = {
  * hay una sola calle inventada: quien lea esto va a correr por ahí, y mandar a
  * alguien por una calle que no existe no es una errata, es un problema.
  *
- * Las fotos son de la edición anterior, de esas mismas calles.
+ * Las imágenes de los tramos son ilustraciones de la marca, declaradas como
+ * tales (docs/CAMBIO-IMAGENES.md): las fotos reales de 640px se veían suaves
+ * en grande y varias ni correspondían al tramo (en "Salida" iba una foto del
+ * podio). Una ilustración puede contar exactamente lo que pasa en cada
+ * kilómetro; una foto equivocada solo confunde.
  */
 const TRAMOS = [
   {
@@ -33,7 +37,7 @@ const TRAMOS = [
     calles: ["Hilario Torres", "E. Dávila"],
     texto:
       "A las 08h00 en punto. Se sale girando a la izquierda por Hilario Torres y luego otra vez a la izquierda por E. Dávila.",
-    foto: "/fotos/corredores-04.webp",
+    foto: "/ilustraciones/salida.webp",
   },
   {
     km: "1",
@@ -41,7 +45,7 @@ const TRAMOS = [
     calles: ["Escalinata de la Fe", "García Moreno", "Vicente Rocafuerte"],
     texto:
       "Se pasa bajo la Escalinata de la Fe y se sigue por García Moreno hasta girar a la izquierda a Vicente Rocafuerte. Es el tramo con más público: la Banda Municipal toca por aquí.",
-    foto: "/fotos/corredores-22.webp",
+    foto: "/ilustraciones/casco.webp",
   },
   {
     km: "2",
@@ -49,7 +53,7 @@ const TRAMOS = [
     calles: ["Naciones Unidas", "vía a San Jorge"],
     texto:
       "A la derecha por Naciones Unidas y a la izquierda para subir la vía a San Jorge hasta el sector de Quinta. Es la parte dura del recorrido: guarda algo para aquí.",
-    foto: "/fotos/corredores-09.webp",
+    foto: "/ilustraciones/subida.webp",
   },
   {
     km: "4",
@@ -57,7 +61,7 @@ const TRAMOS = [
     calles: ["Chalpi", "Eloy Alfaro"],
     texto:
       "Se circunvala el sector de Chalpi pasando por los viveros y se baja por Eloy Alfaro, tras el colegio Benjamín Araujo. Aquí es donde se ve el valle.",
-    foto: "/fotos/corredores-24.webp",
+    foto: "/ilustraciones/alta.webp",
   },
   {
     km: "6",
@@ -65,7 +69,7 @@ const TRAMOS = [
     calles: ["Manuel Zapater", "Juan León Mera", "Vicente Rocafuerte"],
     texto:
       "Se baja por Manuel Zapater frente al colegio, se gira a Juan León Mera hasta Vicente Rocafuerte y de nuevo a Naciones Unidas.",
-    foto: "/fotos/corredores-21.webp",
+    foto: "/ilustraciones/vuelta.webp",
   },
   {
     km: "8",
@@ -73,7 +77,7 @@ const TRAMOS = [
     calles: ["Av. Ambato"],
     texto:
       "La recta final es la Av. Ambato hasta el ingreso al Estadio Municipal de Patate, donde están la tarima, el sonido y la premiación.",
-    foto: "/fotos/corredores-01.webp",
+    foto: "/ilustraciones/meta.webp",
   },
 ];
 
@@ -89,15 +93,18 @@ export default function RutaPage() {
     <div className="w-full font-sans">
       {/* ── CABECERA ───────────────────────────────────────────────────── */}
       <section className="relative w-full overflow-hidden bg-[#1c0710] px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+        {/* De fondo va la ilustración del valle, con la capa al 85% (no al 88
+            de las fotos): sus formas planas aguantan verse un poco más sin
+            pelearse con el titular. */}
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <img
-            src="/fotos/corredores-09.webp"
-            srcSet={srcSetDe("/fotos/corredores-09.webp")}
+            src="/ilustraciones/alta.webp"
+            srcSet={srcSetDe("/ilustraciones/alta.webp")}
             sizes="100vw"
             alt=""
             className="h-full w-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-[#1c0710]/88" />
+          <div className="absolute inset-0 bg-[#1c0710]/85" />
         </div>
 
         <div className="relative mx-auto w-full max-w-7xl">
@@ -211,10 +218,10 @@ export default function RutaPage() {
                       src={t.foto}
                       srcSet={srcSetDe(t.foto)}
                       sizes="(max-width: 1024px) 100vw, 480px"
-                      alt={`Corredores en el tramo: ${t.titulo}`}
-                      width={640}
-                      height={376}
-                      className="h-[170px] w-full object-cover object-center sm:h-[210px]"
+                      alt={`Ilustración del tramo: ${t.titulo}`}
+                      width={1280}
+                      height={716}
+                      className="h-[200px] w-full object-cover object-center sm:h-[250px]"
                       loading="lazy"
                       decoding="async"
                     />

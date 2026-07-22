@@ -46,10 +46,11 @@ export default function FeaturedStories() {
               </h3>
 
               <p className="mb-8 max-w-xl text-base leading-relaxed font-medium text-gray-400 sm:text-lg">
-                Las fotos de esta página son de la edición anterior: la salida
-                desde Patate Gardens, los 8 km entre los cultivos con el
-                Tungurahua de fondo y la llegada al Estadio Municipal. Los
-                nombres de quienes subieron al podio están publicados.
+                Las fotos de la galería de esta página son de la edición
+                anterior: la salida desde Patate Gardens, los 8 km entre los
+                cultivos con el Tungurahua de fondo y la llegada al Estadio
+                Municipal. Los nombres de quienes subieron al podio están
+                publicados.
               </p>
 
               {/* Un enlace que lleva a algo que existe de verdad: el cuadro de
@@ -70,19 +71,18 @@ export default function FeaturedStories() {
               </div>
             </div>
 
-            {/* Aquí había un icono de trofeo de relleno dentro de una caja
-                vacía. Es una sección que habla de la experiencia de quien ya
-                corrió: enseñarla con un pictograma en vez de con la gente es
-                desaprovechar lo único que ningún competidor puede copiarte
-                (docs/AUTENTICIDAD-LOCAL.md, consejo 3). */}
+            {/* Ilustración declarada de la marca (docs/CAMBIO-IMAGENES.md): la
+                foto que iba aquí era la misma que el fondo de /informacion y a
+                640px se veía suave. El alt dice "ilustración" sin rodeos: lo
+                que no se negocia es que nada finja ser una foto. */}
             <div className="relative order-1 min-h-[220px] w-full overflow-hidden rounded-[20px] border border-white/10 md:order-2 md:min-h-auto md:w-[320px]">
               <img
-                src="/fotos/corredores-15.webp"
-                srcSet={srcSetDe("/fotos/corredores-15.webp")}
+                src="/ilustraciones/multitud.webp"
+                srcSet={srcSetDe("/ilustraciones/multitud.webp")}
                 sizes="(max-width: 768px) 100vw, 320px"
-                alt="Corredores de la edición anterior con su medalla, en Patate"
-                width={640}
-                height={376}
+                alt="Ilustración de la carrera llenando la calle principal de Patate, con el volcán al fondo"
+                width={1280}
+                height={716}
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
                 decoding="async"

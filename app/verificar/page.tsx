@@ -237,8 +237,8 @@ export default function VerificarPage() {
             texto blanco, y sobre las zonas claras de la foto se perdería. */}
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <img
-            src="/fotos/corredores-21.webp"
-            srcSet={srcSetDe("/fotos/corredores-21.webp")}
+            src="/ilustraciones/meta.webp"
+            srcSet={srcSetDe("/ilustraciones/meta.webp")}
             sizes="100vw"
             alt=""
             className="h-full w-full object-cover object-center"

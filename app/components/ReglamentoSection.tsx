@@ -19,8 +19,8 @@ export default function ReglamentoSection() {
           (docs/100-CONSEJOS.md, consejo 84). */}
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <img
-          src="/fotos/corredores-22.webp"
-          srcSet={srcSetDe("/fotos/corredores-22.webp")}
+          src="/ilustraciones/casco.webp"
+          srcSet={srcSetDe("/ilustraciones/casco.webp")}
           sizes="100vw"
           alt=""
           className="h-full w-full object-cover object-center"

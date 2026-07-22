@@ -75,17 +75,19 @@ export default function ComoInscribirse() {
             </p>
           </div>
 
-          {/* Foto real de la salida. Sin capa oscura encima: aquí el texto va al
-            lado, no sobre la imagen, así que no hay nada que rescatar de
-            contraste y la foto se ve como es. */}
+          {/* Ilustración declarada, no foto trucha (docs/CAMBIO-IMAGENES.md):
+            la foto que iba aquí era un grupo posando en la meta — nada que ver
+            con inscribirse. La ilustración sí habla de esta sección: alguien
+            llenando el formulario desde el teléfono, con Patate por la
+            ventana. */}
           <div className="overflow-hidden rounded-[18px] border border-gray-200">
             <img
-              src="/fotos/corredores-10.webp"
-              srcSet={srcSetDe("/fotos/corredores-10.webp")}
+              src="/ilustraciones/cuatro-pasos.webp"
+              srcSet={srcSetDe("/ilustraciones/cuatro-pasos.webp")}
               sizes="(max-width: 1024px) 100vw, 520px"
-              alt="Corredores de la edición anterior en Patate, antes de la salida"
-              width={640}
-              height={376}
+              alt="Ilustración: una persona se inscribe desde su teléfono, con las calles de Patate y el volcán por la ventana"
+              width={1280}
+              height={716}
               className="h-[220px] w-full object-cover object-center sm:h-[280px] lg:h-[320px]"
               loading="lazy"
               decoding="async"

@@ -190,15 +190,17 @@ export default function InformacionPage() {
     <div className="w-full font-sans">
       {/* ── CABECERA ───────────────────────────────────────────────────── */}
       <section className="relative w-full overflow-hidden bg-[#1c0710] px-4 pt-20 pb-14 sm:px-6 sm:py-20 lg:px-8">
+        {/* Ilustración de la marca de fondo (docs/CAMBIO-IMAGENES.md), capa al
+            85%: la foto que iba aquí se repetía con la tarjeta del home. */}
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <img
-            src="/fotos/corredores-15.webp"
-            srcSet={srcSetDe("/fotos/corredores-15.webp")}
+            src="/ilustraciones/multitud.webp"
+            srcSet={srcSetDe("/ilustraciones/multitud.webp")}
             sizes="100vw"
             alt=""
             className="h-full w-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-[#1c0710]/88" />
+          <div className="absolute inset-0 bg-[#1c0710]/85" />
         </div>
 
         <div className="relative mx-auto w-full max-w-7xl">
@@ -295,6 +297,24 @@ export default function InformacionPage() {
                 </li>
               ))}
             </ul>
+            {/* Ilustración declarada del kit (docs/CAMBIO-IMAGENES.md), con
+                personas y no bodegón: corredores estrenándolo en la plaza, a
+                pedido del dueño. Cuando haya foto real de la camiseta con guía
+                de tallas, va aquí. */}
+            <div className="mt-6 overflow-hidden rounded-[10px] border border-white/10">
+              <img
+                src="/ilustraciones/kit.webp"
+                srcSet={srcSetDe("/ilustraciones/kit.webp")}
+                sizes="(max-width: 1024px) 100vw, 560px"
+                alt="Ilustración: corredores estrenando el kit — camiseta naranja, medalla y mandarinas — en la plaza de Patate"
+                width={1280}
+                height={716}
+                className="h-auto w-full"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
             {/* La entrega sigue sin fecha oficial. Se dice tal cual — inventar
                 una fecha manda a la gente a un sitio equivocado. */}
             <p className="font-barlow mt-6 rounded-[10px] border border-[#ffc53d]/30 bg-[#ffc53d]/[0.07] p-4 text-sm leading-relaxed text-gray-300">
