@@ -1,0 +1,20 @@
+# Control de caché para Cloudflare Pages.
+#
+# Por qué existe: Pages servía las imágenes con 16 días de caché
+# (max-age=1382400) y aquí se reemplazan archivos SIN cambiar el nombre
+# (kit.webp pasó de bodegón a personas el mismo día). Resultado: navegadores
+# enseñando la versión vieja hasta 16 días — "en algunos navegadores no se
+# ve", reportado el 22-jul-2026.
+#
+# La regla: todo se revalida siempre. El etag convierte la revalidación en
+# un 304 sin cuerpo (solo cabeceras), así que lo fresco no cuesta ancho de
+# banda — solo un viaje de ida y vuelta.
+
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Lo único inmutable de verdad: los bundles de Next llevan el hash del
+# contenido en el nombre — si cambia el contenido, cambia la URL. Un año.
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
