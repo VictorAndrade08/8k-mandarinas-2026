@@ -31,7 +31,7 @@ export default function FeaturedStories() {
           </div>
 
           {/* TARJETA PRINCIPAL */}
-          <article className="group flex flex-col items-stretch gap-8 rounded-[24px] border border-white/5 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 hover:border-[#f7771c]/20 hover:bg-[#f7771c]/5 hover:shadow-[0_20px_50px_-20px_rgba(247,119,28,0.18)] sm:rounded-[40px] sm:p-10 md:flex-row md:gap-12 md:p-12">
+          <article className="group flex flex-col items-stretch gap-8 rounded-[24px] border border-white/5 bg-white/5 p-6 transition-all duration-300 hover:border-[#f7771c]/20 hover:bg-[#f7771c]/5 hover:shadow-[0_20px_50px_-20px_rgba(247,119,28,0.18)] sm:rounded-[40px] sm:p-10 md:flex-row md:gap-12 md:p-12">
             {/* TEXTO */}
             <div className="order-2 flex flex-1 flex-col justify-center md:order-1">
               {/* Sin fecha: decía "Diciembre 2025", que es de la edición

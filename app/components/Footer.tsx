@@ -55,6 +55,20 @@ export default function Footer() {
       id="site-footer"
       className="relative w-full overflow-hidden border-t border-white/10 bg-[#140309] font-sans text-white"
     >
+      {/* Una cordillera dibujada a mano como remate, en tinta de marca y muy
+          tenue. Es el toque hecho-a-mano del consejo 9 de AUTENTICIDAD-LOCAL:
+          un trazo irregular que ninguna plantilla trae. aria-hidden porque es
+          puro adorno. */}
+      <img
+        src="/texturas/montanas-trazo.webp"
+        alt=""
+        aria-hidden="true"
+        width={1000}
+        height={180}
+        className="pointer-events-none mx-auto -mb-2 h-auto w-full max-w-7xl opacity-25 select-none"
+        loading="lazy"
+        decoding="async"
+      />
       {/* Resplandor de marca, muy sutil: da profundidad sin meter otra caja */}
       <div
         className="pointer-events-none absolute top-0 left-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f7771c]/10 blur-[130px]"
@@ -72,7 +86,7 @@ export default function Footer() {
           loading="lazy"
         />
 
-        <p className="mt-5 text-sm tracking-[0.28em] text-white/50 uppercase sm:text-base">
+        <p className="mt-5 text-sm tracking-[0.2em] text-white/50 uppercase sm:text-base">
           29 Agosto 2026 · Patate · Ecuador
         </p>
 

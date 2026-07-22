@@ -122,7 +122,7 @@ function NotFoundModal({
             </button>
             <a
               href={hrefInscripcion}
-              className="flex items-center justify-center rounded-2xl px-8 py-4 text-base font-bold tracking-wide text-white uppercase shadow-[0_0_20px_rgba(197,24,80,0.32)] transition hover:shadow-[0_0_30px_rgba(197,24,80,0.52)] hover:brightness-110"
+              className="flex items-center justify-center rounded-2xl px-8 py-4 text-base font-bold tracking-wide text-white uppercase shadow-[0_4px_12px_rgba(20,3,9,0.22)] transition hover:brightness-110"
               style={{
                 background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
               }}
@@ -423,7 +423,7 @@ export default function VerificarPage() {
                       />
                       <div className="relative z-10 flex items-start justify-between gap-4">
                         <div>
-                          <p className="mb-2 text-xs font-bold tracking-[0.25em] text-white/50 uppercase">
+                          <p className="mb-2 text-xs font-bold tracking-[0.2em] text-white/50 uppercase">
                             Participante
                           </p>
                           <h3 className="mb-2 text-3xl leading-tight font-bold text-white">

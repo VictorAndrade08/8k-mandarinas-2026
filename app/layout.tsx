@@ -164,19 +164,20 @@ export default function RootLayout({
             opacity: 0.9,
           }}
         />
+        {/* Grano de verdad, no líneas sintéticas: antes esta capa era un
+            repeating-linear-gradient de rayas de 1px — el "scanline" que trae
+            cualquier plantilla. Ahora es una textura fotográfica de 26 KB en
+            mosaico (public/texturas/grano.webp), extraída restando a una foto
+            de papel su propia versión desenfocada: ruido sin color, que da el
+            tacto que pide docs/AUTENTICIDAD-LOCAL.md (consejo 7) sin teñir
+            ningún fondo. */}
         <div
           className="pointer-events-none fixed inset-0 -z-10"
           style={{
-            backgroundImage: `
-              repeating-linear-gradient(
-                0deg,
-                rgba(255,255,255,0.02) 0px,
-                rgba(255,255,255,0.02) 1px,
-                transparent 1px,
-                transparent 3px
-              )
-            `,
-            opacity: 0.35,
+            backgroundImage: "url(/texturas/grano.webp)",
+            backgroundRepeat: "repeat",
+            backgroundSize: "256px 256px",
+            opacity: 0.5,
             mixBlendMode: "overlay",
           }}
         />

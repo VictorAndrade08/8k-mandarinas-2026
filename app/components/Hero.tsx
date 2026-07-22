@@ -117,9 +117,7 @@ export default function Hero8K() {
             <span className="block tracking-wide">
               8K Ruta de las Mandarinas
             </span>
-            <span className="block bg-gradient-to-r from-[#f7771c] to-[#c51850] bg-clip-text text-transparent">
-              de Patate
-            </span>
+            <span className="block text-[#f7771c]">de Patate</span>
           </h1>
 
           <p className="mx-auto mb-6 max-w-lg font-sans text-[13px] leading-relaxed font-medium text-gray-600 sm:text-sm md:text-base lg:mx-0">

@@ -28,7 +28,7 @@ export default function ReglamentoSection() {
       <div className="mx-auto w-full max-w-7xl text-black">
         {/* HEADER */}
         <div className="text-center">
-          <p className="text-xs font-semibold tracking-[0.32em] text-black/60 uppercase sm:text-sm">
+          <p className="text-xs font-semibold tracking-[0.2em] text-black/60 uppercase sm:text-sm">
             Información oficial — lectura clara y accesible
           </p>
 

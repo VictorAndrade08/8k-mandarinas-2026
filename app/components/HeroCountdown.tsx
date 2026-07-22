@@ -199,14 +199,14 @@ export default function HeroCountdown() {
               estrecho y alto — 3.2vh de un iPhone son 27px, y a ese tamaño
               "Sábado · 29 agosto · 2026" con este tracking se sale de los 390px
               por los dos lados. Mirando también el vw, encoge cuando toca. */}
-          <p className="mt-[clamp(0.75rem,2.5vh,3rem)] font-[family-name:var(--font-titular)] text-[clamp(0.8rem,min(3.2vh,3.7vw),2.4rem)] font-black tracking-[0.25em] whitespace-nowrap text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:tracking-[0.32em]">
+          <p className="mt-[clamp(0.75rem,2.5vh,3rem)] font-[family-name:var(--font-titular)] text-[clamp(0.8rem,min(3.2vh,3.7vw),2.4rem)] font-black tracking-[0.2em] whitespace-nowrap text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:tracking-[0.2em]">
             Sábado · 29 agosto · 2026
           </p>
         </div>
 
         {/* GRUPO CENTRAL — contador */}
         <div className="flex w-full flex-col items-center">
-          <p className="mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.62rem,min(2vh,2.6vw),1.45rem)] font-black tracking-[0.3em] text-white/90 uppercase sm:tracking-[0.35em]">
+          <p className="mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.62rem,min(2vh,2.6vw),1.45rem)] font-black tracking-[0.2em] text-white/90 uppercase sm:tracking-[0.2em]">
             Faltan para el inicio
           </p>
 

@@ -37,7 +37,7 @@ export default function ReglamentoSection() {
 
         <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
           {/* Icono Principal */}
-          <div className="mb-6 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_0_30px_rgba(247,119,28,0.18)] backdrop-blur-sm">
+          <div className="mb-6 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_4px_12px_rgba(20,3,9,0.22)] backdrop-blur-sm">
             <Scales className="h-8 w-8 text-[#f7771c] sm:h-10 sm:w-10" />
           </div>
 
@@ -49,7 +49,7 @@ export default function ReglamentoSection() {
           {/* Título usando la variable de fuente */}
           <h2 className="mb-6 font-[family-name:var(--font-titular)] text-[36px] leading-[0.95] tracking-wide text-white sm:text-[52px] lg:text-[64px]">
             Reglamento General <br className="hidden sm:block" />
-            <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+            <span className="text-[#f7771c]">
               8K Ruta de las Mandarinas 2026
             </span>
           </h2>
