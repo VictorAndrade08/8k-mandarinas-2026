@@ -80,14 +80,19 @@ export async function crearEnAirtable(env, datos) {
 }
 
 /**
- * La Etapa del corredor en el CRM, o null si no está o Airtable no responde.
+ * La inscripción del corredor tal y como está en el CRM, o null si no está o
+ * Airtable no responde.
  *
- * Es lo que hace que /verificar por fin diga la verdad: el equipo cambia la
- * Etapa en Airtable al validar el pago, y el corredor lo ve aquí. Antes el
- * estado vivía solo en D1, donde nada lo actualizaba nunca — todo el mundo veía
- * "Pago por verificar" para siempre, hasta después de pagar y ser aprobado.
+ * El CRM es LA base de la consulta, no un adorno: el equipo también inscribe
+ * gente a mano ahí —por WhatsApp, en OSCUS, por la agencia— y esa gente no
+ * existe en D1. Si /verificar solo mirase D1, a esos corredores les diría "no
+ * encontrado" con la inscripción pagada y validada.
+ *
+ * Devuelve el MISMO recorte mínimo que la consulta de D1: ni email, ni
+ * teléfono, ni el enlace al comprobante. Basta una cédula para preguntar y las
+ * cédulas son secuenciales — lo que se responda aquí es cosechable en masa.
  */
-export async function etapaDesdeAirtable(env, cedula) {
+export async function consultarEnAirtable(env, cedula) {
   if (!configurado(env)) return null;
 
   // La cédula llega ya reducida a dígitos por quien llama; aun así se vuelve a
@@ -96,16 +101,39 @@ export async function etapaDesdeAirtable(env, cedula) {
   if (!limpia) return null;
 
   try {
+    const campos = [
+      "nombre",
+      "ciudad",
+      "edad",
+      "genero",
+      "categorias",
+      "Valor",
+      "Etapa",
+    ]
+      .map((c) => `fields%5B%5D=${encodeURIComponent(c)}`)
+      .join("&");
     const url =
       `${API}/${env.AIRTABLE_BASE_ID}/${env.AIRTABLE_TABLE_ID}` +
-      `?maxRecords=1&fields%5B%5D=Etapa&filterByFormula=` +
+      `?maxRecords=1&${campos}&filterByFormula=` +
       encodeURIComponent(`{cedula}="${limpia}"`);
     const res = await fetch(url, {
       headers: { Authorization: `Bearer ${env.AIRTABLE_TOKEN}` },
     });
     if (!res.ok) return null;
     const data = await res.json();
-    return data.records?.[0]?.fields?.Etapa || null;
+    const f = data.records?.[0]?.fields;
+    if (!f) return null;
+
+    return {
+      nombre: f.nombre || "Participante",
+      cedula: limpia,
+      ciudad: f.ciudad ?? null,
+      edad: f.edad ?? null,
+      genero: f.genero ?? null,
+      categoria: f.categorias ?? null,
+      valor: f.Valor ?? null,
+      estado: f.Etapa || "pendiente",
+    };
   } catch {
     return null;
   }

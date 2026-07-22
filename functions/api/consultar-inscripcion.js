@@ -11,7 +11,7 @@
 // puede cosechar en masa. Con el nombre y el estado el corredor ya confirma que
 // su pago entró, que es para lo que existe la página.
 
-import { etapaDesdeAirtable } from "./_airtable.js";
+import { consultarEnAirtable } from "./_airtable.js";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -55,6 +55,13 @@ export async function onRequestGet({ request, env }) {
       return json({ status: "error", message: "Cédula no válida." }, 400);
     }
 
+    // EL CRM ES LA BASE DE LA CONSULTA. Ahí está todo el mundo: los que se
+    // inscriben por la web (se copian al momento) y los que el equipo mete a
+    // mano por WhatsApp, OSCUS o la agencia — que en D1 no existen. D1 queda de
+    // respaldo por si Airtable no responde o la cédula aún no está copiada.
+    const delCRM = await consultarEnAirtable(env, cedula);
+    if (delCRM) return json({ status: "found", datos: delCRM });
+
     const fila = await env.DB.prepare(
       `SELECT nombres, apellidos, ciudad, edad, genero, categoria, precio, estado
          FROM inscripciones
@@ -66,13 +73,6 @@ export async function onRequestGet({ request, env }) {
 
     if (!fila) return json({ status: "not_found" });
 
-    // El estado real vive en el Airtable del equipo: ahí es donde se marca
-    // "Inscrito Pago Verificado" al validar la transferencia. D1 solo conoce
-    // 'pendiente' porque nada lo actualiza — era el motivo de que TODO el mundo
-    // viera "Pago por verificar" para siempre. Si Airtable no responde o la
-    // cédula aún no está allí, se cae al estado de D1, que es el de siempre.
-    const etapa = await etapaDesdeAirtable(env, cedula);
-
     return json({
       status: "found",
       datos: {
@@ -83,7 +83,7 @@ export async function onRequestGet({ request, env }) {
         genero: fila.genero ?? null,
         categoria: fila.categoria ?? null,
         valor: fila.precio ?? null,
-        estado: etapa ?? fila.estado ?? "pendiente",
+        estado: fila.estado ?? "pendiente",
       },
     });
   } catch (e) {
