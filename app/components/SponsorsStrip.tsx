@@ -29,7 +29,6 @@ const SPONSOR_LOGOS = [
   { src: "/sponsors/vigop.webp", alt: "VIGOP Eventos" },
   { src: "/sponsors/boho.svg", alt: "BOHO" },
   { src: "/sponsors/prez.webp", alt: "PREZ · Agencia de Growth Marketing" },
-  { src: "/sponsors/aurum.webp", alt: "Aurum Estética Dental" },
   { src: "/sponsors/full-fun-travel.webp", alt: "Full Fun Travel" },
   { src: "/sponsors/mokenla.webp", alt: "Mokenla" },
   { src: "/sponsors/m-verde.webp", alt: "Patrocinador oficial" },

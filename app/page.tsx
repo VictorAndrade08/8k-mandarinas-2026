@@ -61,14 +61,13 @@ export default function Home() {
           se quiere ver en el sitio. El texto de la imagen no lo lee Google —
           los datos que importan siguen también en HTML por todo el home. */}
       <Publicidad />
-      {/* El mapa arriba del todo: es lo que más se pregunta y hasta ahora no
-          estaba en ningún sitio. */}
-      <MapaRuta />
-      <Hero />
 
-      <TopGallery />
-      <SponsorsStrip />
-
+      {/* EL ORDEN CUENTA UNA HISTORIA. El flyer de arriba anuncia
+          "inscripciones abiertas": lo siguiente tiene que ser CÓMO, no el
+          vídeo ni la galería. Antes los pasos estaban en la posición 7 de 11 —
+          quien bajaba buscando inscribirse cruzaba media página de ambiente
+          antes de encontrar el camino. Ahora: anuncio → cómo → la ruta → y ya
+          después las pruebas (vídeo, fotos, edición anterior). */}
       {/* Los cuatro pasos ANTES de las dos opciones de inscripción: quien duda
           de inscribirse por internet duda porque no sabe qué le van a pedir.
           Contestar eso primero es lo que hace que llegue al formulario. */}
@@ -79,6 +78,13 @@ export default function Home() {
           otra vez) y "Hazlo por WhatsApp". Solo el WhatsApp aportaba algo
           propio, y cabe en una franja. */}
       <AyudaWhatsApp />
+      {/* El mapa arriba del todo: es lo que más se pregunta y hasta ahora no
+          estaba en ningún sitio. */}
+      <MapaRuta />
+      <Hero />
+
+      <TopGallery />
+      <SponsorsStrip />
 
       <section id="info">
         <InfoBeforeRace />
