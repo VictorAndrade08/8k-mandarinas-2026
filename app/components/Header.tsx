@@ -2,16 +2,27 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 // --- CONFIGURACIÓN DE FUENTE (Optimización Core Web Vitals) ---
 // El logo a todo color, sacado del vector del arte oficial. El anterior era la
 // versión blanca, que sobre el header claro obligaba a meterla en una caja naranja
 // para que se viera: parecía una pegatina encima del logo, no el logo.
-const Logo = ({ className }: { className?: string }) => (
+const Logo = ({
+  className,
+  blanco,
+}: {
+  className?: string;
+  blanco?: boolean;
+}) => (
   <img
     // webp y a 520px: el PNG pesaba 80 KB para mostrarse a 200. Carga en eager
     // porque está en el primer pantallazo, así que cada KB cuenta el doble.
-    src="/logo-mandarinas-color.webp"
+    // La versión blanca es para el modo transparente del home: el logo a color
+    // se pierde sobre el vídeo oscuro.
+    src={
+      blanco ? "/logo-mandarinas-blanco.webp" : "/logo-mandarinas-color.webp"
+    }
     alt="8K Ruta de las Mandarinas — inicio"
     width={520}
     height={182}
@@ -38,6 +49,34 @@ export default function Header() {
   const pathname = usePathname();
   const ruta = pathname.replace(/\/+$/, "") || "/";
 
+  // Header inteligente: en el tope va la píldora grande; al bajar se esconde
+  // para dejar leer; al SUBIR reaparece compacta y con vidrio (backdrop-blur).
+  // Así "Inscribirse" está siempre a un gesto (50-CONSEJOS-CARRERAS.md, #1)
+  // sin una barra clavada tapando contenido todo el rato.
+  const [visible, setVisible] = useState(true);
+  const [enTope, setEnTope] = useState(true);
+  const ultimoY = useRef(0);
+
+  // Solo el home lleva la píldora transparente en el tope: ahí debajo hay
+  // vídeo a pantalla completa y el vidrio deja verlo. Las páginas interiores
+  // tienen fondos claros u oscuros variados — ahí la píldora blanca asegura
+  // el contraste siempre.
+  const transparente = ruta === "/" && enTope;
+
+  useEffect(() => {
+    const alScroll = () => {
+      const y = window.scrollY;
+      setEnTope(y < 24);
+      // Umbral de 8px: sin él, el temblor del trackpad hace parpadear la barra.
+      if (Math.abs(y - ultimoY.current) > 8) {
+        setVisible(y < ultimoY.current || y < 120);
+        ultimoY.current = y;
+      }
+    };
+    window.addEventListener("scroll", alScroll, { passive: true });
+    return () => window.removeEventListener("scroll", alScroll);
+  }, []);
+
   return (
     <>
       {/* Primer parada del tabulador: saltar el menú e ir al contenido.
@@ -49,28 +88,38 @@ export default function Header() {
         Saltar al contenido
       </a>
 
-      {/* absolute, ni sticky ni fixed:
-          - sticky/normal ocupan sitio en el flujo y empujaban el hero hacia
-            abajo, dejando una franja del fondo naranja por encima del vídeo;
-          - fixed lo arreglaba, pero dejaba la píldora clavada en pantalla todo
-            el rato.
-          Con absolute está fuera del flujo (el vídeo arranca en el píxel 0 y la
-          píldora flota encima) y además se va con el scroll. Se ancla al <body>,
-          que ya es relative desde layout.tsx.
-          Contrapartida: al no ocupar sitio, las páginas sin hero tienen que
-          reservar ese hueco a mano — lo hace MainWrapper en SiteChrome.tsx. */}
+      {/* fixed y no absolute: sigue fuera del flujo (el vídeo arranca en el
+          píxel 0 y la píldora flota encima; las páginas sin hero reservan el
+          hueco en MainWrapper), pero ahora puede REAPARECER al subir. La
+          píldora clavada todo el rato —el problema del fixed clásico— se
+          resuelve escondiéndola al bajar con translate.
+          Si cambias el pt del tope, cambia HUECO_HEADER en SiteChrome.tsx.
+          onFocusCapture: si alguien navega con teclado hacia el menú mientras
+          está escondido, se muestra — un menú al que no se puede llegar con
+          Tab es un menú roto (WCAG 2.4.3). */}
       <header
-        // pt-10/12: con pt-8/10 la píldora iba casi pegada al borde y con
-        // pt-12/16 quedaba demasiado abajo — este es el punto medio pedido.
-        // Si cambias esto, cambia HUECO_HEADER en SiteChrome.tsx.
-        className={`absolute inset-x-0 top-0 z-50 flex w-full justify-center px-4 pt-10 pb-2 font-sans sm:pt-12`}
+        onFocusCapture={() => setVisible(true)}
+        className={`fixed inset-x-0 top-0 z-50 flex w-full justify-center px-4 pb-2 font-sans transition-[transform,padding] duration-300 motion-reduce:transition-none ${
+          visible ? "translate-y-0" : "-translate-y-full"
+        } ${enTope ? "pt-10 sm:pt-12" : "pt-3"}`}
       >
         {/* En móvil ya no hay hamburguesa: la navegación vive en la barra
             inferior fija (BottomNav), así que aquí solo queda el logo, centrado.
             Tener dos menús —arriba y abajo— confundía y se pisaban. En lg+
             aparece la navegación completa en línea y el logo vuelve a la
             izquierda. */}
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-center rounded-full border border-[#EFEFF3] bg-white/95 px-4 py-3 shadow-[0_8px_28px_rgba(0,0,0,0.10)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_15px_40px_-10px_rgba(247,119,28,0.18)] sm:px-6 lg:justify-between lg:px-8">
+        {/* Dos pieles según el scroll: en el tope, blanco casi sólido y
+            aireado; compacta, vidrio esmerilado (bg translúcido + blur) para
+            que el contenido se adivine pasando por detrás. */}
+        <div
+          className={`mx-auto flex w-full max-w-7xl items-center justify-center rounded-full border px-4 transition-all duration-300 sm:px-6 lg:justify-between lg:px-8 ${
+            transparente
+              ? "border-white/15 bg-white/10 py-3 backdrop-blur-md"
+              : enTope
+                ? "border-[#EFEFF3] bg-white/95 py-3 shadow-[0_8px_28px_rgba(0,0,0,0.10)] backdrop-blur-sm hover:shadow-[0_15px_40px_-10px_rgba(247,119,28,0.18)]"
+                : "border-white/50 bg-white/80 py-2 shadow-[0_14px_36px_rgba(0,0,0,0.16)] backdrop-blur-md"
+          }`}
+        >
           {/* IZQUIERDA → HOME. El logo va desnudo: es a color y se sostiene solo. */}
           <Link
             href="/"
@@ -79,7 +128,14 @@ export default function Header() {
             {/* En móvil manda el ancho, no el alto: el logo es muy apaisado, así
                 que con h-16 a secas se comería el sitio. Con min(vw) crece todo
                 lo que le deja la píldora y no más. */}
-            <Logo className="h-auto w-[min(58vw,220px)] transition-transform duration-300 group-hover:scale-[1.03] sm:w-[240px] lg:w-[260px]" />
+            <Logo
+              blanco={transparente}
+              className={`h-auto transition-all duration-300 group-hover:scale-[1.03] ${
+                enTope
+                  ? "w-[min(58vw,220px)] sm:w-[240px] lg:w-[260px]"
+                  : "w-[min(48vw,180px)] sm:w-[200px] lg:w-[210px]"
+              }`}
+            />
           </Link>
 
           {/* ================= DESKTOP (LG+) =================
@@ -102,12 +158,18 @@ export default function Header() {
                   href={item.href}
                   aria-current={activo ? "page" : undefined}
                   style={{ ["--acento" as string]: item.acento }}
-                  className={`inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-colors duration-200 outline-none hover:bg-black/[0.04] hover:text-(--acento) focus-visible:ring-2 focus-visible:ring-(--acento) xl:px-4 ${
+                  className={`inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-colors duration-200 outline-none hover:text-(--acento) focus-visible:ring-2 focus-visible:ring-(--acento) xl:px-4 ${
+                    // Sobre el vídeo del home los enlaces van en blanco; sobre
+                    // la píldora blanca, en gris oscuro.
+                    transparente ? "hover:bg-white/10" : "hover:bg-black/[0.04]"
+                  } ${
                     // Dónde estás: color de marca + subrayado. Solo color no
                     // basta (WCAG 2.2, 1.4.1).
                     activo
                       ? "text-(--acento) underline decoration-2 underline-offset-8"
-                      : "text-[#333]"
+                      : transparente
+                        ? "text-white"
+                        : "text-[#333]"
                   }`}
                 >
                   {item.label}
