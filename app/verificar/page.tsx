@@ -93,16 +93,20 @@ function NotFoundModal({
         className="animate-in zoom-in-95 relative w-full max-w-lg overflow-hidden rounded-[30px] border border-white/10 bg-[#1c0713] shadow-2xl duration-200"
         onClick={(e) => e.stopPropagation()}
       >
-        <div
-          className="h-1.5 w-full"
-          style={{
-            background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
-          }}
-        />
-        <div className="p-10 text-center">
-          <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-red-500/10">
-            <XCircle className="h-12 w-12 text-red-500" />
-          </div>
+        {/* La línea gráfica también en el error: la ilustración de la salida
+            como cabecera, en vez del círculo rojo de alarma. No aparecer no
+            es una emergencia — es "revisa el número o inscríbete". */}
+        <div className="relative h-32 w-full overflow-hidden" aria-hidden>
+          <img
+            src="/ilustraciones/salida.webp"
+            srcSet={srcSetDe("/ilustraciones/salida.webp")}
+            sizes="512px"
+            alt=""
+            className="h-full w-full object-cover object-[center_35%]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1c0713] via-[#1c0713]/25 to-transparent" />
+        </div>
+        <div className="p-10 pt-8 text-center">
           <h3
             className={`text-5xl text-white uppercase ${bebasClassName} mb-4`}
           >
