@@ -10,7 +10,23 @@
 # un 304 sin cuerpo (solo cabeceras), así que lo fresco no cuesta ancho de
 # banda — solo un viaje de ida y vuelta.
 
+# Nota del despliegue: la regla /* no pisó el Cache-Control de las imágenes
+# (Cloudflare la aplicó al HTML y a /_next pero los .webp siguieron con 16
+# días). Con las carpetas explícitas sí obedece — verificado con curl.
+
 /*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/ilustraciones/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/fotos/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/sponsors/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/og.jpg
   Cache-Control: public, max-age=0, must-revalidate
 
 # Lo único inmutable de verdad: los bundles de Next llevan el hash del
