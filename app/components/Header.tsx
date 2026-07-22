@@ -18,15 +18,17 @@ const Logo = ({
   <img
     // webp y a 520px: el PNG pesaba 80 KB para mostrarse a 200. Carga en eager
     // porque está en el primer pantallazo, así que cada KB cuenta el doble.
-    // La versión blanca es para el modo transparente del home: el logo a color
-    // se pierde sobre el vídeo oscuro.
-    src={
-      blanco ? "/logo-mandarinas-blanco.webp" : "/logo-mandarinas-color.webp"
-    }
+    // En el modo transparente del home el logo se vuelve blanco con un FILTRO
+    // (brightness-0 + invert) y no con otro archivo: el webp blanco traía una
+    // caja naranja pegada, y además el cambio de src era un salto seco — el
+    // filtro transiciona suave con el resto de la píldora.
+    src="/logo-mandarinas-color.webp"
     alt="8K Ruta de las Mandarinas — inicio"
     width={520}
     height={182}
-    className={`${className} object-contain`}
+    className={`${className} object-contain transition-[filter] duration-300 ${
+      blanco ? "brightness-0 invert" : ""
+    }`}
     loading="eager"
   />
 );
@@ -157,7 +159,14 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   aria-current={activo ? "page" : undefined}
-                  style={{ ["--acento" as string]: item.acento }}
+                  // Sobre el vídeo oscuro el magenta de "Mi pago" no se lee:
+                  // en modo transparente todos los acentos van en naranja, que
+                  // sí contrasta (y es el mismo del botón de al lado).
+                  style={{
+                    ["--acento" as string]: transparente
+                      ? "#f7771c"
+                      : item.acento,
+                  }}
                   className={`inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-colors duration-200 outline-none hover:text-(--acento) focus-visible:ring-2 focus-visible:ring-(--acento) xl:px-4 ${
                     // Sobre el vídeo del home los enlaces van en blanco; sobre
                     // la píldora blanca, en gris oscuro.
