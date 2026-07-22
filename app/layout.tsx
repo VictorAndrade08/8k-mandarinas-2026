@@ -57,6 +57,24 @@ export const metadata: Metadata = {
   title: "8K Ruta de las Mandarinas 2026 — Carrera en Patate, Ecuador",
   description:
     "Carrera 8K en Patate, Tungurahua · Sábado 29 de agosto de 2026, salida 08h00 · Inscripción $20, categorías desde los 8 años — Sitio oficial",
+  metadataBase: new URL("https://8krutadelasmandarinas.com"),
+  // La tarjeta que sale al compartir el enlace por WhatsApp — que es como se
+  // difunde una carrera de pueblo de verdad. Sin esto, el enlace sale pelado.
+  // La imagen es la ilustración de la multitud (1200x630, el estándar).
+  openGraph: {
+    title: "8K Ruta de las Mandarinas 2026 — Patate, Ecuador",
+    description:
+      "Sábado 29 de agosto · Salida 08h00 desde Patate Gardens · Inscripción $20",
+    url: "/",
+    siteName: "8K Ruta de las Mandarinas",
+    locale: "es_EC",
+    type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og.jpg"],
+  },
 };
 
 export const viewport: Viewport = {
