@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 /**
@@ -68,27 +69,43 @@ export default function MapaRuta() {
         <div className="absolute inset-0 bg-black/45" />
       </div>
 
-      <div className="w-full max-w-7xl overflow-hidden rounded-[20px] bg-gray-200 shadow-[0_10px_30px_rgba(0,0,0,0.28)] md:rounded-[32px]">
-        {/* Las medidas son las reales de cada archivo: si no cuadran, el
-            navegador reserva un hueco del tamaño equivocado y la página salta. */}
-        <picture className="block h-auto w-full">
-          <source
-            media="(min-width: 768px)"
-            srcSet={MAPA_ESCRITORIO}
-            width={1600}
-            height={686}
-          />
-          <img
-            src={MAPA_MOVIL}
-            alt="Mapa de la carrera 8K Ruta de las Mandarinas. Salida en Patate Gardens a las 08h00 y llegada al Estadio Municipal de Patate, pasando por E. Dávila, H. Torres, G. Moreno, V. Rocafuerte, Naciones Unidas, vía a San Jorge, E. Alfaro, Juan León Mera y Av. Ambato."
-            width={640}
-            height={746}
-            className="h-auto w-full"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-      </div>
+      {/* El mapa entero vive en /ruta, con el recorrido tramo por tramo. Aquí
+          se enseña como adelanto clicable y no a tamaño completo: estaba
+          duplicado en las dos páginas, y en el home a pantalla completa hacía
+          que la página no acabara nunca. */}
+      <Link
+        href="/ruta"
+        className="group block w-full max-w-7xl overflow-hidden rounded-[20px] bg-gray-200 shadow-[0_10px_30px_rgba(0,0,0,0.28)] transition-transform duration-200 hover:scale-[1.005] md:rounded-[32px]"
+        aria-label="Ver el recorrido completo, tramo por tramo"
+      >
+        <div className="relative">
+          <picture className="block h-auto w-full">
+            <source
+              media="(min-width: 768px)"
+              srcSet={MAPA_ESCRITORIO}
+              width={1600}
+              height={686}
+            />
+            <img
+              src={MAPA_MOVIL}
+              alt="Mapa de la carrera 8K Ruta de las Mandarinas: salida en Patate Gardens y llegada al Estadio Municipal de Patate."
+              width={640}
+              height={746}
+              className="h-auto max-h-[300px] w-full object-cover object-center sm:max-h-[360px]"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+          {/* La invitación va sobre el propio mapa, abajo, con su fondo: el mapa
+              es claro y un texto suelto encima no se leería. */}
+          <span className="font-barlow absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/75 to-transparent px-5 pt-10 pb-4 text-sm font-bold tracking-[0.12em] text-white uppercase sm:px-7">
+            El recorrido tramo por tramo
+            <span className="rounded-full bg-[#f7771c] px-4 py-2 text-xs transition-colors group-hover:bg-white group-hover:text-[#780030]">
+              Ver la ruta →
+            </span>
+          </span>
+        </div>
+      </Link>
     </section>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { VIDEO_SRC, VIDEO_POSTER } from "../lib/carrera";
 
 export default function Hero8K() {
@@ -133,14 +132,11 @@ export default function Hero8K() {
 
           {/* Sin "Ver Reglamento": el reglamento aún no está aprobado por la
               organización y el enlace se retira hasta que lo esté. */}
-          <div className="flex flex-col justify-center gap-3 font-sans sm:flex-row lg:justify-start">
-            <Link
-              href="/inscripcion"
-              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#f7771c] to-[#c51850] px-6 py-3.5 text-xs font-bold tracking-[0.15em] text-white uppercase shadow-md shadow-[#f7771c]/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[#f7771c]/50 sm:text-sm"
-            >
-              Inscribirse Ahora
-            </Link>
-          </div>
+          {/* Aquí había OTRO botón de "Inscribirse Ahora" — era la tercera
+              llamada a inscribirse en tres pantallas. Esta sección existe para
+              enseñar el vídeo de Patate; quien quiera inscribirse tiene el CTA
+              del hero, el de "Cómo inscribirse" y el flotante. Un solo CTA
+              primario por pantalla (docs/100-CONSEJOS.md, consejo 44). */}
         </div>
       </div>
     </section>
