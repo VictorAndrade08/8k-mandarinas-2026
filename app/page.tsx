@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 
 import HeroCountdown from "./components/HeroCountdown";
-import Publicidad from "./components/Publicidad";
 import MapaRuta from "./components/MapaRuta";
 import Hero from "./components/Hero";
 import FloatingCTA from "./components/FloatingCTA";
@@ -23,16 +22,13 @@ const SponsorsStrip = dynamic(() => import("./components/SponsorsStrip"), {
   loading: () => <SectionLoader heightClass="h-20 md:h-24" />,
 });
 
+const AyudaWhatsApp = dynamic(() => import("./components/AyudaWhatsApp"), {
+  loading: () => <SectionLoader heightClass="h-40" />,
+});
+
 const ComoInscribirse = dynamic(() => import("./components/ComoInscribirse"), {
   loading: () => <SectionLoader heightClass="min-h-[420px]" />,
 });
-
-const RegistrationOptions = dynamic(
-  () => import("./components/RegistrationOptions"),
-  {
-    loading: () => <SectionLoader heightClass="min-h-[500px]" />,
-  }
-);
 
 const InfoBeforeRace = dynamic(() => import("./components/InfoBeforeRace"), {
   loading: () => <SectionLoader heightClass="min-h-[400px]" />,
@@ -56,7 +52,11 @@ export default function Home() {
           inscribirse. */}
       <HeroCountdown />
 
-      <Publicidad />
+      {/* Aquí iba <Publicidad/>: el flyer en JPG. Repetía la fecha (que está
+          en el hero), el precio (en "Cómo inscribirse" y el mapa) y la salida
+          (en el mapa y /ruta) — y al ser una imagen de texto, nada de eso lo
+          leía Google ni un lector de pantalla. Era la primera de OCHO llamadas
+          a inscribirse en una sola página. */}
       {/* El mapa arriba del todo: es lo que más se pregunta y hasta ahora no
           estaba en ningún sitio. */}
       <MapaRuta />
@@ -70,9 +70,11 @@ export default function Home() {
           Contestar eso primero es lo que hace que llegue al formulario. */}
       <ComoInscribirse />
 
-      <section id="inscripciones">
-        <RegistrationOptions />
-      </section>
+      {/* Antes aquí había otra sección entera de dos tarjetas: "Inscríbete
+          online" (los mismos pasos y el mismo botón que la sección de arriba,
+          otra vez) y "Hazlo por WhatsApp". Solo el WhatsApp aportaba algo
+          propio, y cabe en una franja. */}
+      <AyudaWhatsApp />
 
       <section id="info">
         <InfoBeforeRace />
