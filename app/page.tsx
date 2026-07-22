@@ -22,6 +22,10 @@ const SponsorsStrip = dynamic(() => import("./components/SponsorsStrip"), {
   loading: () => <SectionLoader heightClass="h-20 md:h-24" />,
 });
 
+const Publicidad = dynamic(() => import("./components/Publicidad"), {
+  loading: () => <SectionLoader heightClass="h-64" />,
+});
+
 const AyudaWhatsApp = dynamic(() => import("./components/AyudaWhatsApp"), {
   loading: () => <SectionLoader heightClass="h-40" />,
 });
@@ -52,11 +56,11 @@ export default function Home() {
           inscribirse. */}
       <HeroCountdown />
 
-      {/* Aquí iba <Publicidad/>: el flyer en JPG. Repetía la fecha (que está
-          en el hero), el precio (en "Cómo inscribirse" y el mapa) y la salida
-          (en el mapa y /ruta) — y al ser una imagen de texto, nada de eso lo
-          leía Google ni un lector de pantalla. Era la primera de OCHO llamadas
-          a inscribirse en una sola página. */}
+      {/* El flyer oficial. Se quitó en la pasada de simplicidad por repetir la
+          fecha y el precio, y se repuso a petición: es el arte de la campaña y
+          se quiere ver en el sitio. El texto de la imagen no lo lee Google —
+          los datos que importan siguen también en HTML por todo el home. */}
+      <Publicidad />
       {/* El mapa arriba del todo: es lo que más se pregunta y hasta ahora no
           estaba en ningún sitio. */}
       <MapaRuta />

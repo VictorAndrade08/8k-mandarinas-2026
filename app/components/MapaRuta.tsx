@@ -91,7 +91,11 @@ export default function MapaRuta() {
               alt="Mapa de la carrera 8K Ruta de las Mandarinas: salida en Patate Gardens y llegada al Estadio Municipal de Patate."
               width={640}
               height={746}
-              className="h-auto max-h-[300px] w-full object-cover object-center sm:max-h-[360px]"
+              // Sin recorte. Se probó con max-h + object-cover y la tijera se
+              // comía el logo por arriba y las montañas por abajo: un mapa al
+              // que le faltan trozos parece un error, no un adelanto. Entero
+              // mide 455px en móvil y 549 en escritorio — cabe.
+              className="h-auto w-full"
               loading="lazy"
               decoding="async"
             />
