@@ -11,6 +11,8 @@
 // puede cosechar en masa. Con el nombre y el estado el corredor ya confirma que
 // su pago entró, que es para lo que existe la página.
 
+import { etapaDesdeAirtable } from "./_airtable.js";
+
 const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, OPTIONS",
@@ -64,6 +66,13 @@ export async function onRequestGet({ request, env }) {
 
     if (!fila) return json({ status: "not_found" });
 
+    // El estado real vive en el Airtable del equipo: ahí es donde se marca
+    // "Inscrito Pago Verificado" al validar la transferencia. D1 solo conoce
+    // 'pendiente' porque nada lo actualiza — era el motivo de que TODO el mundo
+    // viera "Pago por verificar" para siempre. Si Airtable no responde o la
+    // cédula aún no está allí, se cae al estado de D1, que es el de siempre.
+    const etapa = await etapaDesdeAirtable(env, cedula);
+
     return json({
       status: "found",
       datos: {
@@ -74,7 +83,7 @@ export async function onRequestGet({ request, env }) {
         genero: fila.genero ?? null,
         categoria: fila.categoria ?? null,
         valor: fila.precio ?? null,
-        estado: fila.estado ?? "pendiente",
+        estado: etapa ?? fila.estado ?? "pendiente",
       },
     });
   } catch (e) {

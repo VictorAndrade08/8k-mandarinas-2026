@@ -1,5 +1,9 @@
 // Cloudflare Pages Function — POST /api/inscribir
-// Guarda la inscripción en D1 (env.DB) y el comprobante en R2 (env.BUCKET).
+// Guarda la inscripción en D1 (env.DB), el comprobante en R2 (env.BUCKET) y una
+// copia en el Airtable del equipo (ver _airtable.js). D1 es la fuente de verdad
+// del "¿ya está inscrita esta cédula?"; Airtable es donde se validan los pagos.
+
+import { crearEnAirtable } from "./_airtable.js";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -206,6 +210,30 @@ export async function onRequestPost({ request, env }) {
       }
       throw e;
     }
+
+    // Copia al CRM, DESPUÉS de que D1 y R2 ya guardaron. Si Airtable falla, la
+    // inscripción es válida igual — un corredor que pagó no puede comerse un
+    // error porque el CRM esté caído. Lo que sí: se registra en el log para que
+    // se note y se pueda pasar a mano.
+    const enCRM = await crearEnAirtable(env, {
+      cedula,
+      nombres,
+      apellidos,
+      email,
+      edad,
+      categoria,
+      precio,
+      telefono: get("telefono"),
+      ciudad: get("ciudad"),
+      genero: get("genero"),
+      metodo_pago: get("metodo_pago"),
+      num_comprobante: get("num_comprobante"),
+      fecha_pago: get("fecha_pago"),
+      es_titular: get("es_titular"),
+      nombre_titular_cuenta: get("nombre_titular_cuenta"),
+      comprobante_url,
+    });
+    if (!enCRM) console.log(`Airtable no recibió la cédula ${cedula}`);
 
     return json({ status: "success", file_url: comprobante_url });
   } catch (e) {

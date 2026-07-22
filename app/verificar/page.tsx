@@ -42,13 +42,20 @@ const BARRAS = [
   true,
 ];
 
-// Cómo se llaman de cara al corredor los estados que guarda D1. La columna
-// `estado` nace en 'pendiente' desde functions/api/inscribir.js.
-const ETAPA = {
+// Cómo se llaman de cara al corredor los estados. Los tres primeros son los de
+// D1; el resto son las Etapas del Airtable donde el equipo valida los pagos —
+// desde que /api/consultar-inscripcion lee de ahí, es lo que llega de verdad.
+// Una etapa nueva que no esté en esta lista se enseña tal cual: mejor un nombre
+// de CRM que un "En proceso" que no dice nada.
+const ETAPA: Record<string, string> = {
   pendiente: "Pago por verificar",
   aprobado: "Inscripción confirmada",
   rechazado: "Pago rechazado",
-} as const;
+  "Inscrito Pago x Verificar": "Pago por verificar",
+  "Inscrito Pago Verificado": "Inscripción confirmada",
+  "Inscripción Finalizada": "Inscripción confirmada",
+  Inscrito: "Pago por verificar",
+};
 
 type VerifyData = {
   record_id?: string | null;
@@ -183,8 +190,7 @@ export default function VerificarPage() {
         edad: d.edad ?? null,
         genero: d.genero ?? null,
         categorias: d.categoria ?? "General",
-        etapa:
-          ETAPA[d.estado as keyof typeof ETAPA] ?? d.estado ?? "En proceso",
+        etapa: ETAPA[d.estado as string] ?? d.estado ?? "En proceso",
         valor: d.valor ?? null,
       });
     } catch {
@@ -196,10 +202,14 @@ export default function VerificarPage() {
 
   const getStatusColor = (text: string) => {
     const t = String(text).toLowerCase();
+    // "confirmad" sin la última letra: el texto real es "Inscripción
+    // confirmada", en femenino, y buscando "confirmado" no coincidía nunca.
+    // Nadie lo vio en meses porque hasta conectar Airtable ninguna inscripción
+    // llegaba a aprobada.
     if (
       t.includes("verificado") ||
       t.includes("aprobado") ||
-      t.includes("confirmado")
+      t.includes("confirmad")
     )
       return "text-[#2bd98a]";
     if (
@@ -208,8 +218,7 @@ export default function VerificarPage() {
       t.includes("solicitado")
     )
       return "text-[#ffc53d]";
-    if (t.includes("rechazado") || t.includes("finalizada"))
-      return "text-[#ff6b6b]";
+    if (t.includes("rechazado")) return "text-[#ff6b6b]";
     return "text-white";
   };
 

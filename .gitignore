@@ -51,3 +51,6 @@ nuevaslineasgraficas/
 
 # Capturas de auditoría visual (se generan en local, no van al repo)
 /capturas/
+
+# Secretos locales de wrangler (el token de Airtable vive ahí)
+.dev.vars
