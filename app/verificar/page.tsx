@@ -229,7 +229,7 @@ export default function VerificarPage() {
       {/* LAYOUT PRINCIPAL — a sangre, sin la tarjeta flotante gigante: el fondo
           oscuro va de borde a borde como el resto del sitio y el contenido se
           centra en max-w-7xl. */}
-      <section className="relative w-full overflow-hidden bg-[#140309] px-4 py-12 font-sans sm:px-6 md:py-16 lg:px-8">
+      <section className="relative w-full overflow-hidden bg-[#140309] px-4 pt-20 pb-12 font-sans sm:px-6 md:py-16 lg:px-8">
         {/* FOTO DE FONDO: la llegada, que es de lo que va esta página. Antes
             eran dos manchas de color sobre negro plano.
 

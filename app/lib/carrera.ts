@@ -47,3 +47,27 @@ export const PREMIOS = [
   { categoria: "Leyenda", primero: 80, segundo: 60, tercero: 40 },
   { categoria: "Discapacidad", primero: 80, segundo: 60, tercero: 40 },
 ] as const;
+
+/**
+ * Las cuatro categorías con sus edades y precios. Es la tabla canónica para
+ * las páginas informativas (/informacion y quien venga después).
+ *
+ * OJO: el formulario de inscripción (FormInscripcion.tsx) y el catálogo del
+ * servidor (functions/api/inscribir.js) llevan su propia copia de estos datos
+ * — el del servidor A PROPÓSITO, porque no puede importar código del cliente.
+ * Si cambia una edad o un precio, hay que cuadrar los tres sitios.
+ */
+export const CATEGORIAS = [
+  { nombre: "Élite Pro 8K", edades: "Hasta 39 años", precio: PRECIO_PREVENTA },
+  { nombre: "Máster", edades: "De 40 a 64 años", precio: PRECIO_PREVENTA },
+  {
+    nombre: "Leyenda",
+    edades: "65 años en adelante",
+    precio: PRECIO_DESCUENTO,
+  },
+  {
+    nombre: "Discapacidad",
+    edades: "Sin límite de edad",
+    precio: PRECIO_DESCUENTO,
+  },
+] as const;

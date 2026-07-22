@@ -153,8 +153,30 @@ export default function SponsorsStrip() {
           <div className="h-px w-8 bg-gradient-to-l from-transparent to-[#f7771c]/50 sm:w-16"></div>
         </div>
 
-        {/* Contenedor Principal. z-10 por encima de las montañas del fondo. */}
-        <div className="relative z-10 flex w-full items-center">
+        {/* EN MÓVIL, REJILLA COMPLETA: el carrusel enseñaba 2 logos y escondía
+            8 — un patrocinador pagó por salir, no por pasar de refilón. En
+            escritorio la cinta funciona porque caben 5 a la vez. */}
+        <ul className="relative z-10 grid grid-cols-2 gap-3 md:hidden">
+          {SPONSOR_LOGOS.map((logo) => (
+            <li
+              key={logo.src}
+              className="flex h-20 items-center justify-center rounded-2xl border border-gray-100 bg-gray-50"
+            >
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                width={640}
+                height={320}
+                className="h-full w-full object-contain opacity-80"
+                loading="lazy"
+                decoding="async"
+              />
+            </li>
+          ))}
+        </ul>
+
+        {/* Contenedor Principal (solo escritorio). z-10 sobre las montañas. */}
+        <div className="relative z-10 hidden w-full items-center md:flex">
           {/* Flecha Izquierda */}
           <div className="absolute left-0 z-20 flex h-full items-center bg-gradient-to-r from-white via-white/80 to-transparent pr-8 pl-2">
             <button
