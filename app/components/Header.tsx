@@ -60,7 +60,9 @@ export default function Header() {
           Contrapartida: al no ocupar sitio, las páginas sin hero tienen que
           reservar ese hueco a mano — lo hace MainWrapper en SiteChrome.tsx. */}
       <header
-        className={`absolute inset-x-0 top-0 z-50 flex w-full justify-center px-4 pt-8 pb-2 font-sans sm:pt-10`}
+        // pt-12/16 y no pt-8/10: la píldora iba muy arriba, casi pegada al
+        // borde. Si cambias esto, cambia HUECO_HEADER en SiteChrome.tsx.
+        className={`absolute inset-x-0 top-0 z-50 flex w-full justify-center px-4 pt-12 pb-2 font-sans sm:pt-16`}
       >
         {/* En móvil ya no hay hamburguesa: la navegación vive en la barra
             inferior fija (BottomNav), así que aquí solo queda el logo, centrado.

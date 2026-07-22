@@ -16,7 +16,7 @@ const SIN_MARGEN_SUPERIOR = new Set<string>(["/", "/inscripcion"]);
 // reservar su altura a mano o el contenido nace debajo de la píldora. Son los
 // ~110px que mide (pt + píldora + pb) más aire. Si cambias el pt del header,
 // cambia esto.
-const HUECO_HEADER = "pt-[142px] sm:pt-[158px]";
+const HUECO_HEADER = "pt-[158px] sm:pt-[182px]";
 
 // Normaliza el slash final ("/inscripcion/" -> "/inscripcion")
 const ruta = (pathname: string) => pathname.replace(/\/+$/, "") || "/";
