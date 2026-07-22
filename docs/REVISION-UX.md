@@ -14,6 +14,7 @@ Plan anotado ANTES de revisar, para que cualquiera pueda repetir la comprobació
 | -------------- | ---------------------------- | ---------------------------------------- |
 | `/`            | Inicio                       | móvil 390 · tablet 820 · escritorio 1440 |
 | `/ruta`        | El recorrido tramo por tramo | las tres                                 |
+| `/informacion` | Todo el evento + FAQ         | las tres                                 |
 | `/inscripcion` | El formulario (4 pasos)      | las tres                                 |
 | `/reglamento`  | Los 15 artículos             | las tres                                 |
 | `/terminos`    | Términos y condiciones       | las tres                                 |
@@ -44,6 +45,7 @@ captura, no la del build.)
 | ------------ | :---: | :--------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Inicio       |   9   |     9      | REORDENADO en esta revisión: los pasos de inscripción estaban en la posición 7 de 11 — quien bajaba buscando inscribirse cruzaba media página de ambiente. Ahora: anuncio → cómo → WhatsApp → ruta → pruebas. Fuera un patrocinador a petición |
 | /ruta        |   9   |     9      | Km en grande, calles reales del oficio N°0084, foto por tramo, cierre de vías. Nada que cortar                                                                                                                                                 |
+| /informacion |   9   |     9      | Creada tras esta revisión y ampliada el 22-jul con FAQ de 9 respuestas verificadas y enlace a Google Maps de la salida (consejos #21 y #23 de [`50-CONSEJOS-CARRERAS.md`](./50-CONSEJOS-CARRERAS.md))                                          |
 | /inscripcion |   9   |     9      | No se tocó (a petición). Guarda avance, valida en vivo, contador, honeypot, precio del servidor                                                                                                                                                |
 | /reglamento  |   8   |     8      | Largo (8.213px móvil) pero ES un reglamento: 15 artículos con ancla propia. Lo único flojo es contenido, no diseño: el kit sigue "Por definir"                                                                                                 |
 | /terminos    |   9   |     9      | Mismo header, misma tipografía, tarjetas legibles, barra inferior presente. Sin cambios                                                                                                                                                        |

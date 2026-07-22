@@ -51,9 +51,12 @@ const archivoBlack = Archivo_Black({
 // Metadata
 // ==============================
 export const metadata: Metadata = {
-  title: "8K Ruta de las Mandarinas 2026",
+  // Carrera + distancia + ciudad + año: el 29,3 % del tráfico de una web de
+  // carrera llega por búsqueda orgánica, y "8k patate" o "carrera patate 2026"
+  // son las búsquedas reales (consejo #25 de docs/50-CONSEJOS-CARRERAS.md).
+  title: "8K Ruta de las Mandarinas 2026 — Carrera en Patate, Ecuador",
   description:
-    "8K Ruta de las Mandarinas · Sábado 29 de agosto de 2026 — Sitio oficial",
+    "Carrera 8K en Patate, Tungurahua · Sábado 29 de agosto de 2026, salida 08h00 · Inscripción $20, categorías desde los 8 años — Sitio oficial",
 };
 
 export const viewport: Viewport = {

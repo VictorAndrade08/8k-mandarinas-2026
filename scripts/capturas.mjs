@@ -28,6 +28,7 @@ const BASE = "http://localhost:3000";
 const RUTAS = [
   ["home", "/"],
   ["ruta", "/ruta/"],
+  ["informacion", "/informacion/"],
   ["inscripcion", "/inscripcion/"],
   ["reglamento", "/reglamento/"],
   ["terminos", "/terminos/"],

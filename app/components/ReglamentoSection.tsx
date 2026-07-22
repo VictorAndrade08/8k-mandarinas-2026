@@ -71,14 +71,16 @@ export default function ReglamentoSection() {
               Leer Reglamento Completo <ArrowRight size={18} />
             </Link>
 
-            <a
-              href="https://wa.me/593995102378"
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Antes este botón decía "Preguntas Frecuentes" pero abría
+                WhatsApp: prometía una cosa y daba otra. Ahora sí hay FAQ de
+                verdad en /informacion (y el home ya tiene su banda de
+                WhatsApp más arriba). */}
+            <Link
+              href="/informacion#preguntas"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-bold tracking-[0.15em] text-white uppercase transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
             >
               Preguntas Frecuentes
-            </a>
+            </Link>
           </div>
         </div>
       </div>
