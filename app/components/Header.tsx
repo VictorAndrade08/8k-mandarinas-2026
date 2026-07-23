@@ -29,7 +29,12 @@ const Logo = ({
     className={`${className} object-contain transition-[filter] duration-300 ${
       blanco ? "brightness-0 invert" : ""
     }`}
-    loading="eager"
+    // lazy y no eager: en el home móvil la píldora entera va escondida en el
+    // tope (el hero ya trae su logo) y con eager este archivo se descargaba
+    // igual + Next le generaba un preload que competía con el LCP. Con lazy
+    // solo baja cuando la píldora es visible — en las páginas interiores eso
+    // es inmediato porque está en el primer pantallazo.
+    loading="lazy"
   />
 );
 
@@ -64,6 +69,13 @@ export default function Header() {
   // del body (#1c0710) — oscuro en ambos casos, así que el texto blanco
   // contrasta siempre. Al hacer scroll vuelve la versión blanca compacta.
   const transparente = enTope;
+
+  // En el HOME MÓVIL la píldora del tope se esconde entera: el hero ya trae
+  // el logo grande justo debajo y se veían dos logos apilados (reportado con
+  // captura) — y la navegación móvil vive en la barra inferior, así que la
+  // píldora ahí solo duplicaba. Reaparece al hacer scroll (compacta) y en
+  // lg+ siempre, que es donde lleva el menú.
+  const soloEscritorio = transparente && ruta === "/";
 
   useEffect(() => {
     const alScroll = () => {
@@ -114,7 +126,9 @@ export default function Header() {
             aireado; compacta, vidrio esmerilado (bg translúcido + blur) para
             que el contenido se adivine pasando por detrás. */}
         <div
-          className={`mx-auto flex w-full max-w-7xl items-center justify-center rounded-full border px-4 transition-all duration-300 sm:px-6 lg:justify-between lg:px-8 ${
+          className={`mx-auto w-full max-w-7xl items-center justify-center rounded-full border px-4 transition-all duration-300 sm:px-6 lg:flex lg:justify-between lg:px-8 ${
+            soloEscritorio ? "hidden" : "flex"
+          } ${
             transparente
               ? "border-white/15 bg-white/10 py-3 backdrop-blur-md"
               : "border-white/50 bg-white/80 py-2 shadow-[0_14px_36px_rgba(0,0,0,0.16)] backdrop-blur-md"
