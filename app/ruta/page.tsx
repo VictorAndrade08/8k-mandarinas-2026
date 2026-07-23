@@ -9,6 +9,7 @@ import {
   ArrowDown,
 } from "@phosphor-icons/react/dist/ssr";
 import { srcSetDe } from "../lib/imagen";
+import MapaCarrera from "../components/MapaCarrera";
 
 export const metadata = {
   title: "El recorrido — 8K Ruta de las Mandarinas 2026",
@@ -139,49 +140,23 @@ export default function RutaPage() {
         </div>
       </section>
 
-      {/* ── EL MAPA OFICIAL ────────────────────────────────────────────── */}
+      {/* ── EL MAPA DE LA CARRERA ──────────────────────────────────────── */}
+      {/* Dibujado en SVG con las calles del oficio (ver MapaCarrera.tsx):
+          texto de verdad, tipografía del sitio, 4 KB. El arte del flyer
+          queda enlazado abajo por si alguien quiere el original. */}
       <section className="w-full bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="overflow-hidden rounded-[18px] border border-gray-200">
-            {/* El mismo mapa del inicio, aquí sin nada encima que lo tape. */}
-            <picture className="block h-auto w-full">
-              <source
-                media="(min-width: 768px)"
-                srcSet="/fotos/mapa-ruta.webp"
-                width={1600}
-                height={686}
-              />
-              <img
-                src="/fotos/mapa-ruta-movil.webp"
-                alt="Mapa oficial del recorrido de la 8K Ruta de las Mandarinas: salida en Patate Gardens, subida por la vía a San Jorge, sector de Chalpi, bajada por Eloy Alfaro y llegada al Estadio Municipal de Patate por la Av. Ambato."
-                width={640}
-                height={746}
-                className="h-auto w-full"
-              />
-            </picture>
-          </div>
-
-          {/* La versión ilustrada del recorrido, dibujada SOBRE el mapa
-              oficial como referencia (docs/CAMBIO-IMAGENES.md). Es un cartel,
-              no un plano: para orientarse el que vale es el de arriba — por
-              eso va después y con el rótulo claro. */}
-          <figure className="mx-auto mt-8 max-w-xl">
-            <img
-              src="/ilustraciones/mapa-ilustrado.webp"
-              srcSet={srcSetDe("/ilustraciones/mapa-ilustrado.webp")}
-              sizes="(max-width: 640px) 100vw, 576px"
-              alt="Cartel ilustrado del recorrido: la ruta como una cinta naranja que sale del parque, cruza el pueblo, sube entre los cultivos de mandarina y termina en el estadio"
-              width={880}
-              height={1168}
-              className="h-auto w-full rounded-[18px] border border-gray-200"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption className="font-barlow mt-3 text-center text-sm text-gray-500">
-              El recorrido, ilustrado. Para orientarte el día de la carrera usa
-              el mapa oficial de arriba.
-            </figcaption>
-          </figure>
+        <div className="mx-auto w-full max-w-5xl">
+          <MapaCarrera />
+          <p className="font-barlow mt-3 text-center text-sm text-gray-500">
+            <a
+              href="/fotos/mapa-ruta.webp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-gray-700"
+            >
+              Ver el arte oficial del mapa
+            </a>
+          </p>
         </div>
       </section>
 

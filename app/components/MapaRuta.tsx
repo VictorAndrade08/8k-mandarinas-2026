@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import MapaCarrera from "./MapaCarrera";
 
 /**
  * El mapa oficial del recorrido.
@@ -16,8 +17,6 @@ import { useEffect, useState } from "react";
  * vía a San Jorge, E. Alfaro, Juan León Mera, Av. Ambato y llegada al Estadio
  * Municipal.
  */
-const MAPA_ESCRITORIO = "/fotos/mapa-ruta.webp";
-const MAPA_MOVIL = "/fotos/mapa-ruta-movil.webp";
 
 /**
  * Fondo animado en los colores de la marca. Es una animación gráfica —degradado
@@ -79,27 +78,10 @@ export default function MapaRuta() {
         aria-label="Ver el recorrido completo, tramo por tramo"
       >
         <div className="relative">
-          <picture className="block h-auto w-full">
-            <source
-              media="(min-width: 768px)"
-              srcSet={MAPA_ESCRITORIO}
-              width={1600}
-              height={686}
-            />
-            <img
-              src={MAPA_MOVIL}
-              alt="Mapa de la carrera 8K Ruta de las Mandarinas: salida en Patate Gardens y llegada al Estadio Municipal de Patate."
-              width={640}
-              height={746}
-              // Sin recorte. Se probó con max-h + object-cover y la tijera se
-              // comía el logo por arriba y las montañas por abajo: un mapa al
-              // que le faltan trozos parece un error, no un adelanto. Entero
-              // mide 455px en móvil y 549 en escritorio — cabe.
-              className="h-auto w-full"
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
+          {/* El mapa dibujado en SVG (MapaCarrera): las calles son texto de
+              verdad y la tipografía es la del sitio. Reemplaza al webp del
+              flyer, que a este ancho se veía borroso. */}
+          <MapaCarrera />
           {/* La invitación va sobre el propio mapa, abajo, con su fondo: el mapa
               es claro y un texto suelto encima no se leería. */}
           <span className="font-barlow absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/75 to-transparent px-5 pt-10 pb-4 text-sm font-bold tracking-[0.12em] text-white uppercase sm:px-7">

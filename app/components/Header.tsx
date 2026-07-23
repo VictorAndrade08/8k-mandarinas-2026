@@ -172,10 +172,16 @@ export default function Header() {
                   } ${
                     // Dónde estás: color de marca + subrayado. Solo color no
                     // basta (WCAG 2.2, 1.4.1).
+                    // El activo sobre la píldora transparente va en BLANCO con
+                    // subrayado blanco: el naranja se confundía con los fondos
+                    // cálidos de las ilustraciones. Sobre la píldora blanca
+                    // sigue en color de marca.
                     activo
-                      ? "text-(--acento) underline decoration-2 underline-offset-8"
+                      ? transparente
+                        ? "text-white underline decoration-2 underline-offset-8"
+                        : "text-(--acento) underline decoration-2 underline-offset-8"
                       : transparente
-                        ? "text-white"
+                        ? "text-white/75"
                         : "text-[#333]"
                   }`}
                 >
