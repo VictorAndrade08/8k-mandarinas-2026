@@ -72,6 +72,12 @@ confetti in the air`.
 
 ## Reglas de integración
 
+- **Si el contenido de una imagen cambia, cambia el NOMBRE del archivo**
+  (kit.webp → kit-personas.webp). Cloudflare Pages sirve los assets con 16
+  días de caché y NO deja pisarlo desde `_headers` (verificado con curl el
+  22-jul-2026): reemplazar bajo el mismo nombre deja a los navegadores
+  enseñando la versión vieja hasta 16 días.
+
 - Guardar en `public/ilustraciones/` como webp, correr
   `node scripts/imagenes.mjs` para las variantes 240/400 y el manifest.
 - Al reemplazar, revisar el texto vecino: donde diga "las fotos son de la

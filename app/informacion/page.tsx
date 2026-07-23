@@ -303,8 +303,8 @@ export default function InformacionPage() {
                 de tallas, va aquí. */}
             <div className="mt-6 overflow-hidden rounded-[10px] border border-white/10">
               <img
-                src="/ilustraciones/kit.webp"
-                srcSet={srcSetDe("/ilustraciones/kit.webp")}
+                src="/ilustraciones/kit-personas.webp"
+                srcSet={srcSetDe("/ilustraciones/kit-personas.webp")}
                 sizes="(max-width: 1024px) 100vw, 560px"
                 alt="Ilustración: corredores estrenando el kit — camiseta naranja, medalla y mandarinas — en la plaza de Patate"
                 width={1280}
