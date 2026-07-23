@@ -77,6 +77,15 @@ simulador lo castiga de más; producción va por HTTP/2+ en Cloudflare y salió
 de producción tras el deploy — medir con 3 corridas y quedarse con la mediana
 (consejo #26/#29).
 
+## RESULTADO EN PRODUCCIÓN (22-jul, tras el deploy)
+
+**98 / 98 / 98** en tres corridas — LCP 4,5 s → 2,0-2,2 s, FCP 1,8 s,
+CLS 0, TBT 10 ms. De 82 a 98 con los arreglos de arriba.
+
+Para los últimos 2 puntos (LCP < 1,8 s): primero Early Hints en el panel de
+Cloudflare (gratis, ~200 ms de CSS); si no alcanza, consejo #8 (titular de
+texto como elemento mayor del hero móvil).
+
 ## Siguientes balas si producción no llega a 100
 
 1. Consejo #8: hero móvil con TITULAR DE TEXTO como elemento más grande
