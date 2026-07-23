@@ -52,6 +52,17 @@ const ReglamentoSection = dynamic(
 export default function Home() {
   return (
     <main className="relative min-h-screen w-full overflow-x-hidden">
+      {/* La ilustración del hero es el LCP en MÓVIL (ocupa toda la pantalla).
+          El preload va SOLO en el home (no en el layout, que castigaría a las
+          páginas interiores con 160 KB inútiles) y con media limitado a móvil
+          (en escritorio va el vídeo). React 19 sube este <link> al <head>. */}
+      <link
+        rel="preload"
+        as="image"
+        href="/hero-movil-corredores.webp"
+        media="(max-width: 1023px)"
+        fetchPriority="high"
+      />
       {/* La cuenta atrás va primero: es lo que trae a la gente y lo que la hace
           inscribirse. */}
       <HeroCountdown />

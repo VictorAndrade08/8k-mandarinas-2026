@@ -119,12 +119,8 @@ export default function RootLayout({
 
         {/* color-scheme dark stays */}
         <meta name="color-scheme" content="dark" />
-        {/* Precarga del logo del hero, que es el LCP. El informe marcaba 270 ms
-            de "retraso de carga del recurso": el navegador no descubría el SVG
-            hasta parsear el <body>. Con este preload en el <head> arranca la
-            descarga en el primer byte, en paralelo con el HTML. Es lo que ataca
-            ese retraso sin inflar el HTML — pegarlo inline serían 55 KB en cada
-            página y se llevaría por delante el FCP. */}
+        {/* Precarga del logo del hero. Arranca la descarga en el primer byte,
+            en paralelo con el HTML, en vez de esperar a parsear el <body>. */}
         <link
           rel="preload"
           as="image"

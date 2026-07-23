@@ -119,12 +119,19 @@ export default function HeroCountdown() {
           tabIndex={-1}
         />
       ) : (
-        // En móvil solo el póster: 24 KB en vez de 2,4 MB.
+        // En MÓVIL, la ilustración vertical de corredores en acción — la
+        // evidencia (docs/HERO-IMAGEN.md: NN/g, Baymard, VWO) dice que en el
+        // primer pantallazo de una carrera lo que genera confianza son
+        // personas en acción, no un vídeo de fondo (que además mata el LCP).
+        // Es 9:16, hecha para móvil, con el tercio superior despejado para el
+        // logo. Es el LCP: fetchPriority alta y decode async.
         <img
           className="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
-          src={VIDEO_FONDO_POSTER}
+          src="/hero-movil-corredores.webp"
           alt=""
           aria-hidden="true"
+          fetchPriority="high"
+          decoding="async"
         />
       )}
 
@@ -146,6 +153,18 @@ export default function HeroCountdown() {
         style={{
           background:
             "radial-gradient(ellipse 90% 70% at center, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0.56) 60%, rgba(0,0,0,0.72) 100%)",
+        }}
+      />
+      {/* Solo MÓVIL: la ilustración tiene el cielo crema arriba, donde va el
+          logo blanco — sin esto se perdería. Un degradado ciruela de arriba
+          hacia el centro le da respaldo al logo, la fecha y el contador sin
+          tapar a los corredores de abajo. En escritorio va el vídeo oscuro, no
+          hace falta. */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[2] lg:hidden"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(28,7,17,0.82) 0%, rgba(28,7,17,0.45) 32%, rgba(28,7,17,0) 55%)",
         }}
       />
       {/* Grano. Con la textura webp pre-horneada (la misma del layout), NO con
