@@ -165,10 +165,14 @@ export default function Header() {
                       ? "#f7771c"
                       : item.acento,
                   }}
-                  className={`inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-colors duration-200 outline-none hover:text-(--acento) focus-visible:ring-2 focus-visible:ring-(--acento) xl:px-4 ${
-                    // Sobre el vídeo del home los enlaces van en blanco; sobre
-                    // la píldora blanca, en gris oscuro.
-                    transparente ? "hover:bg-white/10" : "hover:bg-black/[0.04]"
+                  className={`inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-(--acento) xl:px-4 ${
+                    // El hover en modo transparente va a BLANCO PLENO, no a
+                    // naranja: el header flota sobre fondos cálidos (el degradado
+                    // naranja del home incluido) y el naranja desaparecía ahí.
+                    // Sobre la píldora blanca el hover sí usa el color de marca.
+                    transparente
+                      ? "hover:bg-white/15 hover:text-white"
+                      : "hover:bg-black/[0.04] hover:text-(--acento)"
                   } ${
                     // Dónde estás: color de marca + subrayado. Solo color no
                     // basta (WCAG 2.2, 1.4.1).
