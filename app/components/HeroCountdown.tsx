@@ -188,7 +188,12 @@ export default function HeroCountdown() {
           aprieta es el alto: un portátil de 1440x700 es ancho y bajo, así que
           por ancho no salta ningún breakpoint y aun así no cabe. Con clamp la
           pieza encoge sola en vez de chocar. */}
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-[clamp(1.25rem,4vh,4rem)] px-4 pt-[140px] pb-[clamp(1rem,4vh,3rem)] text-center text-white sm:px-6 sm:pt-[165px]">
+      {/* En MÓVIL el contenido se ancla ARRIBA (justify-start) con poco pt: la
+          píldora del header está escondida en el home móvil, así que no hay
+          que reservarle esos 140px y el logo estaba cayendo al centro, muy
+          abajo. Desde sm+ vuelve a centrarse y a reservar el hueco del
+          header. */}
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-start gap-[clamp(1.25rem,4vh,4rem)] px-4 pt-[clamp(4.5rem,12vh,7rem)] pb-[clamp(1rem,4vh,3rem)] text-center text-white sm:justify-center sm:px-6 sm:pt-[165px]">
         {/* GRUPO SUPERIOR — logo principal.
             Sin el rótulo "8K · Patate · Ecuador": con el header flotando encima
             del vídeo, quedaba justo debajo de la píldora y se tocaban. Además
