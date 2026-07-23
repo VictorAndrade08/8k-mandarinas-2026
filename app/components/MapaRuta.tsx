@@ -62,6 +62,10 @@ export default function MapaRuta() {
             className="h-full w-full object-cover"
             src={VIDEO_POSTER}
             alt=""
+            // lazy: esta sección va bajo el pliegue; sin el lazy, Next le
+            // genera un preload que compite con el LCP del hero.
+            loading="lazy"
+            decoding="async"
           />
         )}
         {/* El mapa es blanco y el fondo naranja fuerte: sin esta capa oscura en

@@ -148,12 +148,16 @@ export default function HeroCountdown() {
             "radial-gradient(ellipse 90% 70% at center, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0.56) 60%, rgba(0,0,0,0.72) 100%)",
         }}
       />
-      {/* Grano */}
+      {/* Grano. Con la textura webp pre-horneada (la misma del layout), NO con
+          el filtro feTurbulence inline que había: rasterizar turbulencia en el
+          móvil tomaba segundos de CPU y, como esta capa se mezcla ENCIMA del
+          hero (mix-blend), retenía el primer pintado del logo — era la mayor
+          parte de los 3,4s de render delay del LCP. */}
       <div
         className="pointer-events-none absolute inset-0 z-[3] opacity-30 mix-blend-overlay"
         style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+          backgroundImage: "url(/texturas/grano.webp)",
+          backgroundSize: "256px 256px",
         }}
       />
 
@@ -189,7 +193,10 @@ export default function HeroCountdown() {
             height={316}
             fetchPriority="high"
             loading="eager"
-            decoding="sync"
+            // async y no sync: el decode síncrono ata el pintado de la imagen
+            // al hilo principal, que en móvil está ocupado hidratando — con
+            // async el navegador decodifica aparte y pinta en cuanto puede.
+            decoding="async"
             className="h-auto max-h-[min(20vh,190px)] w-[min(78vw,580px)] object-contain select-none"
             draggable={false}
           />

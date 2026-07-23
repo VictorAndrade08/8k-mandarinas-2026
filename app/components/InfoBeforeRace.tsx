@@ -120,11 +120,17 @@ export default function InfoBeforeRace() {
                       aria-hidden
                       className="pointer-events-none absolute inset-0 -z-10"
                     >
+                      {/* lazy OBLIGATORIO: sin él, Next le genera un preload
+                          automático en el <head> y estos 124 KB compiten
+                          contra el logo del hero en la ventana crítica del
+                          LCP (docs/100-MOVIL.md, consejo #10). */}
                       <img
                         src="/ilustraciones/ruta-cinta.webp"
                         srcSet={srcSetDe("/ilustraciones/ruta-cinta.webp")}
                         sizes="(max-width: 1024px) 100vw, 720px"
                         alt=""
+                        loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover object-top opacity-50 transition-opacity duration-300 group-hover:opacity-65"
                       />
                       <span className="absolute inset-0 bg-gradient-to-t from-[#140309] via-[#140309]/55 to-transparent" />

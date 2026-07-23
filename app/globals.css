@@ -414,3 +414,12 @@ section[id] {
     background-image: url("/fotos/montanas.webp");
   }
 }
+
+/* Rendimiento móvil (docs/100-MOVIL.md, consejo #15): las secciones bajo el
+   pliegue no se maquetan ni se pintan hasta acercarse al viewport — el primer
+   cuadro solo paga el hero. El intrinsic-size evita saltos de scrollbar
+   mientras están sin renderizar. */
+.seccion-diferida {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 620px;
+}

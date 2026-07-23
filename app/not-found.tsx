@@ -18,11 +18,16 @@ export default function NoEncontrada() {
       {/* La ilustración de la bajada al pueblo, con la capa al 85% como el
           resto de cabeceras: se adivina, no compite con el mensaje. */}
       <div className="pointer-events-none absolute inset-0" aria-hidden>
+        {/* lazy: Next incrusta el boundary del 404 en TODAS las páginas y sin
+            el lazy le generaba un preload de esta imagen en cada <head>,
+            compitiendo con el LCP del home (docs/100-MOVIL.md). */}
         <img
           src="/ilustraciones/vuelta.webp"
           srcSet={srcSetDe("/ilustraciones/vuelta.webp")}
           sizes="100vw"
           alt=""
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-[#1c0710]/85" />

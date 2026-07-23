@@ -60,7 +60,12 @@ export default function Home() {
           fecha y el precio, y se repuso a petición: es el arte de la campaña y
           se quiere ver en el sitio. El texto de la imagen no lo lee Google —
           los datos que importan siguen también en HTML por todo el home. */}
-      <Publicidad />
+      {/* Todo lo que sigue va en .seccion-diferida (content-visibility): bajo
+          el pliegue no se maqueta ni se pinta hasta que el scroll se acerca —
+          el primer cuadro del móvil solo paga el hero (docs/100-MOVIL.md). */}
+      <div className="seccion-diferida">
+        <Publicidad />
+      </div>
 
       {/* EL ORDEN CUENTA UNA HISTORIA. El flyer de arriba anuncia
           "inscripciones abiertas": lo siguiente tiene que ser CÓMO, no el
@@ -71,22 +76,34 @@ export default function Home() {
       {/* Los cuatro pasos ANTES de las dos opciones de inscripción: quien duda
           de inscribirse por internet duda porque no sabe qué le van a pedir.
           Contestar eso primero es lo que hace que llegue al formulario. */}
-      <ComoInscribirse />
+      <div className="seccion-diferida">
+        <ComoInscribirse />
+      </div>
 
       {/* Antes aquí había otra sección entera de dos tarjetas: "Inscríbete
           online" (los mismos pasos y el mismo botón que la sección de arriba,
           otra vez) y "Hazlo por WhatsApp". Solo el WhatsApp aportaba algo
           propio, y cabe en una franja. */}
-      <AyudaWhatsApp />
+      <div className="seccion-diferida">
+        <AyudaWhatsApp />
+      </div>
       {/* El mapa arriba del todo: es lo que más se pregunta y hasta ahora no
           estaba en ningún sitio. */}
-      <MapaRuta />
-      <Hero />
+      <div className="seccion-diferida">
+        <MapaRuta />
+      </div>
+      <div className="seccion-diferida">
+        <Hero />
+      </div>
 
-      <TopGallery />
-      <SponsorsStrip />
+      <div className="seccion-diferida">
+        <TopGallery />
+      </div>
+      <div className="seccion-diferida">
+        <SponsorsStrip />
+      </div>
 
-      <section id="info">
+      <section id="info" className="seccion-diferida">
         <InfoBeforeRace />
       </section>
 
@@ -100,9 +117,11 @@ export default function Home() {
           solo hacían alert("🚀 ¡Próximamente disponible!"). Dos rejillas de
           cuatro tarjetas iguales seguidas, y la segunda sin llevar a ningún
           sitio. Está en el historial de git si hace falta recuperarla. */}
-      <FeaturedStories />
+      <div className="seccion-diferida">
+        <FeaturedStories />
+      </div>
 
-      <section id="reglamento">
+      <section id="reglamento" className="seccion-diferida">
         <ReglamentoSection />
       </section>
 
