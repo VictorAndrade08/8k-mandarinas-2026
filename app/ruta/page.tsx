@@ -160,6 +160,28 @@ export default function RutaPage() {
               />
             </picture>
           </div>
+
+          {/* La versión ilustrada del recorrido, dibujada SOBRE el mapa
+              oficial como referencia (docs/CAMBIO-IMAGENES.md). Es un cartel,
+              no un plano: para orientarse el que vale es el de arriba — por
+              eso va después y con el rótulo claro. */}
+          <figure className="mx-auto mt-8 max-w-xl">
+            <img
+              src="/ilustraciones/mapa-ilustrado.webp"
+              srcSet={srcSetDe("/ilustraciones/mapa-ilustrado.webp")}
+              sizes="(max-width: 640px) 100vw, 576px"
+              alt="Cartel ilustrado del recorrido: la ruta como una cinta naranja que sale del parque, cruza el pueblo, sube entre los cultivos de mandarina y termina en el estadio"
+              width={880}
+              height={1168}
+              className="h-auto w-full rounded-[18px] border border-gray-200"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption className="font-barlow mt-3 text-center text-sm text-gray-500">
+              El recorrido, ilustrado. Para orientarte el día de la carrera usa
+              el mapa oficial de arriba.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -237,41 +259,59 @@ export default function RutaPage() {
       <section className="w-full bg-[#190611] px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
         <div className="mx-auto w-full max-w-4xl">
           <div className="rounded-[18px] border border-[#ffc53d]/30 bg-[#ffc53d]/[0.07] p-6 sm:p-8">
-            <div className="mb-4 flex items-center gap-3">
-              <Warning size={24} weight="fill" className="text-[#ffc53d]" />
-              <h2 className="font-[family-name:var(--font-titular)] text-[22px] text-white sm:text-[26px]">
-                Cierre de vías
-              </h2>
+            {/* En pantallas grandes, la ilustración de la calle con vallas al
+                costado del aviso; en móvil se omite — el dato es lo que manda. */}
+            <div className="grid gap-6 lg:grid-cols-[1fr_260px]">
+              <div>
+                <div className="mb-4 flex items-center gap-3">
+                  <Warning size={24} weight="fill" className="text-[#ffc53d]" />
+                  <h2 className="font-[family-name:var(--font-titular)] text-[22px] text-white sm:text-[26px]">
+                    Cierre de vías
+                  </h2>
+                </div>
+                <ul className="font-barlow space-y-3 text-sm leading-relaxed text-gray-300 sm:text-base">
+                  <li className="flex gap-3">
+                    <ArrowDown
+                      size={18}
+                      className="mt-0.5 shrink-0 text-[#ffc53d]"
+                    />
+                    Las vías se cierran de{" "}
+                    <strong className="text-white">07h00 a 10h00</strong>. La
+                    apertura es progresiva, conforme avanza la competencia.
+                  </li>
+                  <li className="flex gap-3">
+                    <ArrowDown
+                      size={18}
+                      className="mt-0.5 shrink-0 text-[#ffc53d]"
+                    />
+                    El control de tránsito está a cargo de la Policía Nacional,
+                    con vallado en todo el trayecto.
+                  </li>
+                  <li className="flex gap-3">
+                    <ArrowDown
+                      size={18}
+                      className="mt-0.5 shrink-0 text-[#ffc53d]"
+                    />
+                    Hay puntos de control en ruta.{" "}
+                    <strong className="text-white">
+                      No pasar por uno es motivo de descalificación.
+                    </strong>
+                  </li>
+                </ul>
+              </div>
+
+              <img
+                src="/ilustraciones/cierre-vias.webp"
+                srcSet={srcSetDe("/ilustraciones/cierre-vias.webp")}
+                sizes="260px"
+                alt="Ilustración: calle del pueblo con vallas y un policía dirigiendo el tránsito al amanecer"
+                width={880}
+                height={1168}
+                className="hidden h-full w-full rounded-[10px] object-cover lg:block"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
-            <ul className="font-barlow space-y-3 text-sm leading-relaxed text-gray-300 sm:text-base">
-              <li className="flex gap-3">
-                <ArrowDown
-                  size={18}
-                  className="mt-0.5 shrink-0 text-[#ffc53d]"
-                />
-                Las vías se cierran de{" "}
-                <strong className="text-white">07h00 a 10h00</strong>. La
-                apertura es progresiva, conforme avanza la competencia.
-              </li>
-              <li className="flex gap-3">
-                <ArrowDown
-                  size={18}
-                  className="mt-0.5 shrink-0 text-[#ffc53d]"
-                />
-                El control de tránsito está a cargo de la Policía Nacional, con
-                vallado en todo el trayecto.
-              </li>
-              <li className="flex gap-3">
-                <ArrowDown
-                  size={18}
-                  className="mt-0.5 shrink-0 text-[#ffc53d]"
-                />
-                Hay puntos de control en ruta.{" "}
-                <strong className="text-white">
-                  No pasar por uno es motivo de descalificación.
-                </strong>
-              </li>
-            </ul>
           </div>
 
           <div className="font-barlow mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">

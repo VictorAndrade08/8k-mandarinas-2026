@@ -254,23 +254,40 @@ export default function InformacionPage() {
             compiten por separado en todas.
           </p>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {CATEGORIAS.map((c) => (
-              <div
-                key={c.nombre}
-                className="flex flex-col rounded-[18px] border border-gray-200 bg-gray-50 p-6"
-              >
-                <h3 className="font-[family-name:var(--font-titular)] text-[22px] leading-tight text-gray-900">
-                  {c.nombre}
-                </h3>
-                <p className="font-barlow mt-1 text-sm text-gray-600">
-                  {c.edades}
-                </p>
-                <p className="mt-5 font-[family-name:var(--font-titular)] text-[30px] leading-none text-[#f7771c] tabular-nums">
-                  ${c.precio}
-                </p>
-              </div>
-            ))}
+          {/* La ilustración de las cuatro edades (incluida la silla de ruedas
+              de la categoría Discapacidad) al lado de las tarjetas: dice en un
+              vistazo lo que las tarjetas dicen en números — aquí corre todo el
+              mundo. */}
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,360px)_1fr]">
+            <img
+              src="/ilustraciones/categorias.webp"
+              srcSet={srcSetDe("/ilustraciones/categorias.webp")}
+              sizes="(max-width: 1024px) 100vw, 360px"
+              alt="Ilustración: corredores de todas las edades y un atleta en silla de ruedas, por las calles de Patate"
+              width={880}
+              height={1168}
+              className="aspect-[16/10] w-full rounded-[18px] border border-gray-200 object-cover object-[center_62%] lg:aspect-auto lg:h-full"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="grid gap-4 sm:grid-cols-2">
+              {CATEGORIAS.map((c) => (
+                <div
+                  key={c.nombre}
+                  className="flex flex-col rounded-[18px] border border-gray-200 bg-gray-50 p-6"
+                >
+                  <h3 className="font-[family-name:var(--font-titular)] text-[22px] leading-tight text-gray-900">
+                    {c.nombre}
+                  </h3>
+                  <p className="font-barlow mt-1 text-sm text-gray-600">
+                    {c.edades}
+                  </p>
+                  <p className="mt-5 font-[family-name:var(--font-titular)] text-[30px] leading-none text-[#f7771c] tabular-nums">
+                    ${c.precio}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -333,6 +350,19 @@ export default function InformacionPage() {
             <p className="font-barlow mt-3 text-sm text-gray-400">
               A los tres primeros de cada categoría, damas y varones.
             </p>
+            {/* La medalla con la mandarina, recortada a banda para no competir
+                con la tabla — que es el dato de verdad. */}
+            <img
+              src="/ilustraciones/premios.webp"
+              srcSet={srcSetDe("/ilustraciones/premios.webp")}
+              sizes="(max-width: 1024px) 100vw, 560px"
+              alt="Ilustración: medalla con una mandarina grabada, entre confeti"
+              width={880}
+              height={1168}
+              className="mt-6 h-40 w-full rounded-[10px] border border-white/10 object-cover object-[center_38%]"
+              loading="lazy"
+              decoding="async"
+            />
             <div className="mt-6 overflow-hidden rounded-[10px] border border-white/10">
               <table className="font-barlow w-full text-sm text-gray-300">
                 <thead>

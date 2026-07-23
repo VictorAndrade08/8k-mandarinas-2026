@@ -59,11 +59,11 @@ export default function Header() {
   const [enTope, setEnTope] = useState(true);
   const ultimoY = useRef(0);
 
-  // Solo el home lleva la píldora transparente en el tope: ahí debajo hay
-  // vídeo a pantalla completa y el vidrio deja verlo. Las páginas interiores
-  // tienen fondos claros u oscuros variados — ahí la píldora blanca asegura
-  // el contraste siempre.
-  const transparente = ruta === "/" && enTope;
+  // En el tope la píldora va SIEMPRE transparente (pedido del 22-jul): en el
+  // home deja ver el vídeo y en las interiores flota sobre el fondo ciruela
+  // del body (#1c0710) — oscuro en ambos casos, así que el texto blanco
+  // contrasta siempre. Al hacer scroll vuelve la versión blanca compacta.
+  const transparente = enTope;
 
   useEffect(() => {
     const alScroll = () => {
@@ -117,9 +117,7 @@ export default function Header() {
           className={`mx-auto flex w-full max-w-7xl items-center justify-center rounded-full border px-4 transition-all duration-300 sm:px-6 lg:justify-between lg:px-8 ${
             transparente
               ? "border-white/15 bg-white/10 py-3 backdrop-blur-md"
-              : enTope
-                ? "border-[#EFEFF3] bg-white/95 py-3 shadow-[0_8px_28px_rgba(0,0,0,0.10)] backdrop-blur-sm hover:shadow-[0_15px_40px_-10px_rgba(247,119,28,0.18)]"
-                : "border-white/50 bg-white/80 py-2 shadow-[0_14px_36px_rgba(0,0,0,0.16)] backdrop-blur-md"
+              : "border-white/50 bg-white/80 py-2 shadow-[0_14px_36px_rgba(0,0,0,0.16)] backdrop-blur-md"
           }`}
         >
           {/* IZQUIERDA → HOME. El logo va desnudo: es a color y se sostiene solo. */}

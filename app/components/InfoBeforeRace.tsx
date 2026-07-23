@@ -105,12 +105,31 @@ export default function InfoBeforeRace() {
                   key={it.title}
                   href={it.href}
                   aria-label={`${it.cta}: ${it.title}`}
-                  className={`group relative flex flex-col border border-white/10 bg-white/[0.04] text-left transition-colors duration-200 hover:border-[#f7771c]/40 hover:bg-[#f7771c]/10 ${
+                  className={`group relative isolate flex flex-col overflow-hidden border border-white/10 bg-white/[0.04] text-left transition-colors duration-200 hover:border-[#f7771c]/40 hover:bg-[#f7771c]/10 ${
                     destacada
                       ? "justify-end rounded-[18px] p-7 sm:p-9 lg:col-span-2 lg:row-span-3"
                       : "rounded-[10px] p-5 sm:p-6"
                   }`}
                 >
+                  {/* La destacada lleva la ilustración de la cinta de la ruta
+                      de fondo (z negativo dentro del isolate: pinta sobre el
+                      fondo de la tarjeta pero bajo el texto). Con el degradado
+                      el texto de abajo conserva su contraste. */}
+                  {destacada && (
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 -z-10"
+                    >
+                      <img
+                        src="/ilustraciones/ruta-cinta.webp"
+                        srcSet={srcSetDe("/ilustraciones/ruta-cinta.webp")}
+                        sizes="(max-width: 1024px) 100vw, 720px"
+                        alt=""
+                        className="h-full w-full object-cover object-top opacity-50 transition-opacity duration-300 group-hover:opacity-65"
+                      />
+                      <span className="absolute inset-0 bg-gradient-to-t from-[#140309] via-[#140309]/55 to-transparent" />
+                    </span>
+                  )}
                   <div
                     className={`flex items-center justify-center text-[#f7771c] transition-colors group-hover:text-white ${
                       destacada ? "mb-5 h-14 w-14" : "mb-3 h-9 w-9"
