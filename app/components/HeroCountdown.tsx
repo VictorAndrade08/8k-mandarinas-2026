@@ -30,7 +30,20 @@ function calculateTimeLeft(): TimeLeft {
 
 const pad = (n: number) => n.toString().padStart(2, "0");
 
+// Días que faltan, calculados UNA vez en el render (build + primer render del
+// cliente), sin reloj. Es lo que se enseña en MÓVIL: un número fijo, sin
+// setInterval ni recálculo por segundo. Así el primer pantallazo del teléfono
+// no paga JavaScript de contador (pedido del dueño, 24-jul). El sitio es
+// estático: este número se refresca en cada despliegue, que es suficiente
+// cuando quedan semanas. En escritorio sigue el contador vivo de abajo.
+const MS_DIA = 1000 * 60 * 60 * 24;
+function diasFaltantes(): number {
+  const diff = new Date(FECHA_CARRERA).getTime() - Date.now();
+  return diff > 0 ? Math.ceil(diff / MS_DIA) : 0;
+}
+
 export default function HeroCountdown() {
+  const dias = diasFaltantes();
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(INITIAL_TIME);
   // El vídeo de fondo solo en escritorio y solo tras montar.
   //
@@ -49,6 +62,13 @@ export default function HeroCountdown() {
   }, []);
 
   useEffect(() => {
+    // El contador vivo (segundo a segundo) es SOLO de escritorio: en móvil se
+    // enseña el número de días estático de arriba y aquí no arranca nada — ni
+    // el recálculo inicial ni el setInterval. Así el teléfono no gasta hilo
+    // principal una vez por segundo en algo que ni se ve (el bloque vivo va
+    // `hidden lg:grid`).
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+
     // La regla set-state-in-effect avisa de renders en cascada, y tiene razón en
     // general. Aquí es justo lo que hay que hacer: el sitio se compila a HTML
     // estático, así que el servidor no sabe qué hora es en el navegador de quien
@@ -241,7 +261,28 @@ export default function HeroCountdown() {
             Faltan para el inicio
           </p>
 
-          <div className="xs:gap-3 xs:max-w-sm mx-auto grid w-full max-w-[300px] grid-cols-4 gap-2 sm:max-w-xl sm:gap-4 md:max-w-2xl md:gap-5">
+          {/* MÓVIL — un solo bloque ESTÁTICO con los días. Sin contador vivo,
+              sin JS de reloj: es el número horneado en el build. Mismo estilo
+              de "dorsal" que los bloques de escritorio para que sea la misma
+              pieza, no otra. */}
+          <div className="relative mx-auto flex min-h-[clamp(84px,16vh,120px)] w-full max-w-[260px] flex-col items-center justify-center overflow-hidden rounded-t-md rounded-b-2xl border-x border-b border-white/10 bg-black/55 px-4 py-[clamp(0.6rem,2vh,1rem)] shadow-[0_10px_30px_rgba(0,0,0,0.45)] lg:hidden">
+            <span
+              className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#f7771c] via-[#ee374b] to-[#c51850]"
+              aria-hidden="true"
+            />
+            <span
+              className="font-[family-name:var(--font-titular)] text-[clamp(48px,18vw,88px)] leading-none font-black text-white italic tabular-nums"
+              suppressHydrationWarning
+            >
+              {dias}
+            </span>
+            <span className="mt-[clamp(0.2rem,0.8vh,0.6rem)] font-[family-name:var(--font-titular)] text-[clamp(11px,3.4vw,1.1rem)] font-black tracking-[0.22em] text-white/80 uppercase">
+              {dias === 1 ? "Día" : "Días"}
+            </span>
+          </div>
+
+          {/* ESCRITORIO — contador vivo de 4 bloques (días/horas/min/seg). */}
+          <div className="mx-auto hidden w-full max-w-xl grid-cols-4 gap-4 md:max-w-2xl md:gap-5 lg:grid">
             {blocks.map((b) => (
               <div
                 key={b.label}
@@ -258,9 +299,6 @@ export default function HeroCountdown() {
                 >
                   {b.value}
                 </span>
-                {/* "SEGUNDOS" es la palabra más larga y su caja mide un cuarto
-                    del ancho: el tamaño tiene que salir del vw, no del vh, o se
-                    corta en móvil. Sin tracking hasta xs por el mismo motivo. */}
                 <span className="xs:tracking-[0.1em] mt-[clamp(0.15rem,0.6vh,0.5rem)] font-[family-name:var(--font-titular)] text-[clamp(7px,min(1.5vh,2.1vw),1rem)] font-black tracking-normal text-white/80 uppercase sm:tracking-[0.18em]">
                   {b.label}
                 </span>

@@ -361,7 +361,11 @@
       "WebFetch(domain:api.pullpush.io)",
       "Bash(CHROME_PATH='/Users/skychopan/Library/Caches/ms-playwright/chromium-1228/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing' npx --prefix /private/tmp/claude-501/-Users-skychopan-Desktop-Prez---Backup-8k-mandarinas-2026/12f6bf09-2343-4494-873d-c5151c0e2e94/scratchpad lighthouse http://localhost:4190/ --only-categories=performance --form-factor=mobile --screenEmulation.mobile --throttling-method=devtools --quiet --chrome-flags=--headless=new --output=json --output-path=/private/tmp/claude-501/-Users-skychopan-Desktop-Prez---Backup-8k-mandarinas-2026/12f6bf09-2343-4494-873d-c5151c0e2e94/scratchpad/lh-devtools.json)",
       "Bash(cp \"/private/tmp/claude-501/-Users-skychopan-Desktop-Prez---Backup-8k-mandarinas-2026/12f6bf09-2343-4494-873d-c5151c0e2e94/scratchpad/hero-movil.png\" \"/Users/skychopan/Desktop/8k-instagram/14-hero-vertical.png\")",
-      "Bash(node __TRACKED_VAR__/shot-hero.mjs)"
+      "Bash(node __TRACKED_VAR__/shot-hero.mjs)",
+      "Bash(curl -s http://localhost:3000/ -o /dev/null -w \"HTTP %{http_code}\\\\n\")",
+      "Bash(grep -oE \"Días</span>|>[0-9]{2,3}</span>\")",
+      "Bash(curl -s http://localhost:3000/ -o /dev/null -w \"HTTP %{http_code}\\\\n\" --max-time 60)",
+      "Bash(curl -s http://localhost:3000/ -o /dev/null -w \"HTTP %{http_code}\\\\n\" --max-time 90)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026",

@@ -34,6 +34,10 @@ const SPONSOR_LOGOS = [
   { src: "/sponsors/m-verde.webp", alt: "Patrocinador oficial" },
   { src: "/sponsors/sweaden.webp", alt: "Sweaden Compañía de Seguros" },
   { src: "/sponsors/neurovitalfit.webp", alt: "NeuroVitalFit" },
+  // Llegó suelto (PNG negro sobre blanco): recortado al contenido y con el
+  // blanco a transparente, como los demás, para que la cinta lo pinte en
+  // gris y a color al pasar por encima.
+  { src: "/sponsors/matrix.webp", alt: "Matrix Training Center" },
 ];
 
 export default function SponsorsStrip() {
@@ -160,14 +164,17 @@ export default function SponsorsStrip() {
           {SPONSOR_LOGOS.map((logo) => (
             <li
               key={logo.src}
-              className="flex h-20 items-center justify-center rounded-2xl border border-gray-100 bg-gray-50"
+              className="flex h-20 items-center justify-center overflow-hidden rounded-2xl border border-gray-100 bg-gray-50"
             >
               <img
                 src={logo.src}
                 alt={logo.alt}
                 width={640}
                 height={320}
-                className="h-full w-full object-contain opacity-80"
+                // scale-125: los archivos traen margen transparente y con
+                // object-contain el logo salía pequeño. Se agranda y el borde
+                // sobrante lo recorta el overflow-hidden de la tarjeta.
+                className="h-full w-full scale-125 object-contain opacity-80"
                 loading="lazy"
                 decoding="async"
               />
