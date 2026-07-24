@@ -7,7 +7,6 @@ import {
   WHATSAPP_SOPORTE,
   PREMIOS,
 } from "../lib/carrera";
-import { srcSetDe } from "../lib/imagen";
 
 // WhatsApp de la organización para reclamos de resultados. Es distinto del de
 // soporte al corredor: este lo atiende el juzgamiento, no inscripciones.
@@ -226,20 +225,6 @@ export default function ReglamentoSection() {
 
           <ArticleCard id="art-7" title="Artículo 7. Entrega de Kits y Chips">
             <div className="space-y-3">
-              {/* El kit dibujado (ilustración declarada, docs/CAMBIO-IMAGENES.md):
-                  quince artículos de texto seguido agradecen un respiro visual,
-                  y este es EL artículo que la gente busca. */}
-              <img
-                src="/ilustraciones/kit-plano.webp"
-                srcSet={srcSetDe("/ilustraciones/kit-plano.webp")}
-                sizes="(max-width: 768px) 100vw, 680px"
-                alt="Ilustración del kit del corredor: camiseta, medalla, dorsal, botella de agua, zapatillas y mandarinas"
-                width={1280}
-                height={716}
-                className="w-full rounded-2xl border border-black/10"
-                loading="lazy"
-                decoding="async"
-              />
               {/* Fecha, lugar y horario aún sin confirmar por la organización.
                   Se anuncia como pendiente en vez de arrastrar los datos de la
                   edición anterior: un corredor que viaja a retirar el kit a un
