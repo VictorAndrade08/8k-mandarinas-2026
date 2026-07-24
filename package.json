@@ -44,5 +44,13 @@
     "*.{json,md,css}": [
       "prettier --write"
     ]
-  }
+  },
+  "//browserslist": "Objetivos modernos a propósito. Sin esto, SWC transpila y mete polyfills para Array.at/flat/flatMap, Object.fromEntries/hasOwn y String.trimStart/End (13,5 KiB de JS inútil que PageSpeed marca como 'JavaScript antiguo'). Estas versiones nativizan todo eso y cubren >96% del tráfico móvil real. Safari 15.4 es el corte de Array.at/Object.hasOwn.",
+  "browserslist": [
+    "chrome >= 91",
+    "firefox >= 90",
+    "safari >= 15.4",
+    "edge >= 91",
+    "not dead"
+  ]
 }

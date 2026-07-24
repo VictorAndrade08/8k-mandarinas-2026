@@ -25,13 +25,15 @@ import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 // sobre nada.
 const SPONSOR_LOGOS = [
   { src: "/sponsors/vehicentro-sinotruk.webp", alt: "Vehicentro · Sinotruk" },
-  { src: "/sponsors/oscus.webp", alt: "OSCUS" },
+  {
+    src: "/sponsors/oscus-coop.webp",
+    alt: "OSCUS · Cooperativa de Ahorro y Crédito",
+  },
   { src: "/sponsors/vigop.webp", alt: "VIGOP Eventos" },
   { src: "/sponsors/boho.svg", alt: "BOHO" },
   { src: "/sponsors/prez.webp", alt: "PREZ · Agencia de Growth Marketing" },
   { src: "/sponsors/full-fun-travel.webp", alt: "Full Fun Travel" },
   { src: "/sponsors/mokenla.webp", alt: "Mokenla" },
-  { src: "/sponsors/m-verde.webp", alt: "Patrocinador oficial" },
   { src: "/sponsors/sweaden.webp", alt: "Sweaden Compañía de Seguros" },
   { src: "/sponsors/neurovitalfit.webp", alt: "NeuroVitalFit" },
   // Llegó suelto (PNG negro sobre blanco): recortado al contenido y con el
@@ -164,17 +166,18 @@ export default function SponsorsStrip() {
           {SPONSOR_LOGOS.map((logo) => (
             <li
               key={logo.src}
-              className="flex h-20 items-center justify-center overflow-hidden rounded-2xl border border-gray-100 bg-gray-50"
+              className="flex h-24 items-center justify-center rounded-2xl border border-gray-100 bg-gray-50 p-2"
             >
               <img
                 src={logo.src}
                 alt={logo.alt}
                 width={640}
                 height={320}
-                // scale-125: los archivos traen margen transparente y con
-                // object-contain el logo salía pequeño. Se agranda y el borde
-                // sobrante lo recorta el overflow-hidden de la tarjeta.
-                className="h-full w-full scale-125 object-contain opacity-80"
+                // object-contain sin recorte: un scale uniforme cortaba los
+                // logos anchos (Vehicentro, OSCUS, VIGOR ya llenan el ancho de
+                // la tarjeta). La tarjeta se hizo más alta (h-24) para darles
+                // más aire; cada logo se ve entero.
+                className="h-full w-full object-contain opacity-80"
                 loading="lazy"
                 decoding="async"
               />
@@ -218,7 +221,7 @@ export default function SponsorsStrip() {
               {duplicated.map((logo, i) => (
                 <div
                   key={`${logo.src}-${i}`}
-                  className="group relative flex h-24 w-[192px] flex-none items-center justify-center rounded-2xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:-translate-y-1 hover:border-[#f7771c]/20 hover:bg-white hover:shadow-lg sm:h-28 sm:w-[224px] md:h-32 md:w-[256px]"
+                  className="group relative flex h-24 w-[192px] flex-none items-center justify-center rounded-2xl border border-gray-100 bg-gray-50 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#f7771c]/20 hover:bg-white hover:shadow-lg sm:h-28 sm:w-[224px] md:h-32 md:w-[256px]"
                 >
                   {/* OPTIMIZACIÓN DE IMAGEN */}
                   <div className="relative h-full w-full">

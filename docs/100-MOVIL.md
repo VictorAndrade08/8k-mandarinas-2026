@@ -92,3 +92,46 @@ texto como elemento mayor del hero móvil).
    (reordenar solo con media queries) — LCP ≈ FCP ≈ verde seguro.
 2. Consejo #1/#4: countdown como isla con placeholder determinista.
 3. Early Hints en el panel de Cloudflare (Speed → Optimization).
+
+## Ampliación · top 40 y qué se aplicó (24-jul-2026)
+
+Reporte móvil del 24-jul: **80** de rendimiento (LCP lab 4,9 s por el logo del
+hero, FCP 1,7 s, TBT 30 ms, CLS 0). Investigación en foros (GitHub Discussions
+de Next.js, web.dev, patterns.dev, dev.to, Cloudflare docs) pidiendo top 40 de
+mejor a peor con foco en **diferir/eliminar JS de hidratación en móvil**.
+
+### Lo que se aplicó ya
+
+- **Hero como componente de SERVIDOR (técnica 21).** El hero era `"use client"`
+  y se hidrataba entero en el móvil aunque ahí es puro contenido estático. Se
+  reescribió sin `"use client"`: HTML de servidor con cero JS. Lo interactivo
+  —vídeo de fondo y contador vivo, **solo escritorio**— se movió a dos islas
+  cliente (`VideoFondoDesktop`, `ContadorDesktop`) que devuelven `null` en
+  móvil. En el teléfono no entra ni el vídeo ni el reloj: se pinta el número de
+  días estático horneado en el build.
+- **Contador estático en móvil.** Sin `setInterval` ni recálculo por segundo.
+- **browserslist moderno (técnica 9).** Chrome/Edge≥91, Firefox≥90, Safari≥15.4:
+  SWC deja de down-levelar mi código a ES5.
+
+### Pendiente medido
+
+- **Polyfills legacy de Next (13,5 KiB, técnica 8).** Se probó aliasar
+  `next/dist/build/polyfills/polyfill-module` a un módulo vacío; en **Turbopack
+  no surtió efecto** (el instalador seguía en el chunk). Next los sirve con
+  `nomodule`, así que un Chrome moderno no los ejecuta. Reintentar tras subir
+  de versión de Next.
+- **Early Hints en Cloudflare (técnicas 2 y 29).** Precargar el logo LCP vía
+  header `Link` en `_headers` + activar Early Hints en el panel (Speed →
+  Optimization). Es la palanca #1 sobre el LCP de 4,9 s. **Lado del dueño.**
+- **Right-size del logo LCP (técnica 1).** Se sirve 900×316 y se muestra
+  562×197; generar variante a ~1124×394 y recomprimir grano/hero a q≈78.
+- **CSS crítico inline (técnica 22).** `beasties/critters` sobre `out/`. Ojo:
+  el experimento previo de `inlineCss` global empeoró (ver next.config.ts).
+
+### El ranking completo (40) quedó en el historial del chat del 24-jul.
+
+Resumen de grupos: A) LCP del logo hero (right-size, Early Hints, fetchpriority);
+B) eliminar/diferir JS (polyfills, `next/dynamic ssr:false`, hidratación
+on-scroll/on-interaction, islas, purgar libs cliente, animaciones CSS);
+C) CSS crítico/no bloqueante; D) Cloudflare (Early Hints, Brotli, HTTP/3, apagar
+Rocket Loader); E) afinado del árbol de render.
