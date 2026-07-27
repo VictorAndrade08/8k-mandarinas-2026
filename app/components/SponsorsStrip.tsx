@@ -32,7 +32,7 @@ const SPONSOR_LOGOS = [
   { src: "/sponsors/vigop.webp", alt: "VIGOP Eventos" },
   { src: "/sponsors/boho.svg", alt: "BOHO" },
   { src: "/sponsors/prez.webp", alt: "PREZ · Agencia de Growth Marketing" },
-  { src: "/sponsors/full-fun-travel.webp", alt: "Full Fun Travel" },
+  { src: "/sponsors/full-fun-travel-2.webp", alt: "Full Fun Travel" },
   { src: "/sponsors/mokenla.webp", alt: "Mokenla" },
   { src: "/sponsors/sweaden.webp", alt: "Sweaden Compañía de Seguros" },
   { src: "/sponsors/neurovitalfit.webp", alt: "NeuroVitalFit" },
