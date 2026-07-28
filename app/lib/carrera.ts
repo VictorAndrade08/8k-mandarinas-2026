@@ -29,6 +29,14 @@ export const FECHA_CARRERA = "2026-08-29T08:00:00-05:00";
 export const PRECIO_PREVENTA = 20;
 export const PRECIO_DESCUENTO = 18;
 
+/**
+ * Inscritos aproximados que enseña el hero como prueba social. Es el total
+ * REAL que maneja la organización: los pagos online (Airtable/D1) MÁS los que
+ * se inscriben en efectivo y aún no se han pasado al sistema. Se actualiza a
+ * mano aquí conforme sube. Redondea hacia abajo para no exagerar de más.
+ */
+export const INSCRITOS_APROX = 300;
+
 /** WhatsApp de soporte al corredor. */
 export const WHATSAPP_SOPORTE = "593995102378";
 

@@ -1,4 +1,9 @@
-import { FECHA_CARRERA, VIDEO_FONDO_POSTER } from "../lib/carrera";
+import {
+  FECHA_CARRERA,
+  VIDEO_FONDO_POSTER,
+  PRECIO_PREVENTA,
+  INSCRITOS_APROX,
+} from "../lib/carrera";
 import ContadorDesktop from "./ContadorDesktop";
 import VideoFondoDesktop from "./VideoFondoDesktop";
 
@@ -109,6 +114,13 @@ export default function HeroCountdown() {
 
         {/* GRUPO CENTRAL — contador. */}
         <div className="flex w-full flex-col items-center">
+          {/* Prueba social + urgencia. El número sale de INSCRITOS_APROX en
+              lib/carrera.ts —el total REAL que maneja la organización, online
+              (Airtable/D1) MÁS los de efectivo aún sin pasar al sistema— y se
+              actualiza a mano ahí. (docs/30-UX-CONVERSION.md, tips 6 y 24.) */}
+          <p className="mb-[clamp(0.6rem,1.8vh,1.5rem)] inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-4 py-1.5 text-[clamp(0.62rem,min(1.9vh,2.9vw),0.95rem)] font-bold tracking-[0.04em] text-white backdrop-blur-sm">
+            🔥 Ya somos +{INSCRITOS_APROX} inscritos · cupos limitados
+          </p>
           <p className="mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.62rem,min(2vh,2.6vw),1.45rem)] font-black tracking-[0.2em] text-white/90 uppercase sm:tracking-[0.2em]">
             Faltan para el inicio
           </p>
@@ -140,6 +152,14 @@ export default function HeroCountdown() {
           >
             Inscríbete ahora
           </a>
+
+          {/* Valor de un vistazo: distancia + precio + qué incluye, junto al
+              CTA. Es lo que un desconocido necesita para decidir sin bajar.
+              El precio y el kit salen de fuentes únicas (carrera.ts, reglamento
+              art. 6). (docs/30-UX-CONVERSION.md, tips 2 y 9.) */}
+          <p className="mt-[clamp(0.6rem,1.8vh,1.1rem)] max-w-[22rem] text-[clamp(0.72rem,min(1.7vh,2.7vw),1rem)] leading-snug font-semibold tracking-wide text-white/90">
+            8K · ${PRECIO_PREVENTA} · incluye camiseta, dorsal, chip y medalla
+          </p>
         </div>
       </div>
     </section>
