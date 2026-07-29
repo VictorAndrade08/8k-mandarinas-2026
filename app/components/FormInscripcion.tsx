@@ -54,6 +54,8 @@ import {
 // --- COMPONENTE PRINCIPAL ---
 export default function InscripcionPage() {
   const [step, setStep] = useState(1);
+  // Confirmación con diseño (no el alert del navegador) para salir al inicio.
+  const [salirAbierto, setSalirAbierto] = useState(false);
   const [loading, setLoading] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -578,6 +580,55 @@ export default function InscripcionPage() {
       `}</style>
 
           {/* Modales */}
+          {/* Confirmación de salida con el diseño del sitio (no el alert del
+              navegador). Lo prominente es SEGUIR; salir es la opción secundaria.
+              Tocar el fondo = quedarse (la acción segura). */}
+          {salirAbierto && (
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label="¿Salir de la inscripción?"
+              onClick={() => setSalirAbierto(false)}
+              className="fixed inset-0 z-[110] flex items-end justify-center bg-black/80 backdrop-blur-md sm:items-center sm:p-4"
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-md rounded-t-3xl border border-white/10 bg-[#200815] p-6 pb-8 shadow-2xl sm:rounded-2xl md:p-8"
+              >
+                <div
+                  className="mx-auto -mt-2 mb-4 h-1.5 w-12 rounded-full bg-white/25 sm:hidden"
+                  aria-hidden="true"
+                />
+                <div className="flex flex-col items-center gap-5 text-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-yellow-500/20 text-3xl md:h-20 md:w-20">
+                    👋
+                  </div>
+                  <h3 className="font-bebas text-3xl font-bold text-white uppercase md:text-4xl">
+                    ¿Salir de la inscripción?
+                  </h3>
+                  <p className="font-barlow text-lg leading-relaxed text-gray-300">
+                    Tu avance queda guardado en este dispositivo. Puedes volver
+                    y continuar cuando quieras.
+                  </p>
+                  <div className="mt-2 flex w-full flex-col gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setSalirAbierto(false)}
+                      className="font-barlow w-full rounded-xl bg-[#f7771c] py-4 text-lg font-bold text-white shadow-lg shadow-[#f7771c]/20 transition hover:bg-[#d2600f] md:text-xl"
+                    >
+                      Seguir con mi inscripción
+                    </button>
+                    <Link
+                      href="/"
+                      className="font-barlow w-full rounded-xl bg-[#331023] py-4 text-lg font-bold text-gray-400 transition hover:bg-[#471830] hover:text-white md:text-xl"
+                    >
+                      Salir al inicio
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
           <CustomModal
             isOpen={modalState.isOpen}
             title={modalState.title}
@@ -610,17 +661,10 @@ export default function InscripcionPage() {
                       formulario se autoguarda, así que no se pierde nada, pero
                       la confirmación evita el susto. Debajo va un botón visible
                       "Inicio" para que la salida sea evidente, no adivinada. */}
-                  <Link
-                    href="/"
+                  <button
+                    type="button"
                     aria-label="Volver al inicio"
-                    onClick={(e) => {
-                      if (
-                        !window.confirm(
-                          "¿Salir de la inscripción y volver al inicio? Tu avance queda guardado en este dispositivo."
-                        )
-                      )
-                        e.preventDefault();
-                    }}
+                    onClick={() => setSalirAbierto(true)}
                     className="inline-flex w-fit rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#230a17]"
                   >
                     <img
@@ -628,21 +672,14 @@ export default function InscripcionPage() {
                       alt="8K Ruta de las Mandarinas — volver al inicio"
                       className="h-20 w-auto object-contain transition-transform hover:scale-[1.03] md:h-24"
                     />
-                  </Link>
-                  <Link
-                    href="/"
-                    onClick={(e) => {
-                      if (
-                        !window.confirm(
-                          "¿Salir de la inscripción y volver al inicio? Tu avance queda guardado en este dispositivo."
-                        )
-                      )
-                        e.preventDefault();
-                    }}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSalirAbierto(true)}
                     className="font-barlow inline-flex w-fit items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-sm font-bold text-white/80 transition-colors hover:bg-white/10 hover:text-white"
                   >
                     ← Volver al inicio
-                  </Link>
+                  </button>
                 </div>
 
                 {/* BARRA DE PROGRESO (Móvil) */}

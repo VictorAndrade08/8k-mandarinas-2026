@@ -375,7 +375,8 @@
       "Bash(cd \"/Users/skychopan/Desktop/Prez *)",
       "Bash(curl -s --max-time 40 \"https://api.pullpush.io/reddit/search/comment/?q=landing+page+too+many+CTAs&size=25\")",
       "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\('---',x.get\\('subreddit',''\\),'\\\\n',x.get\\('body',''\\)[:600]\\) for x in d.get\\('data',[]\\)]\")",
-      "Bash(curl -s --max-time 40 -w \"HTTP:%{http_code}\\\\n\" \"https://api.pullpush.io/reddit/search/submission/?q=event+landing+page&size=5\" -o /tmp/pp.json)"
+      "Bash(curl -s --max-time 40 -w \"HTTP:%{http_code}\\\\n\" \"https://api.pullpush.io/reddit/search/submission/?q=event+landing+page&size=5\" -o /tmp/pp.json)",
+      "Bash(grep -n \"useState<\\\\|useState\\(\\\\|return \\(\\\\|<Toaster\\\\|createPortal\\\\|useRouter\\\\|</div>\\\\s*$\\\\|montad\\\\|mounted\" app/components/FormInscripcion.tsx)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026",
