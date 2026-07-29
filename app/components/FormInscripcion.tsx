@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, {
   useState,
   useCallback,
@@ -603,12 +604,45 @@ export default function InscripcionPage() {
             {/* --- SIDEBAR / HEADER --- */}
             <div className="relative flex min-w-[300px] flex-col justify-between border-b border-white/5 bg-[#230a17] p-6 md:w-1/3 md:border-r md:border-b-0 md:p-12">
               <div>
-                <div className="mb-6 flex items-center gap-4 md:mb-12">
-                  <img
-                    src="/logo-mandarinas-blanco.svg"
-                    alt="8K Ruta de las Mandarinas"
-                    className="h-20 w-auto object-contain md:h-24"
-                  />
+                <div className="mb-6 flex flex-col gap-3 md:mb-12">
+                  {/* El logo vuelve al inicio, pero PREGUNTA antes: en medio de
+                      la inscripción un clic accidental no debe sacarte. El
+                      formulario se autoguarda, así que no se pierde nada, pero
+                      la confirmación evita el susto. Debajo va un botón visible
+                      "Inicio" para que la salida sea evidente, no adivinada. */}
+                  <Link
+                    href="/"
+                    aria-label="Volver al inicio"
+                    onClick={(e) => {
+                      if (
+                        !window.confirm(
+                          "¿Salir de la inscripción y volver al inicio? Tu avance queda guardado en este dispositivo."
+                        )
+                      )
+                        e.preventDefault();
+                    }}
+                    className="inline-flex w-fit rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#230a17]"
+                  >
+                    <img
+                      src="/logo-mandarinas-blanco.svg"
+                      alt="8K Ruta de las Mandarinas — volver al inicio"
+                      className="h-20 w-auto object-contain transition-transform hover:scale-[1.03] md:h-24"
+                    />
+                  </Link>
+                  <Link
+                    href="/"
+                    onClick={(e) => {
+                      if (
+                        !window.confirm(
+                          "¿Salir de la inscripción y volver al inicio? Tu avance queda guardado en este dispositivo."
+                        )
+                      )
+                        e.preventDefault();
+                    }}
+                    className="font-barlow inline-flex w-fit items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-sm font-bold text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                  >
+                    ← Volver al inicio
+                  </Link>
                 </div>
 
                 {/* BARRA DE PROGRESO (Móvil) */}
