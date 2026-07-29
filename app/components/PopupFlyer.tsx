@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 
 // Pop-up del flyer oficial al entrar al home. Enseña "Inscripciones abiertas",
@@ -16,6 +17,7 @@ const CLAVE_SESION = "flyer-visto";
 
 export default function PopupFlyer() {
   const [abierto, setAbierto] = useState(false);
+  const [montado, setMontado] = useState(false);
   const cerrarRef = useRef<HTMLButtonElement>(null);
 
   const cerrar = () => {
@@ -24,6 +26,8 @@ export default function PopupFlyer() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMontado(true);
     if (sessionStorage.getItem(CLAVE_SESION)) return;
     const t = setTimeout(() => setAbierto(true), 700);
     return () => clearTimeout(t);
@@ -46,15 +50,19 @@ export default function PopupFlyer() {
     };
   }, [abierto]);
 
-  if (!abierto) return null;
+  // Portal a <body>: el pop-up debe tapar TODA la página (header y barra
+  // inferior incluidos). Desde dentro de <main> quedaba atrapado por el
+  // contexto de apilado del MainWrapper y el header flotaba por encima; en el
+  // body no hay ancestro que lo limite, y con z altísimo cubre el 100%.
+  if (!abierto || !montado) return null;
 
-  return (
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
       aria-label="8K Ruta de las Mandarinas — inscripciones abiertas"
       onClick={cerrar}
-      className="fixed inset-0 z-[120] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm sm:p-6"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm sm:p-6"
     >
       {/* El clic dentro de la tarjeta NO cierra (solo el fondo y la X). */}
       <div
@@ -103,6 +111,7 @@ export default function PopupFlyer() {
           Cerrar y ver la página
         </button>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
