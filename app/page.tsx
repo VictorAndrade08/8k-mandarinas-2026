@@ -55,7 +55,7 @@ const PopupFlyer = dynamic(() => import("./components/PopupFlyer"));
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen w-full overflow-x-hidden">
+    <main className="relative min-h-screen w-full overflow-x-clip">
       {/* La ilustración del hero es el LCP en MÓVIL (ocupa toda la pantalla).
           El preload va SOLO en el home (no en el layout, que castigaría a las
           páginas interiores con 160 KB inútiles) y con media limitado a móvil

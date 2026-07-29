@@ -141,7 +141,12 @@ export default function RootLayout({
       </head>
 
       <body
-        className={`relative min-h-screen overflow-x-hidden bg-[#1c0710] text-white antialiased`}
+        // overflow-x-CLIP y no HIDDEN: en iOS Safari, `overflow-x:hidden` en el
+        // body lo vuelve contenedor de scroll y desancla los `position:fixed`
+        // (la barra inferior se iba flotando a media página al deslizar,
+        // reportado con captura). `clip` recorta igual el desborde horizontal
+        // pero NO crea contenedor de scroll, así que la barra queda pegada abajo.
+        className={`relative min-h-screen overflow-x-clip bg-[#1c0710] text-white antialiased`}
       >
         {/* CAPAS DE FONDO */}
         <div
