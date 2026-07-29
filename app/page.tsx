@@ -49,6 +49,10 @@ const ReglamentoSection = dynamic(
   }
 );
 
+// El pop-up del flyer se carga aparte y sin bloquear: aparece con retraso y una
+// sola vez por sesión, así que no tiene por qué entrar en el arranque crítico.
+const PopupFlyer = dynamic(() => import("./components/PopupFlyer"));
+
 export default function Home() {
   return (
     <main className="relative min-h-screen w-full overflow-x-hidden">
@@ -137,6 +141,7 @@ export default function Home() {
       </section>
 
       <FloatingCTA />
+      <PopupFlyer />
     </main>
   );
 }
