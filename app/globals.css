@@ -56,6 +56,19 @@ label,
   --violeta: #6a1f9c;
   --navy: #20206e;
 
+  /* El degradado diagonal cálido es la FIRMA del flyer. Va en UN token para que
+     no se escriba a mano con ángulos distintos en cada sección (docs/
+     LINEA-GRAFICA-100.md, 13-14). Mismo orden de paradas y 135° siempre. */
+  --gradient-brand: linear-gradient(
+    135deg,
+    var(--naranja) 0%,
+    var(--coral) 48%,
+    var(--magenta) 100%
+  );
+  /* Capa oscura translúcida para asegurar contraste del texto sobre el
+     degradado cálido (el naranja claro no llega a 4.5:1 con blanco). */
+  --scrim: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.35));
+
   /* Variantes de trabajo derivadas de los cuatro de arriba */
   --naranja-oscuro: #d2600f; /* hover del naranja */
   --vino-claro: #a01444; /* bordes y texto secundario sobre claro */
@@ -169,6 +182,12 @@ label,
 .font-barlow {
   font-family: var(--font-texto), system-ui, sans-serif;
   font-weight: 500;
+}
+
+/* El degradado de marca como utilidad: `bg-brand` en vez de reescribir el
+   linear-gradient. Una sola fuente de verdad (docs/LINEA-GRAFICA-100.md, 13). */
+.bg-brand {
+  background: var(--gradient-brand);
 }
 
 /* ========================================= */

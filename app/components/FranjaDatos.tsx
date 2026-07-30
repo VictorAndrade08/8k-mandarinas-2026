@@ -8,6 +8,8 @@
 //      dos capas violeta + navy, que son la firma visual de la marca.
 // Los valores salen del flyer: Valle de Patate · 29 de agosto · Patate Gardens.
 
+import MontanasDivider from "./MontanasDivider";
+
 const DATOS = [
   { etiqueta: "Lugar", valor: "Valle de Patate", pill: "var(--violeta)" },
   { etiqueta: "Fecha", valor: "29 de agosto", pill: "var(--navy)" },
@@ -23,11 +25,7 @@ export default function FranjaDatos() {
   return (
     <section
       aria-label="Lugar, fecha y salida de la carrera"
-      className="relative w-full overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(115deg, #f7771c 0%, #ee374b 48%, #c51850 100%)",
-      }}
+      className="bg-brand relative w-full overflow-hidden"
     >
       {/* Patrón geométrico tenue del flyer (esquinas): puro CSS, sin peso. */}
       <div
@@ -66,24 +64,8 @@ export default function FranjaDatos() {
         </div>
       </div>
 
-      {/* MONTAÑAS ANGULARES — la firma del flyer. Dos capas de chevrons: violeta
-          detrás, navy delante. SVG a sangre, preserveAspectRatio none para que
-          estire a lo ancho como una cordillera. */}
-      <svg
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-16 w-full sm:h-20 lg:h-24"
-        viewBox="0 0 1440 120"
-        preserveAspectRatio="none"
-      >
-        <polygon
-          fill="var(--violeta)"
-          points="0,120 0,70 210,30 380,78 560,26 770,80 980,34 1200,82 1440,40 1440,120"
-        />
-        <polygon
-          fill="var(--navy)"
-          points="0,120 0,96 240,58 470,100 700,54 940,102 1180,60 1440,98 1440,120"
-        />
-      </svg>
+      {/* MONTAÑAS ANGULARES — la firma del flyer, ahora componente reutilizable. */}
+      <MontanasDivider className="absolute inset-x-0 bottom-0 h-16 sm:h-20 lg:h-24" />
     </section>
   );
 }
