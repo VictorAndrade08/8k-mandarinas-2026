@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 
 import HeroCountdown from "./components/HeroCountdown";
+import FranjaDatos from "./components/FranjaDatos";
 import MapaRuta from "./components/MapaRuta";
 import Hero from "./components/Hero";
 import FloatingCTA from "./components/FloatingCTA";
@@ -70,6 +71,14 @@ export default function Home() {
       {/* La cuenta atrás va primero: es lo que trae a la gente y lo que la hace
           inscribirse. */}
       <HeroCountdown />
+
+      {/* Franja de datos LUGAR/FECHA/SALIDA con la línea gráfica del flyer
+          (degradado cálido + chips violeta/navy + montañas angulares). Es lo
+          primero que se ve al bajar del hero: dónde, cuándo y de dónde se sale,
+          en el lenguaje del arte oficial. */}
+      <div className="seccion-diferida">
+        <FranjaDatos />
+      </div>
 
       {/* El flyer oficial. Se quitó en la pasada de simplicidad por repetir la
           fecha y el precio, y se repuso a petición: es el arte de la campaña y

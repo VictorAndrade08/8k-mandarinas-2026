@@ -49,6 +49,13 @@ label,
   --coral: #ee374b;
   --naranja: #f7771c;
 
+  /* Estructurales del flyer, muestreados píxel a píxel del arte oficial: el
+     violeta de los chips LUGAR/FECHA/SALIDA y el navy/índigo de las montañas
+     angulares del pie. Son la parte "fría" de la marca, la que da el contraste
+     contra el degradado cálido — sin ellos el sitio es solo naranja. */
+  --violeta: #6a1f9c;
+  --navy: #20206e;
+
   /* Variantes de trabajo derivadas de los cuatro de arriba */
   --naranja-oscuro: #d2600f; /* hover del naranja */
   --vino-claro: #a01444; /* bordes y texto secundario sobre claro */
