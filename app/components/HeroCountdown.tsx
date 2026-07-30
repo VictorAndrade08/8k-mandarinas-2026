@@ -64,21 +64,23 @@ export default function HeroCountdown() {
             "linear-gradient(135deg, rgba(255,140,26,0.42) 0%, rgba(247,119,28,0.48) 30%, rgba(255,78,90,0.50) 60%, rgba(197,24,80,0.52) 85%, rgba(184,24,106,0.58) 100%)",
         }}
       />
-      {/* Viñeta: oscurece los bordes y deja el centro limpio para el texto. */}
+      {/* Viñeta MÁS SUAVE: antes ahogaba el fondo (0.46→0.72). Bajada para que
+          el hero se vea vibrante como el banner, sin perder el foco del texto. */}
       <div
         className="pointer-events-none absolute inset-0 z-[2]"
         style={{
           background:
-            "radial-gradient(ellipse 90% 70% at center, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0.56) 60%, rgba(0,0,0,0.72) 100%)",
+            "radial-gradient(ellipse 92% 72% at center, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.30) 60%, rgba(0,0,0,0.52) 100%)",
         }}
       />
       {/* Solo MÓVIL: degradado ciruela superior para respaldar el logo blanco
-          sobre el cielo crema de la ilustración. */}
+          sobre el cielo crema de la ilustración. Más ligero que antes (0.82) —
+          justo lo necesario para que el logo se lea sin oscurecer la escena. */}
       <div
         className="pointer-events-none absolute inset-0 z-[2] lg:hidden"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(28,7,17,0.82) 0%, rgba(28,7,17,0.45) 32%, rgba(28,7,17,0) 55%)",
+            "linear-gradient(to bottom, rgba(28,7,17,0.58) 0%, rgba(28,7,17,0.26) 30%, rgba(28,7,17,0) 52%)",
         }}
       />
       {/* Grano: textura webp pre-horneada (no feTurbulence, que rasterizarlo en

@@ -31,7 +31,6 @@
       "Bash(node home.js)",
       "Bash(python3 -c ' *)",
       "Bash(python3 -c \"import psd_tools; print\\('psd-tools', psd_tools.__version__\\)\")",
-      "Bash(curl -sS https://api.apify.com/v2/users/me?token=__TRACKED_VAR__ --max-time 30)",
       "Bash(node rotas.js)",
       "Bash(node video.js)",
       "Bash(xargs -0 du -h)",
@@ -378,7 +377,8 @@
       "Bash(curl -s --max-time 40 -w \"HTTP:%{http_code}\\\\n\" \"https://api.pullpush.io/reddit/search/submission/?q=event+landing+page&size=5\" -o /tmp/pp.json)",
       "Bash(grep -n \"useState<\\\\|useState\\(\\\\|return \\(\\\\|<Toaster\\\\|createPortal\\\\|useRouter\\\\|</div>\\\\s*$\\\\|montad\\\\|mounted\" app/components/FormInscripcion.tsx)",
       "WebFetch(domain:www.refactoringui.com)",
-      "WebFetch(domain:carbondesignsystem.com)"
+      "WebFetch(domain:carbondesignsystem.com)",
+      "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\('user:',d.get\\('data',{}\\).get\\('username'\\),'plan:',d.get\\('data',{}\\).get\\('plan',{}\\).get\\('id'\\)\\)\")"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026",

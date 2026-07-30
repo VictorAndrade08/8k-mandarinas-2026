@@ -350,19 +350,6 @@ export default function InformacionPage() {
             <p className="font-barlow mt-3 text-sm text-gray-400">
               A los tres primeros de cada categoría, damas y varones.
             </p>
-            {/* La medalla con la mandarina, recortada a banda para no competir
-                con la tabla — que es el dato de verdad. */}
-            <img
-              src="/ilustraciones/premios.webp"
-              srcSet={srcSetDe("/ilustraciones/premios.webp")}
-              sizes="(max-width: 1024px) 100vw, 560px"
-              alt="Ilustración: medalla con una mandarina grabada, entre confeti"
-              width={880}
-              height={1168}
-              className="mt-6 h-40 w-full rounded-[10px] border border-white/10 object-cover object-[center_38%]"
-              loading="lazy"
-              decoding="async"
-            />
             <div className="mt-6 overflow-hidden rounded-[10px] border border-white/10">
               <table className="font-barlow w-full text-sm text-gray-300">
                 <thead>
