@@ -382,7 +382,11 @@
       "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height,duration -of csv=p=0 public/video/8k-fondo.mp4)",
       "Bash(ffmpeg -y -i __TRACKED_VAR__/reel-hd.mp4 -an -vf scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720 -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 26 -preset slow -movflags +faststart public/video/8k-hero.mp4)",
       "Bash(ffmpeg -y -i __TRACKED_VAR__/reel-hd.mp4 -an -vf scale=1152:648:force_original_aspect_ratio=increase,crop=1152:648 -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 31 -preset slow -movflags +faststart public/video/8k-hero.mp4)",
-      "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height,duration -of csv=p=0 public/video/8k-hero.mp4)"
+      "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height,duration -of csv=p=0 public/video/8k-hero.mp4)",
+      "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height,duration -of csv=p=0 public/video/8k-promo.mp4)",
+      "Bash(ffprobe -v error -show_entries stream=codec_type -of csv=p=0 public/video/8k-promo.mp4)",
+      "Bash(ffprobe -v error -show_entries stream=codec_type,width,height -show_entries format=duration -of default=nw=1 __TRACKED_VAR__/reel-hd.mp4)",
+      "Bash(ffmpeg -y -i __TRACKED_VAR__/reel-hd.mp4 -vf scale=1280:720:force_original_aspect_ratio=decrease -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 23 -preset slow -c:a aac -b:a 128k -movflags +faststart public/video/8k-promo-v2.mp4)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026",

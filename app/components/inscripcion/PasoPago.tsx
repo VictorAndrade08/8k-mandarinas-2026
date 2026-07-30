@@ -90,6 +90,21 @@ export function PasoPago({
         className="absolute left-[-9999px] h-px w-px opacity-0"
       />
 
+      {/* Recomendación: un solo pago por persona. Evita que alguien pague por
+          varios en una sola transferencia — así cada comprobante cuadra con una
+          inscripción y no se traban las validaciones. */}
+      <div className="font-barlow mb-6 flex items-start gap-3 rounded-2xl border border-[#f7771c]/30 bg-[#f7771c]/10 p-4">
+        <span aria-hidden="true" className="text-xl leading-none">
+          💡
+        </span>
+        <p className="text-sm leading-relaxed text-gray-200 md:text-base">
+          <strong className="text-white">Recomendado: un pago por persona.</strong>{" "}
+          Si se inscriben varios, que cada quien haga su propia transferencia con
+          su comprobante. Un solo pago para varias personas mezcla los datos y
+          retrasa la validación.
+        </p>
+      </div>
+
       {/* SELECTOR DE MÉTODO DE PAGO */}
       <p className="font-barlow mb-3 text-base text-gray-400 md:text-lg">
         Elige cómo vas a pagar:

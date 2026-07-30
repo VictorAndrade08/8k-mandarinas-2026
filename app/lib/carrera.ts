@@ -10,8 +10,8 @@
  * Patate. El original venía en 1080p a 53 MB; esto es 720p a 8 MB, y aun así solo
  * se descarga cuando el visitante pulsa play.
  */
-export const VIDEO_SRC = "/video/8k-promo.mp4";
-export const VIDEO_POSTER = "/video/8k-promo-poster.webp";
+export const VIDEO_SRC = "/video/8k-promo-v2.mp4";
+export const VIDEO_POSTER = "/video/8k-promo-v2-poster.webp";
 
 /**
  * Recorte del promo para el fondo del contador: 22s en bucle, sin audio y a menor
