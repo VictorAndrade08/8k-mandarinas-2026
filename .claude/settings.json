@@ -378,7 +378,11 @@
       "Bash(grep -n \"useState<\\\\|useState\\(\\\\|return \\(\\\\|<Toaster\\\\|createPortal\\\\|useRouter\\\\|</div>\\\\s*$\\\\|montad\\\\|mounted\" app/components/FormInscripcion.tsx)",
       "WebFetch(domain:www.refactoringui.com)",
       "WebFetch(domain:carbondesignsystem.com)",
-      "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\('user:',d.get\\('data',{}\\).get\\('username'\\),'plan:',d.get\\('data',{}\\).get\\('plan',{}\\).get\\('id'\\)\\)\")"
+      "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\('user:',d.get\\('data',{}\\).get\\('username'\\),'plan:',d.get\\('data',{}\\).get\\('plan',{}\\).get\\('id'\\)\\)\")",
+      "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height,duration -of csv=p=0 public/video/8k-fondo.mp4)",
+      "Bash(ffmpeg -y -i __TRACKED_VAR__/reel-hd.mp4 -an -vf scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720 -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 26 -preset slow -movflags +faststart public/video/8k-hero.mp4)",
+      "Bash(ffmpeg -y -i __TRACKED_VAR__/reel-hd.mp4 -an -vf scale=1152:648:force_original_aspect_ratio=increase,crop=1152:648 -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 31 -preset slow -movflags +faststart public/video/8k-hero.mp4)",
+      "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height,duration -of csv=p=0 public/video/8k-hero.mp4)"
     ],
     "additionalDirectories": [
       "/Users/skychopan/Desktop/Prez - Backup/8k-mandarinas-2026",

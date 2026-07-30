@@ -19,8 +19,8 @@ export const VIDEO_POSTER = "/video/8k-promo-poster.webp";
  * Arranca en el segundo 8 a propósito: los primeros segundos del promo rotulan
  * "27 de agosto" y la carrera es el 29.
  */
-export const VIDEO_FONDO_SRC = "/video/8k-fondo.mp4";
-export const VIDEO_FONDO_POSTER = "/video/8k-fondo-poster.webp";
+export const VIDEO_FONDO_SRC = "/video/8k-hero.mp4";
+export const VIDEO_FONDO_POSTER = "/video/8k-hero-poster.webp";
 
 /** Sábado 29 de agosto de 2026, 08:00 en Ecuador (GMT-5). Salida en Patate Gardens. */
 export const FECHA_CARRERA = "2026-08-29T08:00:00-05:00";
