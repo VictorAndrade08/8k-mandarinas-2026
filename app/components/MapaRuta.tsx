@@ -16,8 +16,10 @@ import { useEffect, useState } from "react";
  * vía a San Jorge, E. Alfaro, Juan León Mera, Av. Ambato y llegada al Estadio
  * Municipal.
  */
-const MAPA_ESCRITORIO = "/fotos/mapa-ruta.webp";
-const MAPA_MOVIL = "/fotos/mapa-ruta-movil.webp";
+// El arte OFICIAL del mapa (2026), el mismo que en /ruta. Reemplaza al mapa
+// anterior; una sola imagen para las dos, servida escalada.
+const MAPA_ESCRITORIO = "/fotos/mapa-carrera-oficial.webp";
+const MAPA_MOVIL = "/fotos/mapa-carrera-oficial.webp";
 
 /**
  * Fondo animado en los colores de la marca. Es una animación gráfica —degradado
@@ -88,13 +90,13 @@ export default function MapaRuta() {
               media="(min-width: 768px)"
               srcSet={MAPA_ESCRITORIO}
               width={1600}
-              height={686}
+              height={1128}
             />
             <img
               src={MAPA_MOVIL}
               alt="Mapa de la carrera 8K Ruta de las Mandarinas: salida en Patate Gardens y llegada al Estadio Municipal de Patate."
-              width={640}
-              height={746}
+              width={1600}
+              height={1128}
               // Sin recorte. Se probó con max-h + object-cover y la tijera se
               // comía el logo por arriba y las montañas por abajo: un mapa al
               // que le faltan trozos parece un error, no un adelanto. Entero

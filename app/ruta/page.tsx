@@ -9,7 +9,6 @@ import {
   ArrowDown,
 } from "@phosphor-icons/react/dist/ssr";
 import { srcSetDe } from "../lib/imagen";
-import MapaCarrera from "../components/MapaCarrera";
 
 export const metadata = {
   title: "El recorrido — 8K Ruta de las Mandarinas 2026",
@@ -141,22 +140,20 @@ export default function RutaPage() {
       </section>
 
       {/* ── EL MAPA DE LA CARRERA ──────────────────────────────────────── */}
-      {/* Dibujado en SVG con las calles del oficio (ver MapaCarrera.tsx):
-          texto de verdad, tipografía del sitio, 4 KB. El arte del flyer
-          queda enlazado abajo por si alguien quiere el original. */}
+      {/* El arte OFICIAL del mapa (2026): recorrido calle por calle, salida en
+          Patate Gardens y llegada en el Estadio Municipal. Sustituye al SVG que
+          se dibujó a mano; ahora es el mapa que publica la organización. */}
       <section className="w-full bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto w-full max-w-5xl">
-          <MapaCarrera />
-          <p className="font-barlow mt-3 text-center text-sm text-gray-500">
-            <a
-              href="/fotos/mapa-ruta.webp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2 hover:text-gray-700"
-            >
-              Ver el arte oficial del mapa
-            </a>
-          </p>
+          <img
+            src="/fotos/mapa-carrera-oficial.webp"
+            alt="Mapa oficial de la carrera 8K Ruta de las Mandarinas: salida en Patate Gardens (08h00), recorrido por E. Alfaro, Vía San Jorge, Juan León Mera, Av. Ambato y Rocafuerte, y llegada en el Estadio Municipal de Patate."
+            width={1600}
+            height={1128}
+            className="w-full rounded-2xl border border-black/10 shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </section>
 

@@ -5,10 +5,11 @@
 // Viene de op1.png (1916x821, 2 MB) reescalado a 1600 y pasado por cwebp a
 // calidad 82: 90 KB, un 96% menos, con PSNR 43,6 dB — o sea, sin diferencia
 // visible. Es lo primero que ve quien baja del hero, así que carga en eager.
-const DESKTOP_IMAGE = "/fotos/banner-inscripciones.webp";
-// El vertical, también en webp: 175 KB → 61 KB. Se mostraba a 380px de ancho
-// pero pesaba como si fuera a 1100 — PageSpeed lo cantaba como 154 KB tirados.
-const MOBILE_IMAGE = "/fotos/post-8k.webp";
+// Arte oficial 2026 actualizado (v2). Nombres nuevos para saltar la caché de
+// Cloudflare. Horizontal para escritorio, vertical (la corredora, promo $20)
+// para móvil.
+const DESKTOP_IMAGE = "/fotos/banner-inscripciones-v2.webp";
+const MOBILE_IMAGE = "/fotos/post-8k-v2.webp";
 
 export default function Publicidad() {
   return (
@@ -24,13 +25,13 @@ export default function Publicidad() {
             media="(min-width: 768px)"
             srcSet={DESKTOP_IMAGE}
             width={1600}
-            height={686}
+            height={711}
           />
           <img
             src={MOBILE_IMAGE}
-            alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Precio preventa $20 · Lugar: Valle de Patate · Fecha: 29 de agosto · Salida: Patate Gardens"
-            width={640}
-            height={746}
+            alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Precio preventa $20 (hasta el 31 de agosto) · Lugar: Valle de Patate · Fecha: 29 de agosto · Salida: Patate Gardens"
+            width={900}
+            height={1124}
             className="h-auto w-full"
             // Ni eager ni fetchPriority: este banner está DEBAJO del pliegue —
             // el hero ocupa la pantalla entera. Con prioridad alta le robaba el
