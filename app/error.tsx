@@ -46,7 +46,7 @@ export default function GlobalError({
           </button>
           <Link
             href="/"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-gray-300 px-7 py-3.5 text-xs font-bold tracking-[0.15em] text-gray-700 uppercase transition-all duration-300 hover:border-[#f7771c] hover:text-[#f7771c]"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-gray-300 px-7 py-3.5 text-xs font-bold tracking-[0.15em] text-gray-700 uppercase transition-all duration-300 hover:border-[#b83f00] hover:text-[#b83f00]"
           >
             Ir al inicio
           </Link>
@@ -58,7 +58,7 @@ export default function GlobalError({
             href="https://wa.me/593995102378"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold text-[#f7771c] underline underline-offset-4"
+            className="font-bold text-[#b83f00] underline underline-offset-4"
           >
             Escríbenos por WhatsApp
           </a>

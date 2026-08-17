@@ -101,9 +101,7 @@ export default function FloatingCTA() {
         // de un botón y una sola sombra, la de marca.
         className={`fixed right-8 bottom-8 z-50 flex items-center gap-2 rounded-full bg-gradient-to-r from-[#f7771c] to-[#c51850] px-7 py-3.5 text-base leading-none font-bold tracking-[0.08em] text-white uppercase shadow-[0_8px_24px_rgba(247,119,28,0.35)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 ${isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"}`}
       >
-        {/* "Inscríbete" y el corredor, igual que la barra inferior del móvil:
-            antes decía "Inscribirme" y llevaba un icono de puntero de ratón. */}
-        <span>Inscríbete</span>
+        <span>Inscribirme</span>
         <PersonSimpleRun size={22} weight="fill" />
       </Link>
     </div>

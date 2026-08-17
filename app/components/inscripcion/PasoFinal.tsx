@@ -137,6 +137,27 @@ export function PasoFinal({
             </p>
             <p className="text-lg text-gray-200">{formData.genero}</p>
           </div>
+
+          <div>
+            <p className="mb-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
+              Valor
+            </p>
+            <p className="text-lg font-bold text-[#f7771c] md:text-xl">
+              ${selectedPrice}.00
+            </p>
+          </div>
+          <div>
+            <p className="mb-1 text-xs font-bold tracking-wider text-gray-500 uppercase">
+              Fecha de envío
+            </p>
+            <p className="text-lg text-gray-200">
+              {new Date().toLocaleDateString("es-EC", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
+          </div>
         </div>
 
         <div className="flex items-center gap-5 rounded-xl border border-white/5 bg-[#331023] p-5">
@@ -156,6 +177,10 @@ export function PasoFinal({
               <span className="ml-1 rounded bg-yellow-500/10 px-2 py-1 font-bold text-yellow-500">
                 Pendiente de Verificación
               </span>
+            </p>
+            <p className="mt-2 text-sm leading-snug text-gray-500">
+              Guarda tu número de cédula: con él consultas tu estado en
+              cualquier momento.
             </p>
           </div>
         </div>

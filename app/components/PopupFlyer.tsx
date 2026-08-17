@@ -10,8 +10,8 @@ import Link from "next/link";
 // espanta. Por eso:
 //   - Se ve UNA vez por sesión (sessionStorage): no reaparece en cada página.
 //   - Cierre MUY fácil: botón X grande, clic en el fondo, y tecla Esc.
-//   - Aparece con un pequeño retraso para no robarle el primer pintado al hero
-//     (el LCP en móvil), y nunca se pre-renderiza en el HTML estático.
+//   - Aparece con la primera interacción del usuario (no con temporizador),
+//     así nunca cuenta como LCP, y no se pre-renderiza en el HTML estático.
 //   - Dos artes: el horizontal en escritorio, el vertical en móvil (<picture>).
 const CLAVE_SESION = "flyer-visto";
 
@@ -29,8 +29,22 @@ export default function PopupFlyer() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMontado(true);
     if (sessionStorage.getItem(CLAVE_SESION)) return;
-    const t = setTimeout(() => setAbierto(true), 700);
-    return () => clearTimeout(t);
+    // Se abre con la PRIMERA interacción (scroll/toque/tecla), no con un
+    // temporizador: abriéndose solo a los 700 ms, su flyer casi a pantalla
+    // completa se convertía en el elemento LCP de la página (PageSpeed lo
+    // midió en 5,0 s). La medición de LCP se detiene en la primera
+    // interacción, así que abierto después de interactuar ya no cuenta — y de
+    // paso no le tapa el hero a quien todavía está mirándolo.
+    const abrir = () => setAbierto(true);
+    const eventos: (keyof WindowEventMap)[] = [
+      "scroll",
+      "pointerdown",
+      "keydown",
+    ];
+    eventos.forEach((e) =>
+      window.addEventListener(e, abrir, { once: true, passive: true })
+    );
+    return () => eventos.forEach((e) => window.removeEventListener(e, abrir));
   }, []);
 
   useEffect(() => {
@@ -85,15 +99,21 @@ export default function PopupFlyer() {
           onClick={cerrar}
           className="block overflow-hidden rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
         >
+          {/* Variantes al tamaño real: la tarjeta mide como mucho 420px de CSS
+              en móvil y 768px en lg+. Servir el original de 900/1600px era
+              regalar la mitad de los bytes (PageSpeed: −54 KiB). */}
           <picture className="block">
             <source
               media="(min-width: 1024px)"
-              srcSet="/fotos/flyer-inscripciones.webp"
+              srcSet="/fotos/flyer-inscripciones-768.webp 768w, /fotos/flyer-inscripciones.webp 1600w"
+              sizes="min(100vw - 3rem, 768px)"
               width={1600}
               height={1128}
             />
             <img
-              src="/fotos/flyer-inscripciones-movil.webp"
+              src="/fotos/flyer-inscripciones-movil-840.webp"
+              srcSet="/fotos/flyer-inscripciones-movil-480.webp 480w, /fotos/flyer-inscripciones-movil-840.webp 840w, /fotos/flyer-inscripciones-movil.webp 900w"
+              sizes="min(100vw - 2rem, 420px)"
               alt="8K Ruta de las Mandarinas · Inscripciones abiertas · 29 de agosto en Patate · toca para inscribirte"
               width={900}
               height={1273}

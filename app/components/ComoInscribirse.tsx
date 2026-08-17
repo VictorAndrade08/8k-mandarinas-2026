@@ -28,7 +28,7 @@ const PASOS = [
     icon: UserCheck,
     titulo: "Elige tu categoría",
     texto:
-      "Élite Pro 8K, Máster, Leyenda o Especiales. El sitio te sugiere la que te toca por tu edad.",
+      "Élite Pro 8K, Máster, Leyenda o Especiales. Te sugerimos una categoría según tu edad, para que la revises.",
   },
   {
     icon: PencilSimpleLine,
@@ -44,9 +44,9 @@ const PASOS = [
   },
   {
     icon: Ticket,
-    titulo: "Listo",
+    titulo: "Comprobante recibido",
     texto:
-      "Validamos el pago en 2 o 3 días laborables y te avisamos por WhatsApp.",
+      "Tu pago queda pendiente de validación: lo revisamos en 2 o 3 días laborables y te escribimos por WhatsApp.",
   },
 ];
 
@@ -67,11 +67,12 @@ export default function ComoInscribirse() {
               Cómo inscribirse
             </p>
             <h2 className="max-w-3xl font-[family-name:var(--font-titular)] text-[34px] leading-[0.95] tracking-wide text-gray-900 uppercase sm:text-[48px] md:text-[58px]">
-              Cuatro pasos, <span className="text-[#f7771c]">tres minutos</span>
+              Cuatro pasos, <span className="text-[#d2600f]">tres minutos</span>
             </h2>
             <p className="font-barlow mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg">
-              Aquí no se cobra nada. El pago va por transferencia a la cuenta de
-              la organización y tú solo subes el comprobante.
+              El pago se realiza por transferencia bancaria a la cuenta de la
+              organización y aquí subes el comprobante. Son unos tres minutos en
+              la página, sin contar el tiempo de la transferencia.
             </p>
           </div>
 
@@ -116,7 +117,7 @@ export default function ComoInscribirse() {
                 <p.icon
                   size={30}
                   weight="duotone"
-                  className="mb-4 text-[#f7771c]"
+                  className="mb-4 text-[#d2600f]"
                 />
                 <h3 className="font-barlow mb-2 text-[19px] leading-tight font-bold text-gray-900">
                   {p.titulo}

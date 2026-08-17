@@ -19,12 +19,17 @@ const DATOS = [
     nota: "08h00",
     pill: "var(--violeta)",
   },
+  {
+    etiqueta: "Llegada",
+    valor: "Estadio Municipal",
+    pill: "var(--navy)",
+  },
 ];
 
 export default function FranjaDatos() {
   return (
     <section
-      aria-label="Lugar, fecha y salida de la carrera"
+      aria-label="Lugar, fecha, salida y llegada de la carrera"
       className="bg-brand relative w-full overflow-hidden"
     >
       {/* Patrón geométrico tenue del flyer (esquinas): puro CSS, sin peso. */}
@@ -39,7 +44,7 @@ export default function FranjaDatos() {
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pt-10 pb-24 sm:px-6 sm:pt-12 sm:pb-28 lg:pb-32">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
           {DATOS.map((d) => (
             <div
               key={d.etiqueta}

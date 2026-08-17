@@ -35,7 +35,7 @@ export const PRECIO_DESCUENTO = 18;
  * se inscriben en efectivo y aún no se han pasado al sistema. Se actualiza a
  * mano aquí conforme sube. Redondea hacia abajo para no exagerar de más.
  */
-export const INSCRITOS_APROX = 300;
+export const INSCRITOS_APROX = 340;
 
 /** WhatsApp de soporte al corredor. */
 export const WHATSAPP_SOPORTE = "593995102378";

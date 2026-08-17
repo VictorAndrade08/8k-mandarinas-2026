@@ -198,7 +198,7 @@ export default function RootLayout({
           style={{
             backgroundImage: "url(/texturas/grano.webp)",
             backgroundRepeat: "repeat",
-            backgroundSize: "256px 256px",
+            backgroundSize: "160px 160px",
             opacity: 0.5,
             mixBlendMode: "overlay",
           }}

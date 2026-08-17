@@ -14,6 +14,7 @@ import {
   User,
   WarningCircle,
 } from "@phosphor-icons/react";
+import { useEffect, useMemo } from "react";
 import { BANCO } from "./constantes";
 import { CampoTexto } from "./CampoTexto";
 import { useFormulario } from "./contexto";
@@ -65,6 +66,23 @@ export function PasoPago({
 }) {
   const { formData, errors } = useFormulario();
 
+  // Vista previa del comprobante: ver la foto elegida evita subir la captura
+  // equivocada (la galería del celular muestra miniaturas casi iguales).
+  const comprobante = formData.comprobante;
+  const previewUrl = useMemo(
+    () =>
+      comprobante && comprobante.type.startsWith("image/")
+        ? URL.createObjectURL(comprobante)
+        : null,
+    [comprobante]
+  );
+  useEffect(
+    () => () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    },
+    [previewUrl]
+  );
+
   return (
     <form
       noValidate
@@ -98,10 +116,12 @@ export function PasoPago({
           💡
         </span>
         <p className="text-sm leading-relaxed text-gray-200 md:text-base">
-          <strong className="text-white">Recomendado: un pago por persona.</strong>{" "}
-          Si se inscriben varios, que cada quien haga su propia transferencia con
-          su comprobante. Un solo pago para varias personas mezcla los datos y
-          retrasa la validación.
+          <strong className="text-white">
+            Recomendado: un pago por persona.
+          </strong>{" "}
+          Si se inscriben varios, que cada quien haga su propia transferencia
+          con su comprobante. Un solo pago para varias personas mezcla los datos
+          y retrasa la validación.
         </p>
       </div>
 
@@ -192,18 +212,31 @@ export function PasoPago({
               </button>
             </div>
             <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-6">
-              <div>
-                <span className="block text-2xl leading-tight font-bold text-gray-200 md:text-3xl">
-                  Total a pagar:
-                </span>
-                <span className="text-xs font-bold tracking-widest text-[#ffc53d] uppercase">
-                  Precio de preventa · sin recargos
-                </span>
-              </div>
+              <span className="block text-2xl leading-tight font-bold text-gray-200 md:text-3xl">
+                Total a pagar:
+              </span>
               <span className="text-4xl font-black text-[#f7771c] md:text-5xl">
                 ${selectedPrice}.00
               </span>
             </div>
+            <p className="rounded-xl border border-white/10 bg-white/5 p-4 text-base leading-relaxed text-gray-300 md:text-lg">
+              💬 En el <strong className="text-white">motivo</strong> de la
+              transferencia escribe:{" "}
+              <strong className="text-white">8K + tu nombre o cédula</strong>.
+              Así tu pago se encuentra de inmediato.
+            </p>
+            <button
+              type="button"
+              onClick={() =>
+                onCopiar(
+                  `${BANCO.entidad}\nCuenta corriente: ${BANCO.numero}\nTitular: ${BANCO.titular}\nRUC: ${BANCO.ruc}\nValor: $${selectedPrice}.00`,
+                  "Datos bancarios"
+                )
+              }
+              className="flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl border-2 border-[#f7771c]/60 bg-[#f7771c]/10 text-base font-bold text-white transition outline-none hover:bg-[#f7771c]/20 focus-visible:ring-2 focus-visible:ring-[#f7771c] active:scale-[0.99] md:text-lg"
+            >
+              <Copy size={22} /> Copiar datos bancarios
+            </button>
           </div>
         </div>
       )}
@@ -339,7 +372,7 @@ export function PasoPago({
               Toca aquí para subir tu archivo
             </p>
             <p className="font-barlow mt-1 text-sm text-gray-400">
-              Foto o PDF · máximo 10MB
+              Foto legible o PDF · máximo 10MB
             </p>
             <input
               type="file"
@@ -350,21 +383,30 @@ export function PasoPago({
             />
           </label>
         ) : (
-          <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#f7771c]/30 bg-[#f7771c]/10 p-4">
-            <div className="flex items-center gap-4 overflow-hidden">
-              <CheckCircle className="shrink-0 text-green-500" size={28} />
-              <span className="truncate text-base font-bold text-gray-100 md:text-xl">
-                {nombreComprobante}
-              </span>
+          <div className="rounded-2xl border border-[#f7771c]/30 bg-[#f7771c]/10 p-4">
+            {previewUrl && (
+              <img
+                src={previewUrl}
+                alt="Vista previa del comprobante que vas a enviar"
+                className="mx-auto mb-4 max-h-64 w-auto rounded-xl object-contain"
+              />
+            )}
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-4 overflow-hidden">
+                <CheckCircle className="shrink-0 text-green-500" size={28} />
+                <span className="truncate text-base font-bold text-gray-100 md:text-xl">
+                  {nombreComprobante}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={onQuitarArchivo}
+                aria-label="Quitar el archivo y elegir otro"
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-red-300 transition outline-none hover:bg-red-500/10 focus-visible:ring-2 focus-visible:ring-red-400"
+              >
+                <Trash size={24} />
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={onQuitarArchivo}
-              aria-label="Quitar el archivo"
-              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-red-300 transition outline-none hover:bg-red-500/10 focus-visible:ring-2 focus-visible:ring-red-400"
-            >
-              <Trash size={24} />
-            </button>
           </div>
         )}
         {errors.comprobante && (
@@ -401,7 +443,7 @@ export function PasoPago({
             disabled={loading}
             className="min-h-[56px] flex-1 rounded-xl bg-[#f7771c] text-lg font-bold text-white shadow-[0_0_20px_#f7771c50] transition outline-none hover:bg-[#d2600f] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#2b0d1d] disabled:cursor-not-allowed disabled:opacity-50 md:text-xl"
           >
-            {loading ? "Enviando..." : "Confirmar Inscripción"}
+            {loading ? "Enviando inscripción…" : "Confirmar Inscripción"}
           </button>
         </div>
       </div>

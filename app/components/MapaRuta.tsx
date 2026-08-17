@@ -110,7 +110,7 @@ export default function MapaRuta() {
               es claro y un texto suelto encima no se leería. */}
           <span className="font-barlow absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/75 to-transparent px-5 pt-10 pb-4 text-sm font-bold tracking-[0.12em] text-white uppercase sm:px-7">
             El recorrido tramo por tramo
-            <span className="rounded-full bg-[#f7771c] px-4 py-2 text-xs transition-colors group-hover:bg-white group-hover:text-[#780030]">
+            <span className="rounded-full bg-[#b83f00] px-4 py-2 text-xs transition-colors group-hover:bg-white group-hover:text-[#780030]">
               Ver la ruta →
             </span>
           </span>

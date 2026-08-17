@@ -35,13 +35,10 @@ export const CustomModal = ({
   if (!isOpen) return null;
 
   return (
-    // En móvil sube desde abajo (bottom sheet); en desktop se centra.
-    <div className="animate-in fade-in fixed inset-0 z-[100] flex items-end justify-center bg-black/80 backdrop-blur-md duration-200 sm:items-center sm:p-4">
-      <div className="animate-in slide-in-from-bottom-6 sm:zoom-in-95 sm:slide-in-from-bottom-0 relative w-full max-w-md rounded-t-3xl border border-white/10 bg-[#200815] p-6 pb-8 shadow-2xl sm:rounded-2xl md:p-8">
-        <div
-          className="mx-auto -mt-2 mb-4 h-1.5 w-12 rounded-full bg-white/25 sm:hidden"
-          aria-hidden="true"
-        />
+    // Centrado en todas las pantallas: como bottom sheet quedaba pegado abajo
+    // con toda la pantalla vacía encima.
+    <div className="animate-in fade-in fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-md duration-200">
+      <div className="animate-in zoom-in-95 relative w-full max-w-md rounded-2xl border border-white/10 bg-[#200815] p-6 pb-8 shadow-2xl md:p-8">
         <button
           onClick={onClose}
           aria-label="Cerrar"

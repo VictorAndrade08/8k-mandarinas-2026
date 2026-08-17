@@ -81,11 +81,11 @@ export default function MapaCarrera() {
       {/* Cabecera del mapa: qué es y de dónde a dónde. */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="font-barlow text-xs font-bold tracking-[0.2em] text-[#f7771c] uppercase">
+          <p className="font-barlow text-xs font-bold tracking-[0.2em] text-[#b83f00] uppercase">
             Recorrido oficial · 8 km
           </p>
           <h3 className="mt-1 font-[family-name:var(--font-titular)] text-[26px] leading-none text-gray-900 uppercase sm:text-[34px]">
-            Mapa <span className="text-[#f7771c]">de la carrera</span>
+            Mapa <span className="text-[#d2600f]">de la carrera</span>
           </h3>
         </div>
         <div className="font-barlow flex flex-col gap-1.5 text-sm text-gray-600">

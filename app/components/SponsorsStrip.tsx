@@ -200,7 +200,7 @@ export default function SponsorsStrip() {
               className={`flex h-10 w-10 items-center justify-center rounded-full border-2 shadow-md transition-all active:scale-95 ${
                 direction === -1
                   ? "border-[#f7771c] bg-[#f7771c] text-white shadow-[0_6px_18px_rgba(247,119,28,0.5)]"
-                  : "border-[#f7771c]/40 bg-white text-[#f7771c] hover:border-[#f7771c] hover:bg-[#f7771c] hover:text-white"
+                  : "border-[#f7771c]/40 bg-white text-[#b83f00] hover:border-[#b83f00] hover:bg-[#b83f00] hover:text-white"
               } `}
               aria-label="Mover a la derecha rápido"
             >
@@ -250,7 +250,7 @@ export default function SponsorsStrip() {
               className={`flex h-10 w-10 items-center justify-center rounded-full border-2 shadow-md transition-all active:scale-95 ${
                 direction === 1
                   ? "border-[#f7771c] bg-[#f7771c] text-white shadow-[0_6px_18px_rgba(247,119,28,0.5)]"
-                  : "border-[#f7771c]/40 bg-white text-[#f7771c] hover:border-[#f7771c] hover:bg-[#f7771c] hover:text-white"
+                  : "border-[#f7771c]/40 bg-white text-[#b83f00] hover:border-[#b83f00] hover:bg-[#b83f00] hover:text-white"
               } `}
               aria-label="Mover a la izquierda rápido"
             >

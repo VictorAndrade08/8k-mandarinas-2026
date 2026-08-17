@@ -589,16 +589,12 @@ export default function InscripcionPage() {
               aria-modal="true"
               aria-label="¿Salir de la inscripción?"
               onClick={() => setSalirAbierto(false)}
-              className="fixed inset-0 z-[110] flex items-end justify-center bg-black/80 backdrop-blur-md sm:items-center sm:p-4"
+              className="fixed inset-0 z-[110] flex items-center justify-center bg-black/80 p-4 backdrop-blur-md"
             >
               <div
                 onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-md rounded-t-3xl border border-white/10 bg-[#200815] p-6 pb-8 shadow-2xl sm:rounded-2xl md:p-8"
+                className="relative w-full max-w-md rounded-2xl border border-white/10 bg-[#200815] p-6 pb-8 shadow-2xl md:p-8"
               >
-                <div
-                  className="mx-auto -mt-2 mb-4 h-1.5 w-12 rounded-full bg-white/25 sm:hidden"
-                  aria-hidden="true"
-                />
                 <div className="flex flex-col items-center gap-5 text-center">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-yellow-500/20 text-3xl md:h-20 md:w-20">
                     👋

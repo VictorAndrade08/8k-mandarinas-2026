@@ -230,7 +230,7 @@ export function PasoDatos({
           <div className="font-barlow animate-in fade-in slide-in-from-top-2 flex items-start gap-3 rounded-xl border border-yellow-500/40 bg-yellow-500/10 px-4 py-4 md:col-span-2">
             <Info size={20} className="mt-0.5 shrink-0 text-yellow-400" />
             <div className="text-base leading-relaxed text-yellow-50 md:text-lg">
-              Con {edadNum} años te toca{" "}
+              Con {edadNum} años te corresponde{" "}
               <strong className="text-white">{categoriaSugerida}</strong>, no{" "}
               {selectedCategory}.{" "}
               <button
@@ -302,7 +302,7 @@ export function PasoDatos({
           pegada al borde y en teléfonos con barra de gestos se corta.
           Encima, además, se lee antes de tocar "Siguiente". */}
         <p className="font-barlow mb-2.5 text-center text-xs text-gray-400 md:mb-3 md:text-sm">
-          Aquí no se cobra nada. El pago va en el siguiente paso.
+          El pago se realiza por transferencia bancaria en el siguiente paso.
         </p>
         <div className="font-barlow mx-auto flex max-w-3xl gap-3">
           <button
