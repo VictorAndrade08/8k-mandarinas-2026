@@ -81,6 +81,7 @@ export default function InscripcionPage() {
   // Archivo
   const [previewName, setPreviewName] = useState("");
   const [uploadedFileUrl, setUploadedFileUrl] = useState<string>("");
+  const [codigoInscripcion, setCodigoInscripcion] = useState<string>("");
 
   // Refs
   const componentRef = useRef<HTMLDivElement | null>(null);
@@ -477,6 +478,7 @@ export default function InscripcionPage() {
     }
 
     if (resultado.urlComprobante) setUploadedFileUrl(resultado.urlComprobante);
+    if (resultado.codigo) setCodigoInscripcion(resultado.codigo);
     // Ya está enviada: lo guardado ya no sirve para retomar nada.
     progreso.olvidar();
     setStep(4);
@@ -876,6 +878,7 @@ export default function InscripcionPage() {
                     selectedCategory={selectedCategory}
                     selectedPrice={selectedPrice}
                     uploadedFileUrl={uploadedFileUrl}
+                    codigo={codigoInscripcion}
                     onNuevaInscripcion={handleReset}
                   />
                 )}

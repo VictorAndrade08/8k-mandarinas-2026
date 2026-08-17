@@ -27,6 +27,7 @@ export function PasoFinal({
   selectedCategory,
   selectedPrice,
   uploadedFileUrl,
+  codigo,
   onNuevaInscripcion,
 }: {
   selectedCategory: string;
@@ -34,6 +35,9 @@ export function PasoFinal({
   /** URL del comprobante ya subido a R2. Vacía si el corredor no adjuntó nada:
       en ese caso el mensaje de WhatsApp le pide que lo mande él. */
   uploadedFileUrl: string;
+  /** Código de inscripción (MAND-XXXXXX) que devolvió el servidor. Vacío si la
+      respuesta vino de una versión anterior del backend. */
+  codigo: string;
   /** Vacía el formulario para inscribir a otra persona desde el mismo móvil. */
   onNuevaInscripcion: () => void;
 }) {
@@ -172,6 +176,11 @@ export function PasoFinal({
             <p className="mb-1 text-sm font-bold text-gray-500 uppercase">
               Comprobante de Inscripción
             </p>
+            {codigo && (
+              <p className="mb-1 font-mono text-xl font-bold text-white">
+                {codigo}
+              </p>
+            )}
             <p className="truncate text-sm text-gray-400">
               Estado:{" "}
               <span className="ml-1 rounded bg-yellow-500/10 px-2 py-1 font-bold text-yellow-500">
@@ -194,6 +203,7 @@ export function PasoFinal({
         <a
           href={`https://wa.me/593997241804?text=${encodeURIComponent(
             `Hola, acabo de inscribirme en la 8K Ruta de las Mandarinas 2026. 🎽\n\n` +
+              (codigo ? `Código: ${codigo}\n` : "") +
               `Nombre: ${formData.nombres} ${formData.apellidos}\n` +
               `Cédula: ${formData.cedula}\n` +
               `Categoría: ${selectedCategory}\n` +

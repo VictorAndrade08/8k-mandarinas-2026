@@ -171,6 +171,13 @@ export async function onRequestPost({ request, env }) {
       comprobante_url = `${origin}/api/comprobante/${key}`;
     }
 
+    // Código de inscripción legible para el corredor (notas UX: confirmación
+    // inequívoca). No es la clave de nada — la cédula sigue siendo el
+    // identificador para consultar — pero le da algo corto que guardar y decir
+    // por WhatsApp. Va también a los Comentarios del CRM para poder buscarlo.
+    const codigo =
+      "MAND-" + crypto.randomUUID().replace(/-/g, "").slice(0, 6).toUpperCase();
+
     try {
       await env.DB.prepare(
         `INSERT INTO inscripciones
@@ -232,10 +239,11 @@ export async function onRequestPost({ request, env }) {
       es_titular: get("es_titular"),
       nombre_titular_cuenta: get("nombre_titular_cuenta"),
       comprobante_url,
+      codigo,
     });
     if (!enCRM) console.log(`Airtable no recibió la cédula ${cedula}`);
 
-    return json({ status: "success", file_url: comprobante_url });
+    return json({ status: "success", file_url: comprobante_url, codigo });
   } catch (e) {
     const msg = String(e?.message || e);
     if (msg.includes("UNIQUE")) {

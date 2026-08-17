@@ -11,6 +11,8 @@ export interface RespuestaInscribir {
   status?: "success" | "error";
   message?: string;
   file_url?: string;
+  /** Código de inscripción legible (MAND-XXXXXX) que genera el servidor. */
+  codigo?: string;
 }
 
 export interface FormDataState {

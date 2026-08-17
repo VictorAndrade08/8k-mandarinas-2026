@@ -50,6 +50,10 @@ const ReglamentoSection = dynamic(
   }
 );
 
+const FaqHome = dynamic(() => import("./components/FaqHome"), {
+  loading: () => <SectionLoader heightClass="min-h-[400px]" />,
+});
+
 // El pop-up del flyer se carga aparte y sin bloquear: aparece con retraso y una
 // sola vez por sesión, así que no tiene por qué entrar en el arranque crítico.
 const PopupFlyer = dynamic(() => import("./components/PopupFlyer"));
@@ -147,6 +151,12 @@ export default function Home() {
 
       <section id="reglamento" className="seccion-diferida">
         <ReglamentoSection />
+      </section>
+
+      {/* Las 5 preguntas que más llegan por WhatsApp + la CTA de cierre: la
+          página termina invitando a inscribirse, no en un footer vacío. */}
+      <section id="preguntas" className="seccion-diferida">
+        <FaqHome />
       </section>
 
       <FloatingCTA />

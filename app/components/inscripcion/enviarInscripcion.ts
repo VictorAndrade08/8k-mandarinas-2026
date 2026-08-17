@@ -16,7 +16,7 @@ import type { FormDataState, MetodoPago, RespuestaInscribir } from "./tipos";
 const TIMEOUT_MS = 45000;
 
 export type ResultadoEnvio =
-  | { ok: true; urlComprobante: string }
+  | { ok: true; urlComprobante: string; codigo: string }
   | { ok: false; titulo: string; mensaje: string };
 
 export async function enviarInscripcion({
@@ -94,6 +94,7 @@ export async function enviarInscripcion({
     return {
       ok: true,
       urlComprobante: json.file_url ? String(json.file_url) : "",
+      codigo: json.codigo ? String(json.codigo) : "",
     };
   } catch (e) {
     const seAgotoElTiempo =

@@ -44,6 +44,7 @@ export async function crearEnAirtable(env, datos) {
     // Lo que necesita quien valida el pago contra el extracto del banco, en un
     // solo vistazo y sin abrir la foto.
     Comentarios: [
+      datos.codigo ? `Código: ${datos.codigo}` : "",
       datos.metodo_pago ? `Método: ${datos.metodo_pago}` : "",
       datos.fecha_pago ? `Fecha del pago: ${datos.fecha_pago}` : "",
       datos.es_titular === "no"
