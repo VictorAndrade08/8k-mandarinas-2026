@@ -3,6 +3,7 @@ import {
   VIDEO_FONDO_POSTER,
   PRECIO_DESCUENTO,
   INSCRITOS_APROX,
+  CUPOS_VENDIDOS_PCT,
 } from "../lib/carrera";
 import ContadorDesktop from "./ContadorDesktop";
 import VideoFondoDesktop from "./VideoFondoDesktop";
@@ -121,7 +122,8 @@ export default function HeroCountdown() {
               (Airtable/D1) MÁS los de efectivo aún sin pasar al sistema— y se
               actualiza a mano ahí. (docs/30-UX-CONVERSION.md, tips 6 y 24.) */}
           <p className="mb-[clamp(0.6rem,1.8vh,1.5rem)] inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-4 py-1.5 text-[clamp(0.62rem,min(1.9vh,2.9vw),0.95rem)] font-bold tracking-[0.04em] text-white backdrop-blur-sm">
-            🔥 Ya somos +{INSCRITOS_APROX} inscritos
+            🔥 Ya somos +{INSCRITOS_APROX} inscritos · {CUPOS_VENDIDOS_PCT}%
+            vendido
           </p>
           <p className="mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.62rem,min(2vh,2.6vw),1.45rem)] font-black tracking-[0.2em] text-white/90 uppercase sm:tracking-[0.2em]">
             Faltan para el inicio

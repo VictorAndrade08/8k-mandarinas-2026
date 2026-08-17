@@ -37,6 +37,10 @@ export const PRECIO_DESCUENTO = 18;
  */
 export const INSCRITOS_APROX = 340;
 
+/** Porcentaje de cupos vendidos que enseña el hero junto al contador de
+ *  inscritos. Se actualiza a mano aquí, igual que INSCRITOS_APROX. */
+export const CUPOS_VENDIDOS_PCT = 70;
+
 /** WhatsApp de soporte al corredor. */
 export const WHATSAPP_SOPORTE = "593995102378";
 
