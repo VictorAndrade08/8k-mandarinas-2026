@@ -271,7 +271,11 @@ export function PasoDatos({
             >
               Términos y Condiciones
             </a>{" "}
-            y declaro estar apto físicamente.
+            y declaro estar apto físicamente.{" "}
+            <strong>
+              Una vez concluida la inscripción no se aceptan cambios ni
+              devoluciones de dinero.
+            </strong>
           </span>
         </label>
         {errors.acceptTerms && (

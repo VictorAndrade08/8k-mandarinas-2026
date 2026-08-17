@@ -36,7 +36,7 @@ const ITEMS = [
   },
   {
     title: "El kit del corredor",
-    desc: "Camiseta oficial, dorsal, chip de cronometraje, medalla y obsequios. Con lo que hay que llevar para retirarlo.",
+    desc: "Camiseta oficial, dorsal, chip, medalla y obsequios. Se entrega el viernes 28 de agosto, de 10h00 a 17h00, en Vehicentro (Ficoa, Ambato).",
     cta: "Ver el kit",
     href: "/reglamento#art-7",
     icon: Package,

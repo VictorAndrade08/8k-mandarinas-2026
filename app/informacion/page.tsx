@@ -150,9 +150,29 @@ const PREGUNTAS = [
     q: "¿Dónde y cuándo retiro el kit?",
     a: (
       <>
-        La fecha, el lugar y el horario todavía no tienen anuncio oficial —
-        saldrán en esta página y en los canales del evento. Para retirarlo
-        necesitas el comprobante de inscripción y tu cédula a color.
+        El <strong>viernes 28 de agosto</strong> (un día antes de la carrera),
+        de <strong>10h00 a 17h00</strong>, en{" "}
+        <strong>Vehicentro | Sinotruk – Ficoa</strong>: Av. los Guaytambos y La
+        Delicia, Ficoa, Ambato. Para retirarlo necesitas el comprobante de
+        inscripción y tu cédula a color.{" "}
+        <strong>El kit que no se retire en ese horario se pierde.</strong>
+      </>
+    ),
+  },
+  {
+    q: "¿Puedo cambiar mi inscripción o pedir devolución?",
+    a: (
+      <>
+        No.{" "}
+        <strong>
+          Una vez concluido el proceso de inscripción, no se aceptan cambios ni
+          devoluciones de dinero.
+        </strong>{" "}
+        Así lo establece el{" "}
+        <Link href="/reglamento#art-6" className={ENLACE}>
+          artículo 6 del reglamento
+        </Link>
+        .
       </>
     ),
   },
@@ -332,13 +352,15 @@ export default function InformacionPage() {
               />
             </div>
 
-            {/* La entrega sigue sin fecha oficial. Se dice tal cual — inventar
-                una fecha manda a la gente a un sitio equivocado. */}
             <p className="font-barlow mt-6 rounded-[10px] border border-[#ffc53d]/30 bg-[#ffc53d]/[0.07] p-4 text-sm leading-relaxed text-gray-300">
-              <strong className="text-[#ffc53d]">Entrega del kit:</strong> la
-              fecha, el lugar y el horario se anunciarán en esta página y en los
-              canales oficiales. Para retirarlo: comprobante de inscripción y
-              cédula a color.
+              <strong className="text-[#ffc53d]">Entrega del kit:</strong>{" "}
+              viernes 28 de agosto (un día antes de la carrera), de 10h00 a
+              17h00, en <strong>Vehicentro | Sinotruk – Ficoa</strong> — Av. los
+              Guaytambos y La Delicia, Ficoa, Ambato. Para retirarlo:
+              comprobante de inscripción y cédula a color.{" "}
+              <strong className="text-[#ffc53d]">
+                El kit que no se retire en ese horario se pierde.
+              </strong>
             </p>
           </div>
 

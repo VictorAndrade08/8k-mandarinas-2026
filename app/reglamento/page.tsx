@@ -220,21 +220,34 @@ export default function ReglamentoSection() {
                 <strong>IMPORTANTE:</strong> es requisito presentar cédula a
                 color al momento de retirar el kit.
               </p>
+
+              <p>
+                <strong>
+                  Una vez concluido el proceso de inscripción, no se aceptan
+                  cambios ni devoluciones de dinero.
+                </strong>
+              </p>
             </div>
           </ArticleCard>
 
           <ArticleCard id="art-7" title="Artículo 7. Entrega de Kits y Chips">
             <div className="space-y-3">
-              {/* Fecha, lugar y horario aún sin confirmar por la organización.
-                  Se anuncia como pendiente en vez de arrastrar los datos de la
-                  edición anterior: un corredor que viaja a retirar el kit a un
-                  sitio equivocado es un problema real, no una errata. */}
               <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
-                <p className="mb-1 font-semibold">Por definir</p>
+                <p className="mb-1 font-semibold">
+                  Viernes 28 de agosto de 2026 — 10h00 a 17h00
+                </p>
                 <p className="text-black/80">
-                  La fecha, el lugar y el horario de entrega del kit oficial del
-                  corredor se anunciarán próximamente en esta página y en los
-                  canales oficiales del evento.
+                  Un día antes de la carrera, en{" "}
+                  <strong>Vehicentro | Sinotruk – Ficoa</strong>: Av. los
+                  Guaytambos y La Delicia, Ficoa, Ambato.{" "}
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Vehicentro+Sinotruk+Ficoa+Ambato"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-extrabold underline underline-offset-4 hover:opacity-80"
+                  >
+                    Ver en Google Maps
+                  </a>
                 </p>
               </div>
 
@@ -244,9 +257,12 @@ export default function ReglamentoSection() {
                 <li>Cédula de identidad a color</li>
               </ul>
 
-              <p className="text-black/70">
-                Una vez finalizado el horario de entrega que se anuncie, no se
-                aceptarán reclamos ni reembolsos.
+              <p>
+                <strong>
+                  El kit que no se retire el viernes 28 de agosto dentro del
+                  horario de entrega se pierde:
+                </strong>{" "}
+                no se aceptarán reclamos ni reembolsos.
               </p>
 
               <p className="text-black/75">
