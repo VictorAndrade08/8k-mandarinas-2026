@@ -54,3 +54,6 @@ nuevaslineasgraficas/
 
 # Secretos locales de wrangler (el token de Airtable vive ahí)
 .dev.vars
+
+# Playwright
+/test-results/
