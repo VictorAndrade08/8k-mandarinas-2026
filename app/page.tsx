@@ -54,6 +54,10 @@ const FaqHome = dynamic(() => import("./components/FaqHome"), {
   loading: () => <SectionLoader heightClass="min-h-[400px]" />,
 });
 
+const CategoriasHome = dynamic(() => import("./components/CategoriasHome"), {
+  loading: () => <SectionLoader heightClass="min-h-[300px]" />,
+});
+
 // El pop-up del flyer se carga aparte y sin bloquear: aparece con retraso y una
 // sola vez por sesión, así que no tiene por qué entrar en el arranque crítico.
 const PopupFlyer = dynamic(() => import("./components/PopupFlyer"));
@@ -106,6 +110,13 @@ export default function Home() {
           Contestar eso primero es lo que hace que llegue al formulario. */}
       <div className="seccion-diferida">
         <ComoInscribirse />
+      </div>
+
+      {/* Categorías con precio EN el home, justo después de los pasos: la
+          pregunta "¿cuánto pago yo?" se contesta sin abrir el reglamento
+          (notas de conversión). Misma fuente de datos que /informacion. */}
+      <div className="seccion-diferida">
+        <CategoriasHome />
       </div>
 
       {/* Antes aquí había otra sección entera de dos tarjetas: "Inscríbete

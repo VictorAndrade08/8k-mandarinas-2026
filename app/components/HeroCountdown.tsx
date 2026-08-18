@@ -163,6 +163,12 @@ export default function HeroCountdown() {
             8 km · Patate · salida 08h00 · desde ${PRECIO_DESCUENTO} · incluye
             camiseta, dorsal, chip y medalla
           </p>
+          {/* Las tres dudas que frenan el clic, resueltas antes de pulsarlo:
+              cómo se paga, dónde va el comprobante y cuándo se confirma. */}
+          <p className="mt-[clamp(0.35rem,1.2vh,0.75rem)] max-w-[24rem] text-[clamp(0.62rem,min(1.5vh,2.4vw),0.85rem)] leading-snug text-white/75">
+            Pago por transferencia bancaria · subes tu comprobante en la página
+            · validación en 2 o 3 días laborables
+          </p>
         </div>
       </div>
     </section>
