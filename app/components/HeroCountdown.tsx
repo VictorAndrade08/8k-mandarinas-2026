@@ -1,5 +1,6 @@
 import {
   FECHA_CARRERA,
+  VIDEO_FONDO_SRC,
   VIDEO_FONDO_POSTER,
   PRECIO_DESCUENTO,
   CUPOS_VENDIDOS_PCT,
@@ -30,9 +31,11 @@ export default function HeroCountdown() {
 
   return (
     <section className="relative h-screen min-h-[640px] w-full overflow-hidden bg-black">
-      {/* FONDO DE ESCRITORIO — el poster estático del reel (server, cero JS).
-          El vídeo se quitó junto con todo el JavaScript del home: era una isla
-          cliente y sin scripts no reproducía. */}
+      {/* FONDO DE ESCRITORIO — poster inmediato + vídeo en HTML puro (cero
+          JS): autoplay/muted/loop no necesitan scripts. El media query del
+          <source> hace que el móvil NI DESCARGUE el mp4 — es el reemplazo sin
+          JavaScript de la isla VideoFondoDesktop que hacía ese mismo trabajo
+          con matchMedia. */}
       <img
         className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover select-none lg:block"
         src={VIDEO_FONDO_POSTER}
@@ -41,6 +44,23 @@ export default function HeroCountdown() {
         decoding="async"
         loading="lazy"
       />
+      <video
+        className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover select-none lg:block"
+        poster={VIDEO_FONDO_POSTER}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="none"
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        <source
+          src={VIDEO_FONDO_SRC}
+          media="(min-width: 1024px)"
+          type="video/mp4"
+        />
+      </video>
 
       {/* FONDO MÓVIL — foto REAL de los corredores con la camiseta oficial
           (fotograma del reel), no la ilustración. Es el LCP en el teléfono:
