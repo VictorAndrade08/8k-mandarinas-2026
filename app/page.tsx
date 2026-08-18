@@ -1,66 +1,26 @@
-import dynamic from "next/dynamic";
-
+// TODO importado de forma NORMAL, no con next/dynamic. El home se sirve sin
+// JavaScript (scripts/sin-js-home.mjs): con dynamic(), las secciones quedaban
+// congeladas en sus placeholders para siempre porque el intercambio
+// loader→contenido lo hacía el runtime del cliente, y la portada móvil se veía
+// vacía de la franja de datos para abajo. Con imports directos, el HTML
+// completo de cada sección sale del build. El "cargar después" que hacía
+// dynamic() lo cubre la clase .seccion-diferida (content-visibility, CSS puro).
 import HeroCountdown from "./components/HeroCountdown";
 import FranjaDatos from "./components/FranjaDatos";
 import MapaRuta from "./components/MapaRuta";
 import Hero from "./components/Hero";
 import FloatingCTA from "./components/FloatingCTA";
-
-const SectionLoader = ({ heightClass = "h-64" }) => (
-  <div
-    className={`w-full ${heightClass} animate-pulse bg-gray-50/50`}
-    aria-hidden="true"
-  />
-);
-
-// Todo lo que va por debajo del contador se carga aparte: quien entra ve la cuenta
-// atrás de inmediato y el resto llega mientras baja.
-const TopGallery = dynamic(() => import("./components/TopGallery"), {
-  loading: () => <SectionLoader heightClass="h-[300px] md:h-[400px]" />,
-});
-
-const SponsorsStrip = dynamic(() => import("./components/SponsorsStrip"), {
-  loading: () => <SectionLoader heightClass="h-20 md:h-24" />,
-});
-
-const Publicidad = dynamic(() => import("./components/Publicidad"), {
-  loading: () => <SectionLoader heightClass="h-64" />,
-});
-
-const AyudaWhatsApp = dynamic(() => import("./components/AyudaWhatsApp"), {
-  loading: () => <SectionLoader heightClass="h-40" />,
-});
-
-const ComoInscribirse = dynamic(() => import("./components/ComoInscribirse"), {
-  loading: () => <SectionLoader heightClass="min-h-[420px]" />,
-});
-
-const InfoBeforeRace = dynamic(() => import("./components/InfoBeforeRace"), {
-  loading: () => <SectionLoader heightClass="min-h-[400px]" />,
-});
-
-const FeaturedStories = dynamic(() => import("./components/FeaturedStories"), {
-  loading: () => <SectionLoader heightClass="min-h-[500px]" />,
-});
-
-const ReglamentoSection = dynamic(
-  () => import("./components/ReglamentoSection"),
-  {
-    loading: () => <SectionLoader heightClass="min-h-[400px]" />,
-  }
-);
-
-const FaqHome = dynamic(() => import("./components/FaqHome"), {
-  loading: () => <SectionLoader heightClass="min-h-[400px]" />,
-});
-
-const CategoriasHome = dynamic(() => import("./components/CategoriasHome"), {
-  loading: () => <SectionLoader heightClass="min-h-[300px]" />,
-});
-
-// El pop-up del flyer se carga aparte y sin bloquear: aparece con retraso y una
-// sola vez por sesión, así que no tiene por qué entrar en el arranque crítico.
-const PopupFlyer = dynamic(() => import("./components/PopupFlyer"));
+import TopGallery from "./components/TopGallery";
+import SponsorsStrip from "./components/SponsorsStrip";
+import Publicidad from "./components/Publicidad";
+import AyudaWhatsApp from "./components/AyudaWhatsApp";
+import ComoInscribirse from "./components/ComoInscribirse";
+import InfoBeforeRace from "./components/InfoBeforeRace";
+import FeaturedStories from "./components/FeaturedStories";
+import ReglamentoSection from "./components/ReglamentoSection";
+import FaqHome from "./components/FaqHome";
+import CategoriasHome from "./components/CategoriasHome";
+import PopupFlyer from "./components/PopupFlyer";
 
 export default function Home() {
   return (
