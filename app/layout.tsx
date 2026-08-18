@@ -182,8 +182,10 @@ export default function RootLayout({
             `,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            mixBlendMode: "soft-light",
-            opacity: 0.9,
+            // Sin mix-blend-mode (era soft-light): igual que con el grano, un
+            // blend sobre una capa fija hace que Safari recomponga toda la
+            // página al hacer scroll. Con opacidad baja el matiz se conserva.
+            opacity: 0.45,
           }}
         />
         {/* Grano de verdad, no líneas sintéticas: antes esta capa era un

@@ -107,9 +107,13 @@ export default function BottomNav() {
             );
           }
           return (
-            <Link key={label} href={href} className={clase}>
+            // <a> normal, no <Link>: con el export estático cada página es un
+            // HTML completo, y volver al home (que va sin JS) es instantáneo
+            // como carga directa — la navegación SPA lo re-renderizaba entero
+            // y en Safari se sentía lenta.
+            <a key={label} href={href} className={clase}>
               {contenido}
-            </Link>
+            </a>
           );
         })}
 

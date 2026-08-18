@@ -202,14 +202,14 @@ export function PasoFinal({
         </p>
         <a
           href={`https://wa.me/593997241804?text=${encodeURIComponent(
-            `Hola, acabo de inscribirme en la 8K Ruta de las Mandarinas 2026. 🎽\n\n` +
+            `Hola, acabo de inscribirme en la 8K Ruta de las Mandarinas 2026.\n\n` +
               (codigo ? `Código: ${codigo}\n` : "") +
               `Nombre: ${formData.nombres} ${formData.apellidos}\n` +
               `Cédula: ${formData.cedula}\n` +
               `Categoría: ${selectedCategory}\n` +
               `Valor: $${selectedPrice}\n\n` +
               (uploadedFileUrl
-                ? `📎 Mi comprobante de pago:\n${uploadedFileUrl}`
+                ? `Mi comprobante de pago:\n${uploadedFileUrl}`
                 : `Adjunto mi comprobante de pago.`)
           )}`}
           target="_blank"

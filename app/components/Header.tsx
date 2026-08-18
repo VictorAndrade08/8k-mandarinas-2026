@@ -134,8 +134,12 @@ export default function Header() {
               : "border-white/50 bg-white/80 py-2 shadow-[0_14px_36px_rgba(0,0,0,0.16)] backdrop-blur-md"
           }`}
         >
-          {/* IZQUIERDA → HOME. El logo va desnudo: es a color y se sostiene solo. */}
-          <Link
+          {/* IZQUIERDA → HOME. El logo va desnudo: es a color y se sostiene solo.
+              <a> normal, no <Link>: el home es HTML estático sin JS y cargarlo
+              directo es instantáneo — la navegación SPA re-renderizaba toda la
+              portada en React y en Safari se sentía lenta. */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- navegación dura a propósito: el home exportado va sin scripts */}
+          <a
             href="/"
             className="group flex flex-shrink-0 cursor-pointer items-center rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2"
           >
@@ -150,7 +154,7 @@ export default function Header() {
                   : "w-[min(48vw,180px)] sm:w-[200px] lg:w-[210px]"
               }`}
             />
-          </Link>
+          </a>
 
           {/* ================= DESKTOP (LG+) =================
               Navegar y "Inscribirse" son cosas distintas: los enlaces van en texto

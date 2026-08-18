@@ -112,9 +112,6 @@ export function PasoPago({
           varios en una sola transferencia — así cada comprobante cuadra con una
           inscripción y no se traban las validaciones. */}
       <div className="font-barlow mb-6 flex items-start gap-3 rounded-2xl border border-[#f7771c]/30 bg-[#f7771c]/10 p-4">
-        <span aria-hidden="true" className="text-xl leading-none">
-          💡
-        </span>
         <p className="text-sm leading-relaxed text-gray-200 md:text-base">
           <strong className="text-white">
             Recomendado: un pago por persona.
@@ -220,7 +217,7 @@ export function PasoPago({
               </span>
             </div>
             <p className="rounded-xl border border-white/10 bg-white/5 p-4 text-base leading-relaxed text-gray-300 md:text-lg">
-              💬 En el <strong className="text-white">motivo</strong> de la
+              En el <strong className="text-white">motivo</strong> de la
               transferencia escribe:{" "}
               <strong className="text-white">8K + tu nombre o cédula</strong>.
               Así tu pago se encuentra de inmediato.

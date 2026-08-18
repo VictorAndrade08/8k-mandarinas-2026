@@ -153,12 +153,11 @@ export default function PoliticaPrivacidad8K() {
               tratamiento de datos personales, el titular puede comunicarse a:
             </p>
             <p className="mt-3">
-              📧 <strong>Correo:</strong>{" "}
-              inscripciones@8krutadelasmandarinas.com
+              <strong>Correo:</strong> inscripciones@8krutadelasmandarinas.com
               <br />
-              📱 <strong>WhatsApp oficial:</strong> +593 99 510 2378
+              <strong>WhatsApp oficial:</strong> +593 99 510 2378
               <br />
-              📍 <strong>Ciudad:</strong> Patate – Ecuador
+              <strong>Ciudad:</strong> Patate – Ecuador
             </p>
           </ArticleCard>
 

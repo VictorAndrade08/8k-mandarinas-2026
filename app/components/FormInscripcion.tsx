@@ -407,7 +407,7 @@ export default function InscripcionPage() {
       if (json && json.exists) {
         const nombreExistente = json.datos?.nombre || "Usuario";
         showAlert(
-          "⛔ YA REGISTRADO",
+          "YA REGISTRADO",
           `La cédula ${formData.cedula} (${nombreExistente}) ya tiene una inscripción activa.`,
           "error",
           "Corregir mi Pago",
@@ -598,9 +598,6 @@ export default function InscripcionPage() {
                 className="relative w-full max-w-md rounded-2xl border border-white/10 bg-[#200815] p-6 pb-8 shadow-2xl md:p-8"
               >
                 <div className="flex flex-col items-center gap-5 text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-yellow-500/20 text-3xl md:h-20 md:w-20">
-                    👋
-                  </div>
                   <h3 className="font-bebas text-3xl font-bold text-white uppercase md:text-4xl">
                     ¿Salir de la inscripción?
                   </h3>
