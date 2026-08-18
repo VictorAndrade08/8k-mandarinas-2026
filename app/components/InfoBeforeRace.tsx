@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { srcSetDe } from "../lib/imagen";
 import {
@@ -8,7 +6,7 @@ import {
   Package,
   Trophy,
   ArrowRight,
-} from "@phosphor-icons/react";
+} from "@phosphor-icons/react/dist/ssr";
 
 /**
  * Las cuatro cosas que un corredor pregunta antes de inscribirse, y cada una

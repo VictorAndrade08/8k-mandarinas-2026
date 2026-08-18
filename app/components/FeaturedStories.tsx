@@ -1,7 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { ArrowRight } from "@phosphor-icons/react";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { srcSetDe } from "../lib/imagen";
 
 // 2. Configuración de fuente (Sin bloqueo)

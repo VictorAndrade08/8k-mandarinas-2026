@@ -1,12 +1,10 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import {
   FacebookLogo,
   InstagramLogo,
   WhatsappLogo,
-} from "@phosphor-icons/react";
+} from "@phosphor-icons/react/dist/ssr";
 import { WHATSAPP_SOPORTE } from "../lib/carrera";
 
 // Los patrocinadores no se listan aquí: ya pasan todos por la cinta de logos de

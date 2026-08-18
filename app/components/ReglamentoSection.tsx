@@ -1,8 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import { srcSetDe } from "../lib/imagen";
-import { Scales, ArrowRight } from "@phosphor-icons/react";
+import { Scales, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 
 // Configuración de la fuente (Carga eficiente sin bloqueo)
 export default function ReglamentoSection() {
