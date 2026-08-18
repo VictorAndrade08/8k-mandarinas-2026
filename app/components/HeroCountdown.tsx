@@ -4,8 +4,6 @@ import {
   PRECIO_DESCUENTO,
   CUPOS_VENDIDOS_PCT,
 } from "../lib/carrera";
-import ContadorDesktop from "./ContadorDesktop";
-import VideoFondoDesktop from "./VideoFondoDesktop";
 
 // COMPONENTE DE SERVIDOR — a propósito no lleva "use client".
 //
@@ -32,9 +30,9 @@ export default function HeroCountdown() {
 
   return (
     <section className="relative h-screen min-h-[640px] w-full overflow-hidden bg-black">
-      {/* FONDO DE ESCRITORIO — poster inmediato (server) + vídeo encima (isla).
-          El poster da fondo desde el primer pixel mientras el vídeo, que carga
-          tras confirmar escritorio, lo cubre. En móvil va oculto (lg:block). */}
+      {/* FONDO DE ESCRITORIO — el poster estático del reel (server, cero JS).
+          El vídeo se quitó junto con todo el JavaScript del home: era una isla
+          cliente y sin scripts no reproducía. */}
       <img
         className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover select-none lg:block"
         src={VIDEO_FONDO_POSTER}
@@ -43,13 +41,13 @@ export default function HeroCountdown() {
         decoding="async"
         loading="lazy"
       />
-      <VideoFondoDesktop />
 
-      {/* FONDO MÓVIL — la ilustración vertical de corredores. Es el LCP en el
-          teléfono: fetchPriority alta, decode async. (docs/HERO-IMAGEN.md) */}
+      {/* FONDO MÓVIL — foto REAL de los corredores con la camiseta oficial
+          (fotograma del reel), no la ilustración. Es el LCP en el teléfono:
+          fetchPriority alta, decode async. 26 KB. */}
       <img
         className="pointer-events-none absolute inset-0 h-full w-full object-cover select-none lg:hidden"
-        src="/hero-movil-corredores.webp"
+        src="/hero-movil-real.webp"
         alt=""
         aria-hidden="true"
         fetchPriority="high"
@@ -85,8 +83,10 @@ export default function HeroCountdown() {
       />
       {/* Grano: textura webp pre-horneada (no feTurbulence, que rasterizarlo en
           el móvil retenía el primer pintado del LCP). */}
+      {/* Sin mix-blend: en Safari el blend recomponía el hero entero en cada
+          repintado del video. Opacidad baja logra el mismo grano. */}
       <div
-        className="pointer-events-none absolute inset-0 z-[3] opacity-30 mix-blend-overlay"
+        className="pointer-events-none absolute inset-0 z-[3] opacity-15"
         style={{
           backgroundImage: "url(/texturas/grano.webp)",
           backgroundSize: "160px 160px",
@@ -96,17 +96,21 @@ export default function HeroCountdown() {
       {/* CONTENIDO. En móvil se ancla arriba (la píldora del header va oculta en
           el home móvil); desde sm+ se centra. */}
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-start gap-[clamp(1.25rem,4vh,4rem)] px-4 pt-[clamp(4.5rem,12vh,7rem)] pb-[clamp(1rem,4vh,3rem)] text-center text-white sm:justify-center sm:px-6 sm:pt-[165px]">
-        {/* GRUPO SUPERIOR — logo (LCP). */}
+        {/* GRUPO SUPERIOR — el logo va SOLO en móvil (a petición: en
+            escritorio se quitó porque el video ya lleva la marca); el nombre
+            queda como h1 invisible para lectores de pantalla y buscadores. */}
         <div className="flex w-full flex-col items-center">
+          <h1 className="sr-only">8K Ruta de las Mandarinas</h1>
           <img
             src="/logo-mandarinas-blanco.webp"
-            alt="8K Ruta de las Mandarinas"
+            alt=""
+            aria-hidden="true"
             width={900}
             height={316}
             fetchPriority="high"
             loading="eager"
             decoding="async"
-            className="h-auto max-h-[min(20vh,190px)] w-[min(78vw,580px)] object-contain select-none"
+            className="h-auto max-h-[min(20vh,190px)] w-[min(78vw,580px)] object-contain select-none lg:hidden"
             draggable={false}
           />
           <p className="mt-[clamp(0.75rem,2.5vh,3rem)] font-[family-name:var(--font-titular)] text-[clamp(0.8rem,min(3.2vh,3.7vw),2.4rem)] font-black tracking-[0.2em] whitespace-nowrap text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:tracking-[0.2em]">
@@ -128,7 +132,7 @@ export default function HeroCountdown() {
           </p>
 
           {/* MÓVIL — número de días ESTÁTICO (server, sin JS de reloj). */}
-          <div className="relative mx-auto flex min-h-[clamp(84px,16vh,120px)] w-full max-w-[260px] flex-col items-center justify-center overflow-hidden rounded-t-md rounded-b-2xl border-x border-b border-white/10 bg-black/55 px-4 py-[clamp(0.6rem,2vh,1rem)] shadow-[0_10px_30px_rgba(0,0,0,0.45)] lg:hidden">
+          <div className="relative mx-auto flex min-h-[clamp(84px,16vh,120px)] w-full max-w-[260px] flex-col items-center justify-center overflow-hidden rounded-t-md rounded-b-2xl border-x border-b border-white/10 bg-black/55 px-4 py-[clamp(0.6rem,2vh,1rem)] shadow-[0_10px_30px_rgba(0,0,0,0.45)]">
             <span
               className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#f7771c] via-[#ee374b] to-[#c51850]"
               aria-hidden="true"
@@ -139,12 +143,6 @@ export default function HeroCountdown() {
             <span className="mt-[clamp(0.2rem,0.8vh,0.6rem)] font-[family-name:var(--font-titular)] text-[clamp(11px,3.4vw,1.1rem)] font-black tracking-[0.22em] text-white/80 uppercase">
               {dias === 1 ? "Día" : "Días"}
             </span>
-          </div>
-
-          {/* ESCRITORIO — contador vivo (isla cliente, null en móvil). Reserva
-              alto para no causar CLS mientras hidrata. */}
-          <div className="hidden min-h-[95px] w-full lg:block">
-            <ContadorDesktop />
           </div>
 
           {/* BOTÓN DE INSCRIPCIÓN. */}
@@ -162,12 +160,6 @@ export default function HeroCountdown() {
           <p className="mt-[clamp(0.6rem,1.8vh,1.1rem)] max-w-[22rem] text-[clamp(0.72rem,min(1.7vh,2.7vw),1rem)] leading-snug font-semibold tracking-wide text-white/90">
             8 km · Patate · salida 08h00 · desde ${PRECIO_DESCUENTO} · incluye
             camiseta, dorsal, chip y medalla
-          </p>
-          {/* Las tres dudas que frenan el clic, resueltas antes de pulsarlo:
-              cómo se paga, dónde va el comprobante y cuándo se confirma. */}
-          <p className="mt-[clamp(0.35rem,1.2vh,0.75rem)] max-w-[24rem] text-[clamp(0.62rem,min(1.5vh,2.4vw),0.85rem)] leading-snug text-white/75">
-            Pago por transferencia bancaria · subes tu comprobante en la página
-            · validación en 2 o 3 días laborables
           </p>
         </div>
       </div>

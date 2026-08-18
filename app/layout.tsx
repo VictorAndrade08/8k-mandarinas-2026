@@ -199,8 +199,10 @@ export default function RootLayout({
             backgroundImage: "url(/texturas/grano.webp)",
             backgroundRepeat: "repeat",
             backgroundSize: "160px 160px",
-            opacity: 0.5,
-            mixBlendMode: "overlay",
+            // Sin mix-blend-mode: un blend sobre una capa fija obliga a Safari
+            // a recomponer TODA la página en cada scroll y se sentía lento.
+            // La opacidad baja da el mismo tacto de grano sin ese costo.
+            opacity: 0.18,
           }}
         />
         <div

@@ -72,7 +72,7 @@ export default function Home() {
       <link
         rel="preload"
         as="image"
-        href="/hero-movil-corredores.webp"
+        href="/hero-movil-real.webp"
         media="(max-width: 1023px)"
         fetchPriority="high"
       />
