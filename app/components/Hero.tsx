@@ -49,7 +49,7 @@ export default function Hero8K() {
       className={`w-full bg-white px-4 py-12 font-sans sm:px-6 sm:py-16 lg:px-8`}
     >
       <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
-        {/* 🎬 VIDEO CONTAINER */}
+        {/* VIDEO CONTAINER */}
         <div className="relative z-10 order-1 flex items-center justify-center lg:order-none">
           <div
             ref={cajaRef}
@@ -108,7 +108,7 @@ export default function Hero8K() {
           </div>
         </div>
 
-        {/* 🏃‍♂️ CONTENIDO / TEXTO */}
+        {/* CONTENIDO / TEXTO */}
         <div className="relative z-10 order-2 flex flex-col justify-center text-center lg:order-none lg:text-left">
           {/* A 72px el titular partía en cuatro líneas y "Mandarinas" se comía el
               ancho de la columna. Con el peso nuevo del sitio, menos cuerpo se

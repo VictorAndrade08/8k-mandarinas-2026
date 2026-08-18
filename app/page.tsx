@@ -153,7 +153,7 @@ export default function Home() {
 
       {/* Aquí iba <ExperienceSection />: repetía las mismas tres cosas que
           InfoBeforeRace —la ruta, las categorías y el kit— y sus cuatro botones
-          solo hacían alert("🚀 ¡Próximamente disponible!"). Dos rejillas de
+          solo hacían alert("¡Próximamente disponible!"). Dos rejillas de
           cuatro tarjetas iguales seguidas, y la segunda sin llevar a ningún
           sitio. Está en el historial de git si hace falta recuperarla. */}
       <div className="seccion-diferida">
