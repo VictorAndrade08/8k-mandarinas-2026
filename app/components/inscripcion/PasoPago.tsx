@@ -309,36 +309,37 @@ export function PasoPago({
             />
           </div>
 
-          {/* 3. Titular de la Cuenta (Evita confusión de nombres) */}
+          {/* 3. Titular de la Cuenta (Evita confusión de nombres). Checkbox en
+              vez de dos botones: al marcarlo se rellena solo el nombre del
+              titular con el del corredor, y se le ENSEÑA — así ve exactamente
+              qué nombre se buscará en el banco y salta a la vista cuando pagó
+              otra persona (el caso Kevin: pagos imposibles de encontrar). */}
           <div className="rounded-xl border border-white/10 bg-[#200815] p-5 md:col-span-2">
-            <span className="font-barlow mb-3 block text-base font-bold tracking-wide text-gray-200 uppercase">
-              ¿La cuenta bancaria es tuya?
-            </span>
-            <div
-              role="radiogroup"
-              aria-label="¿La cuenta bancaria es tuya?"
-              className="mb-4 grid grid-cols-2 gap-3"
-            >
-              {[
-                { valor: "si", texto: "Sí, es mía" },
-                { valor: "no", texto: "No, prestada" },
-              ].map(({ valor, texto }) => (
-                <button
-                  key={valor}
-                  type="button"
-                  role="radio"
-                  aria-checked={formData.es_titular === valor}
-                  onClick={() => onTitular(valor)}
-                  className={`font-barlow min-h-[56px] rounded-xl border-2 px-3 text-base font-bold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2 focus-visible:ring-offset-[#200815] md:text-lg ${
-                    formData.es_titular === valor
-                      ? "border-[#f7771c] bg-[#f7771c] text-white"
-                      : "border-white/15 bg-white/5 text-gray-200 hover:border-white/40"
-                  }`}
-                >
-                  {texto}
-                </button>
-              ))}
-            </div>
+            <label className="flex cursor-pointer items-start gap-4">
+              <input
+                type="checkbox"
+                checked={formData.es_titular === "si"}
+                onChange={(e) => onTitular(e.target.checked ? "si" : "no")}
+                className="mt-0.5 h-7 w-7 shrink-0 cursor-pointer accent-[#f7771c]"
+              />
+              <span className="font-barlow text-base leading-relaxed font-bold text-gray-200 md:text-lg">
+                Sí, soy el dueño de la cuenta desde la que pagué
+              </span>
+            </label>
+
+            {formData.es_titular === "si" && (
+              <p className="font-barlow animate-in fade-in mt-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-base text-gray-300">
+                Titular de la cuenta:{" "}
+                <strong className="text-white">
+                  {`${formData.nombres} ${formData.apellidos}`.trim() ||
+                    "tu nombre del paso anterior"}
+                </strong>
+                <span className="mt-1 block text-sm text-gray-400">
+                  Con este nombre buscaremos tu pago en el banco. Si la cuenta
+                  es de otra persona, desmarca la casilla.
+                </span>
+              </p>
+            )}
 
             {/* Si NO es titular, pedimos el nombre real */}
             {formData.es_titular === "no" && (
