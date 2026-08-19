@@ -102,20 +102,15 @@ export default function Header() {
         Saltar al contenido
       </a>
 
-      {/* fixed y no absolute: sigue fuera del flujo (el vídeo arranca en el
-          píxel 0 y la píldora flota encima; las páginas sin hero reservan el
-          hueco en MainWrapper), pero ahora puede REAPARECER al subir. La
-          píldora clavada todo el rato —el problema del fixed clásico— se
-          resuelve escondiéndola al bajar con translate.
-          Si cambias el pt del tope, cambia HUECO_HEADER en SiteChrome.tsx.
-          onFocusCapture: si alguien navega con teclado hacia el menú mientras
-          está escondido, se muestra — un menú al que no se puede llegar con
-          Tab es un menú roto (WCAG 2.4.3). */}
+      {/* absolute y no fixed: las páginas públicas van SIN JavaScript, así que
+          el esconder-al-bajar por scroll ya no corre — y una píldora fija sin
+          ese código se quedaba flotando encima del texto todo el rato. Con
+          absolute el header vive arriba del todo y se va con el scroll; la
+          navegación persistente en móvil la da la barra inferior.
+          Si cambias el pt del tope, cambia HUECO_HEADER en SiteChrome.tsx. */}
       <header
         onFocusCapture={() => setVisible(true)}
-        className={`fixed inset-x-0 top-0 z-50 flex w-full justify-center px-4 pb-2 font-sans transition-[transform,padding] duration-300 motion-reduce:transition-none ${
-          visible ? "translate-y-0" : "-translate-y-full"
-        } ${enTope ? "pt-10 sm:pt-12" : "pt-3"}`}
+        className={`absolute inset-x-0 top-0 z-50 flex w-full justify-center px-4 pb-2 font-sans ${enTope ? "pt-10 sm:pt-12" : "pt-3"}`}
       >
         {/* En móvil ya no hay hamburguesa: la navegación vive en la barra
             inferior fija (BottomNav), así que aquí solo queda el logo, centrado.
