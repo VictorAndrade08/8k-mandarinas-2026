@@ -30,7 +30,9 @@ export default function HeroCountdown() {
   const dias = diasFaltantes();
 
   return (
-    <section className="relative h-screen min-h-[640px] w-full overflow-hidden bg-black">
+    // min-h 700 y no 640: en teléfonos de 320px la línea de valor envuelve
+    // más renglones y con 640 el overflow-hidden la recortaba a la mitad.
+    <section className="relative h-screen min-h-[700px] w-full overflow-hidden bg-black">
       {/* FONDO DE ESCRITORIO — poster inmediato + vídeo en HTML puro (cero
           JS): autoplay/muted/loop no necesitan scripts. El media query del
           <source> hace que el móvil NI DESCARGUE el mp4 — es el reemplazo sin
