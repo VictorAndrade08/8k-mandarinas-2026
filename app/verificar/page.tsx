@@ -233,7 +233,11 @@ export default function VerificarPage() {
       {/* LAYOUT PRINCIPAL — a sangre, sin la tarjeta flotante gigante: el fondo
           oscuro va de borde a borde como el resto del sitio y el contenido se
           centra en max-w-7xl. */}
-      <section className="relative w-full overflow-hidden bg-[#140309] px-4 pt-20 pb-12 font-sans sm:px-6 md:py-16 lg:px-8">
+      {/* pt corto: SiteChrome ya reserva los ~168px del header (HUECO_HEADER);
+          sumarle otro pt-20 aplastaba el contenido en móvil. El pb-28 deja
+          sitio para la barra inferior fija (lg:hidden), que tapaba el titular
+          y las estadísticas al final de la página. */}
+      <section className="relative w-full overflow-hidden bg-[#140309] px-4 pt-2 pb-28 font-sans sm:px-6 md:pt-10 lg:px-8 lg:pb-16">
         {/* FOTO DE FONDO: la llegada, que es de lo que va esta página. Antes
             eran dos manchas de color sobre negro plano.
 
@@ -315,7 +319,7 @@ export default function VerificarPage() {
             {/* WRAPPER DEL FORMULARIO/TICKET */}
             <div className="w-full max-w-[500px] text-white">
               {!data && (
-                <div className="relative overflow-hidden rounded-[40px] border border-white/20 bg-[#1c0713] p-10 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.6)] backdrop-blur-md">
+                <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-[#1c0713] p-6 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.6)] sm:rounded-[40px] sm:p-10">
                   <div className="pointer-events-none absolute top-0 right-0 h-40 w-40 rounded-full bg-white/5 blur-[50px]" />
 
                   <div className="relative z-10 mb-10 flex items-center gap-5">

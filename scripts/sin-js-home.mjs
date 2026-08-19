@@ -40,9 +40,11 @@ for (const archivo of await htmls(OUT)) {
 
   let html = await fs.readFile(archivo, "utf8");
   const antes = html.length;
-  // Fuera <script>…</script> (incluye los inline de Next), salvo JSON-LD.
+  // Fuera <script>…</script> (incluye los inline de Next), salvo JSON-LD y
+  // los marcados con data-mantener (JS vainilla mínimo, p. ej. el contador
+  // del hero en escritorio: ~20 líneas sin framework).
   html = html.replace(
-    /<script\b(?![^>]*type="application\/ld\+json")[^>]*>[\s\S]*?<\/script>/g,
+    /<script\b(?![^>]*type="application\/ld\+json")(?![^>]*data-mantener)[^>]*>[\s\S]*?<\/script>/g,
     ""
   );
   // Fuera los preload/prefetch de scripts que ya no existen en la página.

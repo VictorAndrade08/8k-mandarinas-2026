@@ -151,8 +151,46 @@ export default function HeroCountdown() {
             Faltan para el inicio
           </p>
 
+          {/* ESCRITORIO — contador vivo D/H/M/S en JavaScript VAINILLA de ~20
+              líneas, incrustado en el HTML con data-mantener para que el
+              limpiador de scripts lo respete. Nada de React: la página sigue
+              sin framework. Solo se pinta en lg+. */}
+          <div className="hidden w-full max-w-2xl grid-cols-4 gap-3 lg:grid">
+            {[
+              ["cd-d", String(dias), "Días"],
+              ["cd-h", "--", "Horas"],
+              ["cd-m", "--", "Min"],
+              ["cd-s", "--", "Seg"],
+            ].map(([id, inicial, etiqueta]) => (
+              <div
+                key={id}
+                className="relative flex flex-col items-center justify-center overflow-hidden rounded-t-md rounded-b-2xl border-x border-b border-white/10 bg-black/55 px-4 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.45)]"
+              >
+                <span
+                  className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#f7771c] via-[#ee374b] to-[#c51850]"
+                  aria-hidden="true"
+                />
+                <span
+                  id={id}
+                  className="font-[family-name:var(--font-titular)] text-[56px] leading-none font-black text-white italic tabular-nums"
+                >
+                  {inicial}
+                </span>
+                <span className="mt-1 font-[family-name:var(--font-titular)] text-[13px] font-black tracking-[0.22em] text-white/80 uppercase">
+                  {etiqueta}
+                </span>
+              </div>
+            ))}
+          </div>
+          <script
+            data-mantener=""
+            dangerouslySetInnerHTML={{
+              __html: `(function(){var f=new Date(${JSON.stringify(FECHA_CARRERA)}).getTime();function p(n){return n<10?"0"+n:""+n}function t(){var r=f-Date.now();if(r<0)r=0;var d=Math.floor(r/864e5),h=Math.floor(r/36e5)%24,m=Math.floor(r/6e4)%60,s=Math.floor(r/1e3)%60;var e=function(i,v){var x=document.getElementById(i);if(x)x.textContent=v};e("cd-d",""+d);e("cd-h",p(h));e("cd-m",p(m));e("cd-s",p(s))}t();setInterval(t,1000)})();`,
+            }}
+          />
+
           {/* MÓVIL — número de días ESTÁTICO (server, sin JS de reloj). */}
-          <div className="relative mx-auto flex min-h-[clamp(84px,16vh,120px)] w-full max-w-[260px] flex-col items-center justify-center overflow-hidden rounded-t-md rounded-b-2xl border-x border-b border-white/10 bg-black/55 px-4 py-[clamp(0.6rem,2vh,1rem)] shadow-[0_10px_30px_rgba(0,0,0,0.45)]">
+          <div className="relative mx-auto flex min-h-[clamp(84px,16vh,120px)] w-full max-w-[260px] flex-col items-center justify-center overflow-hidden rounded-t-md rounded-b-2xl border-x border-b border-white/10 bg-black/55 px-4 py-[clamp(0.6rem,2vh,1rem)] shadow-[0_10px_30px_rgba(0,0,0,0.45)] lg:hidden">
             <span
               className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#f7771c] via-[#ee374b] to-[#c51850]"
               aria-hidden="true"

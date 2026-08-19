@@ -66,7 +66,10 @@ export default function BottomNav() {
   return (
     <nav
       aria-label="Navegación rápida"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-black/10 bg-white/95 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_20px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden"
+      // bg sólido, sin backdrop-blur: el desenfoque sobre una barra fija
+      // obliga a Safari a recomponerlo en cada frame de scroll — era lo que
+      // hacía sentir lenta la barra. Sólido se ve casi igual y cuesta cero.
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-black/10 bg-white pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_20px_rgba(0,0,0,0.08)] lg:hidden"
     >
       <div className="mx-auto flex max-w-lg items-stretch">
         {DESTINOS.map(({ href, label, Icon, match }) => {
