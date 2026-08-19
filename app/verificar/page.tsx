@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import { srcSetDe } from "../lib/imagen";
 import {
   IdentificationCard,
@@ -82,7 +83,10 @@ function NotFoundModal({
   if (!open) return null;
   const hrefInscripcion = "/inscripcion#formulario";
 
-  return (
+  // Portal a <body>: dentro de <main> (contexto de apilamiento z-10) el
+  // header z-50 quedaba POR ENCIMA del modal y lo cortaba — el mismo problema
+  // ya resuelto así en CustomModal y en el visor de la galería.
+  return createPortal(
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center px-4"
       role="dialog"
@@ -136,7 +140,8 @@ function NotFoundModal({
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
