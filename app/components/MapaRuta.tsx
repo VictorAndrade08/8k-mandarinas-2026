@@ -43,7 +43,7 @@ export default function MapaRuta() {
   return (
     <section
       id="ruta"
-      className="relative flex w-full justify-center overflow-hidden px-4 py-4 lg:py-12"
+      className="relative flex w-full flex-col items-center overflow-hidden px-4 py-8 lg:py-14"
     >
       {/* CAPA DE FONDO */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
@@ -73,6 +73,27 @@ export default function MapaRuta() {
         {/* El mapa es blanco y el fondo naranja fuerte: sin esta capa oscura en
             medio, el borde de la tarjeta se pierde y las dos cosas compiten. */}
         <div className="absolute inset-0 bg-black/45" />
+      </div>
+
+      {/* La frase distintiva de la carrera (notas de identidad): no podría
+          copiarse para una carrera de otra ciudad — eso es lo que la hace
+          propia. Va aquí porque presenta exactamente lo que enseña el mapa. */}
+      <div className="mb-6 w-full max-w-7xl text-center sm:mb-8">
+        <h2 className="font-[family-name:var(--font-titular)] text-[30px] leading-[0.95] tracking-wide text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:text-[42px]">
+          Una ruta que solo puede{" "}
+          <span className="text-[#ffc53d]">ocurrir en Patate</span>
+        </h2>
+        <p className="font-barlow mx-auto mt-3 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+          8 kilómetros que salen de Patate Gardens, pasan por calles
+          emblemáticas y zonas rurales entre cultivos de mandarinas, y terminan
+          en el Estadio Municipal.
+        </p>
+        {/* La línea que se dibuja: el recorrido como elemento propio de la
+            marca, en los colores del flyer. CSS puro (scaleX). */}
+        <div
+          aria-hidden="true"
+          className="linea-ruta mx-auto mt-5 h-1 w-44 rounded-full bg-gradient-to-r from-[#f7771c] via-[#ee374b] to-[#c51850]"
+        />
       </div>
 
       {/* El mapa entero vive en /ruta, con el recorrido tramo por tramo. Aquí

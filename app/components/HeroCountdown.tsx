@@ -135,7 +135,7 @@ export default function HeroCountdown() {
             className="h-auto max-h-[min(20vh,190px)] w-[min(78vw,580px)] object-contain select-none lg:hidden"
             draggable={false}
           />
-          <p className="mt-[clamp(0.75rem,2.5vh,3rem)] font-[family-name:var(--font-titular)] text-[clamp(0.8rem,min(3.2vh,3.7vw),2.4rem)] font-black tracking-[0.2em] whitespace-nowrap text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:tracking-[0.2em]">
+          <p className="entrada mt-[clamp(0.75rem,2.5vh,3rem)] font-[family-name:var(--font-titular)] text-[clamp(0.8rem,min(3.2vh,3.7vw),2.4rem)] font-black tracking-[0.2em] whitespace-nowrap text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:tracking-[0.2em]">
             Sábado · 29 agosto · 2026
           </p>
         </div>
@@ -146,10 +146,10 @@ export default function HeroCountdown() {
               lib/carrera.ts —el total REAL que maneja la organización, online
               (Airtable/D1) MÁS los de efectivo aún sin pasar al sistema— y se
               actualiza a mano ahí. (docs/30-UX-CONVERSION.md, tips 6 y 24.) */}
-          <p className="mb-[clamp(0.6rem,1.8vh,1.5rem)] inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-4 py-1.5 text-[clamp(0.62rem,min(1.9vh,2.9vw),0.95rem)] font-bold tracking-[0.04em] text-white backdrop-blur-sm">
+          <p className="entrada entrada-1 mb-[clamp(0.6rem,1.8vh,1.5rem)] inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-4 py-1.5 text-[clamp(0.62rem,min(1.9vh,2.9vw),0.95rem)] font-bold tracking-[0.04em] text-white">
             Últimos días · {CUPOS_VENDIDOS_PCT}% vendido
           </p>
-          <p className="mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.62rem,min(2vh,2.6vw),1.45rem)] font-black tracking-[0.2em] text-white/90 uppercase sm:tracking-[0.2em]">
+          <p className="entrada entrada-1 mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.62rem,min(2vh,2.6vw),1.45rem)] font-black tracking-[0.2em] text-white/90 uppercase sm:tracking-[0.2em]">
             Faltan para el inicio
           </p>
 
@@ -157,7 +157,7 @@ export default function HeroCountdown() {
               líneas, incrustado en el HTML con data-mantener para que el
               limpiador de scripts lo respete. Nada de React: la página sigue
               sin framework. Solo se pinta en lg+. */}
-          <div className="hidden w-full max-w-2xl grid-cols-4 gap-3 lg:grid">
+          <div className="entrada entrada-2 hidden w-full max-w-2xl grid-cols-4 gap-3 lg:grid">
             {[
               ["cd-d", String(dias), "Días"],
               ["cd-h", "--", "Horas"],
@@ -192,7 +192,7 @@ export default function HeroCountdown() {
           />
 
           {/* MÓVIL — número de días ESTÁTICO (server, sin JS de reloj). */}
-          <div className="relative mx-auto flex min-h-[clamp(84px,16vh,120px)] w-full max-w-[260px] flex-col items-center justify-center overflow-hidden rounded-t-md rounded-b-2xl border-x border-b border-white/10 bg-black/55 px-4 py-[clamp(0.6rem,2vh,1rem)] shadow-[0_10px_30px_rgba(0,0,0,0.45)] lg:hidden">
+          <div className="entrada entrada-2 relative mx-auto flex min-h-[clamp(84px,16vh,120px)] w-full max-w-[260px] flex-col items-center justify-center overflow-hidden rounded-t-md rounded-b-2xl border-x border-b border-white/10 bg-black/55 px-4 py-[clamp(0.6rem,2vh,1rem)] shadow-[0_10px_30px_rgba(0,0,0,0.45)] lg:hidden">
             <span
               className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#f7771c] via-[#ee374b] to-[#c51850]"
               aria-hidden="true"
@@ -208,7 +208,7 @@ export default function HeroCountdown() {
           {/* BOTÓN DE INSCRIPCIÓN. */}
           <a
             href="/inscripcion/"
-            className="mt-[clamp(1rem,3.5vh,3rem)] inline-flex items-center justify-center rounded-full bg-white px-10 py-[clamp(0.6rem,1.8vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.9rem,2.2vh,1.4rem)] font-black tracking-[0.22em] text-[#c51850] uppercase shadow-[0_12px_45px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-105 active:scale-95 sm:px-14"
+            className="entrada entrada-3 mt-[clamp(1rem,3.5vh,3rem)] inline-flex items-center justify-center rounded-full bg-white px-10 py-[clamp(0.6rem,1.8vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.9rem,2.2vh,1.4rem)] font-black tracking-[0.22em] text-[#c51850] uppercase shadow-[0_12px_45px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-105 active:scale-95 sm:px-14"
           >
             Inscribirme ahora
           </a>
@@ -217,7 +217,7 @@ export default function HeroCountdown() {
               CTA. Es lo que un desconocido necesita para decidir sin bajar.
               El precio y el kit salen de fuentes únicas (carrera.ts, reglamento
               art. 6). (docs/30-UX-CONVERSION.md, tips 2 y 9.) */}
-          <p className="mt-[clamp(0.6rem,1.8vh,1.1rem)] max-w-[22rem] text-[clamp(0.72rem,min(1.7vh,2.7vw),1rem)] leading-snug font-semibold tracking-wide text-white/90">
+          <p className="entrada entrada-4 mt-[clamp(0.6rem,1.8vh,1.1rem)] max-w-[22rem] text-[clamp(0.72rem,min(1.7vh,2.7vw),1rem)] leading-snug font-semibold tracking-wide text-white/90">
             8 km · Patate · salida 08h00 · desde ${PRECIO_DESCUENTO} · incluye
             camiseta, dorsal, chip y medalla
           </p>
