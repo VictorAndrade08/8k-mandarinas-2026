@@ -23,7 +23,7 @@ export default function CategoriasHome() {
           {CATEGORIAS.map((c) => (
             <div
               key={c.nombre}
-              className="flex flex-col rounded-[18px] border border-gray-200 bg-gray-50 p-6"
+              className="flex flex-col rounded-[18px] border border-gray-200 bg-gray-50 p-6 transition-[transform,border-color] duration-200 hover:-translate-y-1 hover:border-[#d2600f]/50"
             >
               <h3 className="font-barlow text-lg leading-tight font-bold text-gray-900">
                 {c.nombre}

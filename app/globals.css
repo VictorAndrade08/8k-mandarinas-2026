@@ -463,33 +463,67 @@ section[id] {
     transform: translateY(0);
   }
 }
-.entrada {
-  animation: entrada-suave 500ms ease-out both;
-}
-.entrada-1 {
-  animation-delay: 60ms;
-}
-.entrada-2 {
-  animation-delay: 120ms;
-}
-.entrada-3 {
-  animation-delay: 180ms;
-}
-.entrada-4 {
-  animation-delay: 240ms;
+/* SOLO ESCRITORIO (hover + puntero preciso): el móvil recibe la interfaz
+   estática al instante — sin retrasos de entrada ni movimiento. No se usa el
+   ancho de pantalla porque una tablet grande o un portátil táctil engañan;
+   hover+pointer detectan un mouse de verdad (nota 16). */
+@media (hover: hover) and (pointer: fine) {
+  .entrada {
+    animation: entrada-suave 500ms ease-out both;
+  }
+  .entrada-1 {
+    animation-delay: 60ms;
+  }
+  .entrada-2 {
+    animation-delay: 120ms;
+  }
+  .entrada-3 {
+    animation-delay: 180ms;
+  }
+  .entrada-4 {
+    animation-delay: 240ms;
+  }
 }
 
 /* La línea que se dibuja: el elemento propio de la marca (el recorrido),
-   en los colores del flyer. scaleX no toca el layout. */
+   en los colores del flyer. scaleX no toca el layout. En móvil aparece
+   dibujada de una vez. */
 @keyframes linea-ruta-dibujo {
   to {
     transform: scaleX(1);
   }
 }
-.linea-ruta {
-  transform: scaleX(0);
-  transform-origin: left center;
-  animation: linea-ruta-dibujo 700ms ease-out 200ms both;
+@media (hover: hover) and (pointer: fine) {
+  .linea-ruta {
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: linea-ruta-dibujo 700ms ease-out 200ms both;
+  }
+}
+
+/* Subrayado de navegación que crece de izquierda a derecha (nota 16).
+   Solo escritorio: en táctil no existe hover. */
+@media (hover: hover) and (pointer: fine) {
+  .nav-subrayado {
+    position: relative;
+  }
+  .nav-subrayado::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -4px;
+    left: 0;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 180ms ease;
+  }
+  .nav-subrayado:hover::after,
+  .nav-subrayado:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
 /* Quien pide "reducir movimiento" en su sistema recibe el contenido directo:

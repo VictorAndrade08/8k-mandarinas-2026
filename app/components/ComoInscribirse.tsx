@@ -104,7 +104,7 @@ export default function ComoInscribirse() {
           {PASOS.map((p, i) => (
             <li
               key={p.titulo}
-              className="relative overflow-hidden rounded-[18px] border border-gray-200 bg-gray-50 p-6 sm:p-7"
+              className={`entrada entrada-${i + 1} relative overflow-hidden rounded-[18px] border border-gray-200 bg-gray-50 p-6 transition-transform duration-200 hover:-translate-y-1 sm:p-7`}
             >
               <span
                 aria-hidden

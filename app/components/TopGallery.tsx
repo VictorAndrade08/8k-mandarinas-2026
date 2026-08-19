@@ -134,7 +134,7 @@ export default function TopGallery() {
             {belt.map((img, i) => (
               <div
                 key={i}
-                className="relative h-[130px] w-[200px] flex-shrink-0 overflow-hidden rounded-[16px] border border-white/10 bg-black sm:h-[170px] sm:w-[260px] md:h-[210px] md:w-[320px]"
+                className="group relative h-[130px] w-[200px] flex-shrink-0 overflow-hidden rounded-[16px] border border-white/10 bg-black sm:h-[170px] sm:w-[260px] md:h-[210px] md:w-[320px]"
               >
                 <img
                   src={img.src}
@@ -143,7 +143,7 @@ export default function TopGallery() {
                   alt={img.alt}
                   width={640}
                   height={376}
-                  className="absolute inset-0 h-full w-full object-cover opacity-85"
+                  className="absolute inset-0 h-full w-full object-cover opacity-85 transition-transform duration-300 group-hover:scale-[1.025]"
                   loading="lazy"
                   decoding="async"
                 />

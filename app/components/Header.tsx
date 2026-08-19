@@ -178,7 +178,7 @@ export default function Header() {
                       ? "#f7771c"
                       : item.acento,
                   }}
-                  className={`inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-(--acento) xl:px-4 ${
+                  className={`nav-subrayado inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-(--acento) xl:px-4 ${
                     // El hover en modo transparente va a BLANCO PLENO, no a
                     // naranja: el header flota sobre fondos cálidos (el degradado
                     // naranja del home incluido) y el naranja desaparecía ahí.
