@@ -23,7 +23,7 @@ const FOTOS = Array.from({ length: 24 }, (_, i) => {
 
 export default function GaleriaPage() {
   return (
-    <section className="w-full bg-[#140309] px-4 pb-24 sm:px-6 sm:pb-16 lg:px-8">
+    <section className="w-full bg-[#140309] px-4 pt-8 pb-24 sm:px-6 sm:pt-14 sm:pb-16 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         {/* Cabecera editorial en dos columnas: el titular manda a la
             izquierda; la descripción y el conteo equilibran la derecha. */}
