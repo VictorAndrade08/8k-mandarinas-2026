@@ -288,7 +288,7 @@ export default function VerificarPage() {
 
             <p className="mb-10 max-w-lg text-xl leading-relaxed font-normal text-white/80 lg:text-2xl">
               Consulta el estado de tu inscripción, descarga tu ticket digital y
-              prepárate para la carrera más importante del año.
+              prepárate para correr Patate el 29 de agosto.
             </p>
 
             {/* Stats */}
