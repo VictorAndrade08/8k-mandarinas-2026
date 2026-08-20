@@ -35,33 +35,42 @@ export default function GaleriaPage() {
           Así se corre <span className="text-[#f7771c]">Patate</span>
         </h1>
         <p className="font-barlow mt-4 max-w-2xl text-base leading-relaxed text-gray-300 sm:text-lg">
-          La salida, la ruta entre cultivos y la llegada, tal como se vivieron.
-          Toca cualquier foto para verla en tamaño completo.
+          La salida, la ruta entre cultivos, los podios y la llegada, tal como
+          se vivieron. Toca cualquier foto para verla en grande.
         </p>
 
+        {/* Las fuentes originales miden 640px; las versiones -960 están
+            reescaladas con lanczos + enfoque fino (se ven claramente más
+            nítidas que dejar que el navegador amplíe el 640). La celda usa la
+            960 en retina y la vista grande abre la 960 directamente. Si algún
+            día llegan los originales de cámara, se regeneran sin tocar nada
+            más. */}
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
-          {FOTOS.map((f) => (
-            <a
-              key={f.src}
-              href={f.src}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Abrir en tamaño completo: ${f.alt}`}
-              className="group block overflow-hidden rounded-[14px] border border-white/10 bg-black outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c]"
-            >
-              <img
-                src={f.src}
-                srcSet={srcSetDe(f.src)}
-                sizes="(max-width: 768px) 50vw, 33vw"
-                alt={f.alt}
-                width={640}
-                height={376}
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.025]"
-                loading="lazy"
-                decoding="async"
-              />
-            </a>
-          ))}
+          {FOTOS.map((f) => {
+            const grande = f.src.replace(".webp", "-960.webp");
+            return (
+              <a
+                key={f.src}
+                href={grande}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Ver en grande: ${f.alt}`}
+                className="group block overflow-hidden rounded-[14px] border border-white/10 bg-black outline-none focus-visible:ring-2 focus-visible:ring-[#f7771c]"
+              >
+                <img
+                  src={f.src}
+                  srcSet={`${srcSetDe(f.src) ?? `${f.src} 640w`}, ${grande} 960w`}
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  alt={f.alt}
+                  width={640}
+                  height={376}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.025]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            );
+          })}
         </div>
 
         <div className="mt-12 flex flex-col items-center gap-4 text-center">
