@@ -152,6 +152,17 @@ export default function TopGallery() {
           </div>
         </div>
 
+        {/* La cinta es la muestra; las 24 completas viven en /galeria (nota
+            20: el home enseña una selección y la galería va en su página). */}
+        <div className="mt-4 text-center">
+          <a
+            href="/galeria/"
+            className="font-barlow inline-flex min-h-[44px] items-center gap-2 text-sm font-bold tracking-[0.12em] text-white/80 uppercase underline decoration-white/30 underline-offset-4 transition-colors hover:text-white"
+          >
+            Ver todas las fotos
+          </a>
+        </div>
+
         <style>{`
             @keyframes tgMarquee {
               0% { transform: translate3d(0, 0, 0); }

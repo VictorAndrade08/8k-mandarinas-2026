@@ -6,8 +6,11 @@
 // Arte oficial 2026 actualizado (v2). Nombres nuevos para saltar la caché de
 // Cloudflare. Horizontal para escritorio, vertical (la corredora, promo $20)
 // para móvil.
-const DESKTOP_IMAGE = "/fotos/banner-inscripciones-v2.webp";
-const MOBILE_IMAGE = "/fotos/post-8k-v2.webp";
+// v3 (20-ago): el arte nuevo de la página oficial de Facebook. El v2 móvil
+// seguía anunciando "preventa hasta el 31 de julio" — caducado. El vertical
+// nuevo trae la entrega de kit en Vehicentro (28-ago) y los premios.
+const DESKTOP_IMAGE = "/fotos/banner-inscripciones-v3.webp";
+const MOBILE_IMAGE = "/fotos/post-8k-v3.webp";
 
 export default function Publicidad() {
   return (
@@ -27,9 +30,9 @@ export default function Publicidad() {
           />
           <img
             src={MOBILE_IMAGE}
-            alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Precio preventa $20 (hasta el 31 de agosto) · Lugar: Valle de Patate · Fecha: 29 de agosto · Salida: Patate Gardens"
+            alt="8K Ruta de las Mandarinas · Inscripciones abiertas · Valle de Patate · 29 de agosto, salida 08h00 en Patate Gardens · Entrega de kit el 28 de agosto en Vehicentro · Premios económicos"
             width={900}
-            height={1124}
+            height={1200}
             className="h-auto w-full"
             // Ni eager ni fetchPriority: este banner está DEBAJO del pliegue —
             // el hero ocupa la pantalla entera. Con prioridad alta le robaba el
