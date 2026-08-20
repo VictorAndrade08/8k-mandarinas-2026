@@ -130,7 +130,7 @@ export default function BottomNav() {
           {/* El mismo hueco que la barrita de "activo" de las otras celdas: sin
               él, este icono y su etiqueta quedan 3px más arriba que el resto. */}
           <span aria-hidden="true" className="h-[3px] w-6" />
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#f7771c] to-[#c51850] text-white shadow-md shadow-[#f7771c]/40">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#c51850] text-white shadow-md shadow-[#f7771c]/40">
             {/* `fill`, como los iconos activos de al lado: en `bold` era el
                 único de la fila con otro estilo de trazo. */}
             <PersonSimpleRun size={20} weight="fill" />

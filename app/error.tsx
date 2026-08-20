@@ -40,7 +40,7 @@ export default function GlobalError({
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <button
             onClick={() => reset()}
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-gradient-to-r from-[#f7771c] to-[#c51850] px-7 py-3.5 text-xs font-bold tracking-[0.15em] text-white uppercase shadow-md transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#c51850] px-7 py-3.5 text-xs font-bold tracking-[0.15em] text-white uppercase shadow-md transition-all duration-300 hover:-translate-y-0.5"
           >
             Intentar de nuevo
           </button>

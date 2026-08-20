@@ -85,8 +85,8 @@ export default function InfoBeforeRace() {
               efecto que se repetía en otras tres secciones, y un gris apagado
               como remate lee a plantilla. Va en naranja de marca. */}
           <h2 className="mb-10 max-w-3xl font-[family-name:var(--font-titular)] text-[38px] leading-[0.9] tracking-wide text-white uppercase sm:mb-14 sm:text-[52px] md:text-[64px]">
-            Todo lo que necesitas <br />
-            <span className="text-[#f7771c]">saber antes de correr</span>
+            Lo que hay que saber <br />
+            <span className="text-[#f7771c]">antes de correr Patate</span>
           </h2>
 
           {/* Una grande y tres pequeñas, no cuatro iguales en fila. Cuatro

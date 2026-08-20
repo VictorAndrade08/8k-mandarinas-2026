@@ -99,7 +99,7 @@ export default function FloatingCTA() {
         // clases inexistentes. Y era un botón de 22px con dos sombras de 40 y
         // 60px: un CTA gigante que grita (reglas 6 y 20). Ahora tiene el tamaño
         // de un botón y una sola sombra, la de marca.
-        className={`fixed right-8 bottom-8 z-50 flex items-center gap-2 rounded-full bg-gradient-to-r from-[#f7771c] to-[#c51850] px-7 py-3.5 text-base leading-none font-bold tracking-[0.08em] text-white uppercase shadow-[0_8px_24px_rgba(247,119,28,0.35)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 ${isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"}`}
+        className={`fixed right-8 bottom-8 z-50 flex items-center gap-2 rounded-full bg-[#c51850] px-7 py-3.5 text-base leading-none font-bold tracking-[0.08em] text-white uppercase shadow-[0_8px_24px_rgba(247,119,28,0.35)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 ${isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"}`}
       >
         <span>Inscribirme</span>
         <PersonSimpleRun size={22} weight="fill" />

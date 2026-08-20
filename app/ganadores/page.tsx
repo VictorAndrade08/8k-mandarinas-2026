@@ -348,7 +348,7 @@ export default function GanadoresPage() {
           </div>
 
           {/* NUEVO BLOQUE: Nota y Plazo de acreditación idéntico a la foto */}
-          <div className="mt-6 break-inside-avoid bg-gradient-to-r from-[#f7771c] to-[#c51850] p-4 md:p-6">
+          <div className="mt-6 break-inside-avoid bg-[#c51850] p-4 md:p-6">
             <p className="mb-4 font-[family-name:var(--font-titular)] text-[13px] leading-relaxed text-white">
               <span className="font-bold">Nota:</span> Para las categorías
               Discapacidad visual e intelectual, Silla de calle, Interfuerzas y

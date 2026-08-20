@@ -64,7 +64,7 @@ export default function ReglamentoSection() {
           <div className="flex w-full flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/reglamento"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#f7771c] to-[#c51850] px-8 py-4 text-sm font-bold tracking-[0.15em] text-white uppercase shadow-lg shadow-[#f7771c]/30 transition-all duration-300 hover:-translate-y-1 hover:gap-3 hover:shadow-[#f7771c]/50"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#c51850] px-8 py-4 text-sm font-bold tracking-[0.15em] text-white uppercase shadow-lg shadow-[#f7771c]/30 transition-all duration-300 hover:-translate-y-1 hover:gap-3 hover:shadow-[#f7771c]/50"
             >
               Leer Reglamento Completo <ArrowRight size={18} />
             </Link>

@@ -83,7 +83,7 @@ export default function FaqHome() {
           </p>
           <Link
             href="/inscripcion"
-            className="font-barlow mt-3 inline-flex min-h-[56px] items-center justify-center rounded-full bg-gradient-to-r from-[#f7771c] to-[#c51850] px-10 text-lg font-bold tracking-wide text-white uppercase shadow-[0_8px_24px_rgba(247,119,28,0.35)] transition hover:-translate-y-0.5 hover:brightness-110"
+            className="font-barlow mt-3 inline-flex min-h-[56px] items-center justify-center rounded-full bg-[#c51850] px-10 text-lg font-bold tracking-wide text-white uppercase shadow-[0_8px_24px_rgba(247,119,28,0.35)] transition hover:-translate-y-0.5 hover:brightness-110"
           >
             Inscribirme ahora
           </Link>
