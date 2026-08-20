@@ -65,11 +65,17 @@ export default function Header() {
   const [enTope, setEnTope] = useState(true);
   const ultimoY = useRef(0);
 
-  // En el tope la píldora va SIEMPRE transparente (pedido del 22-jul): en el
-  // home deja ver el vídeo y en las interiores flota sobre el fondo ciruela
-  // del body (#1c0710) — oscuro en ambos casos, así que el texto blanco
-  // contrasta siempre. Al hacer scroll vuelve la versión blanca compacta.
-  const transparente = enTope;
+  // En el tope la píldora va transparente (texto blanco) SOLO donde el fondo
+  // de arriba es oscuro. En las páginas de tope CLARO (carrera, reglamento,
+  // términos, ganadores) el blanco sobre crema/blanco era invisible: ahí va
+  // siempre la píldora blanca con el logo a color.
+  const TOPE_CLARO = new Set([
+    "/carrera",
+    "/reglamento",
+    "/terminos",
+    "/ganadores",
+  ]);
+  const transparente = enTope && !TOPE_CLARO.has(ruta);
 
   // En el HOME MÓVIL la píldora del tope se esconde entera: el hero ya trae
   // el logo grande justo debajo y se veían dos logos apilados (reportado con
