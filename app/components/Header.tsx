@@ -43,6 +43,7 @@ const Logo = ({
 // recorrido tramo por tramo.
 const NAV = [
   { href: "/ruta", label: "Ruta", acento: "#f7771c" },
+  { href: "/galeria", label: "Galería", acento: "#f7771c" },
   { href: "/informacion", label: "Información", acento: "#f7771c" },
   { href: "/reglamento", label: "Reglamento", acento: "#f7771c" },
   // "Mi pago", no "Verificar mi pago": la barra inferior del móvil ya llamaba

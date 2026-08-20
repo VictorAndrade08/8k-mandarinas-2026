@@ -14,6 +14,7 @@ import { WHATSAPP_SOPORTE } from "../lib/carrera";
 const ENLACES = [
   { href: "/inscripcion/", label: "Inscripción" },
   { href: "/ruta", label: "El recorrido" },
+  { href: "/galeria", label: "Galería" },
   { href: "/informacion", label: "Información" },
   { href: "/reglamento", label: "Reglamento" },
   // El mismo nombre que en el header y en la barra inferior del móvil: la misma
