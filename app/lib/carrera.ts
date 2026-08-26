@@ -36,12 +36,27 @@ export const FECHA_CARRERA = "2026-08-29T08:00:00-05:00";
  */
 export const FECHA_LIMITE_KIT = "2026-08-28T17:00:00-05:00";
 
-/** Preventa. Tercera edad (65+) y discapacidad ya llevan su descuento aplicado. */
-export const PRECIO_PREVENTA = 20;
+/**
+ * Precio de inscripción. Es el mismo para todos y NO va a subir: hasta el
+ * 26-ago-2026 el sitio lo llamaba "preventa" y el formulario avisaba de que los
+ * precios "suben cuando se cierre la preventa" — una subida que no existe. Un
+ * descuento que nunca vence es de las cosas que más rápido queman la confianza
+ * (docs/100-URGENCIA.md, estrategias 57 y 65), y encima tapaba la urgencia que
+ * sí es verdad: el cierre de la entrega de kits.
+ *
+ * Tercera edad (65+) y discapacidad ya llevan su descuento aplicado.
+ */
+export const PRECIO_GENERAL = 20;
 export const PRECIO_DESCUENTO = 18;
 
 /**
- * Inscritos aproximados que enseña el hero como prueba social. Es el total
+ * Inscritos aproximados. NO se enseña en el sitio: se probó en el hero y en el
+ * formulario el 26-ago-2026 y la organización decidió quitar la cifra —se
+ * comunica el % vendido del arte oficial y nada más. Queda aquí como el número
+ * de referencia del equipo; si algún día vuelve a la pantalla, este es el sitio
+ * del que hay que leerlo.
+ *
+ * Es el total
  * REAL que maneja la organización: los pagos online (Airtable/D1) MÁS los que
  * se inscriben en efectivo y aún no se han pasado al sistema. Se actualiza a
  * mano aquí conforme sube. Redondea hacia abajo para no exagerar de más.
@@ -85,8 +100,8 @@ export const PREMIOS = [
  * Si cambia una edad o un precio, hay que cuadrar los tres sitios.
  */
 export const CATEGORIAS = [
-  { nombre: "Élite Pro 8K", edades: "Hasta 39 años", precio: PRECIO_PREVENTA },
-  { nombre: "Máster", edades: "De 40 a 64 años", precio: PRECIO_PREVENTA },
+  { nombre: "Élite Pro 8K", edades: "Hasta 39 años", precio: PRECIO_GENERAL },
+  { nombre: "Máster", edades: "De 40 a 64 años", precio: PRECIO_GENERAL },
   {
     nombre: "Leyenda",
     edades: "65 años en adelante",

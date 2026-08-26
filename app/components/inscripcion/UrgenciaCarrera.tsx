@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Fire } from "@phosphor-icons/react";
-import {
-  FECHA_LIMITE_KIT,
-  INSCRITOS_APROX,
-  CUPOS_VENDIDOS_PCT,
-} from "../../lib/carrera";
+import { FECHA_LIMITE_KIT, CUPOS_VENDIDOS_PCT } from "../../lib/carrera";
 
 /**
  * "Últimos días" + las horas que faltan, dentro del formulario.
@@ -31,9 +27,10 @@ import {
  * kit cae ~15 horas antes, o sea que aprieta MÁS, y encima explica por qué hay
  * prisa en vez de solo enseñar un reloj bajando.
  *
- * Los números (INSCRITOS_APROX, CUPOS_VENDIDOS_PCT) salen de app/lib/carrera.ts,
- * que es lo que maneja la organización y se actualiza a mano ahí — aquí no se
- * inventa ninguno.
+ * El porcentaje sale de CUPOS_VENDIDOS_PCT (app/lib/carrera.ts), que es el
+ * número del arte oficial y se actualiza a mano ahí — aquí no se inventa nada.
+ * La cifra de inscritos NO se enseña: se probó y la organización decidió
+ * quitarla el 26-ago-2026.
  */
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -79,14 +76,6 @@ export function UrgenciaCarrera() {
       <p className="flex items-center gap-2 text-xs font-bold tracking-[0.14em] text-[#ffc53d] uppercase">
         <Fire size={16} weight="fill" className="shrink-0" aria-hidden="true" />
         Últimos días · {CUPOS_VENDIDOS_PCT}% vendido
-      </p>
-
-      {/* Prueba social antes que el reloj: "630 ya están dentro" convence a más
-          gente que un contador, y las dos cosas juntas dicen "esto se llena y
-          se acaba". (docs/30-UX-CONVERSION.md, tips 6 y 24.) */}
-      <p className="mt-1 text-[13px] font-semibold text-white/85">
-        <strong className="font-black text-white">{INSCRITOS_APROX}</strong>{" "}
-        corredores ya están inscritos
       </p>
 
       {restante ? (

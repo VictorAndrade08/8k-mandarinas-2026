@@ -28,10 +28,16 @@ export function PasoCategoria({
 
       <div className="font-barlow mb-5 flex items-start gap-3 rounded-xl border border-[#ffc53d]/40 bg-[#ffc53d]/10 px-4 py-3.5">
         <ClockCountdown size={20} className="mt-0.5 shrink-0 text-[#ffc53d]" />
+        {/* Aquí decía "Precios de preventa. Suben cuando se cierre la
+            preventa": una subida que no existe —el precio es el mismo para
+            todos y no va a cambiar— y que además tapaba la única urgencia que
+            sí es cierta. Ahora avisa del plazo real (docs/100-URGENCIA.md,
+            estrategias 1, 4, 57 y 65). */}
         <p className="text-base leading-relaxed text-yellow-50 md:text-lg">
-          <strong className="text-white">Precios de preventa.</strong> Suben
-          cuando se cierre la preventa, así que inscribirte hoy te sale más
-          barato.
+          <strong className="text-white">
+            El kit se entrega el viernes 28 hasta las 17h00
+          </strong>{" "}
+          en Vehicentro (Ambato). Es la única entrega, y sin kit no se corre.
         </p>
       </div>
 
@@ -67,7 +73,7 @@ export function PasoCategoria({
                   ${cat.price}
                 </span>
                 <span className="mt-1 block text-[10px] font-bold tracking-widest text-[#ffc53d] uppercase">
-                  Preventa
+                  Incluye kit
                 </span>
               </div>
             </div>

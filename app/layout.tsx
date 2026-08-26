@@ -55,8 +55,11 @@ export const metadata: Metadata = {
   // carrera llega por búsqueda orgánica, y "8k patate" o "carrera patate 2026"
   // son las búsquedas reales (consejo #25 de docs/50-CONSEJOS-CARRERAS.md).
   title: "8K Ruta de las Mandarinas 2026 — Carrera en Patate, Ecuador",
+  // El plazo va EN la descripción: es lo que se lee al compartir el enlace por
+  // WhatsApp, que es como se difunde esta carrera de verdad
+  // (docs/100-URGENCIA.md, estrategias 76 y 77).
   description:
-    "Carrera 8K en Patate, Tungurahua · Sábado 29 de agosto de 2026, salida 08h00 · Inscripción $20, categorías desde los 8 años — Sitio oficial",
+    "Carrera 8K en Patate, Tungurahua · Sábado 29 de agosto de 2026, salida 08h00 · Inscripción $20 · Última entrega de kits: viernes 28 hasta las 17h00 — Sitio oficial",
   metadataBase: new URL("https://8krutadelasmandarinas.com"),
   // La tarjeta que sale al compartir el enlace por WhatsApp — que es como se
   // difunde una carrera de pueblo de verdad. Sin esto, el enlace sale pelado.
@@ -64,7 +67,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "8K Ruta de las Mandarinas 2026 — Patate, Ecuador",
     description:
-      "Sábado 29 de agosto · Salida 08h00 desde Patate Gardens · Inscripción $20",
+      "Sábado 29 de agosto · Salida 08h00 desde Patate Gardens · Inscripción $20 · Kits el viernes 28 hasta las 17h00",
     url: "/",
     siteName: "8K Ruta de las Mandarinas",
     locale: "es_EC",

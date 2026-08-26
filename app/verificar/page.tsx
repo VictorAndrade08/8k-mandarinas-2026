@@ -15,7 +15,7 @@ import {
   Package,
 } from "@phosphor-icons/react";
 import { BANCO } from "../components/inscripcion";
-import { WHATSAPP_SOPORTE, PRECIO_PREVENTA } from "../lib/carrera";
+import { WHATSAPP_SOPORTE, PRECIO_GENERAL } from "../lib/carrera";
 
 // Configuración de estilos y fuentes
 const brandPink = "#c51850";
@@ -578,7 +578,7 @@ export default function VerificarPage() {
                       <p className="mt-1.5 text-sm leading-relaxed text-white/75">
                         Transfiere{" "}
                         <strong className="text-white">
-                          ${data.valor || PRECIO_PREVENTA}
+                          ${data.valor || PRECIO_GENERAL}
                         </strong>{" "}
                         a esta cuenta y mándanos la foto del comprobante por
                         WhatsApp. Con eso quedas dentro.
@@ -611,7 +611,7 @@ export default function VerificarPage() {
                         onClick={() => {
                           navigator.clipboard
                             ?.writeText(
-                              `${BANCO.entidad}\nCuenta ${BANCO.tipo.toLowerCase()}: ${BANCO.numero}\nTitular: ${BANCO.titular}\nRUC: ${BANCO.ruc}\nValor: $${data.valor || PRECIO_PREVENTA}.00`
+                              `${BANCO.entidad}\nCuenta ${BANCO.tipo.toLowerCase()}: ${BANCO.numero}\nTitular: ${BANCO.titular}\nRUC: ${BANCO.ruc}\nValor: $${data.valor || PRECIO_GENERAL}.00`
                             )
                             .then(() => setCopiado(true));
                           setTimeout(() => setCopiado(false), 2500);

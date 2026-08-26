@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PRECIO_PREVENTA, PRECIO_DESCUENTO } from "../lib/carrera";
+import { PRECIO_GENERAL, PRECIO_DESCUENTO } from "../lib/carrera";
 
 // Las cinco preguntas que más llegan por WhatsApp, respondidas en el propio
 // home para que nadie tenga que escribir para saberlas (notas UX: FAQ cerca
@@ -8,7 +8,14 @@ import { PRECIO_PREVENTA, PRECIO_DESCUENTO } from "../lib/carrera";
 const PREGUNTAS = [
   {
     q: "¿Cuánto cuesta inscribirse?",
-    a: `$${PRECIO_PREVENTA} en Élite Pro 8K (hasta 39 años) y Máster (40–64). $${PRECIO_DESCUENTO} en Leyenda (65 en adelante) y Especiales.`,
+    a: `$${PRECIO_GENERAL} en Élite Pro 8K (hasta 39 años) y Máster (40–64). $${PRECIO_DESCUENTO} en Leyenda (65 en adelante) y Especiales.`,
+  },
+  {
+    // La pregunta de los últimos días, y no estaba. La respuesta es el plazo
+    // REAL: las inscripciones no se cierran por decreto, se cierran solas
+    // cuando ya no se puede entregar el kit (docs/100-URGENCIA.md, nº 8).
+    q: "¿Hasta cuándo me puedo inscribir?",
+    a: "Hasta que se pueda entregar el kit: el viernes 28 de agosto a las 17h00 se cierra la única entrega, en Vehicentro (Ambato). Sin kit no hay dorsal ni chip, así que inscribirse después de esa hora es pagar para no correr.",
   },
   {
     q: "¿Cómo se paga?",

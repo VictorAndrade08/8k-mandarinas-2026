@@ -7,6 +7,9 @@
 //   - Se ve UNA vez por sesión (sessionStorage): no reaparece en cada página.
 //   - Cierre MUY fácil: botón X grande, clic en el fondo, tecla Esc y un botón
 //     de texto debajo.
+//   - Un botón de verdad ("Inscripciones finales · Clic aquí") debajo de los
+//     flyers: las imágenes enlazan, pero un cartel no se lee como algo que se
+//     pulsa.
 //   - Aparece con la primera interacción (no con temporizador), así nunca
 //     cuenta como LCP; y sus imágenes van en lazy dentro de un contenedor
 //     oculto, así que no se descargan hasta que se abre.
@@ -103,6 +106,30 @@ export default function PopupFlyer() {
               </a>
             ))}
           </div>
+
+          {/* EL BOTÓN. Los dos flyers ya son enlaces, pero un cartel no se lee
+              como un botón: hace falta algo que diga en palabras qué se hace
+              aquí. Va debajo de las dos imágenes, a todo el ancho y con el
+              degradado de marca, para que sea lo más llamativo del pop-up
+              (docs/100-URGENCIA.md, estrategias 5 y 70: el CTA dice lo que pasa
+              después, y va donde ya está mirando quien duda). */}
+          <a
+            href="/inscripcion/"
+            data-cerrar=""
+            className="mt-3 block rounded-2xl px-6 py-4 text-center shadow-[0_10px_30px_rgba(197,24,80,0.45)] transition-transform hover:scale-[1.02] focus-visible:ring-4 focus-visible:ring-white/70 focus-visible:outline-none"
+            style={{
+              backgroundImage:
+                "linear-gradient(135deg, #f7771c 0%, #ee374b 48%, #c51850 100%)",
+            }}
+          >
+            <span className="block text-lg leading-none font-black tracking-[0.12em] text-white uppercase sm:text-xl">
+              Inscripciones finales · Clic aquí
+            </span>
+            <span className="mt-1.5 block text-[11px] leading-snug font-bold text-white/85 sm:text-xs">
+              El kit se retira el viernes 28 hasta las 17h00 · sin kit no se
+              corre
+            </span>
+          </a>
 
           {/* Ayuda de cierre explícita (buena práctica de pop-up). */}
           <button

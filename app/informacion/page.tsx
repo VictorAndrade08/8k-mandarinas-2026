@@ -14,7 +14,7 @@ import {
 import {
   CATEGORIAS,
   PREMIOS,
-  PRECIO_PREVENTA,
+  PRECIO_GENERAL,
   PRECIO_DESCUENTO,
   WHATSAPP_SOPORTE,
 } from "../lib/carrera";
@@ -46,8 +46,8 @@ const DATOS = [
   { icon: MapPin, dato: "Patate", pie: "Tungurahua · Ecuador" },
   {
     icon: CurrencyDollar,
-    dato: `$${PRECIO_PREVENTA}`,
-    pie: "Preventa · con descuentos",
+    dato: `$${PRECIO_GENERAL}`,
+    pie: "Mismo precio para todos · con descuentos",
   },
 ];
 
@@ -97,7 +97,7 @@ const PREGUNTAS = [
     q: "¿Cuánto cuesta y cómo se paga?",
     a: (
       <>
-        La preventa cuesta ${PRECIO_PREVENTA}; las categorías Leyenda (65+) y
+        La inscripción cuesta ${PRECIO_GENERAL}; las categorías Leyenda (65+) y
         Discapacidad pagan ${PRECIO_DESCUENTO}. Se paga por transferencia o QR
         bancario — los datos de la cuenta aparecen en el formulario — y ahí
         mismo subes la foto del comprobante. No hay comisiones: pagas eso y nada

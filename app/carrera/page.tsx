@@ -3,7 +3,7 @@ import {
   FECHA_CARRERA,
   VIDEO_FONDO_SRC,
   VIDEO_FONDO_POSTER,
-  PRECIO_PREVENTA,
+  PRECIO_GENERAL,
   PRECIO_DESCUENTO,
   CUPOS_VENDIDOS_PCT,
   CATEGORIAS,
@@ -40,7 +40,7 @@ const ACORDEON = [
   },
   {
     t: "Categorías y precios",
-    c: `Élite Pro 8K (hasta 39 años) y Máster (40–64): $${PRECIO_PREVENTA}. Leyenda (65 en adelante) y Especiales: $${PRECIO_DESCUENTO}. El formulario te sugiere la tuya según tu edad.`,
+    c: `Élite Pro 8K (hasta 39 años) y Máster (40–64): $${PRECIO_GENERAL}. Leyenda (65 en adelante) y Especiales: $${PRECIO_DESCUENTO}. El formulario te sugiere la tuya según tu edad.`,
   },
   {
     t: "Cómo se paga",

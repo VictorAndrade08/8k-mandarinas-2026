@@ -142,12 +142,24 @@ export default function HeroCountdown() {
 
         {/* GRUPO CENTRAL — contador. */}
         <div className="flex w-full flex-col items-center">
-          {/* Prueba social + urgencia. El número sale de INSCRITOS_APROX en
-              lib/carrera.ts —el total REAL que maneja la organización, online
-              (Airtable/D1) MÁS los de efectivo aún sin pasar al sistema— y se
-              actualiza a mano ahí. (docs/30-UX-CONVERSION.md, tips 6 y 24.) */}
-          <p className="entrada entrada-1 mb-[clamp(0.6rem,1.8vh,1.5rem)] inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-4 py-1.5 text-[clamp(0.62rem,min(1.9vh,2.9vw),0.95rem)] font-bold tracking-[0.04em] text-white">
+          {/* Urgencia por escasez. Sin cifra de inscritos: la organización
+              decidió el 26-ago-2026 no publicar cuánta gente hay dentro. El
+              porcentaje vendido sale de CUPOS_VENDIDOS_PCT en lib/carrera.ts,
+              que es el dato del arte oficial. */}
+          {/* Escasez, sin la cifra de inscritos: se probó enseñar el número
+              (630) junto al porcentaje y se quitó por decisión de la
+              organización el 26-ago-2026. El "% vendido" es el dato del arte
+              oficial y es el que se enseña. */}
+          <p className="entrada entrada-1 mb-[clamp(0.4rem,1.2vh,1rem)] inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-4 py-1.5 text-[clamp(0.62rem,min(1.9vh,2.9vw),0.95rem)] font-bold tracking-[0.04em] text-white">
             Últimos días · {CUPOS_VENDIDOS_PCT}% vendido
+          </p>
+          {/* El plazo que decide de verdad. La salida es el sábado, pero quien
+              se inscribe después del viernes a las 17h00 se queda sin kit —y
+              sin dorsal ni chip. Decir lo que se pierde pesa más que decir lo
+              que se gana (estrategias 1 y 4). */}
+          <p className="entrada entrada-1 mb-[clamp(0.6rem,1.8vh,1.5rem)] max-w-[24rem] text-[clamp(0.62rem,min(1.7vh,2.6vw),0.9rem)] leading-snug font-bold text-[#ffc53d]">
+            Última entrega de kits: viernes 28 hasta las 17h00 · sin kit no se
+            corre
           </p>
           <p className="entrada entrada-1 mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.62rem,min(2vh,2.6vw),1.45rem)] font-black tracking-[0.2em] text-white/90 uppercase sm:tracking-[0.2em]">
             Faltan para el inicio

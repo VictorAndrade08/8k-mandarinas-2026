@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  PRECIO_PREVENTA,
+  PRECIO_GENERAL,
   PRECIO_DESCUENTO,
   WHATSAPP_SOPORTE,
   PREMIOS,
@@ -191,11 +191,11 @@ export default function ReglamentoSection() {
                 <p className="mb-2 font-semibold">Costos de inscripción</p>
                 <ul className="space-y-1 text-black/85">
                   <li>
-                    <strong>${PRECIO_PREVENTA}</strong> — Élite Pro 8K ( hasta
-                    39 años)
+                    <strong>${PRECIO_GENERAL}</strong> — Élite Pro 8K ( hasta 39
+                    años)
                   </li>
                   <li>
-                    <strong>${PRECIO_PREVENTA}</strong> — Máster (40 – 64 años)
+                    <strong>${PRECIO_GENERAL}</strong> — Máster (40 – 64 años)
                   </li>
                   <li>
                     <strong>${PRECIO_DESCUENTO}</strong> — Leyenda (65 años en

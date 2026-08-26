@@ -44,6 +44,19 @@ export default function CategoriasHome() {
           la revises.
         </p>
 
+        {/* Sin cifras de inscritos: la organización decidió el 26-ago-2026 no
+            publicar cuánta gente hay dentro, ni en total ni por categoría. El
+            argumento se mantiene porque es cierto igual —Leyenda y Discapacidad
+            son con diferencia las que menos corredores reúnen— y los premios
+            salen del artículo 13 del reglamento (PREMIOS en carrera.ts). */}
+        <p className="font-barlow mt-3 rounded-xl border border-[#d2600f]/30 bg-[#fff6ed] px-4 py-3 text-sm leading-relaxed text-gray-800">
+          <strong>
+            Leyenda y Discapacidad son las que menos corredores reúnen
+          </strong>{" "}
+          y reparten los mismos premios que las demás ($80 / $60 / $40): es
+          donde se sube al podio con menos competencia.
+        </p>
+
         <Link
           href="/inscripcion"
           className="font-barlow mt-6 inline-flex min-h-[56px] w-full items-center justify-center rounded-full bg-[#c51850] px-10 text-lg font-bold tracking-wide text-white uppercase shadow-[0_8px_24px_rgba(247,119,28,0.35)] transition hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"

@@ -6,7 +6,7 @@ import {
   Ticket,
   ArrowRight,
 } from "@phosphor-icons/react/dist/ssr";
-import { PRECIO_PREVENTA } from "../lib/carrera";
+import { PRECIO_GENERAL } from "../lib/carrera";
 import { srcSetDe } from "../lib/imagen";
 
 /**
@@ -141,8 +141,8 @@ export default function ComoInscribirse() {
               el reglamento y el formulario. Escrito a mano aquí sería el cuarto
               lugar donde vive el mismo número. */}
           <p className="text-sm text-gray-600">
-            Preventa{" "}
-            <strong className="text-gray-900">${PRECIO_PREVENTA}</strong> ·
+            Inscripción{" "}
+            <strong className="text-gray-900">${PRECIO_GENERAL}</strong> ·
             tercera edad y capacidades diferentes tienen descuento
           </p>
         </div>

@@ -795,7 +795,7 @@ export default function InscripcionPage() {
                     </div>
                     <div className="shrink-0 text-right">
                       <span className="block text-[11px] font-bold tracking-widest text-gray-400 uppercase md:text-xs">
-                        Total preventa
+                        Total a pagar
                       </span>
                       <span className="text-2xl leading-none font-black text-[#f7771c] md:text-3xl">
                         ${selectedPrice}
