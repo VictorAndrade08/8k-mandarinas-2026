@@ -295,7 +295,7 @@ datos de un pago que no pasó por el formulario. El cambio se ve al instante en
 - **`notas/`** — bitácora de decisiones, numeradas: 08 cerrar la venta · 09 home
   estático · 10 TypeScript · 11–12 call center · 13 móvil · 14 identidad ·
   15–16 animaciones · 17 alma humana · 18 quitar look AI · 19 imágenes ·
-  20 galería · 21 referencia Ruvent · **22 este mapa**.
+  20 galería · 21 referencia Ruvent · **22 este mapa** · 23 urgencia.
 - **`docs/`** — investigación previa a las decisiones: `100-MOVIL.md`
   (rendimiento), `30-REGLAS-ANTI-IA.md`, `50-CONSEJOS-CARRERAS.md`,
   `30-UX-CONVERSION.md`, `LINEA-GRAFICA.md` y `LINEA-GRAFICA-100.md`,

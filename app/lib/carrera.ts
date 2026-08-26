@@ -27,8 +27,8 @@ export const FECHA_CARRERA = "2026-08-29T08:00:00-05:00";
 
 /**
  * Cierre de la entrega de kits: viernes 28 de agosto a las 17h00 en Vehicentro
- * (Ficoa, Ambato). Es la ÚNICA ventana que hay, y sin kit no hay dorsal ni
- * chip: quien se inscribe después de esa hora ya no llega a correr.
+ * (Ficoa, Ambato). Es la ÚNICA ventana que hay: quien se inscribe después de
+ * esa hora ya no alcanza a retirar el kit.
  *
  * O sea que este —y no la salida del sábado— es el plazo de verdad para quien
  * está decidiendo si inscribirse. Sale del flyer oficial de entrega de kits y

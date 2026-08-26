@@ -126,8 +126,8 @@ export default function PopupFlyer() {
               Inscripciones finales · Clic aquí
             </span>
             <span className="mt-1.5 block text-[11px] leading-snug font-bold text-white/85 sm:text-xs">
-              El kit se retira el viernes 28 hasta las 17h00 · sin kit no se
-              corre
+              El kit se retira el viernes 28 hasta las 17h00, en Vehicentro
+              (Ambato)
             </span>
           </a>
 

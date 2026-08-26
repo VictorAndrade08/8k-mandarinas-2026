@@ -37,7 +37,7 @@ export function PasoCategoria({
           <strong className="text-white">
             El kit se entrega el viernes 28 hasta las 17h00
           </strong>{" "}
-          en Vehicentro (Ambato). Es la única entrega, y sin kit no se corre.
+          en Vehicentro (Ambato). Es la única entrega.
         </p>
       </div>
 

@@ -15,7 +15,7 @@ const PREGUNTAS = [
     // REAL: las inscripciones no se cierran por decreto, se cierran solas
     // cuando ya no se puede entregar el kit (docs/100-URGENCIA.md, nº 8).
     q: "¿Hasta cuándo me puedo inscribir?",
-    a: "Hasta que se pueda entregar el kit: el viernes 28 de agosto a las 17h00 se cierra la única entrega, en Vehicentro (Ambato). Sin kit no hay dorsal ni chip, así que inscribirse después de esa hora es pagar para no correr.",
+    a: "El viernes 28 de agosto a las 17h00 se cierra la entrega de kits, que es única, en Vehicentro (Ambato). Si quieres correr, conviene inscribirse con tiempo para alcanzar a retirarlo.",
   },
   {
     q: "¿Cómo se paga?",

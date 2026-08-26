@@ -37,7 +37,7 @@ ventana única · salida sábado 29, 08h00.
 
 1. **Cambiar el plazo del que se habla: del sábado al VIERNES 17h00.** La salida
    es el sábado, pero el plazo que decide es el cierre de la entrega de kits:
-   ventana única, y sin kit no hay dorsal ni chip. Cae ~15 h antes y además
+   ventana única y no se repite. Cae ~15 h antes y además
    explica por qué hay prisa. Es el "registration close" de la estadística nº1.
 2. **Contador vivo hacia ese plazo, no hacia la carrera.** En el hero, en el
    formulario y en el aviso del home.
@@ -45,8 +45,9 @@ ventana única · salida sábado 29, 08h00.
    están inscritos" es prueba social dura; "90% vendido" es escasez. Juntas es
    el combo del 25–45%. El sitio tenía el número en el código _sin usarlo_ y
    desactualizado en 340 desde julio.
-4. **Nombrar lo que se pierde, no lo que se gana.** "Sin kit no se corre" pesa
-   más que "inscríbete ya". Aversión a la pérdida.
+4. ~~**Nombrar lo que se pierde, no lo que se gana** ("sin kit no se corre").~~
+   **RETIRADA por la organización (26-ago-2026):** sonaba a amenaza al
+   corredor. Se dice el plazo y que la entrega es única, y ya.
 5. **Poner el plazo donde ya está mirando el que duda**: hero, categorías, FAQ y
    la barra inferior del móvil — no en una sección nueva que hay que buscar.
 6. **Rescatar al que dijo que sí y no pagó.** 34 personas, $680, todas con
@@ -154,7 +155,8 @@ ventana única · salida sábado 29, 08h00.
 ## F. Copy y jerarquía (66–78)
 
 66. Verbos de plazo en los titulares: "hasta", "antes de", "queda".
-67. La consecuencia primero: "Sin kit no se corre", después el detalle.
+67. La consecuencia primero, el detalle después — pero contada como dato
+    ("la entrega es única y se cierra el viernes"), no como advertencia.
 68. Segunda persona: "tu kit", "tu cupo", "tu comprobante".
 69. Frases cortas en los avisos de urgencia; una idea por línea.
 70. El CTA dice lo que pasa después ("Inscribirme ahora"), no "Enviar".
@@ -243,11 +245,15 @@ buenas ideas:
 
 ## Qué se aplicó el 26-ago-2026
 
+> Las decisiones de ese día —y las dos que se probaron y se retiraron— están
+> contadas en `notas/23-urgencia-8k.md`, que es la bitácora. Esto es solo la
+> tabla de dónde quedó cada cosa.
+
 | #         | Estrategia                                                  | Dónde                                                          |
 | --------- | ----------------------------------------------------------- | -------------------------------------------------------------- |
 | 1, 2      | Contador al cierre del kit (viernes 17h00), no a la salida  | `UrgenciaCarrera.tsx`, `HeroCountdown.tsx`, `AvisoUrgente.tsx` |
 | 3         | 630 inscritos como prueba social                            | `carrera.ts` (dato real), hero y formulario                    |
-| 4, 67     | "Sin kit no se corre"                                       | hero, aviso, formulario, FAQ                                   |
+| 67        | El plazo contado como dato, sin advertencias                | hero, formulario, FAQ, pop-up, /verificar                      |
 | 5, 9      | Aviso fijo con el plazo en todas las páginas públicas       | `AvisoUrgente.tsx`                                             |
 | 6, 89, 90 | `/verificar` cobra: cuenta, copiar y WhatsApp               | `verificar/page.tsx`                                           |
 | 7, 29     | Escasez real por categoría (Leyenda 15, Discapacidad 11)    | `CategoriasHome.tsx`                                           |

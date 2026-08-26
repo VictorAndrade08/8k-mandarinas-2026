@@ -639,8 +639,7 @@ export default function VerificarPage() {
                         <strong className="text-white/85">
                           viernes 28, de 10h00 a 17h00
                         </strong>
-                        , en Vehicentro (Ficoa, Ambato) — es la única entrega, y
-                        sin kit no se corre.
+                        , en Vehicentro (Ficoa, Ambato). Es la única entrega.
                       </p>
                     </div>
                   ) : (

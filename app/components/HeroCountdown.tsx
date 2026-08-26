@@ -153,13 +153,11 @@ export default function HeroCountdown() {
           <p className="entrada entrada-1 mb-[clamp(0.4rem,1.2vh,1rem)] inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-4 py-1.5 text-[clamp(0.62rem,min(1.9vh,2.9vw),0.95rem)] font-bold tracking-[0.04em] text-white">
             Últimos días · {CUPOS_VENDIDOS_PCT}% vendido
           </p>
-          {/* El plazo que decide de verdad. La salida es el sábado, pero quien
-              se inscribe después del viernes a las 17h00 se queda sin kit —y
-              sin dorsal ni chip. Decir lo que se pierde pesa más que decir lo
-              que se gana (estrategias 1 y 4). */}
+          {/* El plazo que decide de verdad: la salida es el sábado, pero la
+              entrega del kit se cierra el viernes a las 17h00 y es la única
+              (docs/100-URGENCIA.md, estrategia 1). */}
           <p className="entrada entrada-1 mb-[clamp(0.6rem,1.8vh,1.5rem)] max-w-[24rem] text-[clamp(0.62rem,min(1.7vh,2.6vw),0.9rem)] leading-snug font-bold text-[#ffc53d]">
-            Última entrega de kits: viernes 28 hasta las 17h00 · sin kit no se
-            corre
+            Última entrega de kits: viernes 28 hasta las 17h00
           </p>
           <p className="entrada entrada-1 mb-[clamp(0.4rem,1.4vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.62rem,min(2vh,2.6vw),1.45rem)] font-black tracking-[0.2em] text-white/90 uppercase sm:tracking-[0.2em]">
             Faltan para el inicio

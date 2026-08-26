@@ -20,8 +20,7 @@ import { FECHA_LIMITE_KIT, CUPOS_VENDIDOS_PCT } from "../../lib/carrera";
  *   - Cuenta hacia el CIERRE DE LA ENTREGA DE KITS (FECHA_LIMITE_KIT): viernes
  *     28 de agosto a las 17h00 en Vehicentro. Ese sí es un plazo de verdad y,
  *     además, es el que le importa a quien está decidiendo: es una sola ventana
- *     y sin kit no hay dorsal ni chip. Quien se inscriba el viernes a las 18h00
- *     habrá pagado para no correr.
+ *     y es la única que hay.
  *
  * Apuntaba a la salida del sábado y se movió aquí el 26-ago-2026: el plazo del
  * kit cae ~15 horas antes, o sea que aprieta MÁS, y encima explica por qué hay
@@ -107,8 +106,7 @@ export function UrgenciaCarrera() {
               inscripciones — que es justo lo que NO es. */}
           <p className="mt-0.5 text-[11px] leading-snug font-semibold text-white/70">
             para retirar tu kit · viernes 28 hasta las 17h00, Vehicentro
-            (Ambato).{" "}
-            <span className="text-white/90">Sin kit no se corre.</span>
+            (Ambato)
           </p>
         </>
       ) : (
