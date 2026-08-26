@@ -36,6 +36,7 @@ import {
   enviarInscripcion,
   useCuentaAtras,
   ContadorSesion,
+  UrgenciaCarrera,
   PasoPago,
   PasoFinal,
   FormularioProvider,
@@ -675,6 +676,16 @@ export default function InscripcionPage() {
                   >
                     ← Volver al inicio
                   </button>
+                </div>
+
+                {/* Urgencia REAL: las horas que faltan para la salida. No es un
+                    cierre de inscripciones (no se van a cerrar) y el texto de
+                    debajo lo dice — ver el comentario de UrgenciaCarrera.tsx.
+                    Va aquí porque esta columna se apila ARRIBA del formulario
+                    en móvil y es la barra lateral en escritorio: un solo sitio
+                    y se ve en los dos. */}
+                <div className="mb-6 md:mb-8">
+                  <UrgenciaCarrera />
                 </div>
 
                 {/* BARRA DE PROGRESO (Móvil) */}

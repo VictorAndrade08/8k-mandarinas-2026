@@ -20,6 +20,7 @@ export { useNavegacionPasos } from "./useNavegacionPasos";
 export { enviarInscripcion } from "./enviarInscripcion";
 export { useCuentaAtras, MINUTOS_SESION } from "./useCuentaAtras";
 export { ContadorSesion } from "./ContadorSesion";
+export { UrgenciaCarrera } from "./UrgenciaCarrera";
 export { PasoDatos } from "./PasoDatos";
 export { PasoPago } from "./PasoPago";
 export { PasoFinal } from "./PasoFinal";
