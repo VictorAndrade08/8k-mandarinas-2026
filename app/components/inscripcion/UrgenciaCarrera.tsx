@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { Fire } from "@phosphor-icons/react";
-import { FECHA_CARRERA, CUPOS_VENDIDOS_PCT } from "../../lib/carrera";
+import {
+  FECHA_LIMITE_KIT,
+  INSCRITOS_APROX,
+  CUPOS_VENDIDOS_PCT,
+} from "../../lib/carrera";
 
 /**
  * "Últimos días" + las horas que faltan, dentro del formulario.
@@ -17,15 +21,19 @@ import { FECHA_CARRERA, CUPOS_VENDIDOS_PCT } from "../../lib/carrera";
  *     valen. Es el mismo criterio que ya está escrito en ContadorSesion.tsx
  *     ("lo que dice tiene que ser verdad") y en useCuentaAtras.ts.
  *
- *   - Cuenta hacia la SALIDA de la carrera, que es un hecho: sábado 29 de
- *     agosto a las 08h00 (FECHA_CARRERA). Ese plazo es real, no lo pone nadie,
- *     y aprieta solo — a quien duda le queda lo que le queda, esté el
- *     formulario abierto o no.
+ *   - Cuenta hacia el CIERRE DE LA ENTREGA DE KITS (FECHA_LIMITE_KIT): viernes
+ *     28 de agosto a las 17h00 en Vehicentro. Ese sí es un plazo de verdad y,
+ *     además, es el que le importa a quien está decidiendo: es una sola ventana
+ *     y sin kit no hay dorsal ni chip. Quien se inscriba el viernes a las 18h00
+ *     habrá pagado para no correr.
  *
- * En HORAS y no en días a propósito: "faltan 69 h" empuja y "faltan 2 días" no,
- * y las dos frases dicen lo mismo. El porcentaje vendido sale de
- * CUPOS_VENDIDOS_PCT (app/lib/carrera.ts), que es el número que maneja la
- * organización y se actualiza a mano ahí — no se inventa aquí.
+ * Apuntaba a la salida del sábado y se movió aquí el 26-ago-2026: el plazo del
+ * kit cae ~15 horas antes, o sea que aprieta MÁS, y encima explica por qué hay
+ * prisa en vez de solo enseñar un reloj bajando.
+ *
+ * Los números (INSCRITOS_APROX, CUPOS_VENDIDOS_PCT) salen de app/lib/carrera.ts,
+ * que es lo que maneja la organización y se actualiza a mano ahí — aquí no se
+ * inventa ninguno.
  */
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -33,7 +41,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 type Restante = { horas: number; minutos: number; segundos: number } | null;
 
 function calcular(): Restante {
-  const ms = new Date(FECHA_CARRERA).getTime() - Date.now();
+  const ms = new Date(FECHA_LIMITE_KIT).getTime() - Date.now();
   if (ms <= 0) return null;
   return {
     // Horas TOTALES, sin dividir en días: es lo que da la sensación de plazo.
@@ -73,6 +81,14 @@ export function UrgenciaCarrera() {
         Últimos días · {CUPOS_VENDIDOS_PCT}% vendido
       </p>
 
+      {/* Prueba social antes que el reloj: "630 ya están dentro" convence a más
+          gente que un contador, y las dos cosas juntas dicen "esto se llena y
+          se acaba". (docs/30-UX-CONVERSION.md, tips 6 y 24.) */}
+      <p className="mt-1 text-[13px] font-semibold text-white/85">
+        <strong className="font-black text-white">{INSCRITOS_APROX}</strong>{" "}
+        corredores ya están inscritos
+      </p>
+
       {restante ? (
         <>
           {/* aria-hidden en los dígitos y la frase completa en un sr-only: un
@@ -98,15 +114,18 @@ export function UrgenciaCarrera() {
           <p className="sr-only">
             Faltan {restante.horas} horas para la salida.
           </p>
-          {/* Qué es ese número. Sin esto parece el reloj de un cierre — que es
-              justo lo que NO es. */}
+          {/* Qué es ese número. Sin esto parece el reloj de un cierre de
+              inscripciones — que es justo lo que NO es. */}
           <p className="mt-0.5 text-[11px] leading-snug font-semibold text-white/70">
-            para la salida en Patate · sábado 29, 08h00
+            para retirar tu kit · viernes 28 hasta las 17h00, Vehicentro
+            (Ambato).{" "}
+            <span className="text-white/90">Sin kit no se corre.</span>
           </p>
         </>
       ) : (
-        <p className="mt-1.5 text-sm font-bold text-white">
-          Hoy se corre en Patate · salida 08h00
+        <p className="mt-1.5 text-sm leading-snug font-bold text-white">
+          La entrega de kits ya cerró. Escríbenos por WhatsApp antes de pagar:
+          te decimos si todavía podemos darte el tuyo.
         </p>
       )}
     </div>

@@ -57,3 +57,7 @@ nuevaslineasgraficas/
 
 # Playwright
 /test-results/
+
+# Listas de corredores exportadas del CRM para llamar/cobrar. Llevan nombre,
+# cédula, celular y email de personas reales: NUNCA al repositorio.
+por-cobrar-*.csv

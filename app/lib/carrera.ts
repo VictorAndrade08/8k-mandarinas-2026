@@ -25,6 +25,17 @@ export const VIDEO_FONDO_POSTER = "/video/8k-hero-poster.webp";
 /** Sábado 29 de agosto de 2026, 08:00 en Ecuador (GMT-5). Salida en Patate Gardens. */
 export const FECHA_CARRERA = "2026-08-29T08:00:00-05:00";
 
+/**
+ * Cierre de la entrega de kits: viernes 28 de agosto a las 17h00 en Vehicentro
+ * (Ficoa, Ambato). Es la ÚNICA ventana que hay, y sin kit no hay dorsal ni
+ * chip: quien se inscribe después de esa hora ya no llega a correr.
+ *
+ * O sea que este —y no la salida del sábado— es el plazo de verdad para quien
+ * está decidiendo si inscribirse. Sale del flyer oficial de entrega de kits y
+ * está escrito igual en /informacion y en el reglamento.
+ */
+export const FECHA_LIMITE_KIT = "2026-08-28T17:00:00-05:00";
+
 /** Preventa. Tercera edad (65+) y discapacidad ya llevan su descuento aplicado. */
 export const PRECIO_PREVENTA = 20;
 export const PRECIO_DESCUENTO = 18;
@@ -34,8 +45,12 @@ export const PRECIO_DESCUENTO = 18;
  * REAL que maneja la organización: los pagos online (Airtable/D1) MÁS los que
  * se inscriben en efectivo y aún no se han pasado al sistema. Se actualiza a
  * mano aquí conforme sube. Redondea hacia abajo para no exagerar de más.
+ *
+ * Repasado el 26-ago-2026 contra el CRM: 579 con el pago ya verificado + 56
+ * pagados pendientes de comprobar = 635. Se deja en 630. Llevaba en 340 desde
+ * julio, o sea que el sitio enseñaba la mitad de la prueba social que tenía.
  */
-export const INSCRITOS_APROX = 340;
+export const INSCRITOS_APROX = 630;
 
 /** Porcentaje de cupos vendidos que enseña el hero junto al contador de
  *  inscritos. Se actualiza a mano aquí, igual que INSCRITOS_APROX. */

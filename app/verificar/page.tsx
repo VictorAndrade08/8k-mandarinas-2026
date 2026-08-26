@@ -10,7 +10,12 @@ import {
   X,
   CheckCircle,
   Ticket,
+  WhatsappLogo,
+  Copy,
+  Package,
 } from "@phosphor-icons/react";
+import { BANCO } from "../components/inscripcion";
+import { WHATSAPP_SOPORTE, PRECIO_PREVENTA } from "../lib/carrera";
 
 // Configuración de estilos y fuentes
 const brandPink = "#c51850";
@@ -55,8 +60,20 @@ const ETAPA: Record<string, string> = {
   "Inscrito Pago x Verificar": "Pago por verificar",
   "Inscrito Pago Verificado": "Inscripción confirmada",
   "Inscripción Finalizada": "Inscripción confirmada",
+  "Entrega de kits": "Inscripción confirmada",
   Inscrito: "Pago por verificar",
+  // Las cuatro etapas de seguimiento del CRM. Son gente que pidió los datos y
+  // no llegó a pagar; hasta el 26-ago-2026 veían el nombre interno de la etapa
+  // ("Pago Solicitado") en su pantalla, que no significa nada para nadie de
+  // fuera y encima suena a que ya pagaron. Son 34 personas.
+  "Pago Solicitado": "Falta tu pago",
+  Recordatorio: "Falta tu pago",
+  "Ultimo dia": "Falta tu pago",
+  "Ultima semana": "Falta tu pago",
 };
+
+/** Las etiquetas de ETAPA que significan "este todavía no ha pagado". */
+const FALTA_PAGO = "Falta tu pago";
 
 type VerifyData = {
   record_id?: string | null;
@@ -149,6 +166,7 @@ export default function VerificarPage() {
   const [cedula, setCedula] = useState("");
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [copiado, setCopiado] = useState(false);
   const [data, setData] = useState<VerifyData | null>(null);
   // Sustituye al alert() nativo que había: bloquea el hilo y desentona con el
   // resto de la interfaz.
@@ -224,7 +242,8 @@ export default function VerificarPage() {
     if (
       t.includes("verificar") ||
       t.includes("pendiente") ||
-      t.includes("solicitado")
+      t.includes("solicitado") ||
+      t.includes("falta")
     )
       return "text-[#ffc53d]";
     if (t.includes("rechazado")) return "text-[#ff6b6b]";
@@ -544,10 +563,106 @@ export default function VerificarPage() {
                     </div>
                   </div>
 
-                  <p className="mx-auto mt-6 max-w-sm text-center text-xs leading-relaxed text-white/40">
-                    Presenta este comprobante digital el día de la entrega de
-                    kits. Puedes tomar una captura de pantalla.
-                  </p>
+                  {/* QUÉ HACER AHORA. Hasta el 26-ago-2026 esta página
+                      terminaba aquí: te decía tu estado y te dejaba solo. Para
+                      quien no ha pagado eso es un callejón sin salida —son 34
+                      personas que pidieron los datos por WhatsApp y nunca
+                      transfirieron— y para quien sí pagó, la duda que queda es
+                      cuándo y dónde recoge el kit. Las dos respuestas van aquí,
+                      que es donde ya está mirando. */}
+                  {data.etapa === FALTA_PAGO ? (
+                    <div className="mt-6 rounded-2xl border border-[#ffc53d]/40 bg-[#ffc53d]/[0.07] p-6">
+                      <h4 className="text-lg font-bold text-white">
+                        Tu cupo está apartado, falta el pago
+                      </h4>
+                      <p className="mt-1.5 text-sm leading-relaxed text-white/75">
+                        Transfiere{" "}
+                        <strong className="text-white">
+                          ${data.valor || PRECIO_PREVENTA}
+                        </strong>{" "}
+                        a esta cuenta y mándanos la foto del comprobante por
+                        WhatsApp. Con eso quedas dentro.
+                      </p>
+
+                      <dl className="mt-4 space-y-2 rounded-xl bg-black/25 p-4 text-sm">
+                        {[
+                          ["Banco", BANCO.entidad],
+                          [`Cuenta ${BANCO.tipo.toLowerCase()}`, BANCO.numero],
+                          ["Titular", BANCO.titular],
+                          ["RUC", BANCO.ruc],
+                        ].map(([etiqueta, valor]) => (
+                          <div
+                            key={etiqueta}
+                            className="flex items-baseline justify-between gap-3"
+                          >
+                            <dt className="text-white/50">{etiqueta}</dt>
+                            <dd className="font-mono font-bold text-white">
+                              {valor}
+                            </dd>
+                          </div>
+                        ))}
+                      </dl>
+
+                      {/* Copiar la cuenta entera de un toque: nadie transcribe
+                          diez dígitos sin equivocarse, y un dígito mal es un
+                          pago que alguien tiene que rastrear a mano. */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          navigator.clipboard
+                            ?.writeText(
+                              `${BANCO.entidad}\nCuenta ${BANCO.tipo.toLowerCase()}: ${BANCO.numero}\nTitular: ${BANCO.titular}\nRUC: ${BANCO.ruc}\nValor: $${data.valor || PRECIO_PREVENTA}.00`
+                            )
+                            .then(() => setCopiado(true));
+                          setTimeout(() => setCopiado(false), 2500);
+                        }}
+                        className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
+                      >
+                        <Copy size={18} />
+                        {copiado ? "¡Copiado!" : "Copiar datos de la cuenta"}
+                      </button>
+
+                      <a
+                        href={`https://wa.me/${WHATSAPP_SOPORTE}?text=${encodeURIComponent(
+                          `Hola, soy ${data.nombre} (cédula ${data.cedula}). Ya hice el pago de la 8K y les mando el comprobante.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3.5 text-sm font-bold text-black transition-transform hover:scale-[1.02]"
+                      >
+                        <WhatsappLogo size={20} weight="fill" />
+                        Enviar mi comprobante por WhatsApp
+                      </a>
+
+                      <p className="mt-3 text-xs leading-relaxed text-white/60">
+                        El kit se entrega el{" "}
+                        <strong className="text-white/85">
+                          viernes 28, de 10h00 a 17h00
+                        </strong>
+                        , en Vehicentro (Ficoa, Ambato) — es la única entrega, y
+                        sin kit no se corre.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="mt-6 rounded-2xl border border-white/15 bg-white/[0.04] p-6">
+                      <h4 className="flex items-center gap-2 text-lg font-bold text-white">
+                        <Package size={22} className="text-[#f7771c]" />
+                        Retira tu kit el viernes 28
+                      </h4>
+                      <p className="mt-1.5 text-sm leading-relaxed text-white/75">
+                        De <strong className="text-white">10h00 a 17h00</strong>{" "}
+                        en <strong className="text-white">Vehicentro</strong>{" "}
+                        (Ficoa, Ambato) — Av. los Guaytambos y La Delicia. Lleva
+                        tu <strong className="text-white">cédula</strong> y el{" "}
+                        <strong className="text-white">comprobante</strong> del
+                        pago. El kit que no se retira en ese horario se pierde.
+                      </p>
+                      <p className="mt-3 text-xs leading-relaxed text-white/45">
+                        Presenta este comprobante digital el día de la entrega.
+                        Puedes tomar una captura de pantalla.
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
