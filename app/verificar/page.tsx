@@ -468,9 +468,12 @@ export default function VerificarPage() {
                           <div
                             className={`text-5xl ${bebasClassName} ${getStatusColor(data.etapa || "")} flex items-center gap-3`}
                           >
-                            <span
-                              className={`h-3 w-3 rounded-full ${data.etapa?.toLowerCase().includes("verificado") ? "bg-[#2bd98a]" : "bg-yellow-400"} animate-pulse shadow-[0_0_15px_currentColor]`}
-                            />
+                            {/* El punto toma el color del texto (bg-current):
+                                data.etapa ya es la etiqueta traducida
+                                ("Inscripción confirmada"), que nunca contiene
+                                "verificado" — buscándolo ahí, una inscripción
+                                aprobada salía en verde con el punto amarillo. */}
+                            <span className="h-3 w-3 animate-pulse rounded-full bg-current shadow-[0_0_15px_currentColor]" />
                             {data.etapa}
                           </div>
                         </div>
