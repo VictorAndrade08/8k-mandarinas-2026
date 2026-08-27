@@ -17,36 +17,12 @@ import {
 import { BANCO } from "../components/inscripcion";
 import { WHATSAPP_SOPORTE, PRECIO_GENERAL } from "../lib/carrera";
 
-// Configuración de estilos y fuentes
-const brandPink = "#c51850";
-// Naranja mandarina. Se sigue llamando "purple" porque el nombre viene del clon
-// del 10K de Ambato y está puesto por medio archivo; el color ya es el correcto.
-const brandPurple = "#f7771c";
-
-const bebasClassName = "font-bebas";
-
-// Patrón fijo del código de barras decorativo del ticket: true = barra alta.
-// Fijo y no aleatorio a propósito — ver el comentario donde se pinta.
-const BARRAS = [
-  true,
-  false,
-  true,
-  true,
-  false,
-  true,
-  false,
-  false,
-  true,
-  true,
-  false,
-  false,
-  true,
-  false,
-  true,
-  true,
-  false,
-  true,
-];
+// Colores de la marca, con el nombre del token que les corresponde. Se
+// llamaban `brandPurple` y `brandPink` porque venían del clon del 10K de
+// Ambato: un nombre heredado de otro evento es la prueba más clara de que una
+// pantalla es una plantilla (docs/100-ANTI-IA-VERIFICAR.md, nº 13).
+const MAGENTA = "#c51850";
+const NARANJA = "#f7771c";
 
 // Cómo se llaman de cara al corredor los estados. Los tres primeros son los de
 // D1; el resto son las Etapas del Airtable donde el equipo valida los pagos —
@@ -128,31 +104,37 @@ function NotFoundModal({
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c0713] via-[#1c0713]/25 to-transparent" />
         </div>
         <div className="p-10 pt-8 text-center">
-          <h3
-            className={`text-5xl text-white uppercase ${bebasClassName} mb-4`}
-          >
-            No Encontrado
+          <h3 className="mb-4 font-[family-name:var(--font-titular)] text-4xl text-white uppercase">
+            No te encontramos
           </h3>
-          <p className="text-lg leading-relaxed text-white/80">
-            No encontramos ninguna inscripción activa con ese número de cédula.{" "}
-            <br /> Por favor verifica que esté bien escrito.
+          {/* Un "no encontrado" no puede ser un callejón: si esta pantalla no
+              dice qué hacer, la persona se queda con la duda de si perdió el
+              dinero (docs/100-ANTI-IA-VERIFICAR.md, nº 37 y 38). */}
+          <p className="text-left text-base leading-relaxed text-white/80">
+            No hay ninguna inscripción con ese número. Suele ser por una de
+            estas tres cosas:
           </p>
+          <ul className="mt-3 space-y-2 text-left text-base leading-relaxed text-white/70">
+            <li>· Un dígito mal escrito. Vuelve a mirarlo.</li>
+            <li>
+              · Te inscribiste hace menos de 48 horas por WhatsApp y todavía no
+              te hemos cargado al sistema.
+            </li>
+            <li>· Pagó otra persona y la inscripción está a su nombre.</li>
+          </ul>
 
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
             <button
               onClick={onClose}
-              className="rounded-2xl border border-white/20 px-8 py-4 text-base font-semibold tracking-wide text-white uppercase transition hover:bg-white/10"
+              className="rounded-2xl border border-white/20 px-8 py-4 text-base font-semibold text-white transition hover:bg-white/10"
             >
-              Intentar de nuevo
+              Revisar el número
             </button>
             <a
               href={hrefInscripcion}
-              className="flex items-center justify-center rounded-2xl px-8 py-4 text-base font-bold tracking-wide text-white uppercase shadow-[0_4px_12px_rgba(20,3,9,0.22)] transition hover:brightness-110"
-              style={{
-                background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
-              }}
+              className="flex items-center justify-center rounded-2xl bg-[#c51850] px-8 py-4 text-base font-bold text-white transition hover:brightness-110"
             >
-              Ir a Inscribirme
+              Quiero inscribirme
             </a>
           </div>
         </div>
@@ -299,68 +281,57 @@ export default function VerificarPage() {
               className="mb-7 hidden h-auto w-[min(82vw,420px)] object-contain drop-shadow-2xl lg:block"
             />
 
-            <h1
-              className={`text-3xl text-white sm:text-4xl ${bebasClassName} mb-6 uppercase`}
-            >
-              Verifica tu inscripción
+            {/* Sin titular gigante, sin párrafo de venta y sin la fila de
+                tres datos (8K / Ago 29 / Patate): esta pantalla no es una
+                landing, es un buscador de estado. Quien llega aquí YA se
+                inscribió — no hay que venderle la carrera otra vez, y esa fila
+                de tres era el patrón "tres tarjetas" disfrazado
+                (docs/100-ANTI-IA-VERIFICAR.md, nº 1, 3 y 5). */}
+            <h1 className="mb-4 font-[family-name:var(--font-titular)] text-3xl text-white uppercase sm:text-4xl">
+              Mi inscripción
             </h1>
 
-            <p className="mb-10 max-w-lg text-xl leading-relaxed font-normal text-white/80 lg:text-2xl">
-              Consulta el estado de tu inscripción, descarga tu ticket digital y
-              prepárate para correr Patate el 29 de agosto.
+            <p className="max-w-md text-lg leading-relaxed text-white/70">
+              Escribe tu cédula y te decimos en qué estado está tu pago.
             </p>
-
-            {/* Stats */}
-            <div className="mt-2 flex w-full flex-wrap justify-center gap-12 border-t border-white/20 pt-10 lg:justify-start">
-              <div>
-                <p className={`text-4xl ${bebasClassName} text-white`}>8K</p>
-                <p className="text-sm font-bold tracking-widest text-white/60 uppercase">
-                  Distancia
-                </p>
-              </div>
-              {/* FECHA ACTUALIZADA AQUÍ */}
-              <div>
-                <p className={`text-4xl ${bebasClassName} text-white`}>
-                  Ago 29
-                </p>
-                <p className="text-sm font-bold tracking-widest text-white/60 uppercase">
-                  Fecha
-                </p>
-              </div>
-              <div>
-                <p className={`text-4xl ${bebasClassName} text-white`}>
-                  Patate
-                </p>
-                <p className="text-sm font-bold tracking-widest text-white/60 uppercase">
-                  Lugar
-                </p>
-              </div>
-            </div>
           </div>
 
           {/* --- COLUMNA DERECHA (FORMULARIO/TICKET) --- */}
           <div className="order-1 mx-auto flex w-full max-w-lg justify-center lg:order-2 lg:max-w-full lg:justify-end">
             {/* WRAPPER DEL FORMULARIO/TICKET */}
             <div className="w-full max-w-[500px] text-white">
+              {/* Menos aire y menos radio en la tarjeta: el relleno excesivo
+                  es la señal nº1 de 2026 de "esto lo generó algo", y el
+                  desenfoque decorativo de la esquina no aportaba nada
+                  (docs/100-ANTI-IA-VERIFICAR.md, nº 5). */}
               {!data && (
-                <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-[#1c0713] p-6 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.6)] sm:rounded-[40px] sm:p-10">
-                  <div className="pointer-events-none absolute top-0 right-0 h-40 w-40 rounded-full bg-white/5 blur-[50px]" />
-
-                  <div className="relative z-10 mb-10 flex items-center gap-5">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-gray-800 to-black shadow-inner">
-                      <IdentificationCard className="h-8 w-8 text-white" />
-                    </div>
+                <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-[#1c0713] p-6 shadow-[0_20px_45px_-15px_rgba(0,0,0,0.6)] sm:p-8">
+                  {/* Sin el icono metido en un cuadrado redondeado: es el
+                      encabezado por defecto de shadcn y se reconoce a leguas
+                      (docs/100-ANTI-IA-VERIFICAR.md, nº 32). Un título y una
+                      línea, que es lo que hace falta. */}
+                  <div className="relative z-10 mb-7 flex items-center gap-3">
+                    <IdentificationCard className="h-7 w-7 shrink-0 text-[#f7771c]" />
                     <div>
-                      <h2 className="mb-1 text-2xl font-bold text-white">
-                        Consultar Cédula
+                      <h2 className="text-xl font-bold text-white">
+                        Consulta tu estado
                       </h2>
-                      <p className="text-base text-white/60">
-                        Ingresa tus datos para validar
+                      <p className="text-sm text-white/60">
+                        Con el número de cédula con el que te inscribiste
                       </p>
                     </div>
                   </div>
 
-                  <div className="relative z-10 space-y-6">
+                  {/* <form> de verdad: hasta hoy solo se podía enviar con el
+                      botón, y un formulario que ignora Enter se siente a
+                      maqueta, no a producto (nº 9). */}
+                  <form
+                    className="relative z-10 space-y-5"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      if (!loading && cedulaOk) verify();
+                    }}
+                  >
                     <div className="group relative">
                       <label className="mb-2 ml-1 block text-xs font-bold tracking-widest text-white/50 uppercase transition-colors group-focus-within:text-purple-400">
                         Número de Identificación
@@ -369,8 +340,13 @@ export default function VerificarPage() {
                         <input
                           value={cedula}
                           onChange={(e) => setCedula(e.target.value)}
-                          placeholder="Ej: 1801234567"
+                          placeholder="1801234567"
                           inputMode="numeric"
+                          autoComplete="off"
+                          enterKeyHint="search"
+                          // El 100% de quien abre esta página viene a escribir
+                          // aquí: no tiene sentido hacerle dar un toque más.
+                          autoFocus
                           className="w-full rounded-2xl border border-white/20 bg-[#230a17] px-5 py-5 pl-5 text-xl font-medium text-white shadow-inner transition-all placeholder:text-white/30 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
                         />
                         <div className="pointer-events-none absolute top-1/2 right-5 -translate-y-1/2">
@@ -383,13 +359,15 @@ export default function VerificarPage() {
                       </div>
                     </div>
 
+                    {/* Color plano de marca, sin degradado ni mayúsculas
+                        espaciadas: el CTA con degradado es de los tics más
+                        señalados de lo generado, y el texto dice el resultado
+                        ("ver mi inscripción"), no la acción del sistema
+                        ("consultar"). (docs/100-ANTI-IA-VERIFICAR.md, 23–25.) */}
                     <button
-                      onClick={verify}
+                      type="submit"
                       disabled={loading || !cedulaOk}
-                      className="group relative mt-4 w-full overflow-hidden rounded-2xl py-5 text-base font-bold tracking-widest text-white uppercase shadow-lg shadow-purple-900/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
-                      style={{
-                        background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
-                      }}
+                      className="mt-4 w-full rounded-2xl bg-[#c51850] py-4 text-base font-bold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2">
                         {loading ? (
@@ -413,20 +391,38 @@ export default function VerificarPage() {
                         <span>{error}</span>
                       </p>
                     )}
-                  </div>
+                  </form>
 
-                  <div className="relative z-10 mt-10 border-t border-white/10 pt-8 text-center">
-                    <p className="text-sm text-white/50">
-                      ¿Tienes problemas?{" "}
-                      <a
-                        href="https://wa.me/593995102378"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-semibold text-white underline decoration-white/50 hover:text-white"
-                      >
-                        Contáctanos
-                      </a>
+                  {/* AYUDA DE VERDAD. Antes decía "¿Tienes problemas?
+                      Contáctanos" con un enlace a WhatsApp y ya: quien tiene un
+                      problema con su pago no sabe si le van a contestar, ni qué
+                      escribir, ni que puede ir en persona. Ahora se dicen las
+                      dos salidas y el WhatsApp lleva el mensaje empezado —el
+                      número de teléfono sale de WHATSAPP_SOPORTE
+                      (app/lib/carrera.ts), que estaba escrito a mano aquí. */}
+                  <div className="relative z-10 mt-10 border-t border-white/10 pt-8">
+                    <p className="text-sm font-bold text-white">
+                      ¿Algo no cuadra con tu pago o tu inscripción?
                     </p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-white/60">
+                      Escríbenos y cuéntanos qué pasó, o acércate el{" "}
+                      <strong className="font-semibold text-white/85">
+                        viernes 28 al punto de entrega de kits
+                      </strong>{" "}
+                      — Vehicentro (Ficoa, Ambato), Av. los Guaytambos y La
+                      Delicia, de 10h00 a 17h00 — y lo resolvemos ahí mismo.
+                    </p>
+                    <a
+                      href={`https://wa.me/${WHATSAPP_SOPORTE}?text=${encodeURIComponent(
+                        "Hola, tengo un problema con mi inscripción de la 8K Ruta de las Mandarinas. Mi cédula es: "
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-[#25D366]/40 bg-[#25D366]/10 px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#25D366]/20"
+                    >
+                      <WhatsappLogo size={20} weight="fill" />
+                      Explicar mi problema por WhatsApp
+                    </a>
                   </div>
                 </div>
               )}
@@ -450,7 +446,7 @@ export default function VerificarPage() {
                       <div
                         className="absolute top-0 left-0 h-1.5 w-full"
                         style={{
-                          background: `linear-gradient(90deg, ${brandPurple}, ${brandPink})`,
+                          background: `linear-gradient(90deg, ${NARANJA}, ${MAGENTA})`,
                         }}
                       />
                       <div className="relative z-10 flex items-start justify-between gap-4">
@@ -465,13 +461,14 @@ export default function VerificarPage() {
                             {data.cedula}
                           </p>
                         </div>
-                        <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-white p-1.5 shadow-lg">
-                          <img
-                            src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=CEDULA:${data.cedula}|NOMBRE:${data.nombre}`}
-                            alt="QR"
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
+                        {/* Aquí había un QR generado en api.qrserver.com con
+                            la CÉDULA Y EL NOMBRE metidos en la URL: cada
+                            consulta mandaba los datos del corredor a un tercero
+                            y el código no servía para nada —en la entrega de
+                            kits se pide la cédula física y el comprobante, no
+                            se escanea nada—. Un adorno que además filtra datos
+                            es exactamente lo que delata una pantalla generada
+                            (docs/100-ANTI-IA-VERIFICAR.md, nº 17 y 18). */}
                       </div>
                       <div className="absolute -bottom-4 -left-4 z-20 h-8 w-8 rounded-full border-t border-r border-white/20 bg-[#140309]" />
                       <div className="absolute -right-4 -bottom-4 z-20 h-8 w-8 rounded-full border-t border-l border-white/20 bg-[#140309]" />
@@ -485,14 +482,16 @@ export default function VerificarPage() {
                             Estado
                           </p>
                           <div
-                            className={`text-5xl ${bebasClassName} ${getStatusColor(data.etapa || "")} flex items-center gap-3`}
+                            className={`font-[family-name:var(--font-titular)] text-4xl ${getStatusColor(data.etapa || "")} flex items-center gap-3`}
                           >
                             {/* El punto toma el color del texto (bg-current):
                                 data.etapa ya es la etiqueta traducida
                                 ("Inscripción confirmada"), que nunca contiene
                                 "verificado" — buscándolo ahí, una inscripción
                                 aprobada salía en verde con el punto amarillo. */}
-                            <span className="h-3 w-3 animate-pulse rounded-full bg-current shadow-[0_0_15px_currentColor]" />
+                            {/* Sin animate-pulse: un estado que ya no va a
+                                cambiar mientras se mira no debe latir. */}
+                            <span className="h-3 w-3 rounded-full bg-current" />
                             {data.etapa}
                           </div>
                         </div>
@@ -500,7 +499,7 @@ export default function VerificarPage() {
                           <p className="mb-1.5 text-xs font-bold tracking-widest text-white/50 uppercase">
                             Categoría
                           </p>
-                          <p className="border-l-2 border-purple-500 pl-3 text-lg font-bold text-white">
+                          <p className="border-l-2 border-[#f7771c] pl-3 text-lg font-bold text-white">
                             {data.categorias}
                           </p>
                         </div>
@@ -508,7 +507,7 @@ export default function VerificarPage() {
                           <p className="mb-1.5 text-xs font-bold tracking-widest text-white/50 uppercase">
                             Ciudad
                           </p>
-                          <p className="border-l-2 border-pink-500 pl-3 text-lg font-bold text-white">
+                          <p className="border-l-2 border-[#f7771c] pl-3 text-lg font-bold text-white">
                             {data.ciudad}
                           </p>
                         </div>
@@ -531,35 +530,23 @@ export default function VerificarPage() {
                       </div>
                     </div>
 
-                    {/* Footer del Ticket */}
-                    <div className="flex items-center justify-between border-t border-white/10 bg-[#1c0713] p-6">
-                      <div className="flex flex-col">
-                        <span className="mb-1 text-[10px] font-bold tracking-widest text-white/30 uppercase">
-                          Ticket ID
-                        </span>
-                        <span className="font-mono text-sm font-semibold text-white/70">
-                          {data.record_id?.slice(-8).toUpperCase() ||
-                            "PRE-ORDER"}
-                        </span>
-                      </div>
-                      {/* Código de barras decorativo. Antes las alturas
-                                            salían de Math.random() dentro del render, lo que
-                                            daba dos problemas: el servidor pintaba unas barras
-                                            y el cliente otras (error de hidratación), y la
-                                            clase se construía como h-${...}, que Tailwind no
-                                            puede leer al compilar — así que no generaba ni
-                                            h-full ni h-2/3 y las barras salían sin altura.
-                                            Ahora el patrón es fijo y las clases, literales. */}
-                      <div className="h-6 opacity-30" aria-hidden="true">
-                        <div className="flex h-full items-end gap-[3px]">
-                          {BARRAS.map((alta, i) => (
-                            <div
-                              key={i}
-                              className={`w-[2px] bg-white ${alta ? "h-full" : "h-2/3"}`}
-                            />
-                          ))}
-                        </div>
-                      </div>
+                    {/* Pie del ticket. Antes llevaba un "Ticket ID" que
+                        no sirve para nada en la entrega —y que caía a
+                        "PRE-ORDER", en inglés, cuando no había id— y un código
+                        de barras DECORATIVO, dibujado con un patrón fijo de
+                        divs. Un código que no codifica nada es el tipo de
+                        adorno que delata lo generado; en su sitio va lo que sí
+                        hace falta el viernes (nº 15, 19 y 52). */}
+                    <div className="border-t border-white/10 bg-[#1c0713] px-8 py-5">
+                      <p className="text-xs leading-relaxed text-white/50">
+                        Para retirar el kit el viernes 28 en Vehicentro hay que
+                        presentar la{" "}
+                        <strong className="text-white/75">cédula</strong> y el{" "}
+                        <strong className="text-white/75">
+                          comprobante del pago
+                        </strong>
+                        . Esta pantalla no los reemplaza: llévalos.
+                      </p>
                     </div>
                   </div>
 

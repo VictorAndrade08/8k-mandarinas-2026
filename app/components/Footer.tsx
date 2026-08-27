@@ -17,6 +17,7 @@ const ENLACES = [
   { href: "/galeria", label: "Galería" },
   { href: "/informacion", label: "Información" },
   { href: "/reglamento", label: "Reglamento" },
+  { href: "/guiacorredor", label: "Guía del corredor" },
   // El mismo nombre que en el header y en la barra inferior del móvil: la misma
   // página no puede llamarse de dos maneras según dónde la mires.
   { href: "/verificar", label: "Mi pago" },
