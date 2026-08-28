@@ -3,7 +3,6 @@ import {
   VIDEO_FONDO_SRC,
   VIDEO_FONDO_POSTER,
   PRECIO_DESCUENTO,
-  CUPOS_VENDIDOS_PCT,
 } from "../lib/carrera";
 
 // COMPONENTE DE SERVIDOR — a propósito no lleva "use client".
@@ -146,13 +145,11 @@ export default function HeroCountdown() {
               decidió el 26-ago-2026 no publicar cuánta gente hay dentro. El
               porcentaje vendido sale de CUPOS_VENDIDOS_PCT en lib/carrera.ts,
               que es el dato del arte oficial. */}
-          {/* Escasez, sin la cifra de inscritos: se probó enseñar el número
-              (630) junto al porcentaje y se quitó por decisión de la
-              organización el 26-ago-2026. El "% vendido" es el dato del arte
-              oficial y es el que se enseña. */}
-          <p className="entrada entrada-1 mb-[clamp(0.4rem,1.2vh,1rem)] inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-4 py-1.5 text-[clamp(0.62rem,min(1.9vh,2.9vw),0.95rem)] font-bold tracking-[0.04em] text-white">
-            Últimos días · {CUPOS_VENDIDOS_PCT}% vendido
-          </p>
+          {/* Aquí iba la píldora "Últimos días · 90% vendido". Se quitó el
+              27-ago-2026, el mismo día que se cerraron las inscripciones: ya no
+              se vende nada, así que hablar de lo vendido no dice nada y
+              contradice al aviso de cierre. Antes de eso ya se le había quitado
+              la cifra de inscritos (ver notas/23-urgencia-8k.md). */}
           {/* El plazo que decide de verdad: la salida es el sábado, pero la
               entrega del kit se cierra el viernes a las 17h00 y es la única
               (docs/100-URGENCIA.md, estrategia 1). */}

@@ -86,8 +86,14 @@ export const PRECIO_DESCUENTO = 18;
  */
 export const INSCRITOS_APROX = 630;
 
-/** Porcentaje de cupos vendidos que enseña el hero junto al contador de
- *  inscritos. Se actualiza a mano aquí, igual que INSCRITOS_APROX. */
+/**
+ * Porcentaje de cupos vendidos. YA NO SE ENSEÑA en ninguna página: la píldora
+ * "Últimos días · 90% vendido" del hero, de /carrera y del formulario se quitó
+ * el 27-ago-2026, el mismo día que se cerraron las inscripciones — hablar de lo
+ * vendido cuando ya no se vende no dice nada y contradice al aviso de cierre.
+ * Se deja aquí porque es el dato del arte oficial y la edición siguiente lo va
+ * a querer (ver notas/25-cierre-inscripciones-8k.md).
+ */
 export const CUPOS_VENDIDOS_PCT = 90;
 
 /** WhatsApp de soporte al corredor. */

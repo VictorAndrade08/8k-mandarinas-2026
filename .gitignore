@@ -61,3 +61,8 @@ nuevaslineasgraficas/
 # Listas de corredores exportadas del CRM para llamar/cobrar. Llevan nombre,
 # cédula, celular y email de personas reales: NUNCA al repositorio.
 por-cobrar-*.csv
+
+# Lista de cortesías y ganadores del sorteo: nombres y cuentas de
+# Instagram de personas reales, y a quién se le dio entrada gratis. El repo es
+# PÚBLICO y el historial de git no se borra. Ver la nota para el porqué.
+notas/26-cortesias-sorteo-8k.md

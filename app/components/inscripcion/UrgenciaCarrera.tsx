@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Fire } from "@phosphor-icons/react";
-import { FECHA_LIMITE_KIT, CUPOS_VENDIDOS_PCT } from "../../lib/carrera";
+import { FECHA_LIMITE_KIT } from "../../lib/carrera";
 
 /**
  * "Últimos días" + las horas que faltan, dentro del formulario.
@@ -26,10 +26,8 @@ import { FECHA_LIMITE_KIT, CUPOS_VENDIDOS_PCT } from "../../lib/carrera";
  * kit cae ~15 horas antes, o sea que aprieta MÁS, y encima explica por qué hay
  * prisa en vez de solo enseñar un reloj bajando.
  *
- * El porcentaje sale de CUPOS_VENDIDOS_PCT (app/lib/carrera.ts), que es el
- * número del arte oficial y se actualiza a mano ahí — aquí no se inventa nada.
- * La cifra de inscritos NO se enseña: se probó y la organización decidió
- * quitarla el 26-ago-2026.
+ * Ni cifra de inscritos ni "% vendido": las dos se quitaron por decisión de la
+ * organización (26 y 27-ago-2026). Este bloque ya solo dice el plazo del kit.
  */
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -74,7 +72,7 @@ export function UrgenciaCarrera() {
     <div className="font-barlow rounded-xl border border-[#f7771c]/40 bg-gradient-to-r from-[#f7771c]/15 to-[#c51850]/15 px-3.5 py-3">
       <p className="flex items-center gap-2 text-xs font-bold tracking-[0.14em] text-[#ffc53d] uppercase">
         <Fire size={16} weight="fill" className="shrink-0" aria-hidden="true" />
-        Últimos días · {CUPOS_VENDIDOS_PCT}% vendido
+        Entrega de kits
       </p>
 
       {restante ? (

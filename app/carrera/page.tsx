@@ -5,7 +5,6 @@ import {
   VIDEO_FONDO_POSTER,
   PRECIO_GENERAL,
   PRECIO_DESCUENTO,
-  CUPOS_VENDIDOS_PCT,
   CATEGORIAS,
   WHATSAPP_SOPORTE,
 } from "../lib/carrera";
@@ -130,9 +129,8 @@ export default function CarreraPage() {
             />
 
             <div className="absolute right-4 bottom-4 left-4 rounded-xl bg-white p-5 shadow-[0_18px_50px_rgba(20,3,9,0.35)] sm:right-auto sm:bottom-6 sm:left-6 sm:w-90 sm:p-6">
-              <p className="font-barlow text-[11px] font-bold tracking-[0.16em] text-[#b83f00] uppercase">
-                Últimos días · {CUPOS_VENDIDOS_PCT}% vendido
-              </p>
+              {/* Fuera la píldora "Últimos días · 90% vendido": las inscripciones
+                  se cerraron el 27-ago-2026. */}
               <p className="font-barlow mt-1 text-sm leading-snug text-[#4c3a41]">
                 Desde ${PRECIO_DESCUENTO} · incluye camiseta, dorsal, chip y
                 medalla
