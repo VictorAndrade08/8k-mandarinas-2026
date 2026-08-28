@@ -81,6 +81,30 @@ export async function crearEnAirtable(env, datos) {
 }
 
 /**
+ * Quita del nombre las etiquetas internas que el equipo escribe entre
+ * paréntesis para organizar la mesa de entrega de kits: "(SORTEO – TARDE)",
+ * "(INFLUENCER – PRIORIDAD)", "(AMIGO MANDARINA – TARDE)".
+ *
+ * Sirven puertas adentro y NO deben salir en el ticket del corredor: a nadie le
+ * tiene que aparecer en pantalla que entró por sorteo o por cortesía, y
+ * "PRIORIDAD" en el nombre de unos y no de otros es una conversación que no
+ * queremos tener en la cola.
+ *
+ * Solo se recorta el paréntesis FINAL y solo si lleva una de esas palabras: hay
+ * gente cuyo nombre lleva paréntesis por otros motivos y no se le toca.
+ */
+const ETIQUETAS_INTERNAS =
+  /\s*\((?=[^)]*(?:SORTEO|INFLUENCER|AMIGO MANDARINA|PRIORIDAD|CORTES[ÍI]A|TARDE))[^)]*\)\s*$/i;
+
+function limpiarNombre(nombre) {
+  return (
+    String(nombre || "Participante")
+      .replace(ETIQUETAS_INTERNAS, "")
+      .trim() || "Participante"
+  );
+}
+
+/**
  * La inscripción del corredor tal y como está en el CRM, o null si no está o
  * Airtable no responde.
  *
@@ -126,7 +150,7 @@ export async function consultarEnAirtable(env, cedula) {
     if (!f) return null;
 
     return {
-      nombre: f.nombre || "Participante",
+      nombre: limpiarNombre(f.nombre),
       cedula: limpia,
       ciudad: f.ciudad ?? null,
       edad: f.edad ?? null,
