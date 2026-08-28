@@ -217,10 +217,10 @@ export default function HeroCountdown() {
 
           {/* BOTÓN DE INSCRIPCIÓN. */}
           <a
-            href="/inscripcion/"
+            href="/verificar/"
             className="entrada entrada-3 mt-[clamp(1rem,3.5vh,3rem)] inline-flex items-center justify-center rounded-full bg-white px-10 py-[clamp(0.6rem,1.8vh,1.25rem)] font-[family-name:var(--font-titular)] text-[clamp(0.9rem,2.2vh,1.4rem)] font-black tracking-[0.22em] text-[#c51850] uppercase shadow-[0_12px_45px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-105 active:scale-95 sm:px-14"
           >
-            Inscribirme ahora
+            Ver mi inscripción
           </a>
 
           {/* Valor de un vistazo: distancia + precio + qué incluye, junto al

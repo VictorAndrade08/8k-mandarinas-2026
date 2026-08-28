@@ -36,7 +36,7 @@ const CLAVE_SESION = "flyer-visto";
 const FLYERS = [
   {
     base: "flyer-vendido",
-    href: "/inscripcion/",
+    href: "/verificar/",
     alt: "8K Ruta de las Mandarinas · 90% vendido · Valle de Patate, 29 de agosto, salida en Patate Gardens · premios económicos: 2 motos y dos pasajes internacionales a Medellín — toca para inscribirte",
   },
   {
@@ -114,7 +114,7 @@ export default function PopupFlyer() {
               (docs/100-URGENCIA.md, estrategias 5 y 70: el CTA dice lo que pasa
               después, y va donde ya está mirando quien duda). */}
           <a
-            href="/inscripcion/"
+            href="/guiacorredor/"
             data-cerrar=""
             className="mt-3 block rounded-2xl px-6 py-4 text-center shadow-[0_10px_30px_rgba(197,24,80,0.45)] transition-transform hover:scale-[1.02] focus-visible:ring-4 focus-visible:ring-white/70 focus-visible:outline-none"
             style={{
@@ -123,11 +123,10 @@ export default function PopupFlyer() {
             }}
           >
             <span className="block text-lg leading-none font-black tracking-[0.12em] text-white uppercase sm:text-xl">
-              Inscripciones finales · Clic aquí
+              Retira tu kit el viernes 28
             </span>
             <span className="mt-1.5 block text-[11px] leading-snug font-bold text-white/85 sm:text-xs">
-              El kit se retira el viernes 28 hasta las 17h00, en Vehicentro
-              (Ambato)
+              De 10h00 a 17h00 en Vehicentro (Ambato) · lee la guía del corredor
             </span>
           </a>
 

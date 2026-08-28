@@ -288,10 +288,10 @@ export default function RutaPage() {
 
           <div className="font-barlow mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <Link
-              href="/inscripcion"
+              href="/verificar"
               className="inline-flex min-h-[52px] items-center gap-2 rounded-full bg-[#f7771c] px-8 text-sm font-bold tracking-[0.1em] text-white uppercase shadow-[0_8px_24px_rgba(247,119,28,0.35)] transition-colors hover:bg-[#d2600f]"
             >
-              Inscribirme <ArrowRight size={16} />
+              Ver mi inscripción <ArrowRight size={16} />
             </Link>
             <Link
               href="/reglamento#art-4"

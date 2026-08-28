@@ -4,13 +4,16 @@ import { usePathname } from "next/navigation";
 import Header from "./Header";
 import Footer from "./Footer";
 
-// Sin header ni footer: el formulario trae su propio marco y navegación por pasos.
-const SIN_CHROME = new Set<string>(["/inscripcion"]);
+// Sin header ni footer. Estaba /inscripcion, porque el formulario traía su
+// propio marco y navegación por pasos; desde que las inscripciones se cerraron
+// (27-ago-2026) esa ruta enseña un aviso corriente y necesita el marco del
+// sitio para poder salir de ahí.
+const SIN_CHROME = new Set<string>([]);
 
 // Sin margen superior: el contenido arranca en el píxel 0 y el header flota
 // encima. El hero trae su propio vídeo a pantalla completa y cualquier hueco
 // arriba deja ver el fondo naranja por encima del vídeo, que se lee como un fallo.
-const SIN_MARGEN_SUPERIOR = new Set<string>(["/", "/inscripcion"]);
+const SIN_MARGEN_SUPERIOR = new Set<string>(["/"]);
 
 // El header es `fixed`, así que no ocupa sitio: las páginas sin hero tienen que
 // reservar su altura a mano o el contenido nace debajo de la píldora. Son los

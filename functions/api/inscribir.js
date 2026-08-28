@@ -54,8 +54,35 @@ export function onRequestOptions() {
   return new Response(null, { headers: CORS });
 }
 
+// Las inscripciones se cerraron el 27-ago-2026, a dos días de la carrera: la
+// entrega de kits era al día siguiente y es la única, así que quien pagara
+// después no alcanzaba a retirar el suyo — cobrar por algo que no se puede
+// entregar no es una venta, es un problema.
+//
+// El cierre tiene que estar AQUÍ y no solo en la pantalla: este endpoint acepta
+// CORS "*", así que cualquiera puede postear sin pasar por el formulario.
+// Quitar el formulario sin cerrar esto no cierra nada.
+//
+// Es una copia de INSCRIPCIONES_ABIERTAS en app/lib/carrera.ts. Están separadas
+// a propósito: esto corre en el worker y aquello se compila en el cliente, y no
+// se pueden importar. Para reabrir hay que cambiar las dos.
+const INSCRIPCIONES_ABIERTAS = false;
+
 export async function onRequestPost({ request, env }) {
   try {
+    if (!INSCRIPCIONES_ABIERTAS) {
+      return json(
+        {
+          status: "error",
+          message:
+            "Las inscripciones están cerradas. Si ya te inscribiste, consulta tu estado en la página Mi pago.",
+        },
+        // 410 Gone y no 403: esto existía y ya no. Es lo que dice el estándar y
+        // lo que debe entender cualquier cosa que llame a este endpoint.
+        410
+      );
+    }
+
     if (!env.DB)
       return json(
         { status: "error", message: "D1 no configurado (binding DB)" },

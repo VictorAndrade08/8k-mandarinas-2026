@@ -37,15 +37,15 @@ export default function FloatingCTA() {
     <div className="hidden lg:block">
       <a
         id="cta-flotante"
-        href="/inscripcion/"
-        aria-label="Ir a formulario de inscripción"
+        href="/verificar/"
+        aria-label="Consultar el estado de mi inscripción"
         // Nace invisible y sin poder recibir clics; el script le quita estas dos
         // clases cuando toca. Sin JavaScript se queda oculto, que es lo correcto:
         // es un añadido, y el hero, el footer y la barra inferior ya llevan la
         // misma acción.
         className="pointer-events-none fixed right-8 bottom-8 z-50 flex translate-y-6 items-center gap-2 rounded-full bg-[#c51850] px-7 py-3.5 text-base leading-none font-bold tracking-[0.08em] text-white uppercase opacity-0 shadow-[0_8px_24px_rgba(247,119,28,0.35)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0"
       >
-        <span>Inscribirme</span>
+        <span>Mi inscripción</span>
         <PersonSimpleRun size={22} weight="fill" />
       </a>
 

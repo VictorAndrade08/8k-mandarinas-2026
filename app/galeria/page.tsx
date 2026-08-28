@@ -102,10 +102,10 @@ export default function GaleriaPage() {
             29 de agosto · salida 08h00 desde Patate Gardens · desde $18
           </p>
           <a
-            href="/inscripcion/"
+            href="/verificar/"
             className="font-barlow mt-3 inline-flex min-h-14 items-center justify-center rounded-full bg-[#c51850] px-10 text-lg font-bold tracking-wide text-white uppercase shadow-[0_8px_24px_rgba(247,119,28,0.35)] transition hover:-translate-y-0.5 hover:brightness-110"
           >
-            Inscribirme ahora
+            Ver mi inscripción
           </a>
         </div>
       </div>

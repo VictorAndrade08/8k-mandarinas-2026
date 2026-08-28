@@ -43,25 +43,42 @@ for (const ruta of PAGINAS) {
   });
 }
 
-test("la home permite iniciar la inscripción", async ({ page }) => {
+// Las inscripciones se cerraron el 27-ago-2026 (INSCRIPCIONES_ABIERTAS en
+// app/lib/carrera.ts). Estas pruebas comprobaban los tres primeros pasos del
+// formulario; ahora comprueban lo contrario: que el formulario NO esté y que
+// quien llegue ahí encuentre la salida. Si se reabren, hay que recuperarlas del
+// historial de git — están en el commit que cerró las inscripciones.
+test("la home lleva a consultar la inscripción", async ({ page }) => {
   await page.goto("/");
   await expect(
-    page.getByRole("link", { name: /inscrib/i }).first()
+    page
+      .getByRole("link", { name: /mi inscripción|ver mi inscripción/i })
+      .first()
   ).toBeVisible();
 });
 
-test("el paso 1 muestra las cuatro categorías con precio", async ({ page }) => {
+test("/inscripcion avisa de que está cerrado y ofrece salida", async ({
+  page,
+}) => {
   await page.goto("/inscripcion/");
-  for (const categoria of ["Élite Pro 8K", "Máster", "Leyenda"]) {
-    await expect(page.getByText(categoria).first()).toBeVisible();
-  }
-  await expect(page.getByText("$20").first()).toBeVisible();
+  await expect(page.getByText(/inscripciones cerradas/i).first()).toBeVisible();
+  // Las dos salidas: consultar el pago y la guía del corredor.
+  await expect(
+    page.getByRole("link", { name: /ver el estado/i })
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /guía del corredor/i }).first()
+  ).toBeVisible();
+  // Y que no quede rastro del formulario.
+  await expect(page.locator("input")).toHaveCount(0);
 });
 
-test("elegir categoría lleva a los datos personales", async ({ page }) => {
-  await page.goto("/inscripcion/");
-  await page.getByText("Élite Pro 8K").first().click();
-  await expect(page.getByText(/cédula/i).first()).toBeVisible();
+test("la guía del corredor abre y ofrece el PDF", async ({ page }) => {
+  await page.goto("/guiacorredor/");
+  await expect(page.getByText(/entrega de kits/i).first()).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /descargar la guía en pdf/i })
+  ).toHaveAttribute("href", "/guia-del-corredor-2026.pdf");
 });
 
 test("el reglamento muestra la entrega de kits en Vehicentro", async ({

@@ -54,8 +54,6 @@ export default function BottomNav() {
   const ruta = pathname.replace(/\/+$/, "") || "/";
 
   // El formulario trae su propia barra fija abajo; no encajamos otra encima.
-  if (ruta.startsWith("/inscripcion")) return null;
-
   // min-w-0 y sin tracking: con `tracking-wide` a 10px, "INSCRIBIRME" medía más
   // que su celda (390/5 = 78px) y el texto tocaba el borde de la pantalla. El
   // mínimo entre áreas táctiles es 8px (WCAG 2.2, 2.5.8), así que la etiqueta
@@ -123,9 +121,9 @@ export default function BottomNav() {
         {/* Inscribirme: 5ª celda del MISMO ancho. Destaca por el círculo de
             marca, no por ser una píldora ancha que descuadra la fila. */}
         <Link
-          href="/inscripcion"
+          href="/guiacorredor"
           className={`${itemBase} text-[#f7771c]`}
-          aria-label="Ir a inscripción"
+          aria-label="Ver la guía del corredor"
         >
           {/* El mismo hueco que la barrita de "activo" de las otras celdas: sin
               él, este icono y su etiqueta quedan 3px más arriba que el resto. */}
@@ -135,9 +133,10 @@ export default function BottomNav() {
                 único de la fila con otro estilo de trazo. */}
             <PersonSimpleRun size={20} weight="fill" />
           </span>
-          {/* "Inscríbete", no "Inscribirme": entra holgado en la celda y es la
-              misma palabra que usa el botón grande del home. */}
-          Inscríbete
+          {/* Era "Inscríbete" hasta que se cerraron las inscripciones
+              (27-ago-2026). Ahora la acción destacada es la guía: la carrera es
+              pasado mañana y el kit se retira mañana. */}
+          Guía
         </Link>
       </div>
     </nav>

@@ -22,6 +22,25 @@ export const VIDEO_POSTER = "/video/8k-promo-v2-poster.webp";
 export const VIDEO_FONDO_SRC = "/video/8k-hero.mp4";
 export const VIDEO_FONDO_POSTER = "/video/8k-hero-poster.webp";
 
+/**
+ * Si el formulario de inscripción está abierto.
+ *
+ * Se cerró el 27-ago-2026, a dos días de la carrera y con la entrega de kits
+ * al día siguiente: quien pagara después ya no alcanzaba a retirar el kit, y
+ * sin kit no hay dorsal ni chip. O sea que seguir cobrando era cobrar por algo
+ * que no se podía entregar.
+ *
+ * Con esto en `false`: /inscripcion enseña el aviso de cierre en vez del
+ * formulario, /api/inscribir rechaza cualquier envío (el endpoint acepta CORS
+ * "*", así que cerrar solo la pantalla no cierra nada), y todas las llamadas a
+ * la acción del sitio apuntan a /verificar.
+ *
+ * OJO: el catálogo del worker (functions/api/inscribir.js) lleva su propia
+ * copia de esta decisión, porque no puede importar de aquí. Para reabrir hay
+ * que tocar los dos sitios.
+ */
+export const INSCRIPCIONES_ABIERTAS = false;
+
 /** Sábado 29 de agosto de 2026, 08:00 en Ecuador (GMT-5). Salida en Patate Gardens. */
 export const FECHA_CARRERA = "2026-08-29T08:00:00-05:00";
 

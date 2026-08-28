@@ -15,7 +15,7 @@ import { Package, FileArrowDown } from "@phosphor-icons/react/dist/ssr";
 const FLYERS = [
   {
     base: "flyer-vendido",
-    href: "/inscripcion/",
+    href: "/verificar/",
     alt: "8K Ruta de las Mandarinas · 90% vendido · Valle de Patate, 29 de agosto, salida en Patate Gardens · premios económicos: 2 motos y dos pasajes internacionales a Medellín",
   },
   {

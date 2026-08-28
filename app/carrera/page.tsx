@@ -138,10 +138,10 @@ export default function CarreraPage() {
                 medalla
               </p>
               <a
-                href="/inscripcion/"
+                href="/verificar/"
                 className="font-barlow mt-4 inline-flex min-h-13 w-full items-center justify-center rounded-full bg-[#c51850] px-8 text-base font-bold tracking-[0.08em] text-white uppercase transition hover:-translate-y-0.5 hover:brightness-110"
               >
-                Inscribirme ahora
+                Ver mi inscripción
               </a>
               <p className="font-barlow mt-3 text-center text-xs font-bold tracking-[0.14em] text-[#7c5f52] uppercase">
                 <span className="lg:hidden">
@@ -401,10 +401,10 @@ export default function CarreraPage() {
           </div>
           <div className="font-barlow grid gap-2 text-base">
             <a
-              href="/inscripcion/"
+              href="/verificar/"
               className="font-bold text-[#b83f00] underline decoration-2 underline-offset-4 hover:text-[#2a161e]"
             >
-              Inscripción
+              Mi inscripción
             </a>
             <a href="/ruta/" className="text-gray-600 hover:text-[#b83f00]">
               El recorrido

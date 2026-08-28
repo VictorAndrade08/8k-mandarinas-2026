@@ -58,10 +58,10 @@ export default function CategoriasHome() {
         </p>
 
         <Link
-          href="/inscripcion"
+          href="/verificar"
           className="font-barlow mt-6 inline-flex min-h-[56px] w-full items-center justify-center rounded-full bg-[#c51850] px-10 text-lg font-bold tracking-wide text-white uppercase shadow-[0_8px_24px_rgba(247,119,28,0.35)] transition hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
         >
-          Inscribirme ahora
+          Ver mi inscripción
         </Link>
       </div>
     </section>

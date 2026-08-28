@@ -12,7 +12,6 @@ import { WHATSAPP_SOPORTE } from "../lib/carrera";
 // misma lista en dos sitios, y las dos se desincronizan a la primera.
 
 const ENLACES = [
-  { href: "/inscripcion/", label: "Inscripción" },
   { href: "/ruta", label: "El recorrido" },
   { href: "/galeria", label: "Galería" },
   { href: "/informacion", label: "Información" },

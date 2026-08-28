@@ -54,10 +54,10 @@ export default function NoEncontrada() {
             Ir al inicio <ArrowRight size={16} />
           </Link>
           <Link
-            href="/inscripcion"
+            href="/verificar"
             className="inline-flex min-h-[52px] items-center gap-2 text-sm font-bold tracking-[0.1em] text-white/70 uppercase transition-colors hover:text-white"
           >
-            Inscribirme <ArrowRight size={14} />
+            Mi inscripción <ArrowRight size={14} />
           </Link>
           <Link
             href="/informacion"

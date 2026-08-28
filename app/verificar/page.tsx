@@ -74,7 +74,7 @@ function NotFoundModal({
   onClose: () => void;
 }) {
   if (!open) return null;
-  const hrefInscripcion = "/inscripcion#formulario";
+  const hrefGuia = "/guiacorredor";
 
   // Portal a <body>: dentro de <main> (contexto de apilamiento z-10) el
   // header z-50 quedaba POR ENCIMA del modal y lo cortaba — el mismo problema
@@ -131,10 +131,10 @@ function NotFoundModal({
               Revisar el número
             </button>
             <a
-              href={hrefInscripcion}
+              href={hrefGuia}
               className="flex items-center justify-center rounded-2xl bg-[#c51850] px-8 py-4 text-base font-bold text-white transition hover:brightness-110"
             >
-              Quiero inscribirme
+              Guía del corredor
             </a>
           </div>
         </div>

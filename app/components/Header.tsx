@@ -218,10 +218,10 @@ export default function Header() {
           {/* Una sola acción con peso visual, a la derecha */}
           <div className="hidden flex-shrink-0 items-center gap-4 lg:flex">
             <Link
-              href="/inscripcion"
+              href="/verificar"
               className="inline-flex min-h-[44px] items-center rounded-full bg-[#f7771c] px-6 text-sm font-bold tracking-[0.08em] whitespace-nowrap text-white uppercase shadow-md transition-all duration-300 outline-none hover:-translate-y-0.5 hover:bg-[#d2600f] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-[#f7771c] focus-visible:ring-offset-2"
             >
-              Inscribirse
+              Mi inscripción
             </Link>
           </div>
         </div>
